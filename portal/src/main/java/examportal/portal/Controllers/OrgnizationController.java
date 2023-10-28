@@ -26,7 +26,7 @@ public class OrgnizationController {
         Orgnizations savedOrgnization = this.orgnizationService.createOrgnizations(orgnizations);
         return new ResponseEntity<Orgnizations>(savedOrgnization,HttpStatus.CREATED);
     }
-
+    
 
     @GetMapping("/getAllOrgnizations")
     public ResponseEntity<List<Orgnizations>> getAll()
