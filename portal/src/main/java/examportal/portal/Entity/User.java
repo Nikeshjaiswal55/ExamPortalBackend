@@ -9,9 +9,10 @@ import lombok.Data;
 @Entity
 @Data
 public class User {
+    
     @Id
     private String userid=UUID.randomUUID().toString();
     private String email;
     private String authtype;
-    private String subId;    
+    private String subid;
 }

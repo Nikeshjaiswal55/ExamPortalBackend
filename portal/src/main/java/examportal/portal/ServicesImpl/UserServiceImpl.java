@@ -4,20 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.User;
-import examportal.portal.Repositorys.UserRepo;
+import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
-
+public class UserserviceImpl implements UserService {
 
     @Autowired
     private UserRepo userRepo;
 
     @Override
     public User createUser(User user) {
-        User createdUser = this.userRepo.save(user);
-       return createdUser;
+      
+        User newUser= this.userRepo.save(user);
+        return newUser;
     }
     
 }

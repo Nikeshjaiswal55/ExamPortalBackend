@@ -16,21 +16,12 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	 implementation 'com.okta.spring:okta-spring-boot-starter:3.0.5'
-	// chale
-	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
-
- // Spring Boot Starter for Data JPA
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    // Database Driver (MySQL in this example)
-    implementation 'mysql:mysql-connector-java:8.0.27'
-
-	// chale
-
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'mysql:mysql-connector-java:8.0.31'
+	compileOnly 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
