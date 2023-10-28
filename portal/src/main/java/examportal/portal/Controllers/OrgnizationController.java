@@ -8,30 +8,30 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import examportal.portal.Entity.Orgnization;
+import examportal.portal.Entity.Orgnizations;
 import examportal.portal.Services.OrgnizationService;
 
 @RestController
-@RequestMapping("/examportal")
 public class OrgnizationController {
     
+
     @Autowired
     private OrgnizationService orgnizationService;
 
     @PostMapping("/createorgnization")
-    public ResponseEntity<Orgnization> createOrgnization(@RequestBody Orgnization orgnization)
+    public ResponseEntity<Orgnizations> createOrgnization(@RequestBody Orgnizations orgnizations)
     {
-        Orgnization savedorgnization = this.orgnizationService.createOrgnization(orgnization);
-        return new ResponseEntity<>(savedorgnization,HttpStatus.OK);
+        Orgnizations savedOrgnization = this.orgnizationService.createOrgnizations(orgnizations);
+        return new ResponseEntity<Orgnizations>(savedOrgnization,HttpStatus.CREATED);
     }
 
-    @GetMapping("/getall")
-    public ResponseEntity<List<Orgnization>> getallorgnizatio()
+
+    @GetMapping("/getAllOrgnizations")
+    public ResponseEntity<List<Orgnizations>> getAll()
     {
-        List<Orgnization> list = this.orgnizationService.getall();
-        return new ResponseEntity<>(list,HttpStatus.OK);
+        List<Orgnizations> orgnization = this.orgnizationService.getAllOrgnizations();
+        return new ResponseEntity<List<Orgnizations>>(orgnization,HttpStatus.OK);
     }
 }

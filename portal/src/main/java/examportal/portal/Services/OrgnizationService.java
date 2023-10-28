@@ -2,10 +2,11 @@ package examportal.portal.Services;
 
 import java.util.List;
 
-import examportal.portal.Entity.Orgnization;
+import examportal.portal.Entity.Orgnizations;
 
 public interface OrgnizationService {
     
-    Orgnization createOrgnization(Orgnization orgnization);
-    List<Orgnization> getall();
+    Orgnizations createOrgnizations(Orgnizations orgnizations);
+
+    List<Orgnizations> getAllOrgnizations();
 }

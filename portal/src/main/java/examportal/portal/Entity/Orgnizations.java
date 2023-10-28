@@ -8,15 +8,14 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Orgnization {
-
+public class Orgnizations {
+    
     @Id
-    private String orgnizationid=UUID.randomUUID().toString();
+    private String orgnizationId=UUID.randomUUID().toString();
 
     private String orgnizationName;
 
-    private String orgnizationtype;
+    private String orgnizationType;
 
-    private String userid;
-
+    private String userId;
 }
