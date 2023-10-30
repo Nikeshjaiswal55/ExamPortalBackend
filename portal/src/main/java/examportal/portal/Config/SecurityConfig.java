@@ -1,5 +1,6 @@
 package examportal.portal.Config;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +14,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Deprecated
 public class SecurityConfig {
 
+    private static final org.slf4j.Logger log  = LoggerFactory.getLogger(SecurityConfig.class);
+
     private static final String[] public_urls ={
         "/login",
         "api/v1/auth/**",
@@ -24,27 +27,26 @@ public class SecurityConfig {
     
       @Bean
     public JwtDecoder jwtDecoder() {
+        log.info("SecurityConfig, jwtDecoder Method Start");
         // Replace "{your-jwk-set-uri}" with the actual JWK Set URI provided by Auth0
+        log.info("SecurityConfig, jwtDecoder Method Ends");
         return NimbusJwtDecoder.withJwkSetUri("https://dev-rurgln6qgnlgikvb.us.auth0.com/.well-known/jwks.json").build();
     }
 
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
+        log.info("SecurityConfig , filterChain Method Start ");
+
         http.authorizeRequests(authorizeRequests ->
         authorizeRequests.requestMatchers(public_urls).permitAll().
-        requestMatchers("/students").authenticated())
-
+        requestMatchers("/student").authenticated())
         // .authorizeRequests(authorizeRequests -> authorizeRequests.requestMatchers("/Swagger").permitAll())
         .oauth2ResourceServer(oauth2ResourceServer ->
         oauth2ResourceServer.jwt(jwt -> jwt.decoder(jwtDecoder())));
 
+        log.info("SecurityConfig , filterChain Method Ends");
     return http.build();
 
-
-
-        // http.authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
-        // .oauth2ResourceServer(oauth2ResourceServer-> oauth2ResourceServer.jwt(jwt-> jwt.decoder(jwtDecoder())));
-        // return http.build();
     }
 
 }
