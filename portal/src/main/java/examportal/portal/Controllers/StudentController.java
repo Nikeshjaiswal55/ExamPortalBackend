@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Student;
 import examportal.portal.Services.StudentSevices;
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -31,7 +33,7 @@ public class StudentController {
 
     //Add student
     @PostMapping("/student")
-    public ResponseEntity<Student> addStudent (@RequestBody Student student){
+    public ResponseEntity<Student> addStudent (@Valid @RequestBody Student student){
         
         log.info("StudentController , addStudent Method Start");
         Student savedStudent = this.studentSevices.addStudent(student);
