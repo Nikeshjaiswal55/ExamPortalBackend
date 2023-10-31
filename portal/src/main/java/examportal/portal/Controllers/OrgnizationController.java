@@ -7,8 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,7 @@ public class OrgnizationController {
     @Autowired
     private OrgnizationService orgnizationService;
 
+    // @PostMapping("/createorgnization")
     @PostMapping("/createorgnization")
     public ResponseEntity<Orgnizations> createOrgnization(@RequestBody Orgnizations orgnizations)
     {   log.info("OrgnizationController, createOrgnization Method Start");
@@ -37,9 +40,27 @@ public class OrgnizationController {
     @GetMapping("/getAllOrgnizations")
     public ResponseEntity<List<Orgnizations>> getAll()
     {
-        log.info("OrgnizationController , getAll Method Star");
+        log.info("OrgnizationController , getAll Method Start");
         List<Orgnizations> orgnization = this.orgnizationService.getAllOrgnizations();
         log.info("OrgnizationController , getAll Method Ends");
         return new ResponseEntity<List<Orgnizations>>(orgnization,HttpStatus.OK);
+    }
+
+    @PutMapping("/updteorgnizations")
+    public ResponseEntity<Orgnizations> Updateorgnizations(@RequestBody Orgnizations orgnizations)
+    {
+        log.info("OrgnizationController , Updateorgnizations Method Start");
+        Orgnizations update = this.orgnizationService.updteOrgnizations(orgnizations);
+         log.info("OrgnizationController , Updateorgnizations Method End's");
+        return new ResponseEntity<>(update,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deleteorgnizations")
+    public ResponseEntity<String> deleteOrgnization(@RequestBody Orgnizations orgnizations)
+    {
+         log.info("OrgnizationController , deleteorgnizations Method Start");
+         this.orgnizationService.deleteorgnization(orgnizations.getOrgnizationId());
+          log.info("OrgnizationController , Updateorgnizations Method Ends");
+        return new ResponseEntity<String>("deleted succesfully",HttpStatus.OK);
     }
 }

@@ -17,6 +17,8 @@ public class User {
     private String authtype;
      
     private String subid;
+
+    private String Password;
     
 
 }

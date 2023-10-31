@@ -9,4 +9,8 @@ public interface OrgnizationService {
     Orgnizations createOrgnizations(Orgnizations orgnizations);
 
     List<Orgnizations> getAllOrgnizations();
+
+    Orgnizations updteOrgnizations(Orgnizations orgnizations);
+
+    String deleteorgnization(String OrgnizationID);
 }

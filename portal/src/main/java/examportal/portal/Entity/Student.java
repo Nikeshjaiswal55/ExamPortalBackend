@@ -11,7 +11,7 @@ import lombok.Data;
 public class Student {
     @Id
     private String studentid = UUID.randomUUID().toString();
-    
+
     private String email;
     private String name;
 
