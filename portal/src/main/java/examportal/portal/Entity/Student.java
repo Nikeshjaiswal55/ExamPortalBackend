@@ -13,7 +13,7 @@ import lombok.Data;
 public class Student {
     @Id
     private String studentid = UUID.randomUUID().toString();
-    @Email
+   @Email
     private String email;
     @NotEmpty
     private String name;
