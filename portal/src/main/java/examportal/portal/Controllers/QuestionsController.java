@@ -45,13 +45,15 @@ public class QuestionsController {
         return new ResponseEntity<>(questions,HttpStatus.OK);
     }
 
-    //  @GetMapping("/getall/questions/{paperId}")
-    // public ResponseEntity<List<Questions>> getall(@PathVariable String paperId)
-    // {
-    //     List<Questions> questions = this.questionService.getAllQuestions(paperId);
+     @GetMapping("/getall/questions/{paperId}")
+    public ResponseEntity<List<Questions>> getall(@PathVariable String paperId)
+    {
+        System.out.println("enter..............");
+        List<Questions> questions = this.questionService.getAllQuestionsById(paperId);
+        System.out.println("out..................");
 
-    //     return new ResponseEntity<>(questions,HttpStatus.OK);
-    // }
+        return new ResponseEntity<>(questions,HttpStatus.OK);
+    }
 
     @DeleteMapping("/DeleteQuestion/{QuestionID}")
     public ResponseEntity<String> deleteQuestions(@PathVariable String QuestionID)

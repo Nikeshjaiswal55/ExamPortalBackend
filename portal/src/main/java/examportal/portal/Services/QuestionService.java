@@ -7,7 +7,7 @@ public interface QuestionService {
 
     Questions createQuestions(Questions questions);
     Questions updateQuestions(Questions questions);
-    // List<Questions> getAllQuestions(String paperId);
+    List<Questions> getAllQuestionsById(String paperId);
     Questions getQuestionsByID(String questionId);
     String deleteQuestion(String QuestionID);
     

@@ -17,5 +17,5 @@ public class ExamDetails {
     private boolean paperChecked;
     private String branch;
     private String session;
-    private String paperID;
+    private String paperId;
 }

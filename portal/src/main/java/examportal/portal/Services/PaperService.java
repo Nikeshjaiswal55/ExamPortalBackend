@@ -3,13 +3,15 @@ package examportal.portal.Services;
 import java.util.List;
 // 
 import examportal.portal.Entity.Paper;
+// import examportal.portal.Entity.Questions;
+import examportal.portal.Payloads.PaperDto;
 
 public interface PaperService {
     
-    Paper createPaper(Paper paper);
-    // Paper updetPaper(Paper paper);
+    Paper createPaper(PaperDto paperDto);
+    PaperDto updetPaper(PaperDto paperDto);
     // String deletePaper(String paperId);
-    List<Paper> getAllPaper();
-    // Paper getPaperById(String paperID);
-    
+    List<PaperDto> getAllPaper();
+    PaperDto getPaperById(String paperID);
+
 }
