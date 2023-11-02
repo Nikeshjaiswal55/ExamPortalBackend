@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.User;
+import examportal.portal.Payloads.EmailDetails;
 import examportal.portal.Repo.UserRepo;
-import examportal.portal.Services.EmailServices;
+import examportal.portal.Services.EmailService;
 import examportal.portal.Services.UserService;
 import jakarta.el.ELException;
 
@@ -18,7 +19,7 @@ public class UserserviceImpl implements UserService {
     private UserRepo userRepo;
 
     @Autowired
-    private EmailServices emailServices;
+    private EmailService emailServices;
 
     Logger log = LoggerFactory.getLogger("userServiceImpl");
 
@@ -34,6 +35,7 @@ public class UserserviceImpl implements UserService {
         } else {
             User newuser = this.userRepo.save(user);
             // sendmail(newuser);
+            sendmail(newuser);
             log.info("userService , createUser Method Ends");
 
             return newuser;
@@ -41,7 +43,7 @@ public class UserserviceImpl implements UserService {
 
     }
 
-    @Override
+  //  @Override
     public String sendmail(User user) {
 
         log.info("userService , send mail Method Start");
@@ -52,9 +54,11 @@ public class UserserviceImpl implements UserService {
 
         String to = user.getEmail();
 
-        String from = "mohammadm.bsccs2021@ssism.org";
+        // String from = "krishnas.bca2022@ssism.org";
 
-        emailServices.sendEmail(from, subject, message, to);
+        EmailDetails em = new EmailDetails(to, message, subject);
+
+        emailServices.sendSimpleMail(em);
 
         // String testPasswordEncoded = user.getPassword();
 
