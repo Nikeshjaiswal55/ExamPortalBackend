@@ -25,7 +25,7 @@ public class OrgnizationServiceImpl implements OrgnizationService {
 
   @Autowired
   private UserService userService;
-
+  
   @Override
   public Orgnizations createOrgnizations(OrgnizationDto orgnizationsDto) {
     log.info("OrgnizationServiceImp , createOrgnization Method Start");
@@ -51,18 +51,6 @@ public class OrgnizationServiceImpl implements OrgnizationService {
     return orgnizations;
   }
 
-  @Override
-  public Orgnizations updteOrgnizations(Orgnizations orgnizations) {
-    log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
-    Orgnizations Update = this.orgnizationRepo.findById(orgnizations.getOrgnizationId())
-        .orElseThrow(() -> new ELException("Orgnization not found"));
-    Update.setOrgnizationName(orgnizations.getOrgnizationName());
-    Update.setOrgnizationType(orgnizations.getOrgnizationType());
-    Orgnizations savedOrgnizations = this.orgnizationRepo.save(Update);
-    log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
-
-    return savedOrgnizations;
-  }
 
   @Override
   public String deleteorgnization(String OrgnizationID) {
@@ -73,5 +61,24 @@ public class OrgnizationServiceImpl implements OrgnizationService {
     log.info("OrgnizationServiceImp , UpdateOrgnization Method Ends");
     return "deleted succesfully";
   }
+
+  // @Override
+  // public Orgnizations updateOrgnizations(Orgnizations orgnizations) {
+   
+  // }
+
+  @Override
+  public Orgnizations updteOrgnizations(Orgnizations orgnizations) {
+       log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
+    Orgnizations Update = this.orgnizationRepo.findById(orgnizations.getOrgnizationId())
+        .orElseThrow(() -> new ELException("Orgnization not found"));
+    Update.setOrgnizationName(orgnizations.getOrgnizationName());
+    Update.setOrgnizationType(orgnizations.getOrgnizationType());
+    Orgnizations savedOrgnizations = this.orgnizationRepo.save(Update);
+    log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
+
+    return savedOrgnizations;
+  }
+
 
 }

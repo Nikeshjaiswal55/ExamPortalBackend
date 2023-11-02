@@ -47,11 +47,12 @@ public class OrgnizationController {
         return new ResponseEntity<List<Orgnizations>>(orgnization,HttpStatus.OK);
     }
 
+
     @PutMapping("/updteorgnizations")
     public ResponseEntity<Orgnizations> Updateorgnizations(@RequestBody Orgnizations orgnizations)
     {
         log.info("OrgnizationController , Updateorgnizations Method Start");
-        Orgnizations update = this.orgnizationService.updteOrgnizations(orgnizations);
+        Orgnizations update = this.orgnizationService.updateOrgnizations(orgnizations);
          log.info("OrgnizationController , Updateorgnizations Method End's");
         return new ResponseEntity<>(update,HttpStatus.OK);
     }
