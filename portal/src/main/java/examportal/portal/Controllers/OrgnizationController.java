@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Orgnizations;
+import examportal.portal.Payloads.OrgnizationDto;
 import examportal.portal.Services.OrgnizationService;
 
 @RestController
@@ -27,10 +28,10 @@ public class OrgnizationController {
 
     // @PostMapping("/createorgnization")
     @PostMapping("/createorgnization")
-    public ResponseEntity<Orgnizations> createOrgnization(@RequestBody Orgnizations orgnizations)
+    public ResponseEntity<Orgnizations> createOrgnization(@RequestBody OrgnizationDto orgnizationsDto)
     {   log.info("OrgnizationController, createOrgnization Method Start");
         
-    Orgnizations savedOrgnization = this.orgnizationService.createOrgnizations(orgnizations);
+    Orgnizations savedOrgnization = this.orgnizationService.createOrgnizations(orgnizationsDto);
         
         log.info("Orgnization Controller, createOrgnization Method Ends");
         return new ResponseEntity<Orgnizations>(savedOrgnization,HttpStatus.CREATED);

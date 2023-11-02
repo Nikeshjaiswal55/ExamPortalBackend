@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Orgnizations;
+import examportal.portal.Entity.User;
+import examportal.portal.Payloads.OrgnizationDto;
 import examportal.portal.Repo.OrgnizationRepo;
 import examportal.portal.Services.OrgnizationService;
+import examportal.portal.Services.UserService;
 import jakarta.el.ELException;
 
 @Service
@@ -20,14 +23,24 @@ public class OrgnizationServiceImpl implements OrgnizationService {
   @Autowired
   private OrgnizationRepo orgnizationRepo;
 
+  @Autowired
+  private UserService userService;
+
   @Override
-  public Orgnizations createOrgnizations(Orgnizations orgnizations) {
+  public Orgnizations createOrgnizations(OrgnizationDto orgnizationsDto) {
     log.info("OrgnizationServiceImp , createOrgnization Method Start");
 
-    Orgnizations newOrgnizations = this.orgnizationRepo.save(orgnizations);
+    User user = this.userService.createUser(orgnizationsDto.getUser());
+    
+    Orgnizations newOrgnizations = new Orgnizations();
+    newOrgnizations.setOrgnizationName(orgnizationsDto.getOrgnizationName());
+    newOrgnizations.setOrgnizationType(orgnizationsDto.getOrgnizationType());
+    newOrgnizations.setUserId(user.getUserId());
+
+    Orgnizations savedOrgnizations = this.orgnizationRepo.save(newOrgnizations);
 
     log.info("OrgnizationServiceImp , createOrgnization Method Ends");
-    return newOrgnizations;
+    return savedOrgnizations;
   }
 
   @Override

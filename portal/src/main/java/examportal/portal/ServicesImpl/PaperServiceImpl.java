@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,9 +38,12 @@ public class PaperServiceImpl implements PaperService {
   @Autowired
   private ExamDetailsRepo examDetailsRepo;
   
+  Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
   @Override
   public Paper createPaper(PaperDto paperdDto) {
+
+    log.info("paperService Create paper method Starts :");
 
     Paper paper = new Paper();
     paper.setUserId(paperdDto.getUserId());
@@ -53,6 +58,8 @@ public class PaperServiceImpl implements PaperService {
      examDetails.setExamRounds(paperdDto.getExamDetails().getExamRounds());
      examDetails.setPaperChecked(false);
      examDetails.setSession(paperdDto.getExamDetails().getSession());
+     examDetails.setAssessmentName(paperdDto.getExamDetails().getAssessmentName());
+
      ExamDetails examDetails2= this.examDetailsRepo.save(examDetails);
     System.out.println("my paper Id ============"+ examDetails2.getPaperId());
 
@@ -62,13 +69,17 @@ public class PaperServiceImpl implements PaperService {
       questions.setPaperID(newpPaper.getPaperId());
       this.questionService.createQuestions(questions);
     }
+    log.info("paperService Create paper method End's :");
 
     return newpPaper;
   }
 
   @Override
   public List<PaperDto> getAllPaper() {
+    log.info("paperService getAll paper method Starts :");
+
     List<Paper> papers = this.paperRepo.findAll();
+
     List<PaperDto> paperDtos = new ArrayList<>();
 
     for (Paper paper : papers) {
@@ -84,11 +95,13 @@ public class PaperServiceImpl implements PaperService {
       paper.setExamDetails(examDetails);
       dto.add(paper);
     }
+    log.info("paperService Create paper method End's :");
     return dto;
   }
 
   @Override
   public PaperDto getPaperById(String paperID) {
+    log.info("paperService getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID).orElseThrow(()-> new ELException("Paper not found"));
     PaperDto paperDto = this.mapper.map(paper, PaperDto.class);
     List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
@@ -97,17 +110,20 @@ public class PaperServiceImpl implements PaperService {
       paperDto.setQuestions(questions);
       paperDto.setExamDetails(examDetails);
     
+      log.info("paperService getPaperByID method End's :");
     return paperDto;
   }
 
   @Override
   public PaperDto updetPaper(PaperDto paperDto) {
+
+    log.info("paperService Update paper method Starts :");
+
     Paper paper = this.paperRepo.findById(paperDto.getPaperId()).orElseThrow(()-> new ELException("Paper not found"));
 
     PaperDto dto = this.mapper.map(paper, PaperDto.class);
 
     List<Questions> questions = paperDto.getQuestions();
-    System.out.println("my questions "+questions);
 
       List<Questions> q2 = new ArrayList<>();
 
@@ -119,23 +135,28 @@ public class PaperServiceImpl implements PaperService {
         Questions update= this.questionsRepo.save(upadateqQuestions);
 
         q2.add(update);
+
       }
 
       ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(paperDto.getPaperId());
-      examDetails.setPaperId(paperDto.getPaperId());
-     examDetails.setBranch(paperDto.getExamDetails().getBranch());
-     examDetails.setExamDuration(paperDto.getExamDetails().getExamDuration());
-     examDetails.setExamMode(paperDto.getExamDetails().getExamMode());
-     examDetails.setExamRounds(paperDto.getExamDetails().getExamRounds());
-     examDetails.setPaperChecked(false);
-     examDetails.setSession(paperDto.getExamDetails().getSession());
+        examDetails.setPaperId(paperDto.getPaperId());
+        examDetails.setBranch(paperDto.getExamDetails().getBranch());
+        examDetails.setExamDuration(paperDto.getExamDetails().getExamDuration());
+        examDetails.setExamMode(paperDto.getExamDetails().getExamMode());
+        examDetails.setExamRounds(paperDto.getExamDetails().getExamRounds());
+        examDetails.setPaperChecked(false);
+        examDetails.setSession(paperDto.getExamDetails().getSession());
+        examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
+      
+      ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
 
      dto.setQuestions(q2);
-     System.out.println("my data ======================="+q2);
-     dto.setExamDetails(examDetails);
+     
+     dto.setExamDetails(updateExamDetails);
       
+     log.info("paperService Update paper method Starts :");
 
-    return  dto;
+      return  dto;
 
   }
 
