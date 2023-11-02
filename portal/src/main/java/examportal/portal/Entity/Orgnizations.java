@@ -15,6 +15,7 @@ public class Orgnizations {
 
     private String orgnizationName;
 
+    
     private String orgnizationType;
 
     private String userId;
