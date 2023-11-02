@@ -3,7 +3,6 @@ package examportal.portal.ServicesImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -107,28 +106,36 @@ public class PaperServiceImpl implements PaperService {
 
     PaperDto dto = this.mapper.map(paper, PaperDto.class);
 
-    // List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperDto.getPaperId());
+    List<Questions> questions = paperDto.getQuestions();
+    System.out.println("my questions "+questions);
 
-      // Questions question = this.questionsRepo.findById(questions2.getQuestionId()).orElseThrow(()-> new ELException("Question Not found"));
-
-      List<Questions> question = paperDto.getQuestions();
       List<Questions> q2 = new ArrayList<>();
 
-      for (Questions ans : question) {
-        Questions qu = this.questionsRepo.findById(ans.getQuestionId()).orElseThrow(()-> new ELException("Question Not found"));
+      for (Questions ans : questions) {
+        Questions upadateqQuestions = this.questionsRepo.findById(ans.getQuestionId()).orElseThrow(()-> new ELException("Question Not found"));
 
-        qu.setUserAns(ans.getCorrectAns());
+        upadateqQuestions.setUserAns(ans.getUserAns());
 
-        this.questionsRepo.save(qu);
+        Questions update= this.questionsRepo.save(upadateqQuestions);
 
-        
-
-          q2.add(qu);
+        q2.add(update);
       }
+
+      ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(paperDto.getPaperId());
+      examDetails.setPaperId(paperDto.getPaperId());
+     examDetails.setBranch(paperDto.getExamDetails().getBranch());
+     examDetails.setExamDuration(paperDto.getExamDetails().getExamDuration());
+     examDetails.setExamMode(paperDto.getExamDetails().getExamMode());
+     examDetails.setExamRounds(paperDto.getExamDetails().getExamRounds());
+     examDetails.setPaperChecked(false);
+     examDetails.setSession(paperDto.getExamDetails().getSession());
+
+     dto.setQuestions(q2);
+     System.out.println("my data ======================="+q2);
+     dto.setExamDetails(examDetails);
       
-      paperDto.setQuestions(q2);
-    
-    return  paperDto;
+
+    return  dto;
 
   }
 
