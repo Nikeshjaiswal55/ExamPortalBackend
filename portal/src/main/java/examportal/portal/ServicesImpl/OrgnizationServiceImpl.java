@@ -62,23 +62,18 @@ public class OrgnizationServiceImpl implements OrgnizationService {
     return "deleted succesfully";
   }
 
-  // @Override
-  // public Orgnizations updateOrgnizations(Orgnizations orgnizations) {
-   
-  // }
-
+ 
   @Override
-  public Orgnizations updteOrgnizations(Orgnizations orgnizations) {
-       log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
-    Orgnizations Update = this.orgnizationRepo.findById(orgnizations.getOrgnizationId())
+  public Orgnizations updateOrgnizations(Orgnizations orgnization) {
+      log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
+    Orgnizations Update = this.orgnizationRepo.findById(orgnization.getOrgnizationId())
         .orElseThrow(() -> new ELException("Orgnization not found"));
-    Update.setOrgnizationName(orgnizations.getOrgnizationName());
-    Update.setOrgnizationType(orgnizations.getOrgnizationType());
+    Update.setOrgnizationName(orgnization.getOrgnizationName());
+    Update.setOrgnizationType(orgnization.getOrgnizationType());
     Orgnizations savedOrgnizations = this.orgnizationRepo.save(Update);
     log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
 
     return savedOrgnizations;
   }
-
 
 }
