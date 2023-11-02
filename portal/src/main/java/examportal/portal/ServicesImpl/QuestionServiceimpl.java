@@ -30,12 +30,13 @@ public class QuestionServiceimpl implements QuestionService  {
     }
 
 
-   //  @Override
-   //  public List<Questions> getAllQuestions(String paperId) {
-   //      List<Questions> questions = this.questionsRepo.findAllById(paperId);
+    @Override
+    public List<Questions> getAllQuestion(String paperId) {
+      System.out.println("hello==================================================================");
+        List<Questions> questions = this.questionsRepo.getAllQuestions(paperId);
 
-   //      return questions;
-   //  }
+        return questions;
+    }
 
     @Override
     public Questions getQuestionsByID(String questionId) {

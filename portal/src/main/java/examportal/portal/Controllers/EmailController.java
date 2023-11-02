@@ -24,14 +24,14 @@ public class EmailController {
         return status;
     }
 
-    @PostMapping("/sendMailWithAttachment")
-    public String sendMailWithAttachment(
-        @RequestBody EmailDetails details)
-    {
-        String status
-            = emailService.sendMailWithAttachment(details);
+    // @PostMapping("/sendMailWithAttachment")
+    // public String sendMailWithAttachment(
+    //     @RequestBody EmailDetails details)
+    // {
+    //     String status
+    //         = emailService.sendMailWithAttachment(details);
  
-        return status;
-    }
+    //     return status;
+    // }
  
 }

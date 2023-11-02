@@ -32,7 +32,7 @@ public class StudentController {
     private Logger log = LoggerFactory.getLogger("StudentController.class");
 
     //Add student
-    @PostMapping("/student")
+    @PostMapping("/student/create")
     public ResponseEntity<Student> addStudent (@Valid @RequestBody Student student){
         
         log.info("StudentController , addStudent Method Start");
@@ -42,7 +42,7 @@ public class StudentController {
 
     }
     //Getting All Student
-    @GetMapping("/student")
+    @GetMapping("/student/getAll")
     public ResponseEntity<List<Student>> getAllStudent(){
         log.info("StudentController , getAllStudent Method Start");
         
@@ -53,7 +53,7 @@ public class StudentController {
     }
     
     //getting Student By Id
-    @GetMapping("/student/{studentId}")
+    @GetMapping("/student/getBy/{studentId}")
     public ResponseEntity<Student> getAllStudentById(@PathVariable String studentId){
         log.info("StudentController , getAllStudent Method Start");
         

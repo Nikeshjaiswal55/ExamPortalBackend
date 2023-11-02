@@ -22,38 +22,42 @@ public class QuestionsController {
 
     @Autowired
     private QuestionService questionService;
-
-    @PostMapping("/create/Question")
+    // Add question
+    @PostMapping("Question/create")
     public ResponseEntity<Questions> createQuestion(@RequestBody Questions questions)
     {
         Questions questions2 = this.questionService.createQuestions(questions);
         return new ResponseEntity<>(questions2,HttpStatus.CREATED);
     }    
 
-    @PutMapping("/updateQuestions")
+    // Update a question
+    @PutMapping("Questions/update")
     public ResponseEntity<Questions> updateQuestion(@RequestBody Questions questions)
     {
         Questions questions2 = this.questionService.updateQuestions(questions);
         return new ResponseEntity<>(questions2,HttpStatus.ACCEPTED);
     }
-
-    @GetMapping("/getQuestionByID/{questionId}")
+    //get question by qId
+    @GetMapping("Question/getBy/{questionId}")
     public ResponseEntity<Questions> getQuestionByID(@PathVariable String questionId)
     {
         Questions questions = this.questionService.getQuestionsByID(questionId);
 
         return new ResponseEntity<>(questions,HttpStatus.OK);
     }
+    
+    // getting all question from a paper
+    @GetMapping("Question/getAll/{paperId}")
+    public ResponseEntity<List<Questions>> getall(@PathVariable String paperId)
+    {
+        System.out.println("hello==================================================================1");
+        List<Questions> questions = this.questionService.getAllQuestion(paperId);
 
-    //  @GetMapping("/getall/questions/{paperId}")
-    // public ResponseEntity<List<Questions>> getall(@PathVariable String paperId)
-    // {
-    //     List<Questions> questions = this.questionService.getAllQuestions(paperId);
+        return new ResponseEntity<List<Questions>>(questions,HttpStatus.OK);
+    }
 
-    //     return new ResponseEntity<>(questions,HttpStatus.OK);
-    // }
-
-    @DeleteMapping("/DeleteQuestion/{QuestionID}")
+    //delete a question
+    @DeleteMapping("Question/delete/{QuestionID}")
     public ResponseEntity<String> deleteQuestions(@PathVariable String QuestionID)
     {
         this.questionService.deleteQuestion(QuestionID);

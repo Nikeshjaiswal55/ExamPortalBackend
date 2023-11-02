@@ -20,13 +20,13 @@ public class PaperController {
     private PaperService paperService;
 
     
-    @GetMapping("/all")
+    @GetMapping("/Paper/getAll")
     public ResponseEntity<List<Paper>> getallpaper()
     {
         List<Paper> papers = this.paperService.getAllPaper();
         return new ResponseEntity<>(papers,HttpStatus.OK);
     }
-    @PostMapping("/create/paper")
+    @PostMapping("/Paper/create")
     public ResponseEntity<Paper> createNewpaper(@RequestBody Paper paper)
     {
         System.out.println("enterr...................");

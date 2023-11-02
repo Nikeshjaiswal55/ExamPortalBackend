@@ -25,8 +25,7 @@ public class OrgnizationController {
     @Autowired
     private OrgnizationService orgnizationService;
 
-    // @PostMapping("/createorgnization")
-    @PostMapping("/createorgnization")
+    @PostMapping("/Orgnization/create")
     public ResponseEntity<Orgnizations> createOrgnization(@RequestBody Orgnizations orgnizations)
     {   log.info("OrgnizationController, createOrgnization Method Start");
         
@@ -37,7 +36,7 @@ public class OrgnizationController {
     }
     
 
-    @GetMapping("/getAllOrgnizations")
+    @GetMapping("/Orgnization/getAll")
     public ResponseEntity<List<Orgnizations>> getAll()
     {
         log.info("OrgnizationController , getAll Method Start");
@@ -46,7 +45,7 @@ public class OrgnizationController {
         return new ResponseEntity<List<Orgnizations>>(orgnization,HttpStatus.OK);
     }
 
-    @PutMapping("/updteorgnizations")
+    @PutMapping("/Orgnization/updte")
     public ResponseEntity<Orgnizations> Updateorgnizations(@RequestBody Orgnizations orgnizations)
     {
         log.info("OrgnizationController , Updateorgnizations Method Start");
@@ -55,7 +54,7 @@ public class OrgnizationController {
         return new ResponseEntity<>(update,HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteorgnizations")
+    @DeleteMapping("/Orgnization/delete")
     public ResponseEntity<String> deleteOrgnization(@RequestBody Orgnizations orgnizations)
     {
          log.info("OrgnizationController , deleteorgnizations Method Start");

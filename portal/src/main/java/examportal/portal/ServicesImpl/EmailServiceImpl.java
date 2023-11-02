@@ -1,7 +1,7 @@
 package examportal.portal.ServicesImpl;
 
 import java.io.File;
-
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -12,11 +12,12 @@ import org.springframework.stereotype.Service;
 
 import examportal.portal.DTO.EmailDetails;
 import examportal.portal.Services.EmailService;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
+
 
 @Service
 public class EmailServiceImpl implements EmailService{
+
+    Logger log = org.slf4j.LoggerFactory.getLogger("EmailServiceImpl.class");
 
 
     @Autowired
@@ -26,6 +27,7 @@ public class EmailServiceImpl implements EmailService{
     private String sender;
     @Override
     public String sendSimpleMail(EmailDetails details) {
+        log.info("EmailSeviceImpl , sendSimpleMail Method Start");
          // Try block to check for exceptions
         try {
             // Creating a simple mail message
@@ -40,6 +42,7 @@ public class EmailServiceImpl implements EmailService{
  
             // Sending the mail
             javaMailSender.send(mailMessage);
+            log.info("EmailSeviceImpl , sendSimpleMail Method Ends");
             return "Mail Sent Successfully...";
         }
  
@@ -52,45 +55,46 @@ public class EmailServiceImpl implements EmailService{
     }
 
     // mail with attachement
-    @Override
-    public String sendMailWithAttachment(EmailDetails details) {
-          MimeMessage mimeMessage
-            = javaMailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper;
+    // @Override
+    // public String sendMailWithAttachment(EmailDetails details) {
+    //       MimeMessage mimeMessage
+    //         = javaMailSender.createMimeMessage();
+    //     MimeMessageHelper mimeMessageHelper;
  
-        try {
+    //     try {
  
-            // Setting multipart as true for attachments to
-            // be send
-            mimeMessageHelper
-                = new MimeMessageHelper(mimeMessage, true);
-            mimeMessageHelper.setFrom(sender);
-            mimeMessageHelper.setTo(details.getRecipient());
-            mimeMessageHelper.setText(details.getMsgBody());
-            mimeMessageHelper.setSubject(
-                details.getSubject());
+    //         // Setting multipart as true for attachments to
+    //         // be send
+    //         mimeMessageHelper
+    //             = new MimeMessageHelper(mimeMessage, true);
+    //         mimeMessageHelper.setFrom(sender);
+    //         mimeMessageHelper.setTo(details.getRecipient());
+    //         mimeMessageHelper.setText(details.getMsgBody());
+    //         mimeMessageHelper.setSubject(
+    //             details.getSubject());
  
-            // Adding the attachment
-            FileSystemResource file
-                = new FileSystemResource(
-                    new File(details.getAttachment()));
+    //         // Adding the attachment
+    //         FileSystemResource file
+    //             = new FileSystemResource(
+    //                 new File(details.getAttachment()));
  
-            mimeMessageHelper.addAttachment(
-                file.getFilename(), file);
+    //         mimeMessageHelper.addAttachment(
+    //             file.getFilename(), file);
  
-            // Sending the mail
-            javaMailSender.send(mimeMessage);
-            return "Mail sent Successfully";
-        }
+    //         // Sending the mail
+    //         javaMailSender.send(mimeMessage);
+    //         return "Mail sent Successfully";
+    //     }
  
-        // Catch block to handle MessagingException
-        catch (MessagingException e) {
+    //     // Catch block to handle MessagingException
+    //     catch (MessagingException e) {
  
-            // Display message when exception occurred
-            return "Error while sending mail!!!";
-        }
+    //         // Display message when exception occurred
+    //         return "Error while sending mail!!!";
+    //   
+  
         
         
-    }
+    
     
 }
