@@ -20,7 +20,7 @@ import examportal.portal.Payloads.OrgnizationDto;
 import examportal.portal.Services.OrgnizationService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://192.168.0.170:5173/get-started")
 public class OrgnizationController {
 
     Logger log = LoggerFactory.getLogger("OrgnizationController.class");
