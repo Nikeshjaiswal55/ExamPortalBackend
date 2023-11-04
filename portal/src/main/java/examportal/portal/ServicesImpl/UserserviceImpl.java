@@ -1,5 +1,7 @@
 package examportal.portal.ServicesImpl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +74,14 @@ public class UserserviceImpl implements UserService {
 
         return "Email send sucess fully";
 
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        log.info("userService , getAllUser Method Start");
+        List <User> u1 =  this.userRepo.findAll();
+        log.info("userService , getAllUser Method Start");
+       return u1;
     }
 
 }
