@@ -9,6 +9,7 @@ import examportal.portal.Payloads.PaperDto;
 public interface PaperService {
     
     Paper createPaper(PaperDto paperDto);
+    
     PaperDto updetPaper(PaperDto paperDto);
     // String deletePaper(String paperId);
     List<PaperDto> getAllPaper();
