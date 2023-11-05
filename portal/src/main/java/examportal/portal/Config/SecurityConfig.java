@@ -30,7 +30,7 @@ public class SecurityConfig {
         log.info("SecurityConfig, jwtDecoder Method Start");
         // Replace "{your-jwk-set-uri}" with the actual JWK Set URI provided by Auth0
         log.info("SecurityConfig, jwtDecoder Method Ends");
-        return NimbusJwtDecoder.withJwkSetUri("https://dev-rurgln6qgnlgikvb.us.auth0.com/.well-known/jwks.json").build();
+        return NimbusJwtDecoder.withJwkSetUri("https://dev-mp3ifwfcpsy5t3ok.us.auth0.com/.well-known/jwks.json").build();
     }
 
     @Bean
