@@ -8,7 +8,6 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table( name="usser")
 @Data
 @Table(name = "usser")
 public class User {
