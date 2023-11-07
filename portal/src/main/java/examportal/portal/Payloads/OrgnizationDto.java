@@ -1,22 +1,20 @@
-package examportal.portal.Entity;
+package examportal.portal.Payloads;
 
 import java.util.UUID;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import examportal.portal.Entity.User;
 import lombok.Data;
 
-@Entity
 @Data
-public class Orgnizations {
-    
-    @Id
+public class OrgnizationDto {
+
     private String orgnizationId=UUID.randomUUID().toString();
 
     private String orgnizationName;
 
-    
     private String orgnizationType;
 
     private String userId;
+
+    private User user;
 }
