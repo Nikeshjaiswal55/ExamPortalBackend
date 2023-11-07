@@ -10,7 +10,7 @@ import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserserviceImpl implements UserService {
 
  @Autowired
  private UserRepo userRepo;
