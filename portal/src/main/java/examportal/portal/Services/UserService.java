@@ -8,7 +8,7 @@ public  interface UserService {
     
     User createUser(User user);
     
-    String sendmail(User user);
+    // String sendmail(User user);
     
     List<User>getAllUser();
 }

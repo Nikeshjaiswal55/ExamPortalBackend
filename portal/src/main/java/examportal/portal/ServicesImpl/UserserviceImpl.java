@@ -23,7 +23,7 @@ public class UserserviceImpl implements UserService {
     @Autowired
     private EmailService emailServices;
 
-    Logger log = LoggerFactory.getLogger("userServiceImpl");
+    Logger log = LoggerFactory.getLogger("UserServiceImpl");
 
     @Override
     public User createUser(User user) {
@@ -37,7 +37,10 @@ public class UserserviceImpl implements UserService {
         } else {
             User newuser = this.userRepo.save(user);
             // sendmail(newuser);
-            sendmail(newuser);
+            
+            EmailDetails ed = new EmailDetails(newuser.getEmail(),"Message Body", "Mail For Htmp Formated");
+            
+            emailServices.SendStyledMail(ed);
             log.info("userService , createUser Method Ends");
 
             return newuser;
@@ -46,35 +49,34 @@ public class UserserviceImpl implements UserService {
     }
 
   //  @Override
-    public String sendmail(User user) {
+    // public String sendmail(User user) {
 
-        log.info("userService , send mail Method Start");
+    //     log.info("userService , send mail Method Start");
 
-        String message = "This is your password for login ";
+    //     String message = "";
 
-        String subject = "signin";
+    //     String subject = "signin";
 
-        String to = user.getEmail();
+    //     String to = user.getEmail();
 
-        // String from = "krishnas.bca2022@ssism.org";
+    //     // String from = "krishnas.bca2022@ssism.org";
 
-        EmailDetails em = new EmailDetails(to, message, subject);
+    //     EmailDetails em = new EmailDetails(to, message, subject);
 
-        emailServices.sendSimpleMail(em);
+    //     emailServices.sendSimpleMail(em);
 
         // String testPasswordEncoded = user.getPassword();
 
         // user.setPassword(testPasswordEncoded);
 
-        User save = this.userRepo.save(user);
+       
 
-        System.out.println(save);
 
-        log.info("userService , sene mail Method End's");
+    //     log.info("userService , sene mail Method End's");
 
-        return "Email send sucess fully";
+    //     return "Email send sucess fully";
 
-    }
+    // }
 
     @Override
     public List<User> getAllUser() {
