@@ -8,12 +8,13 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Student {
+public class Result {
+
     @Id
-    private String studentid = UUID.randomUUID().toString();
+    private String resultID=UUID.randomUUID().toString();
 
-    private String email; 
-    private String name;
-
+    private String studentID;
+    
+    private String paperID;
 
 }

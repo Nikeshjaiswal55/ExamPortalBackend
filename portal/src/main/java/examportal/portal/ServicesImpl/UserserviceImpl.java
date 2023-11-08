@@ -1,13 +1,17 @@
 package examportal.portal.ServicesImpl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.User;
+import examportal.portal.Payloads.EmailDetails;
+import examportal.portal.Payloads.userDto;
 import examportal.portal.Repo.UserRepo;
-import examportal.portal.Services.EmailServices;
+import examportal.portal.Services.EmailService;
 import examportal.portal.Services.UserService;
 import jakarta.el.ELException;
 
@@ -18,12 +22,14 @@ public class UserserviceImpl implements UserService {
     private UserRepo userRepo;
 
     @Autowired
-    private EmailServices emailServices;
+    private EmailService emailServices;
+
 
     Logger log = LoggerFactory.getLogger("userServiceImpl");
 
+    @Deprecated
     @Override
-    public User createUser(User user) {
+    public User createUser(userDto user) {
 
         log.info("userService , createUser Method Start");
 
@@ -32,8 +38,14 @@ public class UserserviceImpl implements UserService {
         if (findUser != null) {
             throw new ELException("User Already Exist With this Email " + user.getEmail());
         } else {
-            User newuser = this.userRepo.save(user);
-            // sendmail(newuser);
+            User newuser = new User();
+            newuser.setEmail(user.getEmail());
+            newuser.setName(user.getName());
+            newuser.setPicture(user.getPicture());
+            newuser.setSub(user.getSub());
+            newuser.setUpdatedAt(user.getUpdatedAt());
+            this.userRepo.save(newuser);
+            sendmail(newuser);
             log.info("userService , createUser Method Ends");
 
             return newuser;
@@ -41,7 +53,7 @@ public class UserserviceImpl implements UserService {
 
     }
 
-    @Override
+  //  @Override
     public String sendmail(User user) {
 
         log.info("userService , send mail Method Start");
@@ -52,9 +64,11 @@ public class UserserviceImpl implements UserService {
 
         String to = user.getEmail();
 
-        String from = "mohammadm.bsccs2021@ssism.org";
+        // String from = "krishnas.bca2022@ssism.org";
 
-        emailServices.sendEmail(from, subject, message, to);
+        EmailDetails em = new EmailDetails(to, message, subject);
+
+        emailServices.sendSimpleMail(em);
 
         // String testPasswordEncoded = user.getPassword();
 
@@ -69,5 +83,31 @@ public class UserserviceImpl implements UserService {
         return "Email send sucess fully";
 
     }
+
+    @Override
+    public List<User> getAllUser() {
+        log.info("userService , getAllUser Method Start");
+        List <User> u1 =  this.userRepo.findAll();
+        log.info("userService , getAllUser Method Start");
+       return u1;
+    }
+
+    // @Deprecated
+    // @Override
+    // public String createAuth0User(userDto userdDto) {
+
+    //     log.info("userService , getAllUser Method Start");
+
+    //     System.out.println("enter here in autho create method ==========================================");
+
+    //     try {
+    //         this.auth0Service.createUser(userdDto.getEmail(), userdDto.getName()+"123", userdDto.getToken());
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    //     return " user created succesfully";
+    // }
+
+    
 
 }
