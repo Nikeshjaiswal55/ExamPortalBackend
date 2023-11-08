@@ -36,12 +36,15 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	implementation 'com.microsoft.sqlserver:mssql-jdbc'
+	 implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
 
 		implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 		implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail'
 		implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
-
+		implementation group: 'com.auth0', name: 'auth0', version: '1.38.0'
+		testImplementation 'org.apache.httpcomponents.client5:httpclient5'
+		implementation 'net.bytebuddy:byte-buddy:1.11.12'
 		// implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 }

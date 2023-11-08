@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.User;
+import examportal.portal.Payloads.userDto;
 import examportal.portal.Services.UserService;
 
 @RestController
@@ -26,7 +27,7 @@ public class UserController {
     Logger log = LoggerFactory.getLogger("UserController.class");
 
     @PostMapping("/user")
-    public ResponseEntity<User> createuser(@RequestBody User user){
+    public ResponseEntity<User> createuser(@RequestBody userDto user){
         log.info("UserController, createuser Method Start");
 
         User savedUser = this.userService.createUser(user);

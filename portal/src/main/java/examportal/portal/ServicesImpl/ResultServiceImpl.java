@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.AttemptedQuestions;
+import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Result;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Repo.AttemptedQuestionsRepo;
+import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Services.ResultService;
 import jakarta.el.ELException;
@@ -27,6 +29,9 @@ public class ResultServiceImpl implements ResultService {
 
    @Autowired
    private ModelMapper mapper;
+
+   @Autowired
+   private ExamDetailsRepo examDetailsRepo;
 
     @Override
     public ResultDto createResult(ResultDto result) {
@@ -53,6 +58,11 @@ public class ResultServiceImpl implements ResultService {
             attemptQuestions.add(questions2);
 
         }
+
+        ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(result.getPaperID());
+        examDetails.setPaperChecked(true);
+        ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
+        System.out.println(updatecheck);
 
          Result newResult = new Result();
         newResult.setPaperID(result.getPaperID());
