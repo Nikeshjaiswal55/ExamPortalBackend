@@ -2,58 +2,72 @@ package examportal.portal.ServicesImpl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Course;
 import examportal.portal.Repo.CourseRepo;
+// import examportal.portal.Repo.Servicerepo;
 import examportal.portal.Services.CourseService;
+import jakarta.el.ELException;
+
 @Service
-public class CourseServiceimpl implements CourseService{
+public class CourseServiceimpl implements CourseService {
     @Autowired
-    public CourseRepo courseRepo;
+      public CourseRepo courseRepo;
+
+
+    Logger log = LoggerFactory.getLogger("CourseServiceimpl.class");
     
     @Override
     public List<Course>getCourse(){
+      log.info("Find All mthod is Strtimg ");
         List<Course>course=courseRepo.findAll();
+        log.info(" Find All Mathod is Closing ");
         return course;
-    }
+      }
 
+
+      
     @Override
     public Course getCourseById(String getId) {
-        return courseRepo.findById(getId).orElseThrow();
+      log.info(" getCourseById  method is string ");
+        Course c = this.courseRepo.findById(getId).orElseThrow();
+      log.info(" getCoursebyid method is closing");
+
+        return c;
     }
 
-    // @Override
-    // public Course addCourse(Course course){
-    //     Course course2=courseRepo.save(course);
-    //     return course2;
-    // }
-    
+
       @Override
-    public Course postCourse(Course course){
-       return this.courseRepo.save(course);
-    }
-    @Override
-    public Course putCourse(Course course){
-        return courseRepo.save(course);
-    }
+      public Course addCourse(Course course){
+        log.info("addCourse method is string");
+        Course c=this.courseRepo.save(course);
+        log.info(" addCourse method is closing");
+         return c;
+      }
 
-    @Override
-    public void deleteCourseById(String getId){
-        courseRepo.deleteById(getId);
-    }
-
-    // public List<Course> getAllCourses() {
-    //     Liit
-    //     return this.courseRepo.;
-    // }
-
+     
+      @Override
+      public Course putCourse(Course course){
+        log.info("PutCourse method is String");
+          Course c= this.courseRepo.findById(course.getId()).orElseThrow(()-> new ELException("Course Not Found"));
+          c.setCname(course.getCname());
+          c.setUsername(course.getUsername());
+        log.info("putCourse methos is closing");
+          return courseRepo.save(course);
+      }
   
-    
-    // public examportal.portal.Controllers.List<Course> getAllCourses() {
-    //     return null;
-    // }
+      @Override
+      public void deleteCourseById(String getId){
+        log.info("delete method id string");
+          courseRepo.deleteById(getId);
+          log.info("delete methos is closing");
+      }
+  
 
-   
-}
+
+
+    }
