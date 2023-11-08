@@ -30,41 +30,36 @@ public class OrgnizationController {
 
     // @PostMapping("/createorgnization")
     @PostMapping("/createorgnization")
-    public ResponseEntity<Orgnizations> createOrgnization(@RequestBody OrgnizationDto orgnizationsDto)
-    {   log.info("OrgnizationController, createOrgnization Method Start");
-        
-    Orgnizations savedOrgnization = this.orgnizationService.createOrgnizations(orgnizationsDto);
-        
+    public ResponseEntity<Orgnizations> createOrgnization(@RequestBody OrgnizationDto orgnizationsDto) {
+        log.info("OrgnizationController, createOrgnization Method Start");
+
+        Orgnizations savedOrgnization = this.orgnizationService.createOrgnizations(orgnizationsDto);
+
         log.info("Orgnization Controller, createOrgnization Method Ends");
-        return new ResponseEntity<Orgnizations>(savedOrgnization,HttpStatus.CREATED);
+        return new ResponseEntity<Orgnizations>(savedOrgnization, HttpStatus.CREATED);
     }
-    
 
     @GetMapping("/getAllOrgnizations")
-    public ResponseEntity<List<Orgnizations>> getAll()
-    {
+    public ResponseEntity<List<Orgnizations>> getAll() {
         log.info("OrgnizationController , getAll Method Start");
         List<Orgnizations> orgnization = this.orgnizationService.getAllOrgnizations();
         log.info("OrgnizationController , getAll Method Ends");
-        return new ResponseEntity<List<Orgnizations>>(orgnization,HttpStatus.OK);
+        return new ResponseEntity<List<Orgnizations>>(orgnization, HttpStatus.OK);
     }
 
-
     @PutMapping("/updteorgnizations")
-    public ResponseEntity<Orgnizations> Updateorgnizations(@RequestBody Orgnizations orgnizations)
-    {
+    public ResponseEntity<Orgnizations> Updateorgnizations(@RequestBody Orgnizations orgnizations) {
         log.info("OrgnizationController , Updateorgnizations Method Start");
         Orgnizations update = this.orgnizationService.updateOrgnizations(orgnizations);
-         log.info("OrgnizationController , Updateorgnizations Method End's");
-        return new ResponseEntity<>(update,HttpStatus.OK);
+        log.info("OrgnizationController , Updateorgnizations Method End's");
+        return new ResponseEntity<>(update, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteorgnizations")
-    public ResponseEntity<String> deleteOrgnization(@RequestBody Orgnizations orgnizations)
-    {
-         log.info("OrgnizationController , deleteorgnizations Method Start");
-         this.orgnizationService.deleteorgnization(orgnizations.getOrgnizationId());
-          log.info("OrgnizationController , Updateorgnizations Method Ends");
-        return new ResponseEntity<String>("deleted succesfully",HttpStatus.OK);
+    public ResponseEntity<String> deleteOrgnization(@RequestBody Orgnizations orgnizations) {
+        log.info("OrgnizationController , deleteorgnizations Method Start");
+        this.orgnizationService.deleteorgnization(orgnizations.getOrgnizationId());
+        log.info("OrgnizationController , Updateorgnizations Method Ends");
+        return new ResponseEntity<String>("deleted succesfully", HttpStatus.OK);
     }
 }
