@@ -46,19 +46,19 @@ public class CourseServiceimpl implements CourseService {
 
   @Override
   public Course updateCourse(Course course) {
-    log.info("CourseServiceimpl, Method Start");
+    log.info("CourseServiceimpl, updateCourse Method Start");
     Course c = this.courseRepo.findById(course.getId()).orElseThrow(() -> new ELException("Course Not Found"));
     c.setCname(course.getCname());
     c.setUserId(course.getUserId());
-    log.info("putCourse methos is closing");
+    log.info("CourseServiceimpl, updateCourse Method Ends");
     return courseRepo.save(course);
   }
 
   @Override
   public void deleteCourseById(String getId) {
-    log.info("delete method id string");
+    log.info("CourseServiceimpl, deleteCourse Method Start");
     courseRepo.deleteById(getId);
-    log.info("delete methos is closing");
+    log.info("CourseServiceimpl, deleteCourse Method Ends");
   }
 
 }
