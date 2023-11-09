@@ -9,65 +9,56 @@ import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Course;
 import examportal.portal.Repo.CourseRepo;
-// import examportal.portal.Repo.Servicerepo;
 import examportal.portal.Services.CourseService;
 import jakarta.el.ELException;
 
 @Service
 public class CourseServiceImpl implements CourseService {
-    @Autowired
-      public CourseRepo courseRepo;
+  @Autowired
+  public CourseRepo courseRepo;
 
+  Logger log = LoggerFactory.getLogger("CourseServiceimpl.class");
 
-    Logger log = LoggerFactory.getLogger("CourseServiceimpl.class");
-    
-    @Override
-    public List<Course>getCourse(){
-      log.info("Find All mthod is Strtimg ");
-        List<Course>course=courseRepo.findAll();
-        log.info(" Find All Mathod is Closing ");
-        return course;
-      }
+  @Override
+  public List<Course> getAllCourse() {
+    log.info("CourseServiceimpl,getCourse Method Start");
+    List<Course> course = courseRepo.findAll();
+    log.info("CourseServiceimpl,getCourse Method Ends");
+    return course;
+  }
 
+  @Override
+  public Course getCourseById(String getId) {
+    log.info("CourseServiceimpl,getCourseById Method Start");
+    Course c = this.courseRepo.findById(getId).orElseThrow();
+    log.info("CourseServiceimpl,getCourseById Method Ends");
 
-      
-    @Override
-    public Course getCourseById(String getId) {
-      log.info(" getCourseById  method is string ");
-        Course c = this.courseRepo.findById(getId).orElseThrow();
-      log.info(" getCoursebyid method is closing");
+    return c;
+  }
 
-        return c;
-    }
+  @Override
+  public Course addCourse(Course course) {
+    log.info("CourseServiceimpl,addCourse Method Start");
+    Course c = this.courseRepo.save(course);
+    log.info("CourseServiceimpl,addCourse Method Ends");
+    return c;
+  }
 
+  @Override
+  public Course updateCourse(Course course) {
+    log.info("CourseServiceimpl, updateCourse Method Start");
+    Course c = this.courseRepo.findById(course.getId()).orElseThrow(() -> new ELException("Course Not Found"));
+    c.setCname(course.getCname());
+    c.setUserId(course.getUserId());
+    log.info("CourseServiceimpl, updateCourse Method Ends");
+    return courseRepo.save(course);
+  }
 
-      @Override
-      public Course addCourse(Course course){
-        log.info("addCourse method is string");
-        Course c=this.courseRepo.save(course);
-        log.info(" addCourse method is closing");
-         return c;
-      }
+  @Override
+  public void deleteCourseById(String getId) {
+    log.info("CourseServiceimpl, deleteCourse Method Start");
+    courseRepo.deleteById(getId);
+    log.info("CourseServiceimpl, deleteCourse Method Ends");
+  }
 
-     
-      @Override
-      public Course putCourse(Course course){
-        log.info("PutCourse method is String");
-          Course c= this.courseRepo.findById(course.getId()).orElseThrow(()-> new ELException("Course Not Found"));
-          c.setCname(course.getCname());
-          c.setUserId(course.getUserId());
-        log.info("putCourse methos is closing");
-          return courseRepo.save(course);
-      }
-  
-      @Override
-      public void deleteCourseById(String getId){
-        log.info("delete method id string");
-          courseRepo.deleteById(getId);
-          log.info("delete methos is closing");
-      }
-  
-
-
-
-    }
+}
