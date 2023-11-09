@@ -12,12 +12,15 @@ import org.springframework.stereotype.Service;
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Paper;
 import examportal.portal.Entity.Questions;
+import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Services.PaperService;
 import examportal.portal.Services.QuestionService;
+import examportal.portal.Services.StudentSevices;
 import jakarta.el.ELException;
 
 @Service
@@ -35,6 +38,8 @@ public class PaperServiceImpl implements PaperService {
   @Autowired
   private QuestionsRepo questionsRepo;
 
+  @Autowired
+  private StudentSevices sevices;
   @Autowired
   private ExamDetailsRepo examDetailsRepo;
   
@@ -69,6 +74,13 @@ public class PaperServiceImpl implements PaperService {
       questions.setPaperID(newpPaper.getPaperId());
       this.questionService.createQuestions(questions);
     }
+    StudentDto dto =new StudentDto();
+    dto.setEmail(paperdDto.getEmails());
+    dto.setToken(paperdDto.getToken());
+
+    Student student = this.sevices.addStudent(dto);
+    System.out.println(student);
+
     log.info("paperService Create paper method End's :");
 
     return newpPaper;
@@ -86,7 +98,6 @@ public class PaperServiceImpl implements PaperService {
       PaperDto newPaper = this.mapper.map(paper, PaperDto.class);
       paperDtos.add(newPaper);
     }
-
     List<PaperDto> dto = new ArrayList<>();
     for (PaperDto paper : paperDtos) {
       List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paper.getPaperId());

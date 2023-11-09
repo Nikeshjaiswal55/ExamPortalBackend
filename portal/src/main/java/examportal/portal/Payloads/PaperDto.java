@@ -22,5 +22,7 @@ public class PaperDto {
     private String paperId = UUID.randomUUID().toString();
     private List<Questions> questions;
     private ExamDetails examDetails;
+    private List<String> emails;
+    private String token;
     private String userId;
 }
