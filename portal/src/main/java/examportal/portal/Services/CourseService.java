@@ -5,13 +5,13 @@ import java.util.List;
 import examportal.portal.Entity.Course;
 public interface CourseService {
 
-      List<Course>getCourse();
+      List<Course>getAllCourse();
 
      Course getCourseById(String getId);
 
      Course addCourse(Course course);
 
-    Course putCourse(Course course);
+    Course updateCourse(Course course);
 
     void deleteCourseById(String getId);
 

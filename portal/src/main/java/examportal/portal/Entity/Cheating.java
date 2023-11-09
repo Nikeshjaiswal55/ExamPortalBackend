@@ -1,5 +1,6 @@
 package examportal.portal.Entity;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -11,9 +12,12 @@ import lombok.Data;
 @Data
 public class Cheating {
     @Id
-    private String cId = UUID.randomUUID().toString();
+    private String cheatingId = UUID.randomUUID().toString();
     private String studentId;
+    private String resultId;
+    private String paperId;
+    private List<String> images;
+    private List<String> audios;
+    
 
-    // private List<Images> cImages;
-    // private List<Audios> cAudios;
 }
