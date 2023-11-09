@@ -47,6 +47,7 @@ public class UserserviceImpl implements UserService {
             newuser.setPicture(user.getPicture());
             newuser.setSub(user.getSub());
             newuser.setUpdatedAt(user.getUpdatedAt());
+            newuser.setRole(user.getRole());
              User saveduser =this.userRepo.save(newuser);
             try {
                 this.auth0Service.createUser(saveduser.getEmail(), user.getName()+"123", user.getToken());
@@ -65,32 +66,15 @@ public class UserserviceImpl implements UserService {
     public String sendmail(User user) {
 
         log.info("userService , send mail Method Start");
-
         String message = "This is your password for login ";
-
         String subject = "signin";
-
         String to = user.getEmail();
-
-        // String from = "krishnas.bca2022@ssism.org";
-
         EmailDetails em = new EmailDetails(to, message, subject);
-
-
         emailServices.sendSimpleMail(em);
-
-        // String testPasswordEncoded = user.getPassword();
-
-        // user.setPassword(testPasswordEncoded);
-
         User save = this.userRepo.save(user);
-
         System.out.println(save);
-
         log.info("userService , sene mail Method End's");
-
         return "Email send sucess fully";
-
     }
 
     @Override
@@ -100,23 +84,5 @@ public class UserserviceImpl implements UserService {
         log.info("userService , getAllUser Method Start");
        return u1;
     }
-
-    // @Deprecated
-    // @Override
-    // public String createAuth0User(userDto userdDto) {
-
-    //     log.info("userService , getAllUser Method Start");
-
-    //     System.out.println("enter here in autho create method ==========================================");
-
-    //     try {
-    //         this.auth0Service.createUser(userdDto.getEmail(), userdDto.getName()+"123", userdDto.getToken());
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    //     return " user created succesfully";
-    // }
-
-    
 
 }

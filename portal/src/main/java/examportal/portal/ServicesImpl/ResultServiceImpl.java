@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.AttemptedQuestions;
+import examportal.portal.Entity.Cheating;
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Result;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Repo.AttemptedQuestionsRepo;
+import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Services.ResultService;
@@ -27,6 +29,8 @@ public class ResultServiceImpl implements ResultService {
    @Autowired
    private ResultRepo resultRepo;
 
+   @Autowired
+   private CheatingRepo cheatingRepo;
    @Autowired
    private ModelMapper mapper;
 
@@ -59,21 +63,29 @@ public class ResultServiceImpl implements ResultService {
 
         }
 
-        ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(result.getPaperID());
-        examDetails.setPaperChecked(true);
-        ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
-        System.out.println(updatecheck);
+        // ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(result.getPaperID());
+        // examDetails.setPaperChecked(true);
+        // ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
+        // System.out.println(updatecheck);
 
          Result newResult = new Result();
         newResult.setPaperID(result.getPaperID());
         newResult.setStudentID(result.getStudentID());
         Result savedResult = this.resultRepo.save(newResult);
 
+        Cheating cheating = new Cheating();
+        cheating.setImages(result.getCheating().getImages());
+        cheating.setAudios(result.getCheating().getAudios());
+        cheating.setStudentId(result.getStudentID());
+        cheating.setResultId(savedResult.getResultID());
+        Cheating savedCheating = this.cheatingRepo.save(cheating);
+
         ResultDto dto = new ResultDto();
         dto.setQuestions(attemptQuestions);
         dto.setPaperID(result.getPaperID());
         dto.setStudentID(result.getStudentID());
         dto.setResultID(savedResult.getResultID());
+        dto.setCheating(savedCheating);
 
         return dto;
     }
@@ -106,3 +118,4 @@ public class ResultServiceImpl implements ResultService {
     }
 
 }
+
