@@ -53,8 +53,8 @@ public class StudentServiceImpl implements StudentSevices{
         
         log.info("StudentServiceImpl , getSingleStudent Method Start");
         Student s = studentRepo.findById(student.getStudentid()).orElseThrow(()-> new ELException("User Not found"));
-        s.setEmail(student.getEmail());
-        s.setName(student.getName());
+        // s.setEmail(student.getEmail());
+        // s.setName(student.getName());
         Student updateStudtnt = this.studentRepo.save(s);
         log.info("StudentServiceImpl , getSingleStudent Method Ends");
         return updateStudtnt;
