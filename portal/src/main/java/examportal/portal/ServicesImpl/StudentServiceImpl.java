@@ -13,7 +13,7 @@ import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.StudentSevices;
-import examportal.portal.Services.UserService;
+// import examportal.portal.Services.UserService;
 import jakarta.el.ELException;
 import net.bytebuddy.utility.RandomString;
 
@@ -28,8 +28,8 @@ public class StudentServiceImpl implements StudentSevices {
     @Autowired
     private UserRepo userRepo;
 
-    @Autowired
-    private UserService userService;
+    // @Autowired
+    // private UserService userService;
 
     @Deprecated
     @Autowired
@@ -65,11 +65,7 @@ public class StudentServiceImpl implements StudentSevices {
             String password = RandomString.make(8);
 
             User user= this.userRepo.findByEmail(email);
-
-            // if(user!=null)
-            // {
-                
-            // }
+            System.out.println(user);
 
             try {
                 this.auth0Service.createUser(email,password, student.getToken());
