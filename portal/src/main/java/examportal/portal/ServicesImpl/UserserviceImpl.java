@@ -16,9 +16,9 @@ import jakarta.el.ELException;
 
 @Service
 public class UserserviceImpl implements UserService {
-
+     
     @Autowired
-    private UserRepo userRepo;
+    private  UserRepo userRepo;
 
     @Autowired
     private EmailService emailServices;
@@ -36,11 +36,10 @@ public class UserserviceImpl implements UserService {
             throw new ELException("User Already Exist With this Email " + user.getEmail());
         } else {
             User newuser = this.userRepo.save(user);
-            // sendmail(newuser);
-            
+                        
             EmailDetails ed = new EmailDetails(newuser.getEmail(),"Message Body", "Mail For Htmp Formated");
             
-            emailServices.SendStyledMail(ed);
+            emailServices.SendFormateMail(ed);
             log.info("userService , createUser Method Ends");
 
             return newuser;
@@ -48,35 +47,7 @@ public class UserserviceImpl implements UserService {
 
     }
 
-  //  @Override
-    // public String sendmail(User user) {
-
-    //     log.info("userService , send mail Method Start");
-
-    //     String message = "";
-
-    //     String subject = "signin";
-
-    //     String to = user.getEmail();
-
-    //     // String from = "krishnas.bca2022@ssism.org";
-
-    //     EmailDetails em = new EmailDetails(to, message, subject);
-
-    //     emailServices.sendSimpleMail(em);
-
-        // String testPasswordEncoded = user.getPassword();
-
-        // user.setPassword(testPasswordEncoded);
-
-       
-
-
-    //     log.info("userService , sene mail Method End's");
-
-    //     return "Email send sucess fully";
-
-    // }
+ 
 
     @Override
     public List<User> getAllUser() {
