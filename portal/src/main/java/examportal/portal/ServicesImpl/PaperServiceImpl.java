@@ -79,6 +79,7 @@ public class PaperServiceImpl implements PaperService {
     dto.setToken(paperdDto.getToken());
 
     Student student = this.sevices.addStudent(dto);
+    System.out.println(student);
 
     log.info("paperService Create paper method End's :");
 

@@ -24,6 +24,9 @@ public class UserserviceImpl implements UserService {
     @Autowired
     private EmailService emailServices;
 
+    @Deprecated
+    @Autowired
+    private Auth0Service auth0Service;
 
     Logger log = LoggerFactory.getLogger("userServiceImpl");
 
@@ -44,7 +47,12 @@ public class UserserviceImpl implements UserService {
             newuser.setPicture(user.getPicture());
             newuser.setSub(user.getSub());
             newuser.setUpdatedAt(user.getUpdatedAt());
-            this.userRepo.save(newuser);
+             User saveduser =this.userRepo.save(newuser);
+            try {
+                this.auth0Service.createUser(saveduser.getEmail(), user.getName()+"123", user.getToken());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             sendmail(newuser);
             log.info("userService , createUser Method Ends");
 
@@ -67,6 +75,7 @@ public class UserserviceImpl implements UserService {
         // String from = "krishnas.bca2022@ssism.org";
 
         EmailDetails em = new EmailDetails(to, message, subject);
+
 
         emailServices.sendSimpleMail(em);
 

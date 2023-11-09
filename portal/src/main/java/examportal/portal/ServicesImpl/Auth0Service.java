@@ -16,6 +16,8 @@ public class Auth0Service {
     private final OkHttpClient client = new OkHttpClient();
 
     public void createUser(String email, String password, String token) throws Exception {
+
+        System.out.println("method statted  ==================                ========================================================");
         String clientId = "Mn7mUDsnQZu3BwMQqixP88nnFcGeshif";
         String connection = "Username-Password-Authentication";
         System.out.println(token
@@ -40,7 +42,7 @@ public class Auth0Service {
         Response response = client.newCall(request).execute();
         if (response.isSuccessful()) {
             System.out.println("User created successfully");
-            System.out.println("Auth0 response ====================================================================");
+            System.out.println("Auth0 response ===================================================================="+response);
         } else {
             System.out.println("Failed to create user. Response: " + response.body().string());
         }
