@@ -13,7 +13,7 @@ import examportal.portal.Services.CourseService;
 import jakarta.el.ELException;
 
 @Service
-public class CourseServiceimpl implements CourseService {
+public class CourseServiceImpl implements CourseService {
   @Autowired
   public CourseRepo courseRepo;
 
