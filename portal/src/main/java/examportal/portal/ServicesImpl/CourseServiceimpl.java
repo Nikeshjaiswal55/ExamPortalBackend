@@ -47,8 +47,8 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public Course updateCourse(Course course) {
     log.info("CourseServiceimpl, updateCourse Method Start");
-    Course c = this.courseRepo.findById(course.getId()).orElseThrow(() -> new ELException("Course Not Found"));
-    c.setCname(course.getCname());
+    Course c = this.courseRepo.findById(course.getCourse_id()).orElseThrow(() -> new ELException("Course Not Found"));
+    c.setCourse_name(course.getCourse_name());
     c.setUserId(course.getUserId());
     log.info("CourseServiceimpl, updateCourse Method Ends");
     return courseRepo.save(course);
