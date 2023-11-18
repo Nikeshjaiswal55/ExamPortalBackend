@@ -13,8 +13,6 @@ public class userDto {
 
     private String sub;
 
-    private String role;
-
     private String updatedAt;
 
     private String token;

@@ -85,7 +85,7 @@ public class StudentServiceImpl implements StudentSevices {
                 Assessment newaAssessment = this.assessmentRepo.save(assessment);
                 System.out.println("my assment ============================" + newaAssessment);
 
-                this.userService.sendmail(user);
+                // this.userService.sendmail(user);
 
             } else {
 
@@ -111,7 +111,7 @@ public class StudentServiceImpl implements StudentSevices {
 
                 System.out.println("my assment ============================" + newAssessment);
 
-                this.userService.sendmail(user2);
+                // this.userService.sendmail(user2);
 
                 s.setEmail(email);
                 s.setStudentid(response);
