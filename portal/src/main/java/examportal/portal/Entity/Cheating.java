@@ -10,6 +10,7 @@ import lombok.Data;
 @Entity
 @Data
 public class Cheating {
+    
     @Id
     private String cId = UUID.randomUUID().toString();
     private String studentId;
