@@ -42,10 +42,10 @@ public class UserserviceImpl implements UserService {
             throw new ELException("User Already Exist With this Email " + user.getEmail());
         } else {
             User newuser = new User();
+            newuser.setUserId(user.getSub());
             newuser.setEmail(user.getEmail());
             newuser.setName(user.getName());
             newuser.setPicture(user.getPicture());
-            newuser.setSub(user.getSub());
             newuser.setUpdatedAt(user.getUpdatedAt());
             newuser.setRole(user.getRole());
              User saveduser =this.userRepo.save(newuser);
@@ -59,7 +59,7 @@ public class UserserviceImpl implements UserService {
 
             return newuser;
         }
-
+        
     }
 
   //  @Override

@@ -2,18 +2,22 @@ package examportal.portal.ServicesImpl;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Payloads.StudentDto;
+import examportal.portal.Payloads.userDto;
+import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.StudentSevices;
-// import examportal.portal.Services.UserService;
+import examportal.portal.Services.UserService;
 import jakarta.el.ELException;
 import net.bytebuddy.utility.RandomString;
 
@@ -28,12 +32,18 @@ public class StudentServiceImpl implements StudentSevices {
     @Autowired
     private UserRepo userRepo;
 
-    // @Autowired
-    // private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @Deprecated
     @Autowired
     private Auth0Service auth0Service;
+
+    @Autowired
+    private ModelMapper mapper;
+
+    @Autowired
+    private AssessmentRepo assessmentRepo;
 
     @Override
     public List<Student> getAllStudents() {
@@ -60,27 +70,59 @@ public class StudentServiceImpl implements StudentSevices {
 
         Student s = new Student();
 
+        String response = "";
+
         for (String email : student.getEmail()) {
 
             String password = RandomString.make(8);
 
-            User user= this.userRepo.findByEmail(email);
-            System.out.println(user);
+            User user = this.userRepo.findByEmail(email);
 
-            try {
-                this.auth0Service.createUser(email,password, student.getToken());
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (user != null) {
+                Assessment assessment = new Assessment();
+                assessment.setPaperID(student.getPaperID());
+                assessment.setUserID(user.getUserId());
+                Assessment newaAssessment = this.assessmentRepo.save(assessment);
+                System.out.println("my assment ============================" + newaAssessment);
+
+                this.userService.sendmail(user);
+
+            } else {
+
+                try {
+                    response = this.auth0Service.createUser(email, password, student.getToken());
+                    System.out.println("My response============================" + response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                User newUser = new User();
+                newUser.setUserId(response);
+                newUser.setEmail(email);
+                newUser.setPassword(password);
+                newUser.setRole("Student");
+                userDto dto = this.mapper.map(newUser, userDto.class);
+                User user2 = this.userService.createUser(dto);
+
+                Assessment assessment = new Assessment();
+                assessment.setPaperID(student.getPaperID());
+                assessment.setUserID(user2.getUserId());
+                Assessment newAssessment = this.assessmentRepo.save(assessment);
+
+                System.out.println("my assment ============================" + newAssessment);
+
+                this.userService.sendmail(user2);
+
+                s.setEmail(email);
+                s.setStudentid(response);
+                this.studentRepo.save(s);
             }
 
-           s.setEmail(email);
-           this.studentRepo.save(s);
         }
 
-            log.info("StudentServiceImpl , addStudent Method Ends");
+        log.info("StudentServiceImpl , addStudent Method Ends");
 
-            return s;
-    
+        return s;
 
     }
 
