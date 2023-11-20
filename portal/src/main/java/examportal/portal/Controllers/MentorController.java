@@ -50,7 +50,7 @@ public class MentorController {
    @GetMapping("/Mentor/getBy/{mentorId}")
    public ResponseEntity<Mentor> getMentorById(@PathVariable String mentorId) {
 
-      Mentor mentor1 = this.mentorService.getAllMentorById(mentorId);
+      Mentor mentor1 = this.mentorService.getMentorById(mentorId);
 
       return new ResponseEntity<Mentor>(mentor1, HttpStatus.ACCEPTED);
 
@@ -71,12 +71,6 @@ public class MentorController {
       return new ResponseEntity<String>("Record Deleted Successfully", HttpStatus.OK);
    }
 
-   // @DeleteMapping("/Mentor/delete/all")
-   // public ResponseEntity<String> deleteAllMentor(){
-   // this.mentorService.deleteAllMentor();
-
-   // return new ResponseEntity<String>("Record Deleted Successfully",
-   // HttpStatus.OK);
-   // }
+   
 
 }

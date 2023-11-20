@@ -1,5 +1,7 @@
 package examportal.portal.ServicesImpl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonObject;
@@ -15,11 +17,14 @@ import okhttp3.Response;
 @Deprecated
 public class Auth0Service {
 
+     Logger log  = LoggerFactory.getLogger("Auth0Service.class");
+
     // private final String auth0ManagementAPIBaseUrl = "https://dev-mp3ifwfcpsy5t3ok.us.auth0.com";
       private final String auth0ManagementAPIBaseUrl = "https://dev-uil1ecwkoehr31jg.us.auth0.com";
     private final OkHttpClient client = new OkHttpClient();
 
     public String createUser(String email, String password, String token) throws Exception {
+        log.info("Auth0Service, createUser Method Started");
 
         System.out
                 .println("method statted  ==========================================================================");
@@ -66,7 +71,7 @@ public class Auth0Service {
         } else {
             System.out.println("Failed to create user. Response: " + response.body().string());
         }
-
+        log.info("Auth0Service, createUser Method Ends");
         return res;
     }
 
