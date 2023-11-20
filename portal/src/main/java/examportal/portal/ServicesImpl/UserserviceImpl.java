@@ -42,7 +42,7 @@ public class UserserviceImpl implements UserService {
             throw new ResourceAlreadyExistException("user", "email", user.getEmail());
         } else {
             User newuser = new User();
-            newuser.setUserId(user.getSub());
+            newuser.setUserId(user.getUserId());
             newuser.setEmail(user.getEmail());
             newuser.setName(user.getName());
             newuser.setPicture(user.getPicture());

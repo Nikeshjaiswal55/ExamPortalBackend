@@ -82,6 +82,7 @@ public class StudentServiceImpl implements StudentSevices {
                 Assessment assessment = new Assessment();
                 assessment.setPaperID(student.getPaperID());
                 assessment.setUserID(user.getUserId());
+                assessment.setOrgnizationId(student.getOrgnizationId());
                 Assessment newaAssessment = this.assessmentRepo.save(assessment);
                 System.out.println("my assment ============================" + newaAssessment);
 
@@ -107,6 +108,7 @@ public class StudentServiceImpl implements StudentSevices {
                 Assessment assessment = new Assessment();
                 assessment.setPaperID(student.getPaperID());
                 assessment.setUserID(user2.getUserId());
+                assessment.setOrgnizationId(student.getOrgnizationId());
                 Assessment newAssessment = this.assessmentRepo.save(assessment);
 
                 System.out.println("my assment ============================" + newAssessment);
@@ -115,6 +117,7 @@ public class StudentServiceImpl implements StudentSevices {
 
                 s.setEmail(email);
                 s.setStudentid(response);
+                s.setOrgnizationId(student.getOrgnizationId());
                 this.studentRepo.save(s);
             }
 
