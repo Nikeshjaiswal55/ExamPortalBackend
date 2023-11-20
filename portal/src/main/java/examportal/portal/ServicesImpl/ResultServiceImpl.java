@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.AttemptedQuestions;
 import examportal.portal.Entity.Cheating;
-import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Result;
 import examportal.portal.Payloads.ResultDto;
