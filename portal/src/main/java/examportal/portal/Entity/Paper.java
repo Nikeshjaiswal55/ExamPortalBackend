@@ -16,4 +16,5 @@ public class Paper {
     @Id
     private String paperId=UUID.randomUUID().toString();
     private String userId;
+    private String orgnizationId;
 }
