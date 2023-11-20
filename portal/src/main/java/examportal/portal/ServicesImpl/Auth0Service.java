@@ -31,8 +31,6 @@ public class Auth0Service {
         String clientId = "eztAo6qyd8H7WNYOEiQWqIMopdOiXRQ8";
         String connection = "Username-Password-Authentication";
         String res="";
-        System.out.println(token
-                + "token===========================================================================================");
         MediaType mediaType = MediaType.parse("application/json");
         String jsonBody = "{"
                 + "\"client_id\": \"" + clientId + "\","
@@ -56,8 +54,6 @@ public class Auth0Service {
         Response response = client.newCall(request).execute();
         if (response.isSuccessful()) {
             System.out.println("User created successfully");
-            System.out.println(
-                    "Auth0 response ====================================================================" + response);
                      try {
                         JsonObject jsonObject = JsonParser.parseString(response.body().string()).getAsJsonObject();
                         String id = jsonObject.get("_id").getAsString();

@@ -13,6 +13,7 @@ import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Paper;
 import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Student;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.ExamDetailsRepo;
@@ -21,7 +22,6 @@ import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Services.PaperService;
 import examportal.portal.Services.QuestionService;
 import examportal.portal.Services.StudentSevices;
-import jakarta.el.ELException;
 
 @Service
 public class PaperServiceImpl implements PaperService {
@@ -113,7 +113,7 @@ public class PaperServiceImpl implements PaperService {
   @Override
   public PaperDto getPaperById(String paperID) {
     log.info("paperService getPaperById method Starts :");
-    Paper paper = this.paperRepo.findById(paperID).orElseThrow(()-> new ELException("Paper not found"));
+    Paper paper = this.paperRepo.findById(paperID).orElseThrow(()-> new ResourceNotFoundException("paper", "paperID", paperID));
     PaperDto paperDto = this.mapper.map(paper, PaperDto.class);
     List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
     ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(paperID);
@@ -130,7 +130,7 @@ public class PaperServiceImpl implements PaperService {
 
     log.info("paperService Update paper method Starts :");
 
-    Paper paper = this.paperRepo.findById(paperDto.getPaperId()).orElseThrow(()-> new ELException("Paper not found"));
+    Paper paper = this.paperRepo.findById(paperDto.getPaperId()).orElseThrow(()-> new ResourceNotFoundException("paper", "paperId", paperDto.getPaperId()));
 
     PaperDto dto = this.mapper.map(paper, PaperDto.class);
 
@@ -139,7 +139,7 @@ public class PaperServiceImpl implements PaperService {
       List<Questions> q2 = new ArrayList<>();
 
       for (Questions ans : questions) {
-        Questions upadateqQuestions = this.questionsRepo.findById(ans.getQuestionId()).orElseThrow(()-> new ELException("Question Not found"));
+        Questions upadateqQuestions = this.questionsRepo.findById(ans.getQuestionId()).orElseThrow(()-> new ResourceNotFoundException("Question", "QuestionID", ans.getQuestionId()));
 
         upadateqQuestions.setUserAns(ans.getUserAns());
 

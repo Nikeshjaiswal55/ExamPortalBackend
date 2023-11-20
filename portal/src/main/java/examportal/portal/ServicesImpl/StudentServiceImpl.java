@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Payloads.userDto;
 import examportal.portal.Repo.AssessmentRepo;
@@ -18,7 +19,6 @@ import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.StudentSevices;
 import examportal.portal.Services.UserService;
-import jakarta.el.ELException;
 import net.bytebuddy.utility.RandomString;
 
 @Service
@@ -59,7 +59,7 @@ public class StudentServiceImpl implements StudentSevices {
 
         log.info("StudentServiceImpl , getSingleStudent Method Ends");
 
-        return this.studentRepo.findById(id).orElse(null);
+        return this.studentRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Student ", "id", id));
     }
 
     @Deprecated
@@ -130,7 +130,7 @@ public class StudentServiceImpl implements StudentSevices {
     public Student updateStudent(Student student) {
 
         log.info("StudentServiceImpl , getSingleStudent Method Start");
-        Student s = studentRepo.findById(student.getStudentid()).orElseThrow(() -> new ELException("User Not found"));
+        Student s = studentRepo.findById(student.getStudentid()).orElseThrow(() -> new ResourceNotFoundException("Student", "id", student.getStudentid()));
         s.setEmail(student.getEmail());
         s.setName(student.getName());
         Student updateStudtnt = this.studentRepo.save(s);

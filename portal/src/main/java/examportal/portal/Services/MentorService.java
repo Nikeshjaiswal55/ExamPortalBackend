@@ -11,12 +11,11 @@ public interface MentorService {
     //get all Mentor
     List<Mentor>getAllMentors();
     //get mentor by id
-    Mentor getMentorById(String mentorId);
+    Mentor getMentorById(String mentorID);
     //update mentor info
     Mentor updateMentor(Mentor mentor);
     //delete mentor
     String deleteMentor(String id);
-// get Mentor BY id
     
 }
 

@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Questions;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Services.QuestionService;
-import jakarta.el.ELException;
 @Service
 public class QuestionServiceimpl implements QuestionService  {
 
@@ -35,7 +35,7 @@ public class QuestionServiceimpl implements QuestionService  {
 
        log.info("Question Service Update Question Method Starts");
 
-       Questions updateqQuestions = this.questionsRepo.findById(questions.getQuestionId()).orElseThrow(()-> new ELException("Question not found"));
+       Questions updateqQuestions = this.questionsRepo.findById(questions.getQuestionId()).orElseThrow(()-> new ResourceNotFoundException("Question ", "questionId", questions.getQuestionId()));
        updateqQuestions.setUserAns(questions.getUserAns());
        Questions update = this.questionsRepo.save(updateqQuestions);
 
@@ -62,7 +62,7 @@ public class QuestionServiceimpl implements QuestionService  {
 
       log.info("Question Service Create getQuestionById Method Starts");
 
-       Questions questions = this.questionsRepo.findById(questionId).orElseThrow(()-> new ELException("Question not found"));
+       Questions questions = this.questionsRepo.findById(questionId).orElseThrow(()-> new ResourceNotFoundException("Question", "QuestionID", questionId));
 
       log.info("Question Service Create getQuesionById Method End's");
 
@@ -73,7 +73,7 @@ public class QuestionServiceimpl implements QuestionService  {
     public String deleteQuestion(String QuestionID) {
        log.info("Question Service deleteQuestion Method Starts");
 
-       Questions questions = this.questionsRepo.findById(QuestionID).orElseThrow(()-> new ELException("Question Not found"));
+       Questions questions = this.questionsRepo.findById(QuestionID).orElseThrow(()-> new ResourceNotFoundException("Question", "QuestionID", QuestionID));
        this.questionsRepo.delete(questions);
 
        log.info("Question Service Create deleteQuestion Method Starts");
