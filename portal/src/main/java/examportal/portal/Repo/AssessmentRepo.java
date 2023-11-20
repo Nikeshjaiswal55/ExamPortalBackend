@@ -8,4 +8,5 @@ import examportal.portal.Entity.Assessment;
 @Repository
 public interface AssessmentRepo extends JpaRepository<Assessment,String> {
 
+    
 } 
