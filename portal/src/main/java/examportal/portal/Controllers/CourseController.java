@@ -1,13 +1,14 @@
 package examportal.portal.Controllers;
 
-
+import examportal.portal.Entity.Course;
+import examportal.portal.Services.CourseService;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,60 +17,55 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import examportal.portal.Entity.Course;
-import examportal.portal.Services.CourseService;
-
-
-
-
 @RestController
+@CrossOrigin(origins = "*")
 public class CourseController {
-    @Autowired
-   public CourseService courseService;
-   Logger logger = LoggerFactory.getLogger(CourseController.class);
 
-     @GetMapping("/course/getAll")
-         public ResponseEntity<List<Course>>getcourse(){
+  @Autowired
+  public CourseService courseService;
 
-            logger.info(" getAll Mathod is startong");
+  Logger log = LoggerFactory.getLogger("CourseController.class");
 
-          List<Course>l= courseService.getCourse();
+  @GetMapping("/course/getAll")
+  public ResponseEntity<List<Course>> getCourses() {
+    log.info("CourseController,getCourse Method Start");
 
-          logger.info(" GetAll mathod is closeing ");
-            return new ResponseEntity<List<Course>>(l,HttpStatus.OK);
+    List<Course> l = courseService.getAllCourse();
 
-     }
-      @GetMapping("/course/{getId}")
-         public ResponseEntity<Course>getcourseById(@PathVariable String getId){
-            logger.info(" get mathos is starting ");
-          Course list= courseService.getCourseById(getId);
-          logger.info("get Corse by is is closeing ");
-            return new ResponseEntity<Course>(list,HttpStatus.OK);
+    log.info("CourseController,getCourse Method Ends");
+    return new ResponseEntity<List<Course>>(l, HttpStatus.OK);
+  }
 
-     }
-      
-     
-       @PostMapping("/course/create")
-       public ResponseEntity<Course> postCourseById(@RequestBody Course course){
-        logger.info("post corce by id is stsrting");
-        Course course2=courseService.addCourse(course);
-        logger.info("post course is closeing");
-        return new ResponseEntity<Course>(course2,HttpStatus.OK);
-       }
+  @GetMapping("/course/{getId}")
+  public ResponseEntity<Course> getCourseById(@PathVariable String getId) {
+    log.info("CourseController,getCourseById Method Start");
+    Course list = courseService.getCourseById(getId);
+    log.info("CourseController,getCourseById Method Ends");
+    return new ResponseEntity<Course>(list, HttpStatus.OK);
+  }
 
+  //create 
+  @PostMapping("/course/create")
+  public ResponseEntity<Course> addCourses(@RequestBody Course course) {
+    log.info("CourseController,addCourses Method Start");
+    Course course2 = courseService.addCourse(course);
+    log.info("CourseController,addCourses Method Ends");
+    return new ResponseEntity<Course>(course2, HttpStatus.OK);
+  }
 
+  @PutMapping("/course/update")
+  public ResponseEntity<Course> updateCourse(@RequestBody Course course) {
+    log.info("CourseController,updateCourse Method Start");
+    Course course3 = courseService.updateCourse(course);
+    log.info("CourseController,updateCourse Method Ends");
+    return new ResponseEntity<Course>(course3, HttpStatus.OK);
+  }
 
-    @PutMapping("/course/update")
-    public ResponseEntity<Course>putCourse(@RequestBody Course course){
-        logger.info("put couse is Stsrting ");
-        Course course3= courseService.putCourse(course);
-        logger.info("put course is closing");
-        return new ResponseEntity<Course>(course3,HttpStatus.OK);
-    }
-
-    @DeleteMapping("/course/{getId}")
-    public void deleteCourseById(@PathVariable String getId){
-        courseService.deleteCourseById(getId);
-    }
-
+  @DeleteMapping("/course/{getId}")
+  public String deleteCourse(@PathVariable String getId) {
+    log.info("CourseController,deleteCourse Method Start");
+    courseService.deleteCourseById(getId);
+    log.info("CourseController,deleteCourse Method Ends");
+    return "Record deleted";
+  }
 }

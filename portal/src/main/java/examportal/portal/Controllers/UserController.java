@@ -18,7 +18,7 @@ import examportal.portal.Payloads.userDto;
 import examportal.portal.Services.UserService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins ="*")
 public class UserController {
 
     @Autowired
