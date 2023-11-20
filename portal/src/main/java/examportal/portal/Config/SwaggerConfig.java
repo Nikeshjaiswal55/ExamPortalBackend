@@ -37,7 +37,7 @@ public class SwaggerConfig {
         )
         )
         .info(new Info()
-        .title("Exam-Portal Docmumentation")
+        .title("Exam-Portal Documentation")
         .description(("This Is Exam-Portal Application"))
         .version("1.0")
         .contact(new Contact().name("Krishnas.bca2022@ssism.org").email("Krishnas@ssism.org").url("WarehouseManagement.com"))
