@@ -9,15 +9,16 @@ import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.AttemptedQuestions;
 import examportal.portal.Entity.Cheating;
+import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Result;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Repo.AttemptedQuestionsRepo;
 import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Services.ResultService;
-import jakarta.el.ELException;
 
 @Service
 public class ResultServiceImpl implements ResultService {
@@ -62,10 +63,10 @@ public class ResultServiceImpl implements ResultService {
 
         }
 
-        // ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(result.getPaperID());
-        // examDetails.setPaperChecked(true);
-        // ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
-        // System.out.println(updatecheck);
+        ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(result.getPaperID());
+        examDetails.setPaperChecked(true);
+        ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
+        System.out.println(updatecheck);
 
          Result newResult = new Result();
         newResult.setPaperID(result.getPaperID());
@@ -92,7 +93,7 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public ResultDto getResultByResultId(String resultID) {
 
-        Result result = this.resultRepo.findById(resultID).orElseThrow(()-> new ELException("Result not found with this Student ID"));
+        Result result = this.resultRepo.findById(resultID).orElseThrow(()-> new ResourceNotFoundException("result ", "Result Id", resultID));
 
         List<AttemptedQuestions>  questions2 = this.attemptedQuestionsRepo.getAllQuestionsByStudentID(result.getStudentID());
 

@@ -47,17 +47,17 @@ public class MentorController {
       return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
    }
 
-   @GetMapping("/Mentor/getBy/{mentorId}")
-   public ResponseEntity<Mentor> getMentorById(@PathVariable String mentorId) {
+   @GetMapping("/Mentor/getByid/{mentorID}")
+   public ResponseEntity<Mentor> getMentorById(@PathVariable String mentorID ) {
 
-      Mentor mentor1 = this.mentorService.getAllMentorById(mentorId);
+      Mentor mentor1 = this.mentorService.getMentorById(mentorID);
 
       return new ResponseEntity<Mentor>(mentor1, HttpStatus.ACCEPTED);
 
    }
 
    @PutMapping("/Mentor/update")
-   public ResponseEntity<Mentor> update(@RequestBody Mentor mentor) {
+   public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor) {
 
       Mentor mentor1 = this.mentorService.updateMentor(mentor);
 

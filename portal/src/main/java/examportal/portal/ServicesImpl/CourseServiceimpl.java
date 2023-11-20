@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Course;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Services.CourseService;
-import jakarta.el.ELException;
 
 @Service
-public class CourseServiceImpl implements CourseService {
+public class CourseServiceimpl implements CourseService {
   @Autowired
   public CourseRepo courseRepo;
 
@@ -47,7 +47,7 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public Course updateCourse(Course course) {
     log.info("CourseServiceimpl, updateCourse Method Start");
-    Course c = this.courseRepo.findById(course.getCourse_id()).orElseThrow(() -> new ELException("Course Not Found"));
+    Course c = this.courseRepo.findById(course.getCourse_id()).orElseThrow(() -> new ResourceNotFoundException("Course", "CourseID", course.getCourse_id()));
     c.setCourse_name(course.getCourse_name());
     c.setUserId(course.getUserId());
     log.info("CourseServiceimpl, updateCourse Method Ends");
