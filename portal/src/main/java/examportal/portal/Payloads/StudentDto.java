@@ -15,4 +15,6 @@ public class StudentDto {
 
     private String token;
 
+    private String orgnizationId;
+
 }

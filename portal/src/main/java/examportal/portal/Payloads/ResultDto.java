@@ -2,6 +2,7 @@ package examportal.portal.Payloads;
 
 import java.util.List;
 
+import examportal.portal.Entity.Cheating;
 import examportal.portal.Entity.Questions;
 import lombok.Data;
 
@@ -15,5 +16,7 @@ public class ResultDto {
     private String paperID;
 
     private List<Questions> questions;
+
+    private Cheating cheating;
 
 }

@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import examportal.portal.Payloads.EmailDetails;
 import examportal.portal.Entity.Mentor;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Repo.MentorRepo;
 import examportal.portal.Services.EmailService;
 import examportal.portal.Services.MentorService;
-import jakarta.el.ELException;
 
 @Service
 public class MentorSerivceImpl implements MentorService {
@@ -45,8 +45,8 @@ public class MentorSerivceImpl implements MentorService {
     }
 
     @Override
-    public Mentor getMentorById(Mentor mentor) {
-        Mentor m1 = this.mentorRepo.findById(mentor.getMentorId()).orElseThrow(() -> new ELException("Mentor Not Found"));;
+    public Mentor getMentorById(String mentorid) {
+        Mentor m1 = this.mentorRepo.findById(mentorid).orElseThrow(() -> new ResourceNotFoundException("Mentor", "mentorId", mentorid));;
 
         return m1;
     }
@@ -54,7 +54,7 @@ public class MentorSerivceImpl implements MentorService {
     @Override
     public Mentor updateMentor(Mentor mentor) {
         
-        Mentor m1 = this.mentorRepo.findById(mentor.getMentorId()).orElseThrow(()-> new ELException("Mentor Not Found"));
+        Mentor m1 = this.mentorRepo.findById(mentor.getMentorId()).orElseThrow(()-> new ResourceNotFoundException("Mentor", "MentorId", mentor.getMentorId()));
         m1.setEmail(mentor.getEmail());
         m1.setMentorName(mentor.getMentorName());
 
@@ -65,23 +65,10 @@ public class MentorSerivceImpl implements MentorService {
     @Override
     public String deleteMentor(String id) {
        
-        this.mentorRepo.findById(id);
+        this.mentorRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Mentor", "mentorId", id));
 
        return "Record Deleted";
     }
 
-    @Override
-    public Mentor getAllMentorById(String mentorId) {
-        
-        Mentor m1 = this.mentorRepo.findById(mentorId).orElseThrow(()->new ELException("Mentor Not Foud")); 
-         
-        return m1;
-    }
-
-    @Override
-    public void deleteAllMentor() {
-        this.mentorRepo.deleteAll();
-        
-    }
     
 }

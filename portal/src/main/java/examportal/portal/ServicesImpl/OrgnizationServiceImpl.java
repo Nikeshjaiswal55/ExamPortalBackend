@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Orgnizations;
 import examportal.portal.Entity.User;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.OrgnizationDto;
 import examportal.portal.Repo.OrgnizationRepo;
 import examportal.portal.Services.OrgnizationService;
 import examportal.portal.Services.UserService;
-import jakarta.el.ELException;
 
 @Service
 public class OrgnizationServiceImpl implements OrgnizationService {
@@ -56,7 +56,7 @@ public class OrgnizationServiceImpl implements OrgnizationService {
   public String deleteorgnization(String OrgnizationID) {
 
     log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
-    Orgnizations deleteOrgnizations = this.orgnizationRepo.findById(OrgnizationID).orElseThrow(()-> new ELException("Orgnization not found"));
+    Orgnizations deleteOrgnizations = this.orgnizationRepo.findById(OrgnizationID).orElseThrow(()-> new ResourceNotFoundException("Orgnization", "OrgnizationID", OrgnizationID));
     this.orgnizationRepo.delete(deleteOrgnizations);
     log.info("OrgnizationServiceImp , UpdateOrgnization Method Ends");
     return "deleted succesfully";
@@ -67,7 +67,7 @@ public class OrgnizationServiceImpl implements OrgnizationService {
   public Orgnizations updateOrgnizations(Orgnizations orgnization) {
       log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
     Orgnizations Update = this.orgnizationRepo.findById(orgnization.getOrgnizationId())
-        .orElseThrow(() -> new ELException("Orgnization not found"));
+        .orElseThrow(() -> new ResourceNotFoundException("Orgnization", "OrgnizationId", orgnization.getOrgnizationId()));
     Update.setOrgnizationName(orgnization.getOrgnizationName());
     Update.setOrgnizationType(orgnization.getOrgnizationType());
     Orgnizations savedOrgnizations = this.orgnizationRepo.save(Update);
