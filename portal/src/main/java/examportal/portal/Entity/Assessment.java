@@ -12,9 +12,9 @@ public class Assessment {
     @Id
     private String assessmentID = UUID.randomUUID().toString();
 
-    private String userID;
+    private String userId;
 
     private String orgnizationId;
 
-    private String paperID;
+    private String paperId;
 }

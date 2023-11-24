@@ -1,6 +1,7 @@
 package examportal.portal.Controllers;
 
 import examportal.portal.Entity.Course;
+import examportal.portal.Payloads.CourseDto;
 import examportal.portal.Services.CourseService;
 import java.util.List;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class CourseController {
 
   //create 
   @PostMapping("/course/create")
-  public ResponseEntity<Course> addCourses(@RequestBody Course course) {
+  public ResponseEntity<Course> addCourses(@RequestBody CourseDto course) {
     log.info("CourseController,addCourses Method Start");
     Course course2 = courseService.addCourse(course);
     log.info("CourseController,addCourses Method Ends");

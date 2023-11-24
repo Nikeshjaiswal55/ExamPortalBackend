@@ -41,7 +41,7 @@ public class SecurityConfig {
 
         http.authorizeRequests(authorizeRequests ->
         authorizeRequests.requestMatchers(public_urls).permitAll().
-        requestMatchers("/student").authenticated())
+        requestMatchers("/*").authenticated())
         // .authorizeRequests(authorizeRequests -> authorizeRequests.requestMatchers("/Swagger").permitAll())
         .oauth2ResourceServer(oauth2ResourceServer ->
         oauth2ResourceServer.jwt(jwt -> jwt.decoder(jwtDecoder())));

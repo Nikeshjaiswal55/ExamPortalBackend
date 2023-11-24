@@ -10,16 +10,23 @@ import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Course;
 import examportal.portal.Entity.User;
+import examportal.portal.Exceptions.ResourceNotFoundException;
+import examportal.portal.Payloads.CourseDto;
 import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.CourseService;
 import jakarta.el.ELException;
+import net.bytebuddy.utility.RandomString;
 
 @Service
 public class CourseServiceImpl implements CourseService {
   @Autowired
   private CourseRepo courseRepo;
+  @Autowired
   private UserRepo userRepo;
+
+  @Autowired
+  private Auth0Service auth0Service;
 
   Logger log = LoggerFactory.getLogger("CourseServiceimpl.class");
 
@@ -29,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
     List<Course> course = courseRepo.findAll();
     List<Course> courses = new ArrayList<>();
     for (Course course2 : course) {
-      User user = this.userRepo.findById(course2.getUserId()).orElseThrow(() -> new ELException("User Not found"));
+      User user = this.userRepo.findById(course2.getUserId()).orElseThrow(()-> new ResourceNotFoundException("User", "UserId", course2.getUserId()));
       course2.setUserName(user.getName());
       courses.add(course2);
     }
@@ -40,8 +47,8 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public Course getCourseById(String getId) {
     log.info("CourseServiceimpl,getCourseById Method Start");
-    Course c = this.courseRepo.findById(getId).orElseThrow();
-    User user = this.userRepo.findById(c.getUserId()).orElseThrow();
+    Course c = this.courseRepo.findById(getId).orElseThrow(()-> new ResourceNotFoundException("Course", "CourseId", getId));
+    User user = this.userRepo.findById(c.getUserId()).orElseThrow(()-> new ResourceNotFoundException("User", "UserId", c.getUserId()));
     c.setUserName(user.getName());
     log.info("CourseServiceimpl,getCourseById Method Ends");
 
@@ -49,9 +56,50 @@ public class CourseServiceImpl implements CourseService {
   }
 
   @Override
-  public Course addCourse(Course course) {
+  @Deprecated
+  public Course addCourse(CourseDto course) {
+
     log.info("CourseServiceimpl,addCourse Method Start");
-    Course c = this.courseRepo.save(course);
+   User us =  userRepo.findById(course.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
+    String response = "";
+
+    Course c = new Course();
+    c.setCourse_name(course.getCourse_name());
+    c.setUserId(course.getUserId());
+    c.setUserName(us.getName());
+
+    for (String i : course.getMails()) {
+
+      String password = RandomString.make(8) + i;
+      User user = userRepo.findByEmail(i);
+
+      if (user != null) {
+        System.out.println("User Allready Exist");
+
+      } else {
+
+        try {
+          System.out.println("+++++++++++Auth0Service Method Enter");
+          response = this.auth0Service.createUser(i, password, course.getToken());
+          System.out.println("UserID++++++++++" + response);
+          // res = userId
+          User use = new User();
+          use.setUserId(response);
+          use.setEmail(i);
+          use.setPassword(password);
+          use.setRole("Student");
+          userRepo.save(use);
+
+        } catch (Exception e) {
+
+          e.printStackTrace();
+        }
+
+      }
+
+    }
+
+    this.courseRepo.save(c);
     log.info("CourseServiceimpl,addCourse Method Ends");
     return c;
   }
@@ -67,6 +115,7 @@ public class CourseServiceImpl implements CourseService {
   }
 
   @Override
+
   public void deleteCourseById(String getId) {
     log.info("CourseServiceimpl, deleteCourse Method Start");
     courseRepo.deleteById(getId);
