@@ -12,6 +12,6 @@ import examportal.portal.Entity.Paper;
 @Repository
 public interface PaperRepo extends JpaRepository<Paper,String>{
 
-    @Query("SELECT P FROM Paper p WHERE p.userId:=userId")
+    @Query("SELECT p FROM Paper p WHERE p.userId=:userId")
     List<Paper> getAllPapersByUserId(@Param("userId") String userId);
 } 

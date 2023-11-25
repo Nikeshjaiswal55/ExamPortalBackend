@@ -1,5 +1,6 @@
 package examportal.portal.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Paper;
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Services.PaperService;
 
@@ -29,6 +32,9 @@ public class PaperController {
 
     @Autowired
     private PaperRepo paperRepo;
+
+    @Autowired
+    private ExamDetailsRepo examDetailsRepo;
 
     Logger log = LoggerFactory.getLogger("MetorController");
 
@@ -68,13 +74,20 @@ public class PaperController {
     }
 
     @GetMapping("/getAllPaper/byUserId/{userId}")
-    public ResponseEntity<List<Paper>> getallpaersbyuserId(@PathVariable String userId) {
+    public ResponseEntity<List<PaperDto>> getallpaersbyuserId(@PathVariable String userId) {
 
         log.info("paper repo getall paper by user id method started");
         List<Paper> papers = this.paperRepo.getAllPapersByUserId(userId);
+         PaperDto dto = new PaperDto();
+         List<PaperDto> paperDtoList = new ArrayList<>();
+        for (Paper paper : papers) {
+            ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(paper.getPaperId());
+            dto.setExamDetails(examDetails); 
+            paperDtoList.add(dto);
+        }
         log.info("paper repo getall paper by user id method started");
 
-        return new ResponseEntity<List<Paper>>(papers,HttpStatus.ACCEPTED);
+        return new ResponseEntity<List<PaperDto>>(paperDtoList,HttpStatus.ACCEPTED);
 
     }
 }
