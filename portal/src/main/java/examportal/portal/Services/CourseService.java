@@ -6,9 +6,9 @@ import examportal.portal.Entity.Course;
 import examportal.portal.Payloads.CourseDto;
 public interface CourseService {
 
-    List<Course>getAllCourse();
+    List<Course>getAllCourse(Integer pageNumber);
 
-    Course getCourseById(String getId);
+    Course getCourseByCouseId(String getId);
 
     Course addCourse(CourseDto course);
 

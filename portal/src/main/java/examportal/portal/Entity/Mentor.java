@@ -12,6 +12,7 @@ import lombok.Data;
 @Entity
 @Data
 public class Mentor {
+    
     @Id
     private String mentorId = UUID.randomUUID().toString();
     @NotEmpty
