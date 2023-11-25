@@ -24,10 +24,8 @@ public class UserserviceImpl implements UserService {
     @Autowired
     private EmailService emailServices;
 
-    // @Deprecated
-    // @Autowired
-    // private Auth0Service auth0Service;
 
+    
     Logger log = LoggerFactory.getLogger("userServiceImpl");
 
     @Deprecated

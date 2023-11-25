@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,30 +28,32 @@ public class ResultServiceImpl implements ResultService {
     @Autowired
     private AttemptedQuestionsRepo attemptedQuestionsRepo;
 
-   @Autowired
-   private ResultRepo resultRepo;
+    @Autowired
+    private ResultRepo resultRepo;
 
-   @Autowired
-   private CheatingRepo cheatingRepo;
-   @Autowired
-   private ModelMapper mapper;
+    @Autowired
+    private CheatingRepo cheatingRepo;
+    @Autowired
+    private ModelMapper mapper;
 
-   @Autowired
-   private ExamDetailsRepo examDetailsRepo;
+    @Autowired
+    private ExamDetailsRepo examDetailsRepo;
+
+    Logger log = LoggerFactory.getLogger("ResultServiceImpl.class");
 
     @Override
     public ResultDto createResult(ResultDto result) {
-    
+        log.info("ResultServiceImpl, createResult Method Start");
 
         List<Questions> questions = result.getQuestions();
-        System.out.println("My Quesetions =============================="+result.getQuestions());
+        System.out.println("My Quesetions ==============================" + result.getQuestions());
 
         List<Questions> attemptQuestions = new ArrayList<>();
 
         for (Questions questions2 : questions) {
 
             AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
-            //  this.mapper.map(result, AttemptedQuestions.class);
+            // this.mapper.map(result, AttemptedQuestions.class);
             attemptedQuestions.setCorrectAns(questions2.getCorrectAns());
             attemptedQuestions.setOptions(questions2.getOptions());
             attemptedQuestions.setQuestions(questions2.getQuestions());
@@ -68,7 +72,7 @@ public class ResultServiceImpl implements ResultService {
         ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
         System.out.println(updatecheck);
 
-         Result newResult = new Result();
+        Result newResult = new Result();
         newResult.setPaperID(result.getPaperID());
         newResult.setStudentID(result.getStudentID());
         Result savedResult = this.resultRepo.save(newResult);
@@ -86,25 +90,28 @@ public class ResultServiceImpl implements ResultService {
         dto.setStudentID(result.getStudentID());
         dto.setResultID(savedResult.getResultID());
         dto.setCheating(savedCheating);
+        log.info("ResultServiceImpl, createResult Method Ends");
 
         return dto;
     }
 
     @Override
     public ResultDto getResultByResultId(String resultID) {
+        log.info("ResultServiceImpl, createResult Method Start");
 
-        Result result = this.resultRepo.findById(resultID).orElseThrow(()-> new ResourceNotFoundException("result ", "Result Id", resultID));
+        Result result = this.resultRepo.findById(resultID)
+                .orElseThrow(() -> new ResourceNotFoundException("result ", "Result Id", resultID));
 
-        List<AttemptedQuestions>  questions2 = this.attemptedQuestionsRepo.getAllQuestionsByStudentID(result.getStudentID());
+        List<AttemptedQuestions> questions2 = this.attemptedQuestionsRepo
+                .getAllQuestionsByStudentID(result.getStudentID());
 
         List<Questions> questions = new ArrayList<>();
 
         for (AttemptedQuestions attemptedQuestions : questions2) {
-             Questions question = this.mapper.map(attemptedQuestions, Questions.class);
-             questions.add(question);
+            Questions question = this.mapper.map(attemptedQuestions, Questions.class);
+            questions.add(question);
 
         }
-        
 
         ResultDto dto = new ResultDto();
 
@@ -112,10 +119,10 @@ public class ResultServiceImpl implements ResultService {
         dto.setPaperID(result.getPaperID());
         dto.setResultID(result.getResultID());
         dto.setStudentID(result.getStudentID());
+        log.info("ResultServiceImpl, createResult Method Ends");
 
         return dto;
 
     }
 
 }
-

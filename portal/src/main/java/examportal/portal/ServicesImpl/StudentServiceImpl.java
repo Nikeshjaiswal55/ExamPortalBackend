@@ -80,13 +80,13 @@ public class StudentServiceImpl implements StudentSevices {
 
             if (user != null) {
                 Assessment assessment = new Assessment();
-                assessment.setPaperID(student.getPaperID());
-                assessment.setUserID(user.getUserId());
+                assessment.setPaperId(student.getPaperID());
+                assessment.setUserId(user.getUserId());
                 assessment.setOrgnizationId(student.getOrgnizationId());
                 Assessment newaAssessment = this.assessmentRepo.save(assessment);
                 System.out.println("my assment ============================" + newaAssessment);
 
-                // this.userService.sendmail(user);
+                
 
             } else {
 
@@ -98,7 +98,7 @@ public class StudentServiceImpl implements StudentSevices {
                 }
 
                 User newUser = new User();
-                newUser.setUserId(response);
+                newUser.setUserId(response) ;
                 newUser.setEmail(email);
                 newUser.setPassword(password);
                 newUser.setRole("Student");
@@ -106,14 +106,13 @@ public class StudentServiceImpl implements StudentSevices {
                 User user2 = this.userService.createUser(dto);
 
                 Assessment assessment = new Assessment();
-                assessment.setPaperID(student.getPaperID());
-                assessment.setUserID(user2.getUserId());
+                assessment.setPaperId(student.getPaperID());
+                assessment.setUserId(user2.getUserId());
                 assessment.setOrgnizationId(student.getOrgnizationId());
                 Assessment newAssessment = this.assessmentRepo.save(assessment);
 
                 System.out.println("my assment ============================" + newAssessment);
 
-                // this.userService.sendmail(user2);
 
                 s.setEmail(email);
                 s.setStudentid(response);

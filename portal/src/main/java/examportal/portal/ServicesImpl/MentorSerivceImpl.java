@@ -2,6 +2,8 @@ package examportal.portal.ServicesImpl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,11 @@ public class MentorSerivceImpl implements MentorService {
     @Autowired
     private EmailService emailService;
 
+    Logger log = LoggerFactory.getLogger("MentorSerivceImpl.java");
+
     @Override
     public Mentor addMentor(Mentor mentor) {
+        log.info("MentorSerivceImpl , createMentor Method Start");
         // Email
         String email = mentor.getEmail();
          String sub = "Login Details";
@@ -32,7 +37,8 @@ public class MentorSerivceImpl implements MentorService {
         System.out.println("Email Successfully-------------------------------------");
 
         Mentor m1 = this.mentorRepo.save(mentor);
-       
+
+        log.info("MentorSerivceImpl , createMentor Method Ends");
 
         return m1;
 
@@ -40,23 +46,27 @@ public class MentorSerivceImpl implements MentorService {
 
     @Override
     public List<Mentor> getAllMentors() {
+        log.info("MentorSerivceImpl , getAllMentors Method Start");
         List<Mentor> allM = this.mentorRepo.findAll();
+        log.info("MentorSerivceImpl , getAllMentors Method Ends");
         return allM;
     }
 
     @Override
     public Mentor getMentorById(String mentorid) {
-        Mentor m1 = this.mentorRepo.findById(mentorid).orElseThrow(() -> new ResourceNotFoundException("Mentor", "mentorId", mentorid));;
-
+        log.info("MentorSerivceImpl , getMentorById Method Start");
+        Mentor m1 = this.mentorRepo.findById(mentorid).orElseThrow(() -> new ResourceNotFoundException("Mentor", "mentorId", mentorid));
+        log.info("MentorSerivceImpl , getMentorById Method Ends");
         return m1;
     }
 
     @Override
     public Mentor updateMentor(Mentor mentor) {
-        
+        log.info("MentorSerivceImpl , updateMentor Method Start");
         Mentor m1 = this.mentorRepo.findById(mentor.getMentorId()).orElseThrow(()-> new ResourceNotFoundException("Mentor", "MentorId", mentor.getMentorId()));
         m1.setEmail(mentor.getEmail());
         m1.setMentorName(mentor.getMentorName());
+        log.info("MentorSerivceImpl , updateMentor Method Ends");
 
         return m1;
         
@@ -64,9 +74,11 @@ public class MentorSerivceImpl implements MentorService {
 
     @Override
     public String deleteMentor(String id) {
-       
-        this.mentorRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Mentor", "mentorId", id));
+       log.info("MentorSerivceImpl , deleteMentor Method Start");
 
+        this.mentorRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Mentor", "mentorId", id));
+       
+        log.info("MentorSerivceImpl , deleteMentor Method Ends");
        return "Record Deleted";
     }
 

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Services.ResultService;
-// import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @CrossOrigin(origins = "*")

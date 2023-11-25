@@ -18,11 +18,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class Course {
 
-    @Id
-         private String course_id = UUID.randomUUID().toString();
+         @Id
+        private String course_id = UUID.randomUUID().toString();
     //    @JsonProperty("cname")
         private String course_name;
 
         private String userId;
+        private String userName;
 
 }

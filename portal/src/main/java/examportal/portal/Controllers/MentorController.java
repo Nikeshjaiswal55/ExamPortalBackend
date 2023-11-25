@@ -41,42 +41,41 @@ public class MentorController {
 
    @GetMapping("/Mentor/getAll")
    public ResponseEntity<List<Mentor>> getAllMentors() {
-
+      log.info("MentorController , getAllMentors Method Start");
       List<Mentor> mentorList = this.mentorService.getAllMentors();
 
+      log.info("MentorController , getAllMentors Method Ends");
       return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
    }
 
    @GetMapping("/Mentor/getByid/{mentorID}")
    public ResponseEntity<Mentor> getMentorById(@PathVariable String mentorID ) {
+      log.info("MentorController , getMentorById Method Start");
 
       Mentor mentor1 = this.mentorService.getMentorById(mentorID);
 
+      log.info("MentorController , getMentorById Method Ends");
       return new ResponseEntity<Mentor>(mentor1, HttpStatus.ACCEPTED);
 
    }
 
    @PutMapping("/Mentor/update")
    public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor) {
-
+      log.info("MentorController , updateMentor updateMentor Start");
       Mentor mentor1 = this.mentorService.updateMentor(mentor);
+      log.info("MentorController , updateMentor Ends");
 
       return new ResponseEntity<Mentor>(mentor1, HttpStatus.OK);
    }
 
    @DeleteMapping("/Mentor/delete/{mentorId}")
    public ResponseEntity<String> deleteMentor(@PathVariable String mentorId) {
+      log.info("MentorController , deleteMentor Start");
       this.mentorService.deleteMentor(mentorId);
-
+      log.info("MentorController , deleteMentor Ends");
       return new ResponseEntity<String>("Record Deleted Successfully", HttpStatus.OK);
    }
 
-   // @DeleteMapping("/Mentor/delete/all")
-   // public ResponseEntity<String> deleteAllMentor(){
-   // this.mentorService.deleteAllMentor();
-
-   // return new ResponseEntity<String>("Record Deleted Successfully",
-   // HttpStatus.OK);
-   // }
+   
 
 }
