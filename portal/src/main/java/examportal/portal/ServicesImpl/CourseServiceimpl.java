@@ -29,6 +29,7 @@ public class CourseServiceImpl implements CourseService {
   @Autowired
   private UserRepo userRepo;
 
+  @Deprecated
   @Autowired
   private Auth0Service auth0Service;
 
