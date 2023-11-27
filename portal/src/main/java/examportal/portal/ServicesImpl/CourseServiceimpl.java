@@ -13,7 +13,7 @@ import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Services.CourseService;
 
 @Service
-public class CourseServiceImpl implements CourseService {
+public class CourseServiceimpl implements CourseService {
   @Autowired
   public CourseRepo courseRepo;
 

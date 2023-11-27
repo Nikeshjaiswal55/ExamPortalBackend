@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import examportal.portal.Entity.Mentor;
+// import examportal.portal.Response.PostResponse;
 import examportal.portal.Services.MentorService;
 import jakarta.validation.Valid;
 
@@ -38,12 +40,16 @@ public class MentorController {
       log.info("MentorController ,addMentor Method End");
       return new ResponseEntity<Mentor>(mentor1, HttpStatus.CREATED);
    }
+   // get all method is  pagenation mathod
 
    @GetMapping("/Mentor/getAll")
-   public ResponseEntity<List<Mentor>> getAllMentors() {
-
-      List<Mentor> mentorList = this.mentorService.getAllMentors();
-
+   public ResponseEntity<List<Mentor>> getAllMentors(
+      @RequestParam(value = "pageNuber",defaultValue = "0",required = false)Integer pageNumber,
+      @RequestParam(value = "pageSize",defaultValue = "5",required = false)Integer pageSize,
+      @RequestParam(value = "sortBy",defaultValue = "mentorId",required = false)String sortBy,
+      @RequestParam(value = "sortDir",defaultValue = "dec",required = false)String sortDir
+   ) {
+    List<Mentor> mentorList = this.mentorService.getAllMentors( pageNumber,pageSize,sortBy,sortDir);
       return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
    }
 
@@ -69,14 +75,9 @@ public class MentorController {
       this.mentorService.deleteMentor(mentorId);
 
       return new ResponseEntity<String>("Record Deleted Successfully", HttpStatus.OK);
+   }@GetMapping("/mentor/sarchName/{mentorName}")
+   public ResponseEntity<List<Mentor>>sarchMentorByName(@PathVariable String mentorName) {
+      List<Mentor> result = this.mentorService.serchMentors(mentorName);
+      return new ResponseEntity<>(result,HttpStatus.OK);
    }
-
-   // @DeleteMapping("/Mentor/delete/all")
-   // public ResponseEntity<String> deleteAllMentor(){
-   // this.mentorService.deleteAllMentor();
-
-   // return new ResponseEntity<String>("Record Deleted Successfully",
-   // HttpStatus.OK);
-   // }
-
 }

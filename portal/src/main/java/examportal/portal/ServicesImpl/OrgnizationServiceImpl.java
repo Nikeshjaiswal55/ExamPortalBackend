@@ -11,7 +11,7 @@ import examportal.portal.Entity.Orgnizations;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.OrgnizationDto;
-import examportal.portal.Repo.OrgnizationRepo;
+ import examportal.portal.Repo.OrgnizationRepo;
 import examportal.portal.Services.OrgnizationService;
 import examportal.portal.Services.UserService;
 

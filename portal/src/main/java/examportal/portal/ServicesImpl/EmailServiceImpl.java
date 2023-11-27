@@ -1,4 +1,4 @@
-package examportal.portal.ServicesImpl;
+ package examportal.portal.ServicesImpl;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 import examportal.portal.Payloads.EmailDetails;
 import examportal.portal.Services.EmailService;
 import jakarta.mail.internet.MimeMessage;
-
-
+ 
 @Service
 public class EmailServiceImpl implements EmailService{
 

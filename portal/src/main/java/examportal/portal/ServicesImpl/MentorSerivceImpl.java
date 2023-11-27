@@ -3,12 +3,17 @@ package examportal.portal.ServicesImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Payloads.EmailDetails;
 import examportal.portal.Entity.Mentor;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Repo.MentorRepo;
+// import examportal.portal.Response.PostResponse;
 import examportal.portal.Services.EmailService;
 import examportal.portal.Services.MentorService;
 
@@ -39,9 +44,20 @@ public class MentorSerivceImpl implements MentorService {
     }
 
     @Override
-    public List<Mentor> getAllMentors() {
-        List<Mentor> allM = this.mentorRepo.findAll();
-        return allM;
+    public List<Mentor> getAllMentors(Integer pageNumber,Integer pageSize,String sortBy, String sortDir) {
+        Sort sort =(sortDir.equalsIgnoreCase("asc "))? sort = Sort.by(sortBy).ascending():Sort.by(sortBy).descending();
+    
+        Pageable p = PageRequest.of(pageNumber, pageSize,sort);
+        Page<Mentor> mentorPage = this.mentorRepo.findAll(p);
+        List<Mentor> allMentors = mentorPage.getContent();
+        // PostResponse postResponse =new PostResponse();
+        // postResponse.setContent(allMentors);
+        // postResponse.setPageNuber(mentorPage.getNumber());
+        // postResponse.setPageSize(mentorPage.getSize());
+        // postResponse.setTotalElements(mentorPage.getTotalElements());
+        // postResponse.setTotalPages(mentorPage.getTotalPages());
+        // postResponse.setLastPage(mentorPage.isLast());
+        return allMentors;
     }
 
     @Override
@@ -68,6 +84,11 @@ public class MentorSerivceImpl implements MentorService {
         this.mentorRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Mentor", "mentorId", id));
 
        return "Record Deleted";
+    }
+
+    @Override
+    public List<Mentor> serchMentors(String name) {
+      return this.mentorRepo.findByNameContaining("%"+name+"%");
     }
 
     
