@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @Configuration
 @EnableWebSecurity
 @Deprecated
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins="*")
 public class SecurityConfig {
 
     private static final org.slf4j.Logger log  = LoggerFactory.getLogger(SecurityConfig.class);
@@ -39,7 +39,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         log.info("SecurityConfig , filterChain Method Start ");
 
-        http.authorizeRequests(authorizeRequests ->
+               
+        http.cors().and().csrf().disable().authorizeRequests(authorizeRequests ->
         authorizeRequests.requestMatchers(public_urls).permitAll().
         requestMatchers("/*").authenticated())
         // .authorizeRequests(authorizeRequests -> authorizeRequests.requestMatchers("/Swagger").permitAll())
@@ -50,8 +51,7 @@ public class SecurityConfig {
     return http.build();
 
     }
-
-    
+  
 
 }
 

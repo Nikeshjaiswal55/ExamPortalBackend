@@ -6,6 +6,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Course;
@@ -32,12 +36,20 @@ public class CourseServiceImpl implements CourseService {
   Logger log = LoggerFactory.getLogger("CourseServiceimpl.class");
 
   @Override
-  public List<Course> getAllCourse() {
+  public List<Course> getAllCourse(Integer pageNumber) {
     log.info("CourseServiceimpl,getCourse Method Start");
-    List<Course> course = courseRepo.findAll();
+  
+    Integer pageSize = 2;  
+    Sort s = Sort.by("userId").ascending();
+    Pageable p = PageRequest.of(pageNumber, pageSize,s);
+    Page<Course> page = courseRepo.findAll(p);
+    List<Course> courseAll = page.getContent();
+    System.out.println(courseAll.size());
+    System.out.println(page.isLast());
     List<Course> courses = new ArrayList<>();
-    for (Course course2 : course) {
-      User user = this.userRepo.findById(course2.getUserId()).orElseThrow(()-> new ResourceNotFoundException("User", "UserId", course2.getUserId()));
+    for (Course course2 : courseAll) {
+      User user = this.userRepo.findById(course2.getUserId())
+          .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course2.getUserId()));
       course2.setUserName(user.getName());
       courses.add(course2);
     }
@@ -46,10 +58,12 @@ public class CourseServiceImpl implements CourseService {
   }
 
   @Override
-  public Course getCourseById(String getId) {
+  public Course getCourseByCouseId(String getId) {
     log.info("CourseServiceimpl,getCourseById Method Start");
-    Course c = this.courseRepo.findById(getId).orElseThrow(()-> new ResourceNotFoundException("Course", "CourseId", getId));
-    User user = this.userRepo.findById(c.getUserId()).orElseThrow(()-> new ResourceNotFoundException("User", "UserId", c.getUserId()));
+    Course c = this.courseRepo.findById(getId)
+        .orElseThrow(() -> new ResourceNotFoundException("Course", "CourseId", getId));
+    User user = this.userRepo.findById(c.getUserId())
+        .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", c.getUserId()));
     c.setUserName(user.getName());
     log.info("CourseServiceimpl,getCourseById Method Ends");
 
@@ -61,7 +75,8 @@ public class CourseServiceImpl implements CourseService {
   public Course addCourse(CourseDto course) {
 
     log.info("CourseServiceimpl,addCourse Method Start");
-   User us =  userRepo.findById(course.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
+    User us = userRepo.findById(course.getUserId())
+        .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
     String response = "";
 
     Course c = new Course();
