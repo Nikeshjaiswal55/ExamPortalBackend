@@ -87,8 +87,8 @@ public class MentorSerivceImpl implements MentorService {
     }
 
     @Override
-    public List<Mentor> serchMentors(String name) {
-      return this.mentorRepo.findByNameContaining("%"+name+"%");
+    public List<Mentor> serchMentors(String mentorName) {
+      return this.mentorRepo.findBymentorNameContainingIgnoreCase(mentorName);
     }
 
     

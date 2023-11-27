@@ -9,7 +9,6 @@ import examportal.portal.Entity.Mentor;
 
 public interface MentorRepo extends JpaRepository<Mentor,String> {
 
-  @Query("SELECT s FROM Mentor s WHERE LOWER(s.name) LIKE LOWER(:name)")
-List<Mentor> findByNameContaining(@Param("name") String name);
-
+  @Query("SELECT m FROM Mentor m WHERE LOWER(m.mentorName) LIKE LOWER(CONCAT('%', :mentorName, '%'))")
+  List<Mentor> findBymentorNameContainingIgnoreCase(@Param("mentorName") String mentorName);
 }
