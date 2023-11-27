@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceAlreadyExistException;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.EmailDetails;
 import examportal.portal.Payloads.userDto;
 import examportal.portal.Repo.UserRepo;
@@ -24,8 +25,6 @@ public class UserserviceImpl implements UserService {
     @Autowired
     private EmailService emailServices;
 
-
-    
     Logger log = LoggerFactory.getLogger("userServiceImpl");
 
     @Deprecated
@@ -46,23 +45,24 @@ public class UserserviceImpl implements UserService {
             newuser.setPicture(user.getPicture());
             newuser.setUpdatedAt(user.getUpdatedAt());
             newuser.setRole(user.getRole());
-             User saveduser =this.userRepo.save(newuser);
-            // creating user in auth0 with api only for testing 
+            User saveduser = this.userRepo.save(newuser);
+            // creating user in auth0 with api only for testing
             // try {
-            //     this.auth0Service.createUser(saveduser.getEmail(), user.getName()+"123", user.getToken());
+            // this.auth0Service.createUser(saveduser.getEmail(), user.getName()+"123",
+            // user.getToken());
             // } catch (Exception e) {
-            //     e.printStackTrace();
+            // e.printStackTrace();
             // }
-            //  creating user in auth0 with api only for testing
+            // creating user in auth0 with api only for testing
             sendmail(saveduser);
             log.info("userService , createUser Method Ends");
 
             return saveduser;
         }
-        
+
     }
 
-  //  @Override
+    // @Override
     public String sendmail(User user) {
 
         log.info("userService , send mail Method Start");
@@ -80,9 +80,18 @@ public class UserserviceImpl implements UserService {
     @Override
     public List<User> getAllUser() {
         log.info("userService , getAllUser Method Start");
-        List <User> u1 =  this.userRepo.findAll();
+        List<User> u1 = this.userRepo.findAll();
         log.info("userService , getAllUser Method Start");
-       return u1;
+        return u1;
+    }
+
+    @Override
+    public User getUserById(String userId) {
+        log.info("userService , getAllUser Method Start");
+        User user = this.userRepo.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("user", "userId", userId));
+        log.info("userService , getAllUser Method Start");
+        return user;
     }
 
 }
