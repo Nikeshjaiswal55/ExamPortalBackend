@@ -5,12 +5,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Branch;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Repo.BranchRepo;
 import examportal.portal.Services.BranchService;
-
+@Service
 public class BranchServiceImpl implements BranchService{
     @Autowired
   public BranchRepo branchRepo;

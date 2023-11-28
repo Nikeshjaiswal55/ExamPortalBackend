@@ -153,8 +153,8 @@ public class StudentServiceImpl implements StudentSevices {
 
     @Override
     public Student findStudentByPeparId(String paperId) {
-        
-       return null ;
+        Student s=studentRepo.findStudentByPaperId(paperId);
+       return s ;
     }
 
 }
