@@ -16,4 +16,6 @@ public interface StudentSevices{
     Student updateStudent( Student student);
     //5. Deleting an existing Student by Id
     String deleteStudent(String Id);
+    //6. find sudent by pepar id 
+     Student findStudentByPeparId(String paperId);
 }

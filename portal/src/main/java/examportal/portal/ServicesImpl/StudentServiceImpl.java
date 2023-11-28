@@ -151,4 +151,10 @@ public class StudentServiceImpl implements StudentSevices {
         return "Record Deleted";
     }
 
+    @Override
+    public Student findStudentByPeparId(String paperId) {
+        
+       return null ;
+    }
+
 }

@@ -15,12 +15,12 @@ public class Mentor {
     @Id
     private String mentorId = UUID.randomUUID().toString();
     @NotEmpty
-    private String mentorName ;
+    private String      mentorName;
     @NotEmpty
-    private String userId;
+    private String         userId;
     @NotEmpty
     private String orgnizationId;
     @Email 
-    private String email;
+    private String         email;
     
 }
