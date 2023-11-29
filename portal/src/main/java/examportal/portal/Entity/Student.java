@@ -17,4 +17,6 @@ public class Student {
 
     private String orgnizationId;
 
+    private String paperId;
+
 }

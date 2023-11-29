@@ -37,10 +37,10 @@ public class AssessmentController {
 
     @GetMapping("/getAllBy/UserId/{userId}")
     public ResponseEntity<List<Assessment>> getAllassmentByUserId(@PathVariable String userId) {
-        log.info("AssessmentController.class, getAllassmentByOrgnizationId Start ");
+        log.info("AssessmentController.class, getAllassmentByUserId Start ");
         List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_userId(userId);
 
-        log.info("AssessmentController.class, getAllassmentByOrgnizationId Ends ");
+        log.info("AssessmentController.class, getAllassmentByUserId Ends ");
 
         return new ResponseEntity<List<Assessment>>(assessments, HttpStatus.OK);
 

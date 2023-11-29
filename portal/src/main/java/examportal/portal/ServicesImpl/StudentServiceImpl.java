@@ -6,17 +6,23 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
+import examportal.portal.Payloads.PageableDto;
 import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Payloads.userDto;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
+import examportal.portal.Response.PageResponce;
 import examportal.portal.Services.StudentSevices;
 import examportal.portal.Services.UserService;
 import net.bytebuddy.utility.RandomString;
@@ -48,6 +54,8 @@ public class StudentServiceImpl implements StudentSevices {
     @Override
     public List<Student> getAllStudents() {
         log.info("StudentServiceImpl , getAllStudent Method Start");
+
+
 
         log.info("StudentServiceImpl , getAllStudent Method Ends");
         return this.studentRepo.findAll();
@@ -149,5 +157,36 @@ public class StudentServiceImpl implements StudentSevices {
         log.info("StudentServiceImpl , getSingleStudent Method Ends");
         return "Record Deleted";
     }
+
+
+    public PageResponce getAllStudentByPaperId(String paperId , PageableDto dto){
+
+          Sort sort;
+        
+        if(dto.getSortDirection().equals("DESC")){
+            sort = Sort.by(dto.getProperty()).descending();
+         
+        }else{
+            sort = Sort.by(dto.getProperty()).ascending();    
+        }
+        Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
+        
+        Page<Student> st = studentRepo.findByPaperId(paperId, p);
+        
+        
+        // List<Student> student=st.getContent();
+        PageResponce pr = new PageResponce();
+        pr.setContent_Student(st.getContent());
+        pr.setPage(st.getNumber()+1);
+        pr.setTotalElements(st.getTotalElements());
+        pr.setTotalPages(st.getTotalPages());
+        pr.setPagesize(st.getSize());
+        pr.setIslastPage(st.isLast());
+        pr.setSortby(dto.getProperty());
+        pr.setSortDirection(dto.getSortDirection());
+        return pr ;
+        
+    }
+  
 
 }

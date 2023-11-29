@@ -35,7 +35,7 @@ public class CourseController {
   // Get All 
   @GetMapping("/course/getAll")
   public ResponseEntity<List<Course>> getCourses(
-    @RequestParam(value = "pageNumber",defaultValue = "0",required = false)Integer pageNumber
+        @RequestParam(value = "pageNumber",defaultValue = "0",required = false)Integer pageNumber
   ) {
     log.info("CourseController,getCourse Method Start");
 

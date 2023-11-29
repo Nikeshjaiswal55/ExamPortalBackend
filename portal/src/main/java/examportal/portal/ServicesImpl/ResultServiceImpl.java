@@ -67,7 +67,7 @@ public class ResultServiceImpl implements ResultService {
 
         }
 
-        ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(result.getPaperID());
+        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(result.getPaperID());
         examDetails.setPaperChecked(true);
         ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
         System.out.println(updatecheck);
