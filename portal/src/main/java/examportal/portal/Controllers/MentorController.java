@@ -1,5 +1,6 @@
 package examportal.portal.Controllers;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import examportal.portal.Services.MentorService;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class MentorController {
 
    @Autowired
@@ -39,42 +41,41 @@ public class MentorController {
 
    @GetMapping("/Mentor/getAll")
    public ResponseEntity<List<Mentor>> getAllMentors() {
-
+      log.info("MentorController , getAllMentors Method Start");
       List<Mentor> mentorList = this.mentorService.getAllMentors();
 
+      log.info("MentorController , getAllMentors Method Ends");
       return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
    }
 
-   @GetMapping("/Mentor/getBy/{mentorId}")
-   public ResponseEntity<Mentor> getMentorById(@PathVariable String mentorId) {
+   @GetMapping("/Mentor/getByid/{mentorID}")
+   public ResponseEntity<Mentor> getMentorById(@PathVariable String mentorID ) {
+      log.info("MentorController , getMentorById Method Start");
 
-      Mentor mentor1 = this.mentorService.getAllMentorById(mentorId);
+      Mentor mentor1 = this.mentorService.getMentorById(mentorID);
 
+      log.info("MentorController , getMentorById Method Ends");
       return new ResponseEntity<Mentor>(mentor1, HttpStatus.ACCEPTED);
 
    }
 
    @PutMapping("/Mentor/update")
-   public ResponseEntity<Mentor> update(@RequestBody Mentor mentor) {
-
+   public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor) {
+      log.info("MentorController , updateMentor updateMentor Start");
       Mentor mentor1 = this.mentorService.updateMentor(mentor);
+      log.info("MentorController , updateMentor Ends");
 
       return new ResponseEntity<Mentor>(mentor1, HttpStatus.OK);
    }
 
    @DeleteMapping("/Mentor/delete/{mentorId}")
    public ResponseEntity<String> deleteMentor(@PathVariable String mentorId) {
+      log.info("MentorController , deleteMentor Start");
       this.mentorService.deleteMentor(mentorId);
-
+      log.info("MentorController , deleteMentor Ends");
       return new ResponseEntity<String>("Record Deleted Successfully", HttpStatus.OK);
    }
 
-   // @DeleteMapping("/Mentor/delete/all")
-   // public ResponseEntity<String> deleteAllMentor(){
-   // this.mentorService.deleteAllMentor();
-
-   // return new ResponseEntity<String>("Record Deleted Successfully",
-   // HttpStatus.OK);
-   // }
+   
 
 }

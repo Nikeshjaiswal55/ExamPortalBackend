@@ -11,6 +11,7 @@ import lombok.Data;
 @Entity
 @Data
 public class Cheating {
+    
     @Id
     private String cheatingId = UUID.randomUUID().toString();
     private String studentId;

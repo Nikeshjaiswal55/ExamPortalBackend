@@ -25,4 +25,5 @@ public class PaperDto {
     private List<String> emails;
     private String token;
     private String userId;
+    private String orgnizationId;
 }

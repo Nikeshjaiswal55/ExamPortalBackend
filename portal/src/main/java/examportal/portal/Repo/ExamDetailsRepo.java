@@ -10,5 +10,5 @@ import examportal.portal.Entity.ExamDetails;
 public interface ExamDetailsRepo extends JpaRepository<ExamDetails,String>{
     
     @Query("SELECT s FROM ExamDetails s where s.paperId=:paperId")
-    ExamDetails getexExamDetailsByPaperID(@Param("paperId") String paperId);
+    ExamDetails getExamDetailsByPaperID(@Param("paperId") String paperId);
 }

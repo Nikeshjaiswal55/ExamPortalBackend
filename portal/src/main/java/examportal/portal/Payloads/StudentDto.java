@@ -11,5 +11,10 @@ public class StudentDto {
 
     private String name;
 
+    private String paperID;
+
     private String token;
+
+    private String orgnizationId;
+
 }

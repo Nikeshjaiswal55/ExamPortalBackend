@@ -19,9 +19,9 @@ public class ExamDetailsImpl implements ExamDetailsService {
     @Override
     public ExamDetails createExamDetails(ExamDetails examDetails) {
       
-      log.info("ExamDetails CreateExamDetails method Start's");
+      log.info("ExamDetails CreateExamDetails method Starts ");
       ExamDetails neweExamDetails = this.examDetailsRepo.save(examDetails);
-      log.info("ExamDetails CreateExamDetails method End's");
+      log.info("ExamDetails CreateExamDetails method Ends ");
       return neweExamDetails;
     }
     

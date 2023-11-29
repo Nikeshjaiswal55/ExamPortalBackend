@@ -1,7 +1,5 @@
 package examportal.portal.Entity;
 
-import java.util.UUID;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -13,7 +11,7 @@ import lombok.Data;
 public class User {
     
     @Id
-    private String userId=UUID.randomUUID().toString();
+    private String userId;
 
     private String email;
 
@@ -21,10 +19,10 @@ public class User {
 
     private String picture;
 
-    private String sub;
-
     private String updatedAt;
     
     private String role;
+
+    private String password;
 
 }
