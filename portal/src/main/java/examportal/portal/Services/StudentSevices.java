@@ -2,7 +2,9 @@ package examportal.portal.Services;
 
 import java.util.List;
 import examportal.portal.Entity.Student;
+import examportal.portal.Payloads.PageableDto;
 import examportal.portal.Payloads.StudentDto;
+import examportal.portal.Response.PageResponce;
 
 public interface StudentSevices{
     
@@ -16,6 +18,6 @@ public interface StudentSevices{
     Student updateStudent( Student student);
     //5. Deleting an existing Student by Id
     String deleteStudent(String Id);
-    //6. find sudent by pepar id 
-    List<Student>findStudentByPeparId(String paperId);
+
+    PageResponce getAllStudentByPaperId(String paperId,PageableDto dto);
 }

@@ -21,9 +21,6 @@ public class EmailServiceImpl implements EmailService{
     @Autowired
     private JavaMailSender javaMailSender;
 
-    
-
-
     @Value("${spring.mail.username}")
     private String sender;
     @Override
@@ -54,10 +51,10 @@ public class EmailServiceImpl implements EmailService{
       
     }
     @Override
-    public String SendFormateMail
+    public String sendFormateMail
     (EmailDetails details) {
         System.out.println("enter In SendStyledMail +++++++++++++++++++++++++++++++++++++++++++++++++");
-        String msgbody = "";
+        String msgbody = details.getMsgBody();
 
 try {
     

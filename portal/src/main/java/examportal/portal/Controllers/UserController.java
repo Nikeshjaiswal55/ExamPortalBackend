@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,16 @@ public class UserController {
         List<User> us = this.userService.getAllUser(); 
 
         return new ResponseEntity<List<User>>(us,HttpStatus.OK);
+        
+    }
+
+      @GetMapping("/user/byid/{userId}")
+    public ResponseEntity<User> getuserbyid(@PathVariable String userId){
+        log.info("UserController, createUser Method Ends");
+
+        User us = this.userService.getUserById(userId); 
+
+        return new ResponseEntity<User>(us,HttpStatus.OK);
         
     }
 }

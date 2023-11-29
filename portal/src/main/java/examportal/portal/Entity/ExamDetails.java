@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class ExamDetails {
     @Id
-    private String examid=UUID.randomUUID().toString();
+    private String examid = UUID.randomUUID().toString();
     private String examDuration;
     private String examMode;
     private int examRounds;
