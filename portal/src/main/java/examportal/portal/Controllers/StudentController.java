@@ -82,13 +82,13 @@ public class StudentController {
 
     }
      @GetMapping("/student/{paperId}")
-    public ResponseEntity<Student> findStudentByPeparId(@PathVariable String paperId){
+    public ResponseEntity<List<Student>> findStudentByPeparId(@PathVariable String paperId){
         log.info("StudentController , findStudentByPeparId Method Start");
         
-        Student s = studentSevices.findStudentByPeparId( paperId);
+        List<Student> s = studentSevices.findStudentByPeparId( paperId);
 
         log.info("StudentController , findStudentByPeparId Method Ends");
-        return new ResponseEntity<Student>(s,HttpStatus.OK);
+        return new ResponseEntity<List<Student>>(s,HttpStatus.OK);
     }
 
 }

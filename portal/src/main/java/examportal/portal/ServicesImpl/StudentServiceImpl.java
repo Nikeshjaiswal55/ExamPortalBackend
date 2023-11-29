@@ -152,8 +152,8 @@ public class StudentServiceImpl implements StudentSevices {
     }
 
     @Override
-    public Student findStudentByPeparId(String paperId) {
-        Student s=studentRepo.findStudentByPaperId(paperId);
+    public List<Student> findStudentByPeparId(String paperId) {
+       List<Student> s=studentRepo.findStudentByPaperId(paperId);
        return s ;
     }
 
