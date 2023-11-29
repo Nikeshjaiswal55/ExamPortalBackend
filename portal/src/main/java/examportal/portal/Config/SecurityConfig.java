@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 @Deprecated
@@ -39,13 +41,13 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         log.info("SecurityConfig , filterChain Method Start ");
 
-               
-        http.cors().and().csrf().disable().authorizeRequests(authorizeRequests ->
-        authorizeRequests.requestMatchers(public_urls).permitAll().
-        requestMatchers("/*").authenticated())
-        // .authorizeRequests(authorizeRequests -> authorizeRequests.requestMatchers("/Swagger").permitAll())
-        .oauth2ResourceServer(oauth2ResourceServer ->
-        oauth2ResourceServer.jwt(jwt -> jwt.decoder(jwtDecoder())));
+
+        http.cors(withDefaults()).csrf(csrf -> csrf.disable()).authorizeRequests(authorizeRequests ->
+                authorizeRequests.requestMatchers(public_urls).permitAll().
+                        requestMatchers("/*/").authenticated())
+                // .authorizeRequests(authorizeRequests -> authorizeRequests.requestMatchers("/Swagger").permitAll())
+                .oauth2ResourceServer(oauth2ResourceServer ->
+                        oauth2ResourceServer.jwt(jwt -> jwt.decoder(jwtDecoder())));
 
         log.info("SecurityConfig , filterChain Method Ends");
     return http.build();

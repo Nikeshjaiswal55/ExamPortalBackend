@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,16 +79,25 @@ public class PaperController {
 
         log.info("paper repo getall paper by user id method started");
         List<Paper> papers = this.paperRepo.getAllPapersByUserId(userId);
-         PaperDto dto = new PaperDto();
-         List<PaperDto> paperDtoList = new ArrayList<>();
+        PaperDto dto = new PaperDto();
+        List<PaperDto> paperDtoList = new ArrayList<>();
         for (Paper paper : papers) {
-            ExamDetails examDetails = this.examDetailsRepo.getexExamDetailsByPaperID(paper.getPaperId());
-            dto.setExamDetails(examDetails); 
+            ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paper.getPaperId());
+            dto.setExamDetails(examDetails);
             paperDtoList.add(dto);
         }
         log.info("paper repo getall paper by user id method started");
 
-        return new ResponseEntity<List<PaperDto>>(paperDtoList,HttpStatus.ACCEPTED);
+        return new ResponseEntity<List<PaperDto>>(paperDtoList, HttpStatus.ACCEPTED);
+
+    }
+
+    @DeleteMapping("/deletePaperByPaperID/{paperId}")
+    public ResponseEntity<String> deletePaper(@PathVariable String paperId) {
+        log.info("paper service delete paper by paperid method started");
+        String msg = this.paperService.deletePaperByPaperId(paperId);
+
+        return new ResponseEntity<>(msg,HttpStatus.OK);
 
     }
 }

@@ -15,4 +15,6 @@ public interface PaperService {
     List<PaperDto> getAllPaper();
     PaperDto getPaperById(String paperID);
 
+    String deletePaperByPaperId(String paperId);
+
 }

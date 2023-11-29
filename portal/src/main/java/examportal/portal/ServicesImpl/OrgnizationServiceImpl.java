@@ -31,15 +31,13 @@ public class OrgnizationServiceImpl implements OrgnizationService {
   public Orgnizations createOrgnizations(OrgnizationDto orgnizationsDto) {
     log.info("OrgnizationServiceImp , createOrgnization Method Start");
 
-  
-
     Orgnizations orgnization = this.orgnizationRepo.getAllOrgnizationByUserID(orgnizationsDto.getUserId());
 
-    if (orgnization !=null) {
+    if (orgnization != null) {
       throw new ResourceAlreadyExistException("Orgnization", "UserID", orgnizationsDto.getUserId());
     } else {
-      
-        User user = this.userService.createUser(orgnizationsDto.getUser());
+
+      User user = this.userService.createUser(orgnizationsDto.getUser());
       Orgnizations newOrgnizations = new Orgnizations();
 
       newOrgnizations.setOrgnizationName(orgnizationsDto.getOrgnizationName());

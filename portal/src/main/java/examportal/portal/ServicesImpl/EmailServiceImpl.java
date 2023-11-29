@@ -52,10 +52,10 @@ public class EmailServiceImpl implements EmailService{
       
     }
     @Override
-    public String SendFormateMail
+    public String sendFormateMail
     (EmailDetails details) {
         System.out.println("enter In SendStyledMail +++++++++++++++++++++++++++++++++++++++++++++++++");
-        String msgbody = "";
+        String msgbody = details.getMsgBody();
 
 try {
     

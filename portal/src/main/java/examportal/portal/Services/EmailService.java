@@ -6,6 +6,6 @@ public interface EmailService {
 
       String sendSimpleMail(EmailDetails details); 
 
-      String SendFormateMail(EmailDetails d);
+      String sendFormateMail(EmailDetails d);
     
 }
