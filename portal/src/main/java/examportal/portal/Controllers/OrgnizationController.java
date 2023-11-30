@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Orgnizations;
 import examportal.portal.Payloads.OrgnizationDto;
+import examportal.portal.Repo.OrgnizationRepo;
 import examportal.portal.Services.OrgnizationService;
 
 @RestController
@@ -24,6 +26,9 @@ import examportal.portal.Services.OrgnizationService;
 public class OrgnizationController {
 
     Logger log = LoggerFactory.getLogger("OrgnizationController.class");
+
+    @Autowired
+    private OrgnizationRepo orgnizationRepo;
 
     @Autowired
     private OrgnizationService orgnizationService;
@@ -46,6 +51,16 @@ public class OrgnizationController {
         log.info("OrgnizationController , getAll Method Ends");
         return new ResponseEntity<List<Orgnizations>>(orgnization, HttpStatus.OK);
     }
+
+    //get Orgnization by UserId
+    @GetMapping("/getOrgnizationByUserId/{UserId}")
+     public ResponseEntity<Orgnizations> getOrgnization(@PathVariable String UserId) {
+        log.info("OrgnizationController , getAll Method Start");
+        Orgnizations orgnization = this.orgnizationRepo.getAllOrgnizationByUserID(UserId);
+        log.info("OrgnizationController , getAll Method Ends");
+        return new ResponseEntity<Orgnizations>(orgnization, HttpStatus.OK);
+    }
+
 
     @PutMapping("/updteorgnizations")
     public ResponseEntity<Orgnizations> Updateorgnizations(@RequestBody Orgnizations orgnizations) {

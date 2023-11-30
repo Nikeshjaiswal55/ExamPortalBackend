@@ -13,5 +13,7 @@ public  interface UserService {
     
     List<User>getAllUser();
 
+    User getUserById(String userId);
+
     // String createAuth0User(userDto users);
 }
