@@ -34,7 +34,7 @@ public class Auth0Service {
 
         System.out
                 .println("method statted  ==========================================================================");
-        String clientId = "eztAo6qyd8H7WNYOEiQWqIMopdOiXRQ8";
+        String clientId = "HFjnwkNDl3VtcyC83VfiGWtmLXBT6Pvz";
         String connection = "Username-Password-Authentication";
         String res = "";
         MediaType mediaType = MediaType.parse("application/json");

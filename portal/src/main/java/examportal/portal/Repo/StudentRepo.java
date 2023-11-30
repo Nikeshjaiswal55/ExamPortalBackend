@@ -1,5 +1,6 @@
 package examportal.portal.Repo;
 
+import java.util.List;
 
 import examportal.portal.Entity.Student;
 
@@ -20,5 +21,7 @@ public interface StudentRepo extends JpaRepository<Student,String>{
     //find all student by paperId
     Page<Student> findByPaperId(String paperId,Pageable p);
 
+    @Query("SELECT s FROM Student s where s.branch=:branch")
+    List<Student>  getAllStudentBYBranch( @Param("branch") String branch);
     
 }

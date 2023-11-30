@@ -10,11 +10,15 @@ public class Student {
 
     @Id
     private String studentid;
-    private String paperId;
+
     private String email; 
     
     private String name;
 
     private String orgnizationId;
+
+    private String branch;
+
+    private String paperId;
 
 }
