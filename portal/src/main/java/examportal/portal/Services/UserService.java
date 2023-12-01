@@ -3,18 +3,17 @@ package examportal.portal.Services;
 import java.util.List;
 
 import examportal.portal.Entity.User;
-import examportal.portal.Payloads.PageableDto;
 import examportal.portal.Payloads.userDto;
-import examportal.portal.Response.PageResponce;
 
 public  interface UserService {
     
     User createUser(userDto user);
     
+    String sendmail(User user);
     
-    PageResponce getAllUser(PageableDto dto);
+    List<User>getAllUser();
 
-    
+    User getUserById(String userId);
 
-    
+    // String createAuth0User(userDto users);
 }

@@ -16,5 +16,7 @@ public class Paper {
     @Id
     private String paperId=UUID.randomUUID().toString();
     private String userId;
+    private boolean is_setup;
+    private boolean is_Active;
     private String orgnizationId;
 }
