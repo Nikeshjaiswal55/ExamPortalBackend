@@ -19,6 +19,8 @@ public class Student {
 
     private String orgnizationId;
 
+    private String branch;
+
     private String paperId;
 
     // public String setPaperId(String paperid){
