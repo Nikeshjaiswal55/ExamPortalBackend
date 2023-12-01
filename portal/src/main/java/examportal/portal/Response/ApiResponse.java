@@ -9,4 +9,5 @@ public class ApiResponse {
     
     private String massage;
     private boolean success;
+    private boolean is_user; 
 }
