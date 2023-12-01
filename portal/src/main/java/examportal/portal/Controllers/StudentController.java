@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.PageableDto;
 import examportal.portal.Payloads.StudentDto;
-import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Response.PageResponce;
 import examportal.portal.Services.StudentSevices;
 
@@ -31,9 +30,6 @@ public class StudentController {
 
     @Autowired
     private StudentSevices studentSevices;
-
-    @Autowired
-    private StudentRepo studentRepo;
 
     private Logger log = LoggerFactory.getLogger("StudentController.class");
 
@@ -71,13 +67,19 @@ public class StudentController {
     }
 
     // Get All Student By paperId
-    @GetMapping("/GetAllStudentByPaperId/{paperId}")
-    public ResponseEntity<List<Student>> getAllStudentByPaperId(@PathVariable String paperId) {
+    @GetMapping("/student/GetAllByPaperId/{paperId}")
+    public ResponseEntity<PageResponce> getAllStudentByPaperId(@PathVariable String paperId,
+            @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+            @RequestParam(value = "size", defaultValue = "2", required = false) Integer pagesize,
+            @RequestParam(value = "sortDirection", defaultValue = "ASC", required = false) String sortDirection,
+            @RequestParam(value = "property", defaultValue = "email", required = false) String property) {
         log.info("StudentController , getAllStudent Method Start");
 
-        List<Student> st = this.studentSevices.getAllStudentByPaperId(paperId);
+        PageResponce st = this.studentSevices.getAllStudentByPaperId(paperId,
+                new PageableDto(pageNumber, pagesize, property, sortDirection));
+
         log.info("StudentController , getAllStudent Method Ends");
-        return new ResponseEntity<List<Student>>(st, HttpStatus.OK);
+        return new ResponseEntity<PageResponce>(st, HttpStatus.OK);
     }
 
     // updating a student
@@ -96,16 +98,6 @@ public class StudentController {
         log.info("StudentController , DeleteStudent Method Ends");
         return msg;
 
-    }
-
-     @GetMapping("/student/getAll/Bybranch/{branch}")
-    public ResponseEntity<List<Student>> getAllStudentbybranch(@PathVariable String branch) {
-        log.info("StudentController , getAllStudent Method Start");
-
-        List<Student> list = this.studentRepo.getAllStudentBYBranch(branch);
-
-        log.info("StudentController , getAllStudent Method Ends");
-        return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
     }
 
 }

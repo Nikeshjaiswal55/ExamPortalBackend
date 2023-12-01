@@ -19,13 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Paper;
-import examportal.portal.Entity.Questions;
-import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.PaperRepo;
-import examportal.portal.Repo.QuestionsRepo;
-import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.PaperService;
 
 @RestController
@@ -39,13 +35,7 @@ public class PaperController {
     private PaperRepo paperRepo;
 
     @Autowired
-    private QuestionsRepo questionsRepo;
-
-    @Autowired
     private ExamDetailsRepo examDetailsRepo;
-
-    @Autowired
-    private StudentRepo studentRepo;
 
     Logger log = LoggerFactory.getLogger("MetorController");
 
@@ -67,8 +57,8 @@ public class PaperController {
         log.info("paperService create new paper method End's");
         return new ResponseEntity<Paper>(paper, HttpStatus.CREATED);
     }
-    // Getting paper by paperId
-    @GetMapping("/getPaperbyPaperId/{paperID}")
+
+    @GetMapping("/getPaper/byId/{paperID}")
     public ResponseEntity<PaperDto> getpaperByID(@PathVariable String paperID) {
         log.info("paperService get paper by id  method started");
         PaperDto paperDto = this.paperService.getPaperById(paperID);
@@ -84,13 +74,18 @@ public class PaperController {
         return new ResponseEntity<PaperDto>(paperDto2, HttpStatus.OK);
     }
 
-    // Getting All papers by userId
-    @GetMapping("/getAllPaperbyUserId/{userId}")
+    @GetMapping("/getAllPaper/byUserId/{userId}")
     public ResponseEntity<List<PaperDto>> getallpaersbyuserId(@PathVariable String userId) {
 
         log.info("paper repo getall paper by user id method started");
-        List<PaperDto> paperDtoList= this.paperService.getAllPaperByUserId(userId); 
-        
+        List<Paper> papers = this.paperRepo.getAllPapersByUserId(userId);
+        PaperDto dto = new PaperDto();
+        List<PaperDto> paperDtoList = new ArrayList<>();
+        for (Paper paper : papers) {
+            ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paper.getPaperId());
+            dto.setExamDetails(examDetails);
+            paperDtoList.add(dto);
+        }
         log.info("paper repo getall paper by user id method started");
 
         return new ResponseEntity<List<PaperDto>>(paperDtoList, HttpStatus.ACCEPTED);

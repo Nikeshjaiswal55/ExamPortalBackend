@@ -23,7 +23,7 @@ import jakarta.el.ELException;
 import net.bytebuddy.utility.RandomString;
 
 @Service
-public class CourseServiceimpl implements CourseService {
+public class CourseServiceImpl implements CourseService {
   @Autowired
   private CourseRepo courseRepo;
   @Autowired

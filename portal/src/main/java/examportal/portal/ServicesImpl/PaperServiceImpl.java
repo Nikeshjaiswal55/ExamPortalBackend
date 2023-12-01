@@ -53,8 +53,6 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = new Paper();
     paper.setUserId(paperdDto.getUserId());
     paper.setOrgnizationId(paperdDto.getOrgnizationId());
-    paper.set_setup(true);
-    paper.set_Active(false);
     Paper newpPaper = this.paperRepo.save(paper);
 
     ExamDetails examDetails = new ExamDetails();
@@ -81,7 +79,6 @@ public class PaperServiceImpl implements PaperService {
     dto.setToken(paperdDto.getToken());
     dto.setPaperID(newpPaper.getPaperId());
     dto.setOrgnizationId(paperdDto.getOrgnizationId());
-    dto.setBranch(examDetails2.getBranch());
 
     Student student = this.sevices.addStudent(dto);
     System.out.println(student);

@@ -23,7 +23,6 @@ import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Response.PageResponce;
-import examportal.portal.Services.EmailService;
 import examportal.portal.Services.StudentSevices;
 import examportal.portal.Services.UserService;
 import net.bytebuddy.utility.RandomString;
@@ -52,12 +51,11 @@ public class StudentServiceImpl implements StudentSevices {
     @Autowired
     private AssessmentRepo assessmentRepo;
 
-    @Autowired
-    private EmailService emailService;
-
     @Override
     public List<Student> getAllStudents() {
         log.info("StudentServiceImpl , getAllStudent Method Start");
+
+
 
         log.info("StudentServiceImpl , getAllStudent Method Ends");
         return this.studentRepo.findAll();
@@ -69,7 +67,7 @@ public class StudentServiceImpl implements StudentSevices {
 
         log.info("StudentServiceImpl , getSingleStudent Method Ends");
 
-        return this.studentRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Student ", "id", id));
+        return this.studentRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Student ", "id", id));
     }
 
     @Deprecated
@@ -82,69 +80,54 @@ public class StudentServiceImpl implements StudentSevices {
 
         String response = "";
 
-        if (student.getBranch() != null) {
+        for (String email : student.getEmail()) {
 
-            List<Student> students = this.studentRepo.getAllStudentBYBranch(student.getBranch());
+            String password = RandomString.make(8);
 
-            for (Student std : students) {
-                User user = this.userService.getUserById(std.getStudentid());
-                this.emailService.sendFormateMail(user.getEmail(),"exg");
+            User user = this.userRepo.findByEmail(email);
+
+            if (user != null) {
                 Assessment assessment = new Assessment();
                 assessment.setPaperId(student.getPaperID());
                 assessment.setUserId(user.getUserId());
                 assessment.setOrgnizationId(student.getOrgnizationId());
                 Assessment newaAssessment = this.assessmentRepo.save(assessment);
                 System.out.println("my assment ============================" + newaAssessment);
-            }
 
-        } else {
+                
 
-            for (String email : student.getEmail()) {
+            } else {
 
-                String password = RandomString.make(8);
-
-                User user = this.userRepo.findByEmail(email);
-
-                if (user != null) {
-                    Assessment assessment = new Assessment();
-                    assessment.setPaperId(student.getPaperID());
-                    assessment.setUserId(user.getUserId());
-                    assessment.setOrgnizationId(student.getOrgnizationId());
-                    Assessment newaAssessment = this.assessmentRepo.save(assessment);
-                    System.out.println("my assment ============================" + newaAssessment);
-                } else {
-
-                    try {
-                        response = this.auth0Service.createUser(email, password, student.getToken());
-                        System.out.println("My response============================" + response);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    User newUser = new User();
-                    newUser.setUserId(response);
-                    newUser.setEmail(email);
-                    newUser.setPassword(password);
-                    newUser.setRole("Student");
-                    userDto dto = this.mapper.map(newUser, userDto.class);
-                    User user2 = this.userService.createUser(dto);
-
-                    Assessment assessment = new Assessment();
-                    assessment.setPaperId(student.getPaperID());
-                    assessment.setUserId(user2.getUserId());
-                    assessment.setOrgnizationId(student.getOrgnizationId());
-                    Assessment newAssessment = this.assessmentRepo.save(assessment);
-
-                    System.out.println("my assment ============================" + newAssessment);
-
-                    s.setEmail(email);
-                    s.setStudentid(response);
-                    s.setOrgnizationId(student.getOrgnizationId());
-                    s.setBranch(student.getBranch());
-                    this.studentRepo.save(s);
+                try {
+                    response = this.auth0Service.createUser(email, password, student.getToken());
+                    System.out.println("My response============================" + response);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
+                User newUser = new User();
+                newUser.setUserId(response) ;
+                newUser.setEmail(email);
+                newUser.setPassword(password);
+                newUser.setRole("Student");
+                userDto dto = this.mapper.map(newUser, userDto.class);
+                User user2 = this.userService.createUser(dto);
+
+                Assessment assessment = new Assessment();
+                assessment.setPaperId(student.getPaperID());
+                assessment.setUserId(user2.getUserId());
+                assessment.setOrgnizationId(student.getOrgnizationId());
+                Assessment newAssessment = this.assessmentRepo.save(assessment);
+
+                System.out.println("my assment ============================" + newAssessment);
+
+
+                s.setEmail(email);
+                s.setStudentid(response);
+                s.setOrgnizationId(student.getOrgnizationId());
+                this.studentRepo.save(s);
             }
+
         }
 
         log.info("StudentServiceImpl , addStudent Method Ends");
@@ -157,8 +140,7 @@ public class StudentServiceImpl implements StudentSevices {
     public Student updateStudent(Student student) {
 
         log.info("StudentServiceImpl , getSingleStudent Method Start");
-        Student s = studentRepo.findById(student.getStudentid())
-                .orElseThrow(() -> new ResourceNotFoundException("Student", "id", student.getStudentid()));
+        Student s = studentRepo.findById(student.getStudentid()).orElseThrow(() -> new ResourceNotFoundException("Student", "id", student.getStudentid()));
         s.setEmail(student.getEmail());
         s.setName(student.getName());
         Student updateStudtnt = this.studentRepo.save(s);
@@ -176,32 +158,35 @@ public class StudentServiceImpl implements StudentSevices {
         return "Record Deleted";
     }
 
-    public PageResponce getAllStudentByPaperId(String paperId, PageableDto dto) {
 
-        Sort sort;
+    public PageResponce getAllStudentByPaperId(String paperId , PageableDto dto){
 
-        if (dto.getSortDirection().equals("DESC")) {
+          Sort sort;
+        
+        if(dto.getSortDirection().equals("DESC")){
             sort = Sort.by(dto.getProperty()).descending();
-
-        } else {
-            sort = Sort.by(dto.getProperty()).ascending();
+         
+        }else{
+            sort = Sort.by(dto.getProperty()).ascending();    
         }
         Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
-
+        
         Page<Student> st = studentRepo.findByPaperId(paperId, p);
-
+        
+        
         // List<Student> student=st.getContent();
         PageResponce pr = new PageResponce();
         pr.setContent_Student(st.getContent());
-        pr.setPage(st.getNumber() + 1);
+        pr.setPage(st.getNumber()+1);
         pr.setTotalElements(st.getTotalElements());
         pr.setTotalPages(st.getTotalPages());
         pr.setPagesize(st.getSize());
         pr.setIslastPage(st.isLast());
         pr.setSortby(dto.getProperty());
         pr.setSortDirection(dto.getSortDirection());
-        return pr;
-
+        return pr ;
+        
     }
+  
 
 }
