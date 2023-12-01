@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Assessment;
+import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
@@ -20,6 +21,7 @@ import examportal.portal.Payloads.PageableDto;
 import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Payloads.userDto;
 import examportal.portal.Repo.AssessmentRepo;
+import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Response.PageResponce;
@@ -55,6 +57,9 @@ public class StudentServiceImpl implements StudentSevices {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private InvitationRepo invitationRepo;
+
     @Override
     public List<Student> getAllStudents() {
         log.info("StudentServiceImpl , getAllStudent Method Start");
@@ -88,13 +93,17 @@ public class StudentServiceImpl implements StudentSevices {
 
             for (Student std : students) {
                 User user = this.userService.getUserById(std.getStudentid());
-                this.emailService.sendFormateMail(user.getEmail(),"exg");
+                this.emailService.sendFormateMail(user.getEmail(), "exg");
                 Assessment assessment = new Assessment();
                 assessment.setPaperId(student.getPaperID());
                 assessment.setUserId(user.getUserId());
                 assessment.setOrgnizationId(student.getOrgnizationId());
                 Assessment newaAssessment = this.assessmentRepo.save(assessment);
                 System.out.println("my assment ============================" + newaAssessment);
+                InvitedStudents invitedStudents = new InvitedStudents();
+                invitedStudents.setPaperId(student.getPaperID());
+                invitedStudents.setStudentId(std.getStudentid());
+                this.invitationRepo.save(invitedStudents);
             }
 
         } else {
@@ -112,6 +121,11 @@ public class StudentServiceImpl implements StudentSevices {
                     assessment.setOrgnizationId(student.getOrgnizationId());
                     Assessment newaAssessment = this.assessmentRepo.save(assessment);
                     System.out.println("my assment ============================" + newaAssessment);
+
+                    InvitedStudents invitedStudents = new InvitedStudents();
+                    invitedStudents.setPaperId(student.getPaperID());
+                    invitedStudents.setStudentId(user.getUserId());
+                    this.invitationRepo.save(invitedStudents);
                 } else {
 
                     try {
@@ -136,6 +150,11 @@ public class StudentServiceImpl implements StudentSevices {
                     Assessment newAssessment = this.assessmentRepo.save(assessment);
 
                     System.out.println("my assment ============================" + newAssessment);
+
+                     InvitedStudents invitedStudents = new InvitedStudents();
+                    invitedStudents.setPaperId(student.getPaperID());
+                    invitedStudents.setStudentId(user2.getUserId());
+                    this.invitationRepo.save(invitedStudents);
 
                     s.setEmail(email);
                     s.setStudentid(response);
