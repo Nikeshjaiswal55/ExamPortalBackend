@@ -59,7 +59,7 @@ public class UserserviceImpl implements UserService {
     public String sendmail(User user) {
 
         log.info("userService , send mail Method Start");
-        String msg = "This is your Creaditials for login \n User Name => "+user.getEmail()+"\n Password => "+user.getPassword();
+        String msg = "User Name => "+user.getEmail()+"\n Password => "+user.getPassword();
         String sub = "Login Creadintials for Login to EXAMEASY";
         String to = user.getEmail();
         emailServiceImpl.sendFormateMail(to, msg, sub);
