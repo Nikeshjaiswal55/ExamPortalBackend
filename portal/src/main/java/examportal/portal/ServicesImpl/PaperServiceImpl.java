@@ -2,7 +2,6 @@ package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Paper;
 import examportal.portal.Entity.Questions;
@@ -23,6 +21,7 @@ import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
+import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.PaperService;
 import examportal.portal.Services.QuestionService;
 import examportal.portal.Services.StudentSevices;
@@ -32,6 +31,9 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private PaperRepo paperRepo;
+
+  @Autowired
+  private StudentRepo studentRepo;
 
   @Autowired
   private QuestionService questionService;
@@ -44,6 +46,7 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private StudentSevices sevices;
+  
   @Autowired
   private ExamDetailsRepo examDetailsRepo;
 
@@ -57,6 +60,9 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = new Paper();
     paper.setUserId(paperdDto.getUserId());
     paper.setOrgnizationId(paperdDto.getOrgnizationId());
+    paper.set_setup(true);
+    paper.set_Active(false);  
+    
     Paper newpPaper = this.paperRepo.save(paper);
 
     ExamDetails examDetails = new ExamDetails();
@@ -200,4 +206,29 @@ public class PaperServiceImpl implements PaperService {
 
   }
 
+  @Override
+  public List<PaperDto> getAllPaperByUserId(String userId) {
+    
+    List<Paper> allpaper=this.paperRepo.findAllPaperByUserId(userId);
+    List<PaperDto> paperDtoList = new ArrayList<>();
+
+
+    for (Paper paper : allpaper) {
+        PaperDto dto = new PaperDto();
+        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paper.getPaperId());
+        dto.setPaperId(paper.getPaperId());
+        dto.setExamDetails(examDetails);
+        List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paper.getPaperId());
+        dto.setQuestions(questions);
+        dto.setOrgnizationId(paper.getOrgnizationId());
+        dto.setUserId(userId);
+        List<Student> students = this.studentRepo.findAllStudentByPaperId(paper.getPaperId());
+        dto.setStudents(students);
+        paperDtoList.add(dto);
+
+  }
+   return paperDtoList;
+
+
+}
 }

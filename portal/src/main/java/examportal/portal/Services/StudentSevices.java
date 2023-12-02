@@ -3,9 +3,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import examportal.portal.Entity.Student;
-import examportal.portal.Payloads.PageableDto;
+
 import examportal.portal.Payloads.StudentDto;
-import examportal.portal.Response.PageResponce;
+
 
 public interface StudentSevices{
     
@@ -18,7 +18,9 @@ public interface StudentSevices{
     //4. Updating Existing Student by Id
     Student updateStudent( Student student);
     //5. Deleting an existing Student by Id
-    String deleteStudent(String Id);
+    String deleteStudent(String studentId);
 
-    PageResponce getAllStudentByPaperId(String paperId,PageableDto dto);
+    List<Student> getAllStudentByPaperId(String paperId);
+
+    
 }
