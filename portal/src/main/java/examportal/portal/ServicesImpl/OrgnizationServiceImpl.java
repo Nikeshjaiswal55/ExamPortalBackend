@@ -56,10 +56,10 @@ public class OrgnizationServiceImpl implements OrgnizationService {
   }
 //impeliments pagenation and sorting in this mathod
   @Override
-  public List<Orgnizations> getAllOrgnizations(int page, int size, String sortField, String sortOrder) {
+  public List<Orgnizations> getAllOrgnizations(Integer pageNumber, int size, String sortField, String sortOrder) {
     log.info("OrgnizationServiceImp , getAllOrgnization Method Start");
     Sort sort =(sortField.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
-    Pageable p= PageRequest.of(page, size, sort);
+    Pageable p= PageRequest.of(pageNumber, size, sort);
     Page<Orgnizations> orgnizations = this.orgnizationRepo.findAll(p);
     List<Orgnizations> o= orgnizations.getContent();
     log.info("OrgnizationServiceImp , getAllOrgnization Method Ends");

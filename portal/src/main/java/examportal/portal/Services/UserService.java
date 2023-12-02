@@ -11,7 +11,7 @@ public  interface UserService {
     
     // String sendmail(User user);
     
-    List<User>getAllUser(int page, int size, String sortField, String sortOrder);
+    List<User>getAllUser(Integer pageNumber, int size, String sortField, String sortOrder);
 
     User getUserById(String userId);
 

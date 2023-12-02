@@ -42,8 +42,8 @@ public class PaperController {
 
     @GetMapping("/getall/paper")
     public ResponseEntity<List<PaperDto>> getallpaper(     
-  @RequestParam(name = "page", defaultValue = "0",required = false) int page,
-  @RequestParam(name = "size", defaultValue = "10",required = false) int size,
+  @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
+  @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
   @RequestParam(name = "sortField", defaultValue = "id",required = false) String sortField,
   @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder) {
         log.info("paperService getall paper method started");
