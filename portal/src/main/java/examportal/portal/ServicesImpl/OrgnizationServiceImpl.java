@@ -5,6 +5,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Orgnizations;
@@ -50,13 +54,16 @@ public class OrgnizationServiceImpl implements OrgnizationService {
       return savedOrgnizations;
     }
   }
-
+//impeliments pagenation and sorting in this mathod
   @Override
-  public List<Orgnizations> getAllOrgnizations() {
+  public List<Orgnizations> getAllOrgnizations(int page, int size, String sortField, String sortOrder) {
     log.info("OrgnizationServiceImp , getAllOrgnization Method Start");
-    List<Orgnizations> orgnizations = this.orgnizationRepo.findAll();
+    Sort sort =(sortField.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+    Pageable p= PageRequest.of(page, size, sort);
+    Page<Orgnizations> orgnizations = this.orgnizationRepo.findAll(p);
+    List<Orgnizations> o= orgnizations.getContent();
     log.info("OrgnizationServiceImp , getAllOrgnization Method Ends");
-    return orgnizations;
+    return o;
   }
 
   @Override

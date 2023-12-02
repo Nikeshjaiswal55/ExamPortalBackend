@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.ExamDetails;
@@ -40,9 +41,13 @@ public class PaperController {
     Logger log = LoggerFactory.getLogger("MetorController");
 
     @GetMapping("/getall/paper")
-    public ResponseEntity<List<PaperDto>> getallpaper() {
+    public ResponseEntity<List<PaperDto>> getallpaper(     
+  @RequestParam(name = "page", defaultValue = "0",required = false) int page,
+  @RequestParam(name = "size", defaultValue = "10",required = false) int size,
+  @RequestParam(name = "sortField", defaultValue = "id",required = false) String sortField,
+  @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder) {
         log.info("paperService getall paper method started");
-        List<PaperDto> papers = this.paperService.getAllPaper();
+        List<PaperDto> papers = this.paperService.getAllPaper(page,size,sortField,sortOrder);
         log.info("paperService getall paper method End's");
         return new ResponseEntity<>(papers, HttpStatus.OK);
     }

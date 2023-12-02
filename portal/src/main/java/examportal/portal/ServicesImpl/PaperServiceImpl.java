@@ -7,6 +7,10 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.ExamDetails;
@@ -89,10 +93,12 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public List<PaperDto> getAllPaper() {
+  public List<PaperDto> getAllPaper(int page, int size, String sortField, String sortOrder) {
     log.info("paperService getAll paper method Starts :");
-
-    List<Paper> papers = this.paperRepo.findAll();
+       Sort sort =(sortField.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+       Pageable p = PageRequest.of(page, size, sort);
+    Page<Paper> papr = this.paperRepo.findAll(p);
+    List<Paper>  papers=papr.getContent();
 
     List<PaperDto> paperDtos = new ArrayList<>();
 

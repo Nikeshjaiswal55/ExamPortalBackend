@@ -1,6 +1,7 @@
 package examportal.portal.Services;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.PageableDto;
 import examportal.portal.Payloads.StudentDto;
@@ -9,7 +10,7 @@ import examportal.portal.Response.PageResponce;
 public interface StudentSevices{
     
     //1. getting All Students
-    List<Student> getAllStudents();
+    Page<Student> getAllStudents(Pageable pageable);
     //2. getting A single Student by Id
     Student getSingleStudent(String id);
     //3. Adding a new student to the database

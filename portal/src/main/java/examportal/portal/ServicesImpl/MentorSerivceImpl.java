@@ -5,6 +5,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Payloads.EmailDetails;
@@ -45,11 +49,14 @@ public class MentorSerivceImpl implements MentorService {
     }
 
     @Override
-    public List<Mentor> getAllMentors() {
+    public List<Mentor> getAllMentors(Integer pageNumber, int size, String sortField, String sortOrder) {
         log.info("MentorSerivceImpl , getAllMentors Method Start");
-        List<Mentor> allM = this.mentorRepo.findAll();
+        Sort sort =(sortField.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+        Pageable p =PageRequest.of(pageNumber, size,sort);
+        Page<Mentor> allM = this.mentorRepo.findAll(p);
+        List<Mentor> amg= allM.getContent();
         log.info("MentorSerivceImpl , getAllMentors Method Ends");
-        return allM;
+        return amg;
     }
 
     @Override

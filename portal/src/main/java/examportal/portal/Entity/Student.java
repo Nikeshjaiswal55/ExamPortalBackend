@@ -11,12 +11,11 @@ public class Student {
     @Id
     private String studentid;
 
-    private String email; 
+    private String     email; 
     
-    private String name;
+    private String      name;
+ private String orgnizationId;
 
-    private String orgnizationId;
-
-    private String paperId;
+    private String    paperId;
 
 }

@@ -5,6 +5,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.User;
@@ -78,11 +82,15 @@ public class UserserviceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUser() {
+    public List<User> getAllUser(int page, int size, String sortField, String sortOrder) {
         log.info("userService , getAllUser Method Start");
-        List<User> u1 = this.userRepo.findAll();
+        Sort sort= null;
+      sort = (sortOrder.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+        Pageable p = PageRequest.of(page, size, sort);
+        Page<User> u = this.userRepo.findAll(p);
+        List<User> ul = u.getContent();
         log.info("userService , getAllUser Method Start");
-        return u1;
+        return ul;
     }
 
     @Override
@@ -94,4 +102,5 @@ public class UserserviceImpl implements UserService {
         return user;
     }
 
+    
 }

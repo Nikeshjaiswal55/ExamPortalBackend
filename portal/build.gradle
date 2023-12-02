@@ -28,6 +28,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	implementation 'com.microsoft.sqlserver:mssql-jdbc' 
 
+    implementation 'org.freemarker:freemarker:2.3.31' // Use the latest version available
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

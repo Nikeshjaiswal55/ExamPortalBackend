@@ -35,11 +35,15 @@ public class CourseController {
   // Get All 
   @GetMapping("/course/getAll")
   public ResponseEntity<List<Course>> getCourses(
-        @RequestParam(value = "pageNumber",defaultValue = "0",required = false)Integer pageNumber
+       
+  @RequestParam(name = "page", defaultValue = "0",required = false) int page,
+  @RequestParam(name = "size", defaultValue = "10",required = false) int size,
+  @RequestParam(name = "sortField", defaultValue = "id",required = false) String sortField,
+  @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder
   ) {
     log.info("CourseController,getCourse Method Start");
 
-    List<Course> l = courseService.getAllCourse(pageNumber);
+    List<Course> l = courseService.getAllCourse(page,size,sortField,sortOrder);
 
     log.info("CourseController,getCourse Method Ends");
     return new ResponseEntity<List<Course>>(l, HttpStatus.OK);

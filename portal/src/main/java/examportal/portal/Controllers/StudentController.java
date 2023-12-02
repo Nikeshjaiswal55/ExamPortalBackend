@@ -1,10 +1,12 @@
 package examportal.portal.Controllers;
 
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.data.domain.Sort;
 import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.PageableDto;
 import examportal.portal.Payloads.StudentDto;
@@ -45,14 +47,21 @@ public class StudentController {
     }
 
     // Getting All Student
-    @GetMapping("/student/getAll")
-    public ResponseEntity<List<Student>> getAllStudent() {
-        log.info("StudentController , getAllStudent Method Start");
+     @GetMapping("/student/getAll")
+    public ResponseEntity< Page<Student>> getAllStudents(
+            @RequestParam(name = "page", defaultValue = "0",required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10",required = false) int size,
+            @RequestParam(name = "sortField", defaultValue = "id",required = false) String sortField,
+            @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder) {
+                if (!"asc".equalsIgnoreCase(sortOrder) && !"desc".equalsIgnoreCase(sortOrder)) {
+                    return ResponseEntity.badRequest().build();
+                }
+        // Create a Pageable object for pagination and sorting
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortOrder), sortField));
 
-        List<Student> list = this.studentSevices.getAllStudents();
-
-        log.info("StudentController , getAllStudent Method Ends");
-        return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
+        // Call the service method to get paginated and sorted students
+       Page<Student> s= studentSevices.getAllStudents(pageable);
+        return new ResponseEntity<Page<Student>>(s, HttpStatus.OK);
     }
 
     // getting Student By Id

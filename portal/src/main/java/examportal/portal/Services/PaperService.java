@@ -12,7 +12,7 @@ public interface PaperService {
     
     PaperDto updetPaper(PaperDto paperDto);
     // String deletePaper(String paperId);
-    List<PaperDto> getAllPaper();
+    List<PaperDto> getAllPaper(int page, int size, String sortField, String sortOrder);
     PaperDto getPaperById(String paperID);
 
     String deletePaperByPaperId(String paperId);

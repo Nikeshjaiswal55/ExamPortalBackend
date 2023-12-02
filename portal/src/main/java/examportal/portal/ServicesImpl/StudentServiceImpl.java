@@ -1,6 +1,5 @@
 package examportal.portal.ServicesImpl;
 
-import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -52,13 +51,12 @@ public class StudentServiceImpl implements StudentSevices {
     private AssessmentRepo assessmentRepo;
 
     @Override
-    public List<Student> getAllStudents() {
+    public Page<Student> getAllStudents(Pageable pageable) {
         log.info("StudentServiceImpl , getAllStudent Method Start");
 
-
-
+        Page<Student> p= studentRepo.findAll(pageable);
         log.info("StudentServiceImpl , getAllStudent Method Ends");
-        return this.studentRepo.findAll();
+         return p;
     }
 
     @Override
