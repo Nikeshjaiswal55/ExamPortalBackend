@@ -68,6 +68,8 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setExamMode(paperdDto.getExamDetails().getExamMode());
     examDetails.setExamRounds(paperdDto.getExamDetails().getExamRounds());
     examDetails.setPaperChecked(false);
+    examDetails.setTotalMarks(paperdDto.getExamDetails().getTotalMarks());
+    examDetails.setMinimumMarks(paperdDto.getExamDetails().getMinimumMarks());
     examDetails.setSession(paperdDto.getExamDetails().getSession());
     examDetails.setAssessmentName(paperdDto.getExamDetails().getAssessmentName());
 
@@ -168,6 +170,8 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setExamRounds(paperDto.getExamDetails().getExamRounds());
     examDetails.setPaperChecked(false);
     examDetails.setSession(paperDto.getExamDetails().getSession());
+    examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
+    examDetails.setMinimumMarks(paperDto.getExamDetails().getMinimumMarks());
     examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
 
     ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);

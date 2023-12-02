@@ -18,5 +18,7 @@ public class ExamDetails {
     private String branch;
     private String session;
     private String assessmentName;
+    private String totalMarks;
+    private String minimumMarks;
     private String paperId;
 }
