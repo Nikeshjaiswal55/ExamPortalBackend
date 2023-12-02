@@ -88,7 +88,7 @@ public class StudentServiceImpl implements StudentSevices {
                  
                 User user = this.userService.getUserById(std.getStudentid());
 
-                this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+password, "Login Creadintials for ExamEasy");
+                this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+user.getPassword(), "Login Creadintials for ExamEasy");
                 Assessment assessment = new Assessment();
                 assessment.setPaperId(student.getPaperID());
                 assessment.setUserId(user.getUserId());
@@ -116,6 +116,7 @@ public class StudentServiceImpl implements StudentSevices {
                 Assessment newaAssessment = this.assessmentRepo.save(assessment);
                 System.out.println("my assment ============================" + newaAssessment);
                 //  send mail to the user with his/her credential
+                                this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+user.getPassword(), "Login Creadintials for ExamEasy");
 
                   InvitedStudents invitedStudents = new InvitedStudents();
                 invitedStudents.setPaperId(student.getPaperID());
@@ -146,6 +147,7 @@ public class StudentServiceImpl implements StudentSevices {
                 User user2 = this.userService.createUser(dto);
 
                 System.out.println("User Created by"+newUser.getEmail());
+                                this.emailServiceImpl.sendFormateMail(user2.getEmail(),"USER => "+user2.getEmail()+"\n Password => "+user2.getPassword(), "Login Creadintials for ExamEasy");
 
                 Assessment assessment = new Assessment();
                 assessment.setPaperId(student.getPaperID());
