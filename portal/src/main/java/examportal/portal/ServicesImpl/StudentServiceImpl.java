@@ -1,22 +1,20 @@
 package examportal.portal.ServicesImpl;
 
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
-
 import examportal.portal.Entity.Assessment;
+import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
-
 import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Payloads.userDto;
 import examportal.portal.Repo.AssessmentRepo;
+import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.StudentSevices;
@@ -47,6 +45,12 @@ public class StudentServiceImpl implements StudentSevices {
     @Autowired
     private AssessmentRepo assessmentRepo;
 
+    @Autowired
+    private EmailServiceImpl  emailServiceImpl;
+
+     @Autowired
+    private InvitationRepo invitationRepo;
+
     @Override
     public List<Student> getAllStudents() {
         log.info("StudentServiceImpl , getAllStudent Method Start");
@@ -73,13 +77,34 @@ public class StudentServiceImpl implements StudentSevices {
         Student s = new Student();
 
         String response = "";
-        List<String> emails = student.getEmail();
 
-        System.out.println("\n\n\n++++++++++++++++++++++++++++++++++++!!!!!!!!!"+emails);
+        String password = RandomString.make(8)+"K8085";
+        System.out.println("\n\n\n++++++++++++++++++++++++++++++++++++!!!!!!!!!"+student.getEmail());
 
-        for (String email : emails) {
+        if(student.getBranch() != null){
+               List<Student> students = this.studentRepo.getAllStudentBYBranch(student.getBranch());
 
-            String password = RandomString.make(8)+"K8085";
+            for (Student std : students) {
+                 
+                User user = this.userService.getUserById(std.getStudentid());
+
+                this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+password, "Login Creadintials for ExamEasy");
+                Assessment assessment = new Assessment();
+                assessment.setPaperId(student.getPaperID());
+                assessment.setUserId(user.getUserId());
+                assessment.setOrgnizationId(student.getOrgnizationId());
+                Assessment newaAssessment = this.assessmentRepo.save(assessment);
+                System.out.println("my assment ============================" + newaAssessment);
+                InvitedStudents invitedStudents = new InvitedStudents();
+                invitedStudents.setPaperId(student.getPaperID());
+                invitedStudents.setStudentId(std.getStudentid());
+                this.invitationRepo.save(invitedStudents);
+            }
+        }else{
+
+        for (String email : student.getEmail()) {
+
+            
 
             User user = this.userRepo.findByEmail(email);
 
@@ -133,7 +158,7 @@ public class StudentServiceImpl implements StudentSevices {
             }
 
         }
-
+    }
         log.info("StudentServiceImpl , addStudent Method Ends");
 
         return s;

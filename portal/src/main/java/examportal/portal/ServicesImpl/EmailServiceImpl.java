@@ -3,7 +3,6 @@ package examportal.portal.ServicesImpl;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -50,7 +49,7 @@ public class EmailServiceImpl {
     }
 
     public String sendFormateMail(String to, String msg, String sub) {
-        System.out.println("enter In SendStyledMail +++++++++++++++++++++++++++++++++++++++++++++++++");
+        log.info("EmailServiceImp , sendFormateMail Method Start");
         String msgbody = "<!DOCTYPE html>" +
         "<html lang='en'>" +
         "<head>" +
@@ -63,7 +62,7 @@ public class EmailServiceImpl {
         "   <div class='text' style='background-color: white; margin: 10px; margin:10px auto; width: 40%; height: 60%; margin-top: 5px; padding: 5px 40px; font-size: 1.2em; font-style: unset; border-radius: 5px;'>" +
         "       <h1>Hi Student!!</h1>" +
         "       <p><b>you got assisstment!!</b></p>" +
-                "<p><b>Please check, below there were a credentials to log in on ExamEasy</b></p>" +
+                "<p><b>Please check, below there were a credentials to login on ExamEasy</b></p>" +
         "       <a href='http://localhost:5173/'><button type='button' class='reset-btn' style='background-color: black; color: white; display: block; margin: auto; border-radius: 10px; padding: 10px 30px;'>Log In</button></a>" +
         "       <p>if you face any issue, please contact us immediately at <a href='mailto:exameasy.offical@gmail.com'>exameasy.offical@gmail.com</a></p>" +
         "       <p>Thanks you,</p>" +
@@ -103,7 +102,7 @@ public class EmailServiceImpl {
 
             helper.setText(msgbody, true);
             javaMailSender.send(message);
-
+            log.info("EmailServiceImp , sendFormateMail Method Start");
             return "Mail Succesfully to" + to;
         } catch (Exception e) {
             System.out.println(e);
