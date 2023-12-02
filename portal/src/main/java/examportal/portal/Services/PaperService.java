@@ -11,8 +11,11 @@ public interface PaperService {
     Paper createPaper(PaperDto paperDto);
     
     PaperDto updetPaper(PaperDto paperDto);
-    // String deletePaper(String paperId);
+    
     List<PaperDto> getAllPaper();
+//Get All Paper By UserID
+    List<PaperDto> getAllPaperByUserId(String userId);
+
     PaperDto getPaperById(String paperID);
 
     String deletePaperByPaperId(String paperId);

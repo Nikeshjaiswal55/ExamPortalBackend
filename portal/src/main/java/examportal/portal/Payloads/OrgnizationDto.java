@@ -2,7 +2,6 @@ package examportal.portal.Payloads;
 
 import java.util.UUID;
 
-// import examportal.portal.Entity.User;
 import lombok.Data;
 
 @Data

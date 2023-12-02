@@ -71,19 +71,13 @@ public class StudentController {
     }
 
     // Get All Student By paperId
-    @GetMapping("/student/GetAllByPaperId/{paperId}")
-    public ResponseEntity<PageResponce> getAllStudentByPaperId(@PathVariable String paperId,
-            @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-            @RequestParam(value = "size", defaultValue = "2", required = false) Integer pagesize,
-            @RequestParam(value = "sortDirection", defaultValue = "ASC", required = false) String sortDirection,
-            @RequestParam(value = "property", defaultValue = "email", required = false) String property) {
+    @GetMapping("/GetAllStudentByPaperId/{paperId}")
+    public ResponseEntity<List<Student>> getAllStudentByPaperId(@PathVariable String paperId) {
         log.info("StudentController , getAllStudent Method Start");
 
-        PageResponce st = this.studentSevices.getAllStudentByPaperId(paperId,
-                new PageableDto(pageNumber, pagesize, property, sortDirection));
-
+        List<Student> st = this.studentSevices.getAllStudentByPaperId(paperId);
         log.info("StudentController , getAllStudent Method Ends");
-        return new ResponseEntity<PageResponce>(st, HttpStatus.OK);
+        return new ResponseEntity<List<Student>>(st, HttpStatus.OK);
     }
 
     // updating a student
