@@ -62,6 +62,7 @@ public class EmailServiceImpl {
         "   <div class='text' style='background-color: white; margin: 10px; margin:10px auto; width: 40%; height: 60%; margin-top: 5px; padding: 5px 40px; font-size: 1.2em; font-style: unset; border-radius: 5px;'>" +
         "       <h1>Hi Student!!</h1>" +
         "       <p><b>you got assisstment!!</b></p>" +
+        +msg+
                 "<p><b>Please check, below there were a credentials to login on ExamEasy</b></p>" +
         "       <a href='http://localhost:5173/'><button type='button' class='reset-btn' style='background-color: black; color: white; display: block; margin: auto; border-radius: 10px; padding: 10px 30px;'>Log In</button></a>" +
         "       <p>if you face any issue, please contact us immediately at <a href='mailto:exameasy.offical@gmail.com'>exameasy.offical@gmail.com</a></p>" +

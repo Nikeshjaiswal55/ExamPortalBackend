@@ -117,6 +117,11 @@ public class StudentServiceImpl implements StudentSevices {
                 System.out.println("my assment ============================" + newaAssessment);
                 //  send mail to the user with his/her credential
 
+                  InvitedStudents invitedStudents = new InvitedStudents();
+                invitedStudents.setPaperId(student.getPaperID());
+                invitedStudents.setStudentId(user.getUserId());
+                this.invitationRepo.save(invitedStudents);
+
 
             } else {
 
@@ -147,6 +152,11 @@ public class StudentServiceImpl implements StudentSevices {
                 assessment.setUserId(user2.getUserId());
                 assessment.setOrgnizationId(student.getOrgnizationId());
                 Assessment newAssessment = this.assessmentRepo.save(assessment);
+
+                  InvitedStudents invitedStudents = new InvitedStudents();
+                invitedStudents.setPaperId(student.getPaperID());
+                invitedStudents.setStudentId(user2.getUserId());
+                this.invitationRepo.save(invitedStudents);
 
                 System.out.println("my assment ============================" + newAssessment);
 
