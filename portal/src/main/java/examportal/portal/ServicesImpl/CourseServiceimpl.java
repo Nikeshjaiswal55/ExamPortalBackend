@@ -36,22 +36,24 @@ public class CourseServiceimpl implements CourseService {
   Logger log = LoggerFactory.getLogger("CourseServiceimpl.class");
 
   @Override
-  public List<Course> getAllCourse(Integer pageNumber, int size, String sortField, String sortOrder) {
-    log.info("CourseServiceimpl, getCourse Method Start");
-    Sort sort = (sortOrder.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
-    Pageable p = PageRequest.of(pageNumber, size, sort);
+  public List<Course> getAllCourse(Integer pageNumber) {
+    log.info("CourseServiceimpl,getCourse Method Start");
+  
+    Integer pageSize = 2;  
+    Sort s = Sort.by("userId").ascending();
+    Pageable p = PageRequest.of(pageNumber, pageSize,s);
     Page<Course> page = courseRepo.findAll(p);
     List<Course> courseAll = page.getContent();
-    
+    System.out.println(courseAll.size());
+    System.out.println(page.isLast());
     List<Course> courses = new ArrayList<>();
-    for (Course course : courseAll) {
-        User user = userRepo.findById(course.getUserId())
-                .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
-        course.setUserName(user.getName());
-        courses.add(course);
+    for (Course course2 : courseAll) {
+      User user = this.userRepo.findById(course2.getUserId())
+          .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course2.getUserId()));
+      course2.setUserName(user.getName());
+      courses.add(course2);
     }
-    
-    log.info("CourseServiceimpl, getCourse Method Ends");
+    log.info("CourseServiceimpl,getCourse Method Ends");
     return courses;
   }
 
