@@ -1,5 +1,6 @@
 
 package examportal.portal.ServicesImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -38,10 +39,10 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public List<Course> getAllCourse(Integer pageNumber) {
     log.info("CourseServiceimpl,getCourse Method Start");
-  
-    Integer pageSize = 2;  
+
+    Integer pageSize = 2;
     Sort s = Sort.by("userId").ascending();
-    Pageable p = PageRequest.of(pageNumber, pageSize,s);
+    Pageable p = PageRequest.of(pageNumber, pageSize, s);
     Page<Course> page = courseRepo.findAll(p);
     List<Course> courseAll = page.getContent();
     System.out.println(courseAll.size());
@@ -85,7 +86,7 @@ public class CourseServiceImpl implements CourseService {
     c.setUserName(us.getName());
 
     List<EmailsDto> dtos = course.getEmailsDto();
-    for (EmailsDto email :dtos) {
+    for (EmailsDto email : dtos) {
 
       String password = RandomString.make(8) + email.getEmail();
       User user = userRepo.findByEmail(email.getEmail());
@@ -105,10 +106,9 @@ public class CourseServiceImpl implements CourseService {
           use.setEmail(email.getEmail());
           use.setPassword(password);
           use.setRole("Student");
-          User savedUser= this.userRepo.save(use);
+          User savedUser = this.userRepo.save(use);
 
           Student student = new Student();
-
           student.setBranch(email.getBranch());
           student.setName(email.getName());
           student.setEmail(email.getEmail());

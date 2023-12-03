@@ -117,7 +117,6 @@ public class EmailServiceImpl {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
             helper.setTo(to);
             helper.setSubject(sub);
-
             helper.setText(msgbody, true);
             javaMailSender.send(message);
             log.info("EmailServiceImp , sendFormateMail Method Start");
