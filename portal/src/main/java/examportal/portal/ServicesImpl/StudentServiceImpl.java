@@ -197,7 +197,7 @@ public class StudentServiceImpl implements StudentSevices {
     @Deprecated
     @Override
     public String addStudentPaper(StudentDto studentdDto) {
-
+        System.out.println("Enter in Student create+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         for (String email : studentdDto.getEmail()) {
 
             Student st = this.studentRepo.getszStudentByEmail(email);
@@ -236,8 +236,9 @@ public class StudentServiceImpl implements StudentSevices {
                 newUser.setEmail(email);
                 newUser.setPassword(password);
                 newUser.setRole("Student");
-                userDto dto = this.mapper.map(newUser, userDto.class);
-                User user2 = this.userService.createUser(dto);
+                // userDto dto = this.mapper.map(newUser, userDto.class);
+                // User user2 = this.userService.createUser(dto);
+                User user2 = this.userRepo.save(newUser);
 
                 Student student = new Student();
                 student.setStudentid(response);
