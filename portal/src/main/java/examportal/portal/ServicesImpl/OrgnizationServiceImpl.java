@@ -39,7 +39,6 @@ public class OrgnizationServiceImpl implements OrgnizationService {
 
       
       Orgnizations newOrgnizations = new Orgnizations();
-
       newOrgnizations.setOrgnizationName(orgnizationsDto.getOrgnizationName());
       newOrgnizations.setOrgnizationType(orgnizationsDto.getOrgnizationType());
       newOrgnizations.setUserId(orgnizationsDto.getUserId());

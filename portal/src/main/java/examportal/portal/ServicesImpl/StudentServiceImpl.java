@@ -105,8 +105,6 @@ public class StudentServiceImpl implements StudentSevices {
 
         for (String email : student.getEmail()) {
 
-            
-
             User user = this.userRepo.findByEmail(email);
 
             if (user != null) {
@@ -205,7 +203,7 @@ public class StudentServiceImpl implements StudentSevices {
         log.info("StudentServiceImpl , getAllStudentByPaperId Method Start");
 
         List <InvitedStudents> stude = this.invitationRepo.getAllStudentByPaperId(paperId);
-        
+
         List<Student> students = new ArrayList<>();
         for (InvitedStudents invitedStudents : stude) {
             Student s = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(()->new ResourceNotFoundException("Student", "StudentId", invitedStudents.getStudentId())); 
