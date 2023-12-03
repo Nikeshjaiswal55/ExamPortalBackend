@@ -223,39 +223,19 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public List<Assessment> getAllPaperByUserId(String userId) {
+  public List<ExamDetails> getAllPaperByUserId(String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
     
     List<Assessment> assm = this.assessmentRepo.getAssessmentsBy_userId(userId);
+    List<ExamDetails> examDetails = new ArrayList<>();
 
+    for (Assessment assessment : assm) {
+      ExamDetails emd = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
+      examDetails.add(emd);
+      
+    }
 
-
-
-  //   // List<Paper> allpaper=this.paperRepo.findAllPaperByUserId(userId);
-  //   List<PaperDto> paperDtoList = new ArrayList<>();
-
-  //   InvitedStudents invitedStudents = this.invitationRepo.getStudentByStudentId(userId);
-
-  //   // List<Paper> allpaper=this.paperRepo.findAllPaperByUserId(invitedStudents.getPaperId());
-
-  //   for (Paper paper : allpaper) {
-  //       PaperDto dto = new PaperDto();
-  //       dto.set_setup(paper.is_setup());
-  //       dto.set_Active(paper.is_Active());
-  //       ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paper.getPaperId());
-  //       dto.setPaperId(paper.getPaperId());
-  //       dto.setExamDetails(examDetails);
-  //       List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paper.getPaperId());
-  //       dto.setQuestions(questions);
-  //       dto.setOrgnizationId(paper.getOrgnizationId());
-  //       dto.setUserId(userId);
-  //       List<Student> students = this.studentRepo.findAllStudentByPaperId(paper.getPaperId());
-  //       dto.setStudents(students);
-  //       paperDtoList.add(dto);
-  //       log.info("paperServiceImpl getAllPaperByUserId  method Ends");
-  // }
-  //  return paperDtoList;
-  return assm;
+  return examDetails;
 
 
 }
