@@ -209,6 +209,8 @@ public class PaperServiceImpl implements PaperService {
 
     for (Paper paper : allpaper) {
         PaperDto dto = new PaperDto();
+        dto.set_setup(paper.is_setup());
+        dto.set_Active(paper.is_Active());
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paper.getPaperId());
         dto.setPaperId(paper.getPaperId());
         dto.setExamDetails(examDetails);

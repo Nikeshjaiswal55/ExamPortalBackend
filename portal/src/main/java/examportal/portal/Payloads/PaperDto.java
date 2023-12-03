@@ -29,4 +29,6 @@ public class PaperDto {
     private String token;
     private String userId;
     private String orgnizationId;
+    private boolean is_setup;
+    private boolean is_Active;
 }
