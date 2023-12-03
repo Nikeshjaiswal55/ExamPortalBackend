@@ -8,16 +8,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import examportal.portal.Entity.ExamDetails;
+import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
 import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Student;
+import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.ExamDetailsRepo;
+import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
+import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.PaperService;
 import examportal.portal.Services.QuestionService;
 import examportal.portal.Services.StudentSevices;
@@ -45,6 +49,15 @@ public class PaperServiceImpl implements PaperService {
   
   @Autowired
   private ExamDetailsRepo examDetailsRepo;
+
+  @Autowired
+  private InvitationRepo invitationRepo;
+
+  @Autowired
+  private EmailServiceImpl emailServiceImpl;
+
+  @Autowired
+  private UserRepo userRepo;
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
@@ -231,12 +244,21 @@ public class PaperServiceImpl implements PaperService {
 }
 
   @Override
-  public String activatePaper(PaperDto paperDto) {
+  public String activatePaper(String paperId) {
     log.info("paperServiceImpl activatePaper  method Starts");
-    Paper paper = this.paperRepo.findById(paperDto.getPaperId()).orElseThrow(()-> new ResourceNotFoundException("Paper", "PaperId", paperDto.getPaperId()));
+    Paper paper = this.paperRepo.findById(paperId).orElseThrow(()-> new ResourceNotFoundException("Paper", "PaperId", paperId));
     paper.set_Active(true);
     paper.set_setup(false);
     Paper ActivePaper = this.paperRepo.save(paper);
+
+    List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
+
+    for (InvitedStudents invitedStudents : students) {
+      Student student = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
+      User user = this.userRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
+      String msg =" This is your your name and password to login in exam easy"+student.getEmail()+"\n "+user.getPassword();
+      this.emailServiceImpl.sendFormateMail(student.getEmail(), msg,"login crenditials",user.getRole());
+    }
 
     log.info("paperServiceImpl activatePaper  method Ends");
 

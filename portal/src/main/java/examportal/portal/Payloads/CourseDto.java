@@ -1,5 +1,7 @@
 package examportal.portal.Payloads;
 
+import java.util.List;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,12 +11,12 @@ import lombok.Setter;
 @Setter
 public class CourseDto {
 
-
     private String course_name;
 
     private String userId;
 
     private String token;
-    private String []mails;
+
+    private List<EmailsDto> emailsDto;
 
 }

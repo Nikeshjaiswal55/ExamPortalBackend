@@ -163,6 +163,7 @@ public class StudentServiceImpl implements StudentSevices {
                 s.setStudentid(response);
                 s.setOrgnizationId(student.getOrgnizationId());
                 s.setPaperId(student.getPaperID());
+                s.setYear(student.getYear());
                 this.studentRepo.save(s);
             }
 

@@ -12,9 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import examportal.portal.Entity.Course;
+import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.CourseDto;
+import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.CourseService;
@@ -83,10 +85,11 @@ public class CourseServiceImpl implements CourseService {
     c.setUserId(course.getUserId());
     c.setUserName(us.getName());
 
-    for (String i : course.getMails()) {
+    List<EmailsDto> dtos = course.getEmailsDto();
+    for (EmailsDto email :dtos) {
 
-      String password = RandomString.make(8) + i;
-      User user = userRepo.findByEmail(i);
+      String password = RandomString.make(8) + email.getEmail();
+      User user = userRepo.findByEmail(email.getEmail());
 
       if (user != null) {
         System.out.println("User Allready Exist");
@@ -95,15 +98,23 @@ public class CourseServiceImpl implements CourseService {
 
         try {
           System.out.println("+++++++++++Auth0Service Method Enter");
-          response = this.auth0Service.createUser(i, password, course.getToken());
+          response = this.auth0Service.createUser(email.getEmail(), password, course.getToken());
           System.out.println("UserID++++++++++" + response);
           // res = userId
           User use = new User();
           use.setUserId(response);
-          use.setEmail(i);
+          use.setEmail(email.getEmail());
           use.setPassword(password);
           use.setRole("Student");
-          userRepo.save(use);
+          User savedUser= this.userRepo.save(use);
+
+          Student student = new Student();
+
+          student.setBranch(email.getBranch());
+          student.setName(email.getName());
+          student.setEmail(email.getEmail());
+          student.setOrgnizationId(course.getOrgnizationId());
+          student.setStudentid(savedUser.getUserId());
 
         } catch (Exception e) {
 
