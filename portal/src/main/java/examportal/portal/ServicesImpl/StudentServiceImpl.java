@@ -82,34 +82,6 @@ public class StudentServiceImpl implements StudentSevices {
         String password = RandomString.make(8) + "K8085";
         System.out.println("\n\n\n++++++++++++++++++++++++++++++++++++!!!!!!!!!" + student.getEmail());
 
-        // if(student.getBranch() != null){
-        // List<Student> students =
-        // this.studentRepo.getAllStudentBYBranch(student.getBranch());
-
-        // for (Student std : students) {
-
-        // User user = this.userRepo.findByEmail(std.getEmail());
-
-        // InvitedStudents invitedStudents = new InvitedStudents();
-        // invitedStudents.setPaperId(student.getPaperID());
-        // invitedStudents.setStudentId(user.getUserId());
-        // InvitedStudents invgstd= this.invitationRepo.save(invitedStudents);
-
-        // // this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER =>
-        // "+user.getEmail()+"\n Password => "+password, "Login Creadintials for
-        // ExamEasy",user.getRole());
-
-        // Assessment assessment = new Assessment();
-        // assessment.setPaperId(student.getPaperID());
-        // assessment.setUserId(user.getUserId());
-        // assessment.setOrgnizationId(student.getOrgnizationId());
-        // Assessment newaAssessment = this.assessmentRepo.save(assessment);
-        // System.out.println("my assment ============================" +
-        // newaAssessment);
-
-        // }
-        // }else{
-
         for (String email : student.getEmail()) {
 
             User user = this.userRepo.findByEmail(email);
@@ -216,7 +188,7 @@ public class StudentServiceImpl implements StudentSevices {
         for (InvitedStudents invitedStudents : stude) {
             Student s = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(
                     () -> new ResourceNotFoundException("Student", "StudentId", invitedStudents.getStudentId()));
-            students.add(s);
+             students.add(s);
         }
         return students;
 

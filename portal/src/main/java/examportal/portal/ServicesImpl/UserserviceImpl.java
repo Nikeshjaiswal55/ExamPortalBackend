@@ -42,7 +42,7 @@ public class UserserviceImpl implements UserService {
             newuser.setRole(user.getRole());
             newuser.setPassword(user.getPassword());
             User saveduser = this.userRepo.save(newuser);
-            if(newuser.getRole().equals("OG")){
+            if(saveduser.getRole().equals("OG")){
                  String msg = "Orginzation Created Succesfully by"+newuser.getEmail();    
                  emailServiceImpl.sendFormateMail(newuser.getEmail(), msg, "Orgnizaton Creation", newuser.getRole());
             }
