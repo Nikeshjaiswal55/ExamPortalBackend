@@ -48,9 +48,11 @@ public class EmailServiceImpl {
 
     }
 
-    public String sendFormateMail(String to, String msg, String sub) {
+    public String sendFormateMail(String to, String msg, String sub,String role) {
         log.info("EmailServiceImp , sendFormateMail Method Start");
-        String msgbody = "<!DOCTYPE html>" +
+        String msgbody = "";
+        if(role.equals("Student")){
+         msgbody = "<!DOCTYPE html>" +
         "<html lang='en'>" +
         "<head>" +
         "   <meta charset='UTF-8'>" +
@@ -92,6 +94,11 @@ public class EmailServiceImpl {
         "</html>";
     
     ;
+        }else{
+            // abhi ke liye 
+            // html body for orginzation 
+            msgbody = msg;
+        }
 
         try {
 

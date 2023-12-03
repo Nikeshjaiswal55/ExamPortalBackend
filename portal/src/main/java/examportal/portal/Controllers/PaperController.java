@@ -1,6 +1,6 @@
 package examportal.portal.Controllers;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import examportal.portal.Entity.ExamDetails;
+
 import examportal.portal.Entity.Paper;
-import examportal.portal.Entity.Questions;
-import examportal.portal.Entity.Student;
+
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.PaperRepo;
@@ -99,10 +98,18 @@ public class PaperController {
 
     @DeleteMapping("/deletePaperByPaperID/{paperId}")
     public ResponseEntity<String> deletePaper(@PathVariable String paperId) {
-        log.info("paper service delete paper by paperid method started");
+        log.info("paper service deletePaper by paperid method started");
         String msg = this.paperService.deletePaperByPaperId(paperId);
 
         return new ResponseEntity<>(msg,HttpStatus.OK);
 
+    }
+
+    @PutMapping("/activetPaper")
+    public ResponseEntity<String> activetPaper(@RequestBody PaperDto paperDto){
+        log.info("paper service activetPaper method started");
+        String activeMsg = paperService.activatePaper(paperDto);
+        log.info("paper service activetPaper method Ends");
+        return new ResponseEntity<String>(activeMsg,HttpStatus.ACCEPTED);
     }
 }

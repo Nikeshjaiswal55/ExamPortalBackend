@@ -1,5 +1,6 @@
 package examportal.portal.ServicesImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -88,7 +89,7 @@ public class StudentServiceImpl implements StudentSevices {
                  
                 User user = this.userService.getUserById(std.getStudentid());
 
-                this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+password, "Login Creadintials for ExamEasy");
+                this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+password, "Login Creadintials for ExamEasy",user.getRole());
                 Assessment assessment = new Assessment();
                 assessment.setPaperId(student.getPaperID());
                 assessment.setUserId(user.getUserId());
@@ -104,8 +105,6 @@ public class StudentServiceImpl implements StudentSevices {
 
         for (String email : student.getEmail()) {
 
-            
-
             User user = this.userRepo.findByEmail(email);
 
             if (user != null) {
@@ -116,6 +115,11 @@ public class StudentServiceImpl implements StudentSevices {
                 Assessment newaAssessment = this.assessmentRepo.save(assessment);
                 System.out.println("my assment ============================" + newaAssessment);
                 //  send mail to the user with his/her credential
+
+                  InvitedStudents invitedStudents = new InvitedStudents();
+                invitedStudents.setPaperId(student.getPaperID());
+                invitedStudents.setStudentId(user.getUserId());
+                this.invitationRepo.save(invitedStudents);
 
 
             } else {
@@ -147,6 +151,11 @@ public class StudentServiceImpl implements StudentSevices {
                 assessment.setUserId(user2.getUserId());
                 assessment.setOrgnizationId(student.getOrgnizationId());
                 Assessment newAssessment = this.assessmentRepo.save(assessment);
+
+                  InvitedStudents invitedStudents = new InvitedStudents();
+                invitedStudents.setPaperId(student.getPaperID());
+                invitedStudents.setStudentId(user2.getUserId());
+                this.invitationRepo.save(invitedStudents);
 
                 System.out.println("my assment ============================" + newAssessment);
 
@@ -191,8 +200,17 @@ public class StudentServiceImpl implements StudentSevices {
     @Override
     public List<Student> getAllStudentByPaperId(String paperId) {
 
-        List<Student> st = studentRepo.findAllStudentByPaperId(paperId);
-        return st;
+        log.info("StudentServiceImpl , getAllStudentByPaperId Method Start");
+
+        List <InvitedStudents> stude = this.invitationRepo.getAllStudentByPaperId(paperId);
+
+        List<Student> students = new ArrayList<>();
+        for (InvitedStudents invitedStudents : stude) {
+            Student s = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(()->new ResourceNotFoundException("Student", "StudentId", invitedStudents.getStudentId())); 
+            students.add(s);
+
+        }
+        return students;
 
     }
 

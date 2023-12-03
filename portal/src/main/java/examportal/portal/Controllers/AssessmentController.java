@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Assessment;
+import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Repo.AssessmentRepo;
+import examportal.portal.Repo.ExamDetailsRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,6 +24,9 @@ public class AssessmentController {
 
     @Autowired
     private AssessmentRepo assessmentRepo;
+
+    @Autowired
+    private ExamDetailsRepo examDetailsRepo;
 
     Logger log = LoggerFactory.getLogger("AssessmentController.class");
 
@@ -36,14 +42,19 @@ public class AssessmentController {
     }
 
     @GetMapping("/getAllBy/UserId/{userId}")
-    public ResponseEntity<List<Assessment>> getAllassmentByUserId(@PathVariable String userId) {
+    public ResponseEntity<List<ExamDetails>> getAllassmentByUserId(@PathVariable String userId) {
         log.info("AssessmentController.class, getAllassmentByUserId Start ");
-        List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_userId(userId);
 
+        List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_userId(userId);
+        List<ExamDetails> examDetailsAll = new ArrayList<>();
+        for (Assessment assessment : assessments) {
+            ExamDetails examDetails = examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
+            examDetailsAll.add(examDetails);
+        }
         log.info("AssessmentController.class, getAllassmentByUserId Ends ");
 
-        return new ResponseEntity<List<Assessment>>(assessments, HttpStatus.OK);
+        return new ResponseEntity<List<ExamDetails>>(examDetailsAll, HttpStatus.OK);
 
     }
-    
+
 }

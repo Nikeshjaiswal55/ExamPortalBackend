@@ -16,6 +16,9 @@ public interface PaperService {
 //Get All Paper By UserID
     List<PaperDto> getAllPaperByUserId(String userId);
 
+    //
+    String activatePaper(PaperDto paperDto);
+
     PaperDto getPaperById(String paperID);
 
     String deletePaperByPaperId(String paperId);
