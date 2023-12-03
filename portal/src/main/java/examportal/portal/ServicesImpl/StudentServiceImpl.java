@@ -188,7 +188,7 @@ public class StudentServiceImpl implements StudentSevices {
         for (InvitedStudents invitedStudents : stude) {
             Student s = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(
                     () -> new ResourceNotFoundException("Student", "StudentId", invitedStudents.getStudentId()));
-             students.add(s);
+            students.add(s);
         }
         return students;
 
@@ -199,27 +199,26 @@ public class StudentServiceImpl implements StudentSevices {
     public String addStudentPaper(StudentDto studentdDto) {
 
         for (String email : studentdDto.getEmail()) {
-            User user = this.userRepo.findByEmail(email);
+
+            Student st = this.studentRepo.getszStudentByEmail(email);
             String password = RandomString.make(8);
 
-            String response ="";
-            if (user != null) {
+            String response = "";
+            if (st != null) {
 
                 InvitedStudents invitedStudents = new InvitedStudents();
                 invitedStudents.setPaperId(studentdDto.getPaperID());
-                invitedStudents.setStudentId(user.getUserId());
+                invitedStudents.setStudentId(st.getStudentid());
                 this.invitationRepo.save(invitedStudents);
 
                 Assessment assessment = new Assessment();
                 assessment.setPaperId(studentdDto.getPaperID());
-                assessment.setUserId(user.getUserId());
+                assessment.setUserId(st.getStudentid());
                 assessment.setOrgnizationId(studentdDto.getOrgnizationId());
                 Assessment newaAssessment = this.assessmentRepo.save(assessment);
                 System.out.println("my assment ============================" + newaAssessment);
-            }
-            else
-            {
-                
+            } else {
+
                 try {
                     response = this.auth0Service.createUser(email, password, studentdDto.getToken());
                     if (response != null) {
@@ -240,18 +239,6 @@ public class StudentServiceImpl implements StudentSevices {
                 userDto dto = this.mapper.map(newUser, userDto.class);
                 User user2 = this.userService.createUser(dto);
 
-                 InvitedStudents invitedStudents = new InvitedStudents();
-                invitedStudents.setPaperId(studentdDto.getPaperID());
-                invitedStudents.setStudentId(user2.getUserId());
-                this.invitationRepo.save(invitedStudents);
-
-                Assessment assessment = new Assessment();
-                assessment.setPaperId(studentdDto.getPaperID());
-                assessment.setUserId(user2.getUserId());
-                assessment.setOrgnizationId(studentdDto.getOrgnizationId());
-                Assessment newaAssessment = this.assessmentRepo.save(assessment);
-                System.out.println("my assment ============================" + newaAssessment);
-
                 Student student = new Student();
                 student.setStudentid(response);
                 student.setEmail(email);
@@ -262,6 +249,20 @@ public class StudentServiceImpl implements StudentSevices {
                 student.setYear(studentdDto.getYear());
                 Student newsStudent = this.studentRepo.save(student);
 
+
+                InvitedStudents invitedStudents = new InvitedStudents();
+                invitedStudents.setPaperId(studentdDto.getPaperID());
+                invitedStudents.setStudentId(newsStudent.getStudentid());
+                this.invitationRepo.save(invitedStudents);
+
+                Assessment assessment = new Assessment();
+                assessment.setPaperId(studentdDto.getPaperID());
+                assessment.setUserId(newsStudent.getStudentid());
+                assessment.setOrgnizationId(studentdDto.getOrgnizationId());
+                Assessment newaAssessment = this.assessmentRepo.save(assessment);
+                System.out.println("my assment ============================" + newaAssessment);
+
+            
             }
         }
         return "Student added successfully";
