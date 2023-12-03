@@ -82,32 +82,45 @@ public class StudentServiceImpl implements StudentSevices {
         String password = RandomString.make(8)+"K8085";
         System.out.println("\n\n\n++++++++++++++++++++++++++++++++++++!!!!!!!!!"+student.getEmail());
 
-        if(student.getBranch() != null){
-               List<Student> students = this.studentRepo.getAllStudentBYBranch(student.getBranch());
+        // if(student.getBranch() != null){
+        //        List<Student> students = this.studentRepo.getAllStudentBYBranch(student.getBranch());
 
-            for (Student std : students) {
+        //     for (Student std : students) {
                  
-                User user = this.userService.getUserById(std.getStudentid());
+        //         User user = this.userRepo.findByEmail(std.getEmail());
 
-                // this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+password, "Login Creadintials for ExamEasy",user.getRole());
-                Assessment assessment = new Assessment();
-                assessment.setPaperId(student.getPaperID());
-                assessment.setUserId(user.getUserId());
-                assessment.setOrgnizationId(student.getOrgnizationId());
-                Assessment newaAssessment = this.assessmentRepo.save(assessment);
-                System.out.println("my assment ============================" + newaAssessment);
-                InvitedStudents invitedStudents = new InvitedStudents();
-                invitedStudents.setPaperId(student.getPaperID());
-                invitedStudents.setStudentId(std.getStudentid());
-                this.invitationRepo.save(invitedStudents);
-            }
-        }else{
+        //         InvitedStudents invitedStudents = new InvitedStudents();
+        //         invitedStudents.setPaperId(student.getPaperID());
+        //         invitedStudents.setStudentId(user.getUserId());
+        //         InvitedStudents invgstd=  this.invitationRepo.save(invitedStudents);
+
+
+        //         // this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+password, "Login Creadintials for ExamEasy",user.getRole());
+                
+        //         Assessment assessment = new Assessment();
+        //         assessment.setPaperId(student.getPaperID());
+        //         assessment.setUserId(user.getUserId());
+        //         assessment.setOrgnizationId(student.getOrgnizationId());
+        //         Assessment newaAssessment = this.assessmentRepo.save(assessment);
+        //         System.out.println("my assment ============================" + newaAssessment);
+
+                
+        //     }
+        // }else{
 
         for (String email : student.getEmail()) {
 
             User user = this.userRepo.findByEmail(email);
 
             if (user != null) {
+
+
+                  InvitedStudents invitedStudents = new InvitedStudents();
+                invitedStudents.setPaperId(student.getPaperID());
+                invitedStudents.setStudentId(user.getUserId());
+                this.invitationRepo.save(invitedStudents);
+
+                
                 Assessment assessment = new Assessment();
                 assessment.setPaperId(student.getPaperID());
                 assessment.setUserId(user.getUserId());
@@ -116,10 +129,7 @@ public class StudentServiceImpl implements StudentSevices {
                 System.out.println("my assment ============================" + newaAssessment);
                 //  send mail to the user with his/her credential
 
-                  InvitedStudents invitedStudents = new InvitedStudents();
-                invitedStudents.setPaperId(student.getPaperID());
-                invitedStudents.setStudentId(user.getUserId());
-                this.invitationRepo.save(invitedStudents);
+              
 
 
             } else {
@@ -146,16 +156,17 @@ public class StudentServiceImpl implements StudentSevices {
 
                 System.out.println("User Created by"+newUser.getEmail());
 
-                Assessment assessment = new Assessment();
-                assessment.setPaperId(student.getPaperID());
-                assessment.setUserId(user2.getUserId());
-                assessment.setOrgnizationId(student.getOrgnizationId());
-                Assessment newAssessment = this.assessmentRepo.save(assessment);
-
-                  InvitedStudents invitedStudents = new InvitedStudents();
+                
+                InvitedStudents invitedStudents = new InvitedStudents();
                 invitedStudents.setPaperId(student.getPaperID());
                 invitedStudents.setStudentId(user2.getUserId());
                 this.invitationRepo.save(invitedStudents);
+
+                Assessment assessment = new Assessment();
+                assessment.setPaperId(student.getPaperID());
+                assessment.setUserId(response);
+                assessment.setOrgnizationId(student.getOrgnizationId());
+                Assessment newAssessment = this.assessmentRepo.save(assessment);
 
                 System.out.println("my assment ============================" + newAssessment);
 
@@ -167,7 +178,7 @@ public class StudentServiceImpl implements StudentSevices {
                 this.studentRepo.save(s);
             }
 
-        }
+        // }
     }
         log.info("StudentServiceImpl , addStudent Method Ends");
 

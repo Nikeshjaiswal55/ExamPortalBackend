@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
 
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Repo.ExamDetailsRepo;
+import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
@@ -45,6 +46,9 @@ public class PaperController {
 
     @Autowired
     private StudentRepo studentRepo;
+
+    @Autowired
+    private InvitationRepo invitationRepo;
 
     Logger log = LoggerFactory.getLogger("MetorController");
 
@@ -111,5 +115,14 @@ public class PaperController {
         String activeMsg = paperService.activatePaper(paperId);
         log.info("paper service activetPaper method Ends");
         return new ResponseEntity<String>(activeMsg,HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/invited/{paperId}")
+    public ResponseEntity<List<InvitedStudents>> getallstudentbypaperId(@PathVariable String paperId)
+    {
+        List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
+
+
+        return new ResponseEntity<List<InvitedStudents>>(students,HttpStatus.ACCEPTED);
     }
 }

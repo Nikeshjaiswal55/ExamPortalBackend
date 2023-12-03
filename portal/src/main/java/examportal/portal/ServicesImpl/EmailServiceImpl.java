@@ -94,11 +94,6 @@ public class EmailServiceImpl {
         "</html>";
     
     ;
-        }else{
-            // abhi ke liye 
-            // html body for orginzation 
-            msgbody = msg;
-        }
 
         try {
 
@@ -117,5 +112,7 @@ public class EmailServiceImpl {
         }
 
     }
+        return "Email senfsuccessfully";
 
+}
 }

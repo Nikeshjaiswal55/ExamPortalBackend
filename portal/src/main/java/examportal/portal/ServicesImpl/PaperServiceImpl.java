@@ -221,7 +221,6 @@ public class PaperServiceImpl implements PaperService {
     List<Paper> allpaper=this.paperRepo.findAllPaperByUserId(userId);
     List<PaperDto> paperDtoList = new ArrayList<>();
 
-
     for (Paper paper : allpaper) {
         PaperDto dto = new PaperDto();
         dto.set_setup(paper.is_setup());
