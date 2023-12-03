@@ -98,8 +98,9 @@ public class PaperServiceImpl implements PaperService {
     dto.setToken(paperdDto.getToken());
     dto.setPaperID(newpPaper.getPaperId());
     dto.setOrgnizationId(paperdDto.getOrgnizationId());
+    dto.setBranch(examDetails2.getBranch());
 
-    Student student = this.sevices.addStudent(dto);
+    String student = this.sevices.addStudentPaper(dto);
     System.out.println(student);
 
     log.info("paperService Create paper method End's :");
