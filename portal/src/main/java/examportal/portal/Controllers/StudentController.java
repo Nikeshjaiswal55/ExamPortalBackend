@@ -72,7 +72,7 @@ public class StudentController {
 
     // Get All Student By paperId
     @GetMapping("/GetAllStudentByPaperId/{paperId}")
-    public ResponseEntity<List<Student>> getAllStudentByPaperId(@PathVariable String paperId) {
+    public ResponseEntity<List<Student>> getAllStudentByPaperIds(@PathVariable String paperId) {
         log.info("StudentController , getAllStudent Method Start");
 
         List<Student> st = this.studentSevices.getAllStudentByPaperId(paperId);

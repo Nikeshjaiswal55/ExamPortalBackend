@@ -13631,3 +13631,89 @@ Unconditional classes:
 2023-12-03 22:07:21 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
 2023-12-03 22:07:21 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing ["Paper Published Successfully"]
 2023-12-03 22:07:21 [http-nio-9090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:11 [http-nio-9090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:13:13 [http-nio-9090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/GetAllStudentByPaperId/60f8128f-3630-41f0-a404-63111", parameters={}
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getAllStudentByPaperId(String)
+2023-12-03 22:13:43 [http-nio-9090-exec-3] INFO  StudentController.class - StudentController , getAllStudent Method Start
+2023-12-03 22:13:43 [http-nio-9090-exec-3] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudentByPaperId Method Start
+2023-12-03 22:13:43 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select i1_0.invitation_id,i1_0.paper_id,i1_0.student_id from invited_students i1_0 where i1_0.paper_id=?
+2023-12-03 22:13:45 [http-nio-9090-exec-3] INFO  StudentController.class - StudentController , getAllStudent Method Ends
+2023-12-03 22:13:45 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-03 22:13:45 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[]]
+2023-12-03 22:13:45 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/activetPaper/60f8128f-3630-41f0-a404-63111", parameters={}
+2023-12-03 22:15:38 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String)
+2023-12-03 22:15:38 [http-nio-9090-exec-6] INFO  MetorController - paper service activetPaper method started
+2023-12-03 22:15:38 [http-nio-9090-exec-6] INFO  PaperServiceImpl - paperServiceImpl activatePaper  method Starts
+2023-12-03 22:15:40 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.is_active,p1_0.is_setup,p1_0.orgnization_id,p1_0.user_id from paper p1_0 where p1_0.paper_id=?
+2023-12-03 22:15:41 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler examportal.portal.Exceptions.GlobalExceptionHandler#resourceNotFoundExceptionHandler(ResourceNotFoundException)
+2023-12-03 22:15:41 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-03 22:15:41 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ApiResponse(massage=Paper not found with this PaperId : 60f8128f-3630-41f0-a404-63111 , success=fals (truncated)...]
+2023-12-03 22:15:41 [http-nio-9090-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [examportal.portal.Exceptions.ResourceNotFoundException: Paper not found with this PaperId : 60f8128f-3630-41f0-a404-63111 ]
+2023-12-03 22:15:41 [http-nio-9090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-03 22:16:26 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getPaperbyPaperId/60f8128f-3630-41f0-a404-63111", parameters={}
+2023-12-03 22:16:33 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-03 22:16:33 [http-nio-9090-exec-2] INFO  MetorController - paperService get paper by id  method started
+2023-12-03 22:16:33 [http-nio-9090-exec-2] INFO  PaperServiceImpl - paperService getPaperById method Starts :
+2023-12-03 22:16:34 [http-nio-9090-exec-2] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.is_active,p1_0.is_setup,p1_0.orgnization_id,p1_0.user_id from paper p1_0 where p1_0.paper_id=?
+2023-12-03 22:16:35 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler examportal.portal.Exceptions.GlobalExceptionHandler#resourceNotFoundExceptionHandler(ResourceNotFoundException)
+2023-12-03 22:16:35 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-03 22:16:35 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ApiResponse(massage=paper not found with this paperID : 60f8128f-3630-41f0-a404-63111 , success=fals (truncated)...]
+2023-12-03 22:16:35 [http-nio-9090-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [examportal.portal.Exceptions.ResourceNotFoundException: paper not found with this paperID : 60f8128f-3630-41f0-a404-63111 ]
+2023-12-03 22:16:35 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND

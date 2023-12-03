@@ -1,4 +1,5 @@
 package examportal.portal.ServicesImpl;
+
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +43,10 @@ public class UserserviceImpl implements UserService {
             newuser.setRole(user.getRole());
             newuser.setPassword(user.getPassword());
             User saveduser = this.userRepo.save(newuser);
-            String msg = "Congratulations "+user.getEmail()+"Your Orgnizaton Created Succcesfully";
-            emailServiceImpl.sendFormateMail(user.getEmail(), msg,"Orgnization Created",user.getRole());
+            String msg = "Congratulations " + user.getEmail() + "Your Orgnizaton Created Succcesfully";
+            if (saveduser.getRole().equals("OG")) {
+                emailServiceImpl.sendFormateMail(user.getEmail(), msg, "Orgnization Created", user.getRole());
+            }
             log.info("userService , createUser Method Ends");
 
             return saveduser;
@@ -54,15 +57,16 @@ public class UserserviceImpl implements UserService {
     // @Override
     // public String sendmail(User user) {
 
-    //     log.info("userService , send mail Method Start");
-    //     String msg = "User Name => "+user.getEmail()+"\n Password => "+user.getPassword();
-    //     String sub = "Login Creadintials for Login to EXAMEASY";
-    //     String to = user.getEmail();
-    //     emailServiceImpl.sendFormateMail(to, msg, sub);
-    //     User save = this.userRepo.save(user);
-    //     System.out.println(save);
-    //     log.info("userService , sene mail Method End's");
-    //     return "Email send sucess fully";
+    // log.info("userService , send mail Method Start");
+    // String msg = "User Name => "+user.getEmail()+"\n Password =>
+    // "+user.getPassword();
+    // String sub = "Login Creadintials for Login to EXAMEASY";
+    // String to = user.getEmail();
+    // emailServiceImpl.sendFormateMail(to, msg, sub);
+    // User save = this.userRepo.save(user);
+    // System.out.println(save);
+    // log.info("userService , sene mail Method End's");
+    // return "Email send sucess fully";
     // }
 
     @Override
