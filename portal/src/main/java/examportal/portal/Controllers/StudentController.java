@@ -39,12 +39,12 @@ public class StudentController {
 
     // Add student
     @PostMapping("/student")
-    public ResponseEntity<Student> addStudent(@RequestBody StudentDto student) {
+    public ResponseEntity<String> addStudent(@RequestBody StudentDto student) {
 
         log.info("StudentController , addStudent Method Start");
-        Student savedStudent = this.studentSevices.addStudent(student);
+        String savedStudent = this.studentSevices.addStudentPaper(student);
         log.info("StudentController , addStudent Method Ends");
-        return new ResponseEntity<Student>(savedStudent, HttpStatus.CREATED);
+        return new ResponseEntity<String>(savedStudent, HttpStatus.CREATED);
 
     }
 

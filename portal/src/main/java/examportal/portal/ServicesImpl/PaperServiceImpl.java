@@ -98,8 +98,9 @@ public class PaperServiceImpl implements PaperService {
     dto.setToken(paperdDto.getToken());
     dto.setPaperID(newpPaper.getPaperId());
     dto.setOrgnizationId(paperdDto.getOrgnizationId());
+    dto.setBranch(examDetails2.getBranch());
 
-    Student student = this.sevices.addStudent(dto);
+    String student = this.sevices.addStudentPaper(dto);
     System.out.println(student);
 
     log.info("paperService Create paper method End's :");
@@ -218,9 +219,8 @@ public class PaperServiceImpl implements PaperService {
   @Override
   public List<PaperDto> getAllPaperByUserId(String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-    List<Paper> allpaper=this.paperRepo.findAllPaperThatAreActiveByUserId(userId);
+    List<Paper> allpaper=this.paperRepo.findAllPaperByUserId(userId);
     List<PaperDto> paperDtoList = new ArrayList<>();
-
 
     for (Paper paper : allpaper) {
         PaperDto dto = new PaperDto();
@@ -257,7 +257,7 @@ public class PaperServiceImpl implements PaperService {
       Student student = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
       User user = this.userRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
       String msg =" This is your your name and password to login in exam easy"+student.getEmail()+"\n "+user.getPassword();
-      
+
       this.emailServiceImpl.sendFormateMail(student.getEmail(), msg,"login crenditials",user.getRole());
 
     }
