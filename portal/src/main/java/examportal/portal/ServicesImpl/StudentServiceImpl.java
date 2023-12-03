@@ -1,5 +1,6 @@
 package examportal.portal.ServicesImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -201,8 +202,17 @@ public class StudentServiceImpl implements StudentSevices {
     @Override
     public List<Student> getAllStudentByPaperId(String paperId) {
 
-        List<Student> st = studentRepo.findAllStudentByPaperId(paperId);
-        return st;
+        log.info("StudentServiceImpl , getAllStudentByPaperId Method Start");
+
+        List <InvitedStudents> stude = this.invitationRepo.getAllStudentByPaperId(paperId);
+        
+        List<Student> students = new ArrayList<>();
+        for (InvitedStudents invitedStudents : stude) {
+            Student s = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(()->new ResourceNotFoundException("Student", "StudentId", invitedStudents.getStudentId())); 
+            students.add(s);
+
+        }
+        return students;
 
     }
 
