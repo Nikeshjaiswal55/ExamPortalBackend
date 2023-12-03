@@ -8,8 +8,6 @@ public  interface UserService {
     
     User createUser(userDto user);
     
-    // String sendmail(User user);
-    
     List<User>getAllUser();
 
     User getUserById(String userId);
