@@ -17,7 +17,7 @@ public interface PaperService {
     List<PaperDto> getAllPaperByUserId(String userId);
 
     //
-    String activatePaper(PaperDto paperDto);
+    String activatePaper(String paperID);
 
     PaperDto getPaperById(String paperID);
 
