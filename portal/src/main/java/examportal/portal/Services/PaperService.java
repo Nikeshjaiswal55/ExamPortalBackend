@@ -1,6 +1,8 @@
 package examportal.portal.Services;
 
 import java.util.List;
+
+import examportal.portal.Entity.Assessment;
 // 
 import examportal.portal.Entity.Paper;
 // import examportal.portal.Entity.Questions;
@@ -14,7 +16,7 @@ public interface PaperService {
     
     List<PaperDto> getAllPaper();
 //Get All Paper By UserID
-    List<PaperDto> getAllPaperByUserId(String userId);
+    List<Assessment> getAllPaperByUserId(String userId);
 
     //
     String activatePaper(String paperID);

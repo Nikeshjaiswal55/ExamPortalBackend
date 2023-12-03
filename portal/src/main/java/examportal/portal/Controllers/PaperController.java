@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
 
@@ -89,14 +90,14 @@ public class PaperController {
 
     // Getting All papers by userId
     @GetMapping("/getAllPaperbyUserId/{userId}")
-    public ResponseEntity<List<PaperDto>> getallpaersbyuserId(@PathVariable String userId) {
+    public ResponseEntity<List<Assessment>> getallpaersbyuserId(@PathVariable String userId) {
 
         log.info("paper repo getall paper by user id method started");
-        List<PaperDto> paperDtoList= this.paperService.getAllPaperByUserId(userId); 
+        List<Assessment> assmentList= this.paperService.getAllPaperByUserId(userId); 
         
         log.info("paper repo getall paper by user id method started");
 
-        return new ResponseEntity<List<PaperDto>>(paperDtoList, HttpStatus.ACCEPTED);
+        return new ResponseEntity<List<Assessment>>(assmentList, HttpStatus.ACCEPTED);
 
     }
 
