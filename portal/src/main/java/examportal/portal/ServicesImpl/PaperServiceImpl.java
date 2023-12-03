@@ -257,7 +257,9 @@ public class PaperServiceImpl implements PaperService {
       Student student = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
       User user = this.userRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
       String msg =" This is your your name and password to login in exam easy"+student.getEmail()+"\n "+user.getPassword();
+      
       this.emailServiceImpl.sendFormateMail(student.getEmail(), msg,"login crenditials",user.getRole());
+
     }
 
     log.info("paperServiceImpl activatePaper  method Ends");
