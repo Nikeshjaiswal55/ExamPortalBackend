@@ -218,7 +218,7 @@ public class PaperServiceImpl implements PaperService {
   @Override
   public List<PaperDto> getAllPaperByUserId(String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-    List<Paper> allpaper=this.paperRepo.findAllPaperByUserId(userId);
+    List<Paper> allpaper=this.paperRepo.findAllPaperThatAreActiveByUserId(userId);
     List<PaperDto> paperDtoList = new ArrayList<>();
 
 
