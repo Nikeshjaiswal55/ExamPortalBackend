@@ -185,7 +185,7 @@ public class PaperServiceImpl implements PaperService {
   @Override
   
   public String deletePaperByPaperId(String paperID) {
-
+    log.info("paperServiceImpl deletePaperByPaperId  method Starts");
     Paper p = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "paperId", paperID));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
@@ -196,13 +196,15 @@ public class PaperServiceImpl implements PaperService {
       this.questionsRepo.deleteById(question.getQuestionId());
     }
     this.paperRepo.deleteById(paperID);
+
+    log.info("paperServiceImpl deletePaperByPaperId  method Ends");
     return "Deleted success fully";
 
   }
 
   @Override
   public List<PaperDto> getAllPaperByUserId(String userId) {
-    
+    log.info("paperServiceImpl getAllPaperByUserId  method Starts");
     List<Paper> allpaper=this.paperRepo.findAllPaperByUserId(userId);
     List<PaperDto> paperDtoList = new ArrayList<>();
 
@@ -221,10 +223,23 @@ public class PaperServiceImpl implements PaperService {
         List<Student> students = this.studentRepo.findAllStudentByPaperId(paper.getPaperId());
         dto.setStudents(students);
         paperDtoList.add(dto);
-
+        log.info("paperServiceImpl getAllPaperByUserId  method Ends");
   }
    return paperDtoList;
 
 
 }
+
+  @Override
+  public String activatePaper(PaperDto paperDto) {
+    log.info("paperServiceImpl activatePaper  method Starts");
+    Paper paper = this.paperRepo.findById(paperDto.getPaperId()).orElseThrow(()-> new ResourceNotFoundException("Paper", "PaperId", paperDto.getPaperId()));
+    paper.set_Active(true);
+    paper.set_setup(false);
+    Paper ActivePaper = this.paperRepo.save(paper);
+
+    log.info("paperServiceImpl activatePaper  method Ends");
+
+    return "Paper Published Successfully";
+  }
 }
