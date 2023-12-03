@@ -88,9 +88,8 @@ public class StudentServiceImpl implements StudentSevices {
             for (Student std : students) {
                  
                 User user = this.userService.getUserById(std.getStudentid());
-                System.out.println("enter in sendMail Method+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-                this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+password, "Login Creadintials for ExamEasy",user.getRole());
-                System.out.println("exit in sendMail Method+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+                // this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER => "+user.getEmail()+"\n Password => "+password, "Login Creadintials for ExamEasy",user.getRole());
                 Assessment assessment = new Assessment();
                 assessment.setPaperId(student.getPaperID());
                 assessment.setUserId(user.getUserId());
@@ -164,6 +163,7 @@ public class StudentServiceImpl implements StudentSevices {
                 s.setStudentid(response);
                 s.setOrgnizationId(student.getOrgnizationId());
                 s.setPaperId(student.getPaperID());
+                s.setYear(student.getYear());
                 this.studentRepo.save(s);
             }
 

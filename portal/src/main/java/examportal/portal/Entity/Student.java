@@ -23,6 +23,8 @@ public class Student {
 
     private String paperId;
 
+    private String year;
+
     // public String setPaperId(String paperid){
     //     paperId.add(paperid);
     //     return "paperId add"+paperId;
