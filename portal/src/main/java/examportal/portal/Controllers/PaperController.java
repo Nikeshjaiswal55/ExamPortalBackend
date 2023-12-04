@@ -29,6 +29,7 @@ import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.PaperService;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -62,10 +63,20 @@ public class PaperController {
         return new ResponseEntity<>(papers, HttpStatus.OK);
     }
 
+    @GetMapping("/getall/Assesment/{userId}")
+    public ResponseEntity<List<ExamDetails>> getallAssesmentByUserId(@PathVariable String userId) {
+        log.info("paperService getallAssesmentByUserId method started");
+        List<ExamDetails> papers = this.paperService.getAllAssessmentsByUserId(userId);
+        log.info("paperService getallAssesmentByUserId method Ends");
+        return new ResponseEntity<List<ExamDetails>>(papers, HttpStatus.OK);
+    }
+
     @PostMapping("/create/paper")
-    public ResponseEntity<Paper> createNewpaper(@RequestBody PaperDto paperDto) {
+    public ResponseEntity<Paper> createNewpaper(@RequestBody PaperDto paperDto,HttpServletRequest request) {
         log.info("paperService create new paper method started");
-        System.out.println("enterr..................." + paperDto.getQuestions());
+ 
+        String token = request.getHeader("Authorization");
+        paperDto.setToken(token);
         Paper paper = this.paperService.createPaper(paperDto);
 
         System.out.println("end..................");
@@ -104,7 +115,7 @@ public class PaperController {
 
     @DeleteMapping("/deletePaperByPaperID/{paperId}")
     public ResponseEntity<String> deletePaper(@PathVariable String paperId) {
-        log.info("paper service deletePaper by paperid method started");
+        log.info("paper service deletePaper by paperid method started"); 
         String msg = this.paperService.deletePaperByPaperId(paperId);
 
         return new ResponseEntity<>(msg,HttpStatus.OK);

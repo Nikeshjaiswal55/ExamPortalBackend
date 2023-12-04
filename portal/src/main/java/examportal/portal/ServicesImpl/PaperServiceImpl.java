@@ -49,7 +49,7 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private StudentSevices sevices;
-  
+
   @Autowired
   private ExamDetailsRepo examDetailsRepo;
 
@@ -76,8 +76,8 @@ public class PaperServiceImpl implements PaperService {
     paper.setUserId(paperdDto.getUserId());
     paper.setOrgnizationId(paperdDto.getOrgnizationId());
     paper.set_setup(true);
-    paper.set_Active(false);  
-    
+    paper.set_Active(false);
+
     Paper newpPaper = this.paperRepo.save(paper);
 
     ExamDetails examDetails = new ExamDetails();
@@ -203,7 +203,7 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  
+
   public String deletePaperByPaperId(String paperID) {
     log.info("paperServiceImpl deletePaperByPaperId  method Starts");
     Paper p = this.paperRepo.findById(paperID)
@@ -212,7 +212,8 @@ public class PaperServiceImpl implements PaperService {
     this.examDetailsRepo.deleteById(examDetails.getExamid());
     List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
     for (Questions question : questions) {
-      Questions qu = this.questionsRepo.findById(question.getQuestionId()).orElseThrow(()-> new ResourceNotFoundException("Question", "QuestionID", question.getQuestionId()));
+      Questions qu = this.questionsRepo.findById(question.getQuestionId())
+          .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionID", question.getQuestionId()));
       this.questionsRepo.deleteById(question.getQuestionId());
     }
     this.paperRepo.deleteById(paperID);
@@ -225,25 +226,30 @@ public class PaperServiceImpl implements PaperService {
   @Override
   public List<ExamDetails> getAllPaperByUserId(String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-    
-    List<Assessment> assm = this.assessmentRepo.getAssessmentsBy_userId(userId);
+
+    List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
     List<ExamDetails> examDetails = new ArrayList<>();
 
-    for (Assessment assessment : assm) {
-      ExamDetails emd = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
+    for (Paper paper2 : paper) {
+      ExamDetails emd = new ExamDetails();
+      emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+      emd.set_Active(paper2.is_Active());
+      emd.set_Setup(paper2.is_setup());
       examDetails.add(emd);
-      
+
     }
 
-  return examDetails;
+    return examDetails;
 
+  }
 
-}
+  
 
   @Override
   public String activatePaper(String paperId) {
     log.info("paperServiceImpl activatePaper  method Starts");
-    Paper paper = this.paperRepo.findById(paperId).orElseThrow(()-> new ResourceNotFoundException("Paper", "PaperId", paperId));
+    Paper paper = this.paperRepo.findById(paperId)
+        .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
     paper.set_Active(true);
     paper.set_setup(false);
     Paper ActivePaper = this.paperRepo.save(paper);
@@ -251,16 +257,32 @@ public class PaperServiceImpl implements PaperService {
     List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
 
     for (InvitedStudents invitedStudents : students) {
-      Student student = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
-      User user = this.userRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
-      String msg ="Use_Name => "+student.getEmail()+"\n Password => "+user.getPassword();
+      Student student = this.studentRepo.findById(invitedStudents.getStudentId())
+          .orElseThrow(() -> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
+      User user = this.userRepo.findById(invitedStudents.getStudentId())
+          .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
+      String msg = "Use_Name => " + student.getEmail()+"\n" + "Password => " + user.getPassword();
 
-      this.emailServiceImpl.sendFormateMail(student.getEmail(), msg,"login crenditials",user.getRole());
+      this.emailServiceImpl.sendFormateMail(student.getEmail(), msg, "login crenditials", user.getRole());
 
     }
 
     log.info("paperServiceImpl activatePaper  method Ends");
 
     return "Paper Published Successfully";
+  }
+
+  @Override
+  public List<ExamDetails> getAllAssessmentsByUserId(String userId) {
+    
+    List<Assessment> assment = this.assessmentRepo.getAssessmentsBy_userId(userId);
+     List<ExamDetails> examDetails = new ArrayList<>();
+
+    for (Assessment assessment : assment) {
+      ExamDetails examDetail = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
+      examDetails.add(examDetail);
+    }
+
+    return examDetails;
   }
 }

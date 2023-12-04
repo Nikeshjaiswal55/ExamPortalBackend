@@ -24,6 +24,8 @@ public interface PaperService {
 
     PaperDto getPaperById(String paperID);
 
+    List<ExamDetails> getAllAssessmentsByUserId(String userId);
+
     String deletePaperByPaperId(String paperId);
 
 }

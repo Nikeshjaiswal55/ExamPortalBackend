@@ -201,7 +201,7 @@ public class StudentServiceImpl implements StudentSevices {
         for (String email : studentdDto.getEmail()) {
 
             Student st = this.studentRepo.getszStudentByEmail(email);
-            String password = RandomString.make(8);
+            String password = RandomString.make(12)+"K80";
 
             String response = "";
             if (st != null) {

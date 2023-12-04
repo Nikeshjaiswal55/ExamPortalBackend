@@ -119,7 +119,7 @@ public class EmailServiceImpl {
             helper.setSubject(sub);
             helper.setText(msgbody, true);
             javaMailSender.send(message);
-            log.info("EmailServiceImp , sendFormateMail Method Start");
+            log.info("EmailServiceImp , sendFormateMail Method End");
             return "Mail Succesfully to" + to;
         } catch (Exception e) {
             System.out.println(e);

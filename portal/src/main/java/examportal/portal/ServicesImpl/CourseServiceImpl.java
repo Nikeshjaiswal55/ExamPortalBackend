@@ -95,7 +95,7 @@ public class CourseServiceImpl implements CourseService {
 
     for (EmailsDto email : dtos) {
 
-      String password = RandomString.make(8) + email.getEmail();
+      String password = RandomString.make(12) + "K80";
       Student st= this.studentRepo.getszStudentByEmail(email.getEmail());
 
       if (st!= null) {
@@ -135,6 +135,7 @@ public class CourseServiceImpl implements CourseService {
     this.courseRepo.save(c);
     log.info("CourseServiceimpl,addCourse Method Ends");
     return c;
+    
   }
 
   @Override

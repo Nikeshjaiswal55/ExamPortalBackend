@@ -3,6 +3,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -14,6 +16,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 
 
 @Configuration
+@CrossOrigin(origins = "*")
 public class SwaggerConfig {
 
     Logger log = LoggerFactory.getLogger("SwaggerConfig");
