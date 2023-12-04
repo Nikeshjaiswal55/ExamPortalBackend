@@ -82,34 +82,6 @@ public class StudentServiceImpl implements StudentSevices {
         String password = RandomString.make(8) + "K8085";
         System.out.println("\n\n\n++++++++++++++++++++++++++++++++++++!!!!!!!!!" + student.getEmail());
 
-        // if(student.getBranch() != null){
-        // List<Student> students =
-        // this.studentRepo.getAllStudentBYBranch(student.getBranch());
-
-        // for (Student std : students) {
-
-        // User user = this.userRepo.findByEmail(std.getEmail());
-
-        // InvitedStudents invitedStudents = new InvitedStudents();
-        // invitedStudents.setPaperId(student.getPaperID());
-        // invitedStudents.setStudentId(user.getUserId());
-        // InvitedStudents invgstd= this.invitationRepo.save(invitedStudents);
-
-        // // this.emailServiceImpl.sendFormateMail(user.getEmail(),"USER =>
-        // "+user.getEmail()+"\n Password => "+password, "Login Creadintials for
-        // ExamEasy",user.getRole());
-
-        // Assessment assessment = new Assessment();
-        // assessment.setPaperId(student.getPaperID());
-        // assessment.setUserId(user.getUserId());
-        // assessment.setOrgnizationId(student.getOrgnizationId());
-        // Assessment newaAssessment = this.assessmentRepo.save(assessment);
-        // System.out.println("my assment ============================" +
-        // newaAssessment);
-
-        // }
-        // }else{
-
         for (String email : student.getEmail()) {
 
             User user = this.userRepo.findByEmail(email);
@@ -209,15 +181,15 @@ public class StudentServiceImpl implements StudentSevices {
     public List<Student> getAllStudentByPaperId(String paperId) {
 
         log.info("StudentServiceImpl , getAllStudentByPaperId Method Start");
-
         List<InvitedStudents> stude = this.invitationRepo.getAllStudentByPaperId(paperId);
-
+    
         List<Student> students = new ArrayList<>();
         for (InvitedStudents invitedStudents : stude) {
-            Student s = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(
-                    () -> new ResourceNotFoundException("Student", "StudentId", invitedStudents.getStudentId()));
+            
+            Student s = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", invitedStudents.getStudentId()));
             students.add(s);
         }
+        
         return students;
 
     }
@@ -225,29 +197,28 @@ public class StudentServiceImpl implements StudentSevices {
     @Deprecated
     @Override
     public String addStudentPaper(StudentDto studentdDto) {
-
+        System.out.println("Enter in Student create+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         for (String email : studentdDto.getEmail()) {
-            User user = this.userRepo.findByEmail(email);
-            String password = RandomString.make(8);
 
-            String response ="";
-            if (user != null) {
+            Student st = this.studentRepo.getszStudentByEmail(email);
+            String password = RandomString.make(12)+"K80";
+
+            String response = "";
+            if (st != null) {
 
                 InvitedStudents invitedStudents = new InvitedStudents();
                 invitedStudents.setPaperId(studentdDto.getPaperID());
-                invitedStudents.setStudentId(user.getUserId());
+                invitedStudents.setStudentId(st.getStudentid());
                 this.invitationRepo.save(invitedStudents);
 
                 Assessment assessment = new Assessment();
                 assessment.setPaperId(studentdDto.getPaperID());
-                assessment.setUserId(user.getUserId());
+                assessment.setUserId(st.getStudentid());
                 assessment.setOrgnizationId(studentdDto.getOrgnizationId());
                 Assessment newaAssessment = this.assessmentRepo.save(assessment);
                 System.out.println("my assment ============================" + newaAssessment);
-            }
-            else
-            {
-                
+            } else {
+
                 try {
                     response = this.auth0Service.createUser(email, password, studentdDto.getToken());
                     if (response != null) {
@@ -265,20 +236,9 @@ public class StudentServiceImpl implements StudentSevices {
                 newUser.setEmail(email);
                 newUser.setPassword(password);
                 newUser.setRole("Student");
-                userDto dto = this.mapper.map(newUser, userDto.class);
-                User user2 = this.userService.createUser(dto);
-
-                 InvitedStudents invitedStudents = new InvitedStudents();
-                invitedStudents.setPaperId(studentdDto.getPaperID());
-                invitedStudents.setStudentId(user2.getUserId());
-                this.invitationRepo.save(invitedStudents);
-
-                Assessment assessment = new Assessment();
-                assessment.setPaperId(studentdDto.getPaperID());
-                assessment.setUserId(user2.getUserId());
-                assessment.setOrgnizationId(studentdDto.getOrgnizationId());
-                Assessment newaAssessment = this.assessmentRepo.save(assessment);
-                System.out.println("my assment ============================" + newaAssessment);
+                // userDto dto = this.mapper.map(newUser, userDto.class);
+                // User user2 = this.userService.createUser(dto);
+                User user2 = this.userRepo.save(newUser);
 
                 Student student = new Student();
                 student.setStudentid(response);
@@ -290,6 +250,20 @@ public class StudentServiceImpl implements StudentSevices {
                 student.setYear(studentdDto.getYear());
                 Student newsStudent = this.studentRepo.save(student);
 
+
+                InvitedStudents invitedStudents = new InvitedStudents();
+                invitedStudents.setPaperId(studentdDto.getPaperID());
+                invitedStudents.setStudentId(newsStudent.getStudentid());
+                this.invitationRepo.save(invitedStudents);
+
+                Assessment assessment = new Assessment();
+                assessment.setPaperId(studentdDto.getPaperID());
+                assessment.setUserId(newsStudent.getStudentid());
+                assessment.setOrgnizationId(studentdDto.getOrgnizationId());
+                Assessment newaAssessment = this.assessmentRepo.save(assessment);
+                System.out.println("my assment ============================" + newaAssessment);
+
+            
             }
         }
         return "Student added successfully";

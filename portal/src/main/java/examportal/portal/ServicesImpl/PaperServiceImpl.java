@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
@@ -16,6 +18,7 @@ import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.StudentDto;
+import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Repo.PaperRepo;
@@ -46,7 +49,7 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private StudentSevices sevices;
-  
+
   @Autowired
   private ExamDetailsRepo examDetailsRepo;
 
@@ -59,6 +62,9 @@ public class PaperServiceImpl implements PaperService {
   @Autowired
   private UserRepo userRepo;
 
+  @Autowired
+  private AssessmentRepo assessmentRepo;
+
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
   @Override
@@ -70,8 +76,8 @@ public class PaperServiceImpl implements PaperService {
     paper.setUserId(paperdDto.getUserId());
     paper.setOrgnizationId(paperdDto.getOrgnizationId());
     paper.set_setup(true);
-    paper.set_Active(false);  
-    
+    paper.set_Active(false);
+
     Paper newpPaper = this.paperRepo.save(paper);
 
     ExamDetails examDetails = new ExamDetails();
@@ -99,8 +105,8 @@ public class PaperServiceImpl implements PaperService {
     dto.setPaperID(newpPaper.getPaperId());
     dto.setOrgnizationId(paperdDto.getOrgnizationId());
     dto.setBranch(examDetails2.getBranch());
-
     String student = this.sevices.addStudentPaper(dto);
+
     System.out.println(student);
 
     log.info("paperService Create paper method End's :");
@@ -197,7 +203,7 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  
+
   public String deletePaperByPaperId(String paperID) {
     log.info("paperServiceImpl deletePaperByPaperId  method Starts");
     Paper p = this.paperRepo.findById(paperID)
@@ -206,7 +212,8 @@ public class PaperServiceImpl implements PaperService {
     this.examDetailsRepo.deleteById(examDetails.getExamid());
     List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
     for (Questions question : questions) {
-      Questions qu = this.questionsRepo.findById(question.getQuestionId()).orElseThrow(()-> new ResourceNotFoundException("Question", "QuestionID", question.getQuestionId()));
+      Questions qu = this.questionsRepo.findById(question.getQuestionId())
+          .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionID", question.getQuestionId()));
       this.questionsRepo.deleteById(question.getQuestionId());
     }
     this.paperRepo.deleteById(paperID);
@@ -217,36 +224,32 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public List<PaperDto> getAllPaperByUserId(String userId) {
+  public List<ExamDetails> getAllPaperByUserId(String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-    List<Paper> allpaper=this.paperRepo.findAllPaperByUserId(userId);
-    List<PaperDto> paperDtoList = new ArrayList<>();
 
-    for (Paper paper : allpaper) {
-        PaperDto dto = new PaperDto();
-        dto.set_setup(paper.is_setup());
-        dto.set_Active(paper.is_Active());
-        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paper.getPaperId());
-        dto.setPaperId(paper.getPaperId());
-        dto.setExamDetails(examDetails);
-        List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paper.getPaperId());
-        dto.setQuestions(questions);
-        dto.setOrgnizationId(paper.getOrgnizationId());
-        dto.setUserId(userId);
-        List<Student> students = this.studentRepo.findAllStudentByPaperId(paper.getPaperId());
-        dto.setStudents(students);
-        paperDtoList.add(dto);
-        log.info("paperServiceImpl getAllPaperByUserId  method Ends");
+    List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
+    List<ExamDetails> examDetails = new ArrayList<>();
+
+    for (Paper paper2 : paper) {
+      ExamDetails emd = new ExamDetails();
+      emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+      emd.set_Active(paper2.is_Active());
+      emd.set_Setup(paper2.is_setup());
+      examDetails.add(emd);
+
+    }
+
+    return examDetails;
+
   }
-   return paperDtoList;
 
-
-}
+  
 
   @Override
   public String activatePaper(String paperId) {
     log.info("paperServiceImpl activatePaper  method Starts");
-    Paper paper = this.paperRepo.findById(paperId).orElseThrow(()-> new ResourceNotFoundException("Paper", "PaperId", paperId));
+    Paper paper = this.paperRepo.findById(paperId)
+        .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
     paper.set_Active(true);
     paper.set_setup(false);
     Paper ActivePaper = this.paperRepo.save(paper);
@@ -254,16 +257,32 @@ public class PaperServiceImpl implements PaperService {
     List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
 
     for (InvitedStudents invitedStudents : students) {
-      Student student = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
-      User user = this.userRepo.findById(invitedStudents.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
-      String msg =" This is your your name and password to login in exam easy"+student.getEmail()+"\n "+user.getPassword();
+      Student student = this.studentRepo.findById(invitedStudents.getStudentId())
+          .orElseThrow(() -> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
+      User user = this.userRepo.findById(invitedStudents.getStudentId())
+          .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
+      String msg = "Use_Name => " + student.getEmail()+"\n" + "Password => " + user.getPassword();
 
-      this.emailServiceImpl.sendFormateMail(student.getEmail(), msg,"login crenditials",user.getRole());
+      this.emailServiceImpl.sendFormateMail(student.getEmail(), msg, "login crenditials", user.getRole());
 
     }
 
     log.info("paperServiceImpl activatePaper  method Ends");
 
     return "Paper Published Successfully";
+  }
+
+  @Override
+  public List<ExamDetails> getAllAssessmentsByUserId(String userId) {
+    
+    List<Assessment> assment = this.assessmentRepo.getAssessmentsBy_userId(userId);
+     List<ExamDetails> examDetails = new ArrayList<>();
+
+    for (Assessment assessment : assment) {
+      ExamDetails examDetail = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
+      examDetails.add(examDetail);
+    }
+
+    return examDetails;
   }
 }

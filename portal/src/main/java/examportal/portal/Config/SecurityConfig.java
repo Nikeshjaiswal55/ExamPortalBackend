@@ -3,6 +3,7 @@ package examportal.portal.Config;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -40,16 +41,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         log.info("SecurityConfig , filterChain Method Start ");
+        http
+        .cors().and().csrf().disable()
+        .authorizeHttpRequests(authorizeRequests ->
+            authorizeRequests
+            .requestMatchers(public_urls).permitAll()
+                .requestMatchers(HttpMethod.GET).authenticated()
+                .requestMatchers(HttpMethod.POST, "/api/**").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/**").authenticated()
+                .requestMatchers(HttpMethod.DELETE, "/api/**").authenticated()
+                .anyRequest().authenticated()
+        )
+        .oauth2ResourceServer(oauth2ResourceServer ->
+            oauth2ResourceServer.jwt(jwt -> jwt.decoder(jwtDecoder())));
 
-
-        http.cors(withDefaults()).csrf(csrf -> csrf.disable()).authorizeRequests(authorizeRequests ->
-                authorizeRequests.requestMatchers(public_urls).permitAll().
-                        requestMatchers("/*/").authenticated())
-                // .authorizeRequests(authorizeRequests -> authorizeRequests.requestMatchers("/Swagger").permitAll())
-                .oauth2ResourceServer(oauth2ResourceServer ->
-                        oauth2ResourceServer.jwt(jwt -> jwt.decoder(jwtDecoder())));
-
-        log.info("SecurityConfig , filterChain Method Ends");
     return http.build();
 
     }

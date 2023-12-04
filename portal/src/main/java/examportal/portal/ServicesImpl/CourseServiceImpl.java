@@ -18,6 +18,7 @@ import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.CourseDto;
 import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Repo.CourseRepo;
+import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.CourseService;
 import jakarta.el.ELException;
@@ -27,8 +28,13 @@ import net.bytebuddy.utility.RandomString;
 public class CourseServiceImpl implements CourseService {
   @Autowired
   private CourseRepo courseRepo;
+  
   @Autowired
   private UserRepo userRepo;
+
+  @Autowired
+  private StudentRepo studentRepo;
+
 
   @Deprecated
   @Autowired
@@ -39,10 +45,10 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public List<Course> getAllCourse(Integer pageNumber) {
     log.info("CourseServiceimpl,getCourse Method Start");
-  
-    Integer pageSize = 2;  
+
+    Integer pageSize = 2;
     Sort s = Sort.by("userId").ascending();
-    Pageable p = PageRequest.of(pageNumber, pageSize,s);
+    Pageable p = PageRequest.of(pageNumber, pageSize, s);
     Page<Course> page = courseRepo.findAll(p);
     List<Course> courseAll = page.getContent();
     System.out.println(courseAll.size());
@@ -76,22 +82,23 @@ public class CourseServiceImpl implements CourseService {
   public Course addCourse(CourseDto course) {
 
     log.info("CourseServiceimpl,addCourse Method Start");
-    User us = userRepo.findById(course.getUserId())
-        .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
+    User us = userRepo.findById(course.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
     String response = "";
 
     Course c = new Course();
     c.setCourse_name(course.getCourse_name());
     c.setUserId(course.getUserId());
     c.setUserName(us.getName());
+    Course savedcourse = this.courseRepo.save(c);
 
     List<EmailsDto> dtos = course.getEmailsDto();
-    for (EmailsDto email :dtos) {
 
-      String password = RandomString.make(8) + email.getEmail();
-      User user = userRepo.findByEmail(email.getEmail());
+    for (EmailsDto email : dtos) {
 
-      if (user != null) {
+      String password = RandomString.make(12) + "K80";
+      Student st= this.studentRepo.getszStudentByEmail(email.getEmail());
+
+      if (st!= null) {
         System.out.println("User Allready Exist");
 
       } else {
@@ -106,15 +113,15 @@ public class CourseServiceImpl implements CourseService {
           use.setEmail(email.getEmail());
           use.setPassword(password);
           use.setRole("Student");
-          User savedUser= this.userRepo.save(use);
+          User savedUser = this.userRepo.save(use);
 
           Student student = new Student();
-
           student.setBranch(email.getBranch());
           student.setName(email.getName());
           student.setEmail(email.getEmail());
           student.setOrgnizationId(course.getOrgnizationId());
           student.setStudentid(savedUser.getUserId());
+          Student savedst =  this.studentRepo.save(student);
 
         } catch (Exception e) {
 
@@ -128,6 +135,7 @@ public class CourseServiceImpl implements CourseService {
     this.courseRepo.save(c);
     log.info("CourseServiceimpl,addCourse Method Ends");
     return c;
+    
   }
 
   @Override
