@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.InvitationDto;
-import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.StudentSevices;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,15 +35,15 @@ public class StudentController {
     private Logger log = LoggerFactory.getLogger("StudentController.class");
 
     // Add student
-    @PostMapping("/student")
-    public ResponseEntity<String> addStudent(@RequestBody StudentDto student) {
+    // @PostMapping("/student")
+    // public ResponseEntity<String> addStudent(@RequestBody StudentDto student) {
 
-        log.info("StudentController , addStudent Method Start");
-        String savedStudent = this.studentSevices.addStudentPaper(student);
-        log.info("StudentController , addStudent Method Ends");
-        return new ResponseEntity<String>(savedStudent, HttpStatus.CREATED);
+    //     log.info("StudentController , addStudent Method Start");
+    //     String savedStudent = this.studentSevices.inviteStudents(student);
+    //     log.info("StudentController , addStudent Method Ends");
+    //     return new ResponseEntity<String>(savedStudent, HttpStatus.CREATED);
 
-    }
+    // }
 
     // Getting All Student
     @GetMapping("/student/getAll")

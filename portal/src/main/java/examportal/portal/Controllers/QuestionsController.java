@@ -50,9 +50,7 @@ public class QuestionsController {
      @GetMapping("/getall/questions/{paperId}")
     public ResponseEntity<List<Questions>> getall(@PathVariable String paperId)
     {
-        System.out.println("enter..............");
         List<Questions> questions = this.questionService.getAllQuestionsById(paperId);
-        System.out.println("out..................");
 
         return new ResponseEntity<>(questions,HttpStatus.OK);
     }

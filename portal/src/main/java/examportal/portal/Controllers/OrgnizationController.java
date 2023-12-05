@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import examportal.portal.Entity.Orgnizations;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.OrgnizationDto;
-import examportal.portal.Payloads.userDto;
 import examportal.portal.Repo.OrgnizationRepo;
 import examportal.portal.Services.OrgnizationService;
 

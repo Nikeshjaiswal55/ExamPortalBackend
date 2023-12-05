@@ -104,9 +104,7 @@ public class CourseServiceImpl implements CourseService {
       } else {
 
         try {
-          System.out.println("+++++++++++Auth0Service Method Enter");
           response = this.auth0Service.createUser(email.getEmail(), password, course.getToken());
-          System.out.println("UserID++++++++++" + response);
           // res = userId
           User use = new User();
           use.setUserId(response);

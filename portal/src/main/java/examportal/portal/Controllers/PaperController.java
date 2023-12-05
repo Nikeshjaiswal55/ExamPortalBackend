@@ -24,11 +24,7 @@ import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
 
 import examportal.portal.Payloads.PaperDto;
-import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
-import examportal.portal.Repo.PaperRepo;
-import examportal.portal.Repo.QuestionsRepo;
-import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.PaperService;
 import jakarta.servlet.http.HttpServletRequest;
 
