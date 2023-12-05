@@ -18,5 +18,8 @@ public class Questions {
     private String correctAns;
     private String userAns;
     private String paperID;
+    public Object getMessage() {
+        return null;
+    }
     
 }
