@@ -51,7 +51,7 @@ public class UserController {
         
     }
     //  get all user by name
-      @GetMapping("/user/getAll/{name}")
+      @GetMapping("/user/getByName/{name}")
     public ResponseEntity<List<User>> getAllUserByName(@PathVariable String name){
         
         List<User> us = this.userService.getAllUserByName(name); 

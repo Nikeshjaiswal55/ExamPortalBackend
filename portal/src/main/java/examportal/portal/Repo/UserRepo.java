@@ -20,7 +20,7 @@ public interface UserRepo extends JpaRepository<User,String>{
     List<User> findByRole(String role);
 
     List<User> findByUserId(String userId);
-    @Query("SELECT s FROM Course s WHERE s.name=:name")
+    @Query("SELECT s FROM User s WHERE s.name=:name")
     List<User> getAllUserByName(@Param("name")String name);
 
     

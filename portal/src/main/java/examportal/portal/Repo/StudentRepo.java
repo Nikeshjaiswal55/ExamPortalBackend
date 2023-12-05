@@ -25,6 +25,6 @@ public interface StudentRepo extends JpaRepository<Student,String>{
     List<Student>  getAllStudentBYBranch( @Param("branch") String branch);
 
     Page<Student> findByPaperId(String paperId, Pageable p);
-    @Query("SELECT s FROM Course s WHERE s.name=:name")
+    @Query("SELECT s FROM Student s WHERE s.name=:name")
     List<Student> getAllStudentsbyName(@Param("name")String name);
 }
