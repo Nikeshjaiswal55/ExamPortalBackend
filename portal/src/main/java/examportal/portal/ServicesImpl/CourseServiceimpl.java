@@ -1,8 +1,8 @@
+
 package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,23 +11,30 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import examportal.portal.Entity.Course;
+import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.CourseDto;
+import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Repo.CourseRepo;
+import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.CourseService;
 import jakarta.el.ELException;
 import net.bytebuddy.utility.RandomString;
 
 @Service
-public class CourseServiceimpl implements CourseService {
+public class CourseServiceImpl implements CourseService {
   @Autowired
   private CourseRepo courseRepo;
+  
   @Autowired
   private UserRepo userRepo;
+
+  @Autowired
+  private StudentRepo studentRepo;
+
 
   @Deprecated
   @Autowired
@@ -37,23 +44,23 @@ public class CourseServiceimpl implements CourseService {
 
   @Override
   public List<Course> getAllCourse(Integer pageNumber, int size, String sortField, String sortOrder) {
-  log.info("CourseServiceimpl, getCourse Method Start");
-Sort sort = (sortOrder.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
-Pageable p = PageRequest.of(pageNumber, size, sort);
-Page<Course> page = courseRepo.findAll(p);
-List<Course> courseAll = page.getContent();
+    log.info("CourseServiceimpl,getCourse Method Start");
 
-List<Course> courses = new ArrayList<>();
-for (Course course : courseAll) {
-    User user = userRepo.findById(course.getUserId())
-            .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
-    course.setUserName(user.getName());
-    courses.add(course);
-}
-
-log.info("CourseServiceimpl, getCourse Method Ends");
-return courses;
-
+    Sort s = (sortOrder.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+    Pageable p = PageRequest.of(pageNumber, size, s);
+    Page<Course> page = courseRepo.findAll(p);
+    List<Course> courseAll = page.getContent();
+    System.out.println(courseAll.size());
+    System.out.println(page.isLast());
+    List<Course> courses = new ArrayList<>();
+    for (Course course2 : courseAll) {
+      User user = this.userRepo.findById(course2.getUserId())
+          .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course2.getUserId()));
+      course2.setUserName(user.getName());
+      courses.add(course2);
+    }
+    log.info("CourseServiceimpl,getCourse Method Ends");
+    return courses;
   }
 
   @Override
@@ -74,36 +81,46 @@ return courses;
   public Course addCourse(CourseDto course) {
 
     log.info("CourseServiceimpl,addCourse Method Start");
-    User us = userRepo.findById(course.getUserId())
-        .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
+    User us = userRepo.findById(course.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
     String response = "";
 
     Course c = new Course();
     c.setCourse_name(course.getCourse_name());
     c.setUserId(course.getUserId());
     c.setUserName(us.getName());
+    Course savedcourse = this.courseRepo.save(c);
 
-    for (String i : course.getMails()) {
+    List<EmailsDto> dtos = course.getEmailsDto();
 
-      String password = RandomString.make(8) + i;
-      User user = userRepo.findByEmail(i);
+    for (EmailsDto email : dtos) {
 
-      if (user != null) {
+      String password = RandomString.make(12) + "K80";
+      Student st= this.studentRepo.getszStudentByEmail(email.getEmail());
+
+      if (st!= null) {
         System.out.println("User Allready Exist");
 
       } else {
 
         try {
           System.out.println("+++++++++++Auth0Service Method Enter");
-          response = this.auth0Service.createUser(i, password, course.getToken());
+          response = this.auth0Service.createUser(email.getEmail(), password, course.getToken());
           System.out.println("UserID++++++++++" + response);
           // res = userId
           User use = new User();
           use.setUserId(response);
-          use.setEmail(i);
+          use.setEmail(email.getEmail());
           use.setPassword(password);
           use.setRole("Student");
-          userRepo.save(use);
+          User savedUser = this.userRepo.save(use);
+
+          Student student = new Student();
+          student.setBranch(email.getBranch());
+          student.setName(email.getName());
+          student.setEmail(email.getEmail());
+          student.setOrgnizationId(course.getOrgnizationId());
+          student.setStudentid(savedUser.getUserId());
+          Student savedst =  this.studentRepo.save(student);
 
         } catch (Exception e) {
 
@@ -117,6 +134,7 @@ return courses;
     this.courseRepo.save(c);
     log.info("CourseServiceimpl,addCourse Method Ends");
     return c;
+    
   }
 
   @Override

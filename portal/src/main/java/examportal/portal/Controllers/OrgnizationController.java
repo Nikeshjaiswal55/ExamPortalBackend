@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Orgnizations;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.OrgnizationDto;
+import examportal.portal.Payloads.userDto;
 import examportal.portal.Repo.OrgnizationRepo;
 import examportal.portal.Services.OrgnizationService;
 
@@ -59,9 +61,12 @@ public class OrgnizationController {
     //get Orgnization by UserId
     @GetMapping("/getOrgnizationByUserId/{UserId}")
      public ResponseEntity<Orgnizations> getOrgnization(@PathVariable String UserId) {
-        log.info("OrgnizationController , getAll Method Start");
+        log.info("OrgnizationController , getOrgnization Method Start");
         Orgnizations orgnization = this.orgnizationRepo.getAllOrgnizationByUserID(UserId);
-        log.info("OrgnizationController , getAll Method Ends");
+        if(orgnization==null){
+            throw new ResourceNotFoundException("Orgnization","UserId",UserId);
+        }
+        log.info("OrgnizationController , getOrgnization Method Ends");
         return new ResponseEntity<Orgnizations>(orgnization, HttpStatus.OK);
     }
 

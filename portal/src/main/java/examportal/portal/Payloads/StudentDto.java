@@ -17,6 +17,8 @@ public class StudentDto {
 
     private String branch;
 
+    private String year;
+
     private String orgnizationId;
 
 } 

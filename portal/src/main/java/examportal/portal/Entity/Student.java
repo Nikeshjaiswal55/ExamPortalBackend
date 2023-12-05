@@ -21,6 +21,10 @@ public class Student {
 
     private String paperId;
 
+    private String year;
+
+    private boolean is_attempted;
+
     // public String setPaperId(String paperid){
     //     paperId.add(paperid);
     //     return "paperId add"+paperId;

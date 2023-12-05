@@ -41,14 +41,14 @@ public class OrgnizationServiceImpl implements OrgnizationService {
       throw new ResourceAlreadyExistException("Orgnization", "UserID", orgnizationsDto.getUserId());
     } else {
 
-      User user = this.userService.createUser(orgnizationsDto.getUser());
+      
       Orgnizations newOrgnizations = new Orgnizations();
-
       newOrgnizations.setOrgnizationName(orgnizationsDto.getOrgnizationName());
       newOrgnizations.setOrgnizationType(orgnizationsDto.getOrgnizationType());
-      newOrgnizations.setUserId(user.getUserId());
+      newOrgnizations.setUserId(orgnizationsDto.getUserId());
 
       Orgnizations savedOrgnizations = this.orgnizationRepo.save(newOrgnizations);
+      User user = this.userService.createUser(orgnizationsDto.getUser());
 
       log.info("OrgnizationServiceImp , createOrgnization Method Ends");
       return savedOrgnizations;
