@@ -16,4 +16,7 @@ public interface CourseRepo extends JpaRepository<Course,String> {
     
     @Query("SELECT s FROM Course s WHERE s.userId=:userId")
     public List<Course> getCourseByUseId(@Param("userId") String userId);
+
+    @Query("SELECT s FROM Course s WHERE s.name=:name")
+    public List<Course> getAllCourseByStudentName(@Param("name")String name);
 }

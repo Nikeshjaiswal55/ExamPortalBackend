@@ -25,6 +25,8 @@ public interface StudentSevices{
     List<Student> getAllStudentByPaperId(String paperId);
 
     String addStudentPaper(StudentDto studentDto);
+// getAll Student by name
+    List<Student> getAllStudentsbyName(String name);
 
     
 }

@@ -43,9 +43,19 @@ public class UserController {
             @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
             @RequestParam(name = "sortField", defaultValue = "id",required = false) String sortField,
             @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder){
-        log.info("UserController, createUser Method Ends");
+        log.info("UserController, getAllUser Method Ends");
 
         List<User> us = this.userService.getAllUser(page,size,sortField,sortOrder); 
+
+        return new ResponseEntity<List<User>>(us,HttpStatus.OK);
+        
+    }
+    //  get all user by name
+      @GetMapping("/user/getAll/{name}")
+    public ResponseEntity<List<User>> getAllUserByName(@PathVariable String name){
+        
+        List<User> us = this.userService.getAllUserByName(name); 
+        log.info("UserController, getAllUserByName Method Ends");
 
         return new ResponseEntity<List<User>>(us,HttpStatus.OK);
         

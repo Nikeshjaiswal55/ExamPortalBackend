@@ -1,5 +1,7 @@
 package examportal.portal.ServicesImpl;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +79,16 @@ public class UserserviceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("user", "userId", userId));
         log.info("userService , getAllUser Method Start");
         return user;
+    }
+
+
+    @Override
+    public List<User> getAllUserByName(String name) {
+       List<User> st = userRepo.getAllUserByName(name);
+       if(st.isEmpty()){
+        throw new NoSuchElementException("user not fount in our list");
+       }
+       return st;
     }
 
     

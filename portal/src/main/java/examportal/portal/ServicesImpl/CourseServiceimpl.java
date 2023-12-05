@@ -3,6 +3,8 @@ package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,6 +155,17 @@ public class CourseServiceImpl implements CourseService {
     log.info("CourseServiceimpl, deleteCourse Method Start");
     courseRepo.deleteById(getId);
     log.info("CourseServiceimpl, deleteCourse Method Ends");
+  }
+
+  @Override
+  public List<Course> getAllCourseByStudentName(String name) {
+    log.info("CourseServiceimpl, getAllCourseByStudentName  Method Start");
+    List<Course> list = courseRepo. getAllCourseByStudentName(name);
+     if(list.isEmpty()){
+      throw new NoSuchElementException("The Paper list is empty");
+  }
+    log.info("CourseServiceimpl, getAllCourseByStudentName  Method and");
+   return list;
   }
 
 }

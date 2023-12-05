@@ -56,6 +56,16 @@ public class QuestionsController {
 
         return new ResponseEntity<>(questions,HttpStatus.OK);
     }
+    //get all question by name
+     @GetMapping("/getall/questions/{name}")
+    public ResponseEntity<List<Questions>> getallbyName(@PathVariable String name)
+    {
+
+        List<Questions> questions = this.questionService.getAllQuestionsByName(name);
+
+
+        return new ResponseEntity<>(questions,HttpStatus.OK);
+    }
 
     @DeleteMapping("/DeleteQuestion/{QuestionID}")
     public ResponseEntity<String> deleteQuestions(@PathVariable String QuestionID)

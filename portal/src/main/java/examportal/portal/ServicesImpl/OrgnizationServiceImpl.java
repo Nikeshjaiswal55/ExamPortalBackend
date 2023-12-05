@@ -41,7 +41,6 @@ public class OrgnizationServiceImpl implements OrgnizationService {
       throw new ResourceAlreadyExistException("Orgnization", "UserID", orgnizationsDto.getUserId());
     } else {
 
-      
       Orgnizations newOrgnizations = new Orgnizations();
       newOrgnizations.setOrgnizationName(orgnizationsDto.getOrgnizationName());
       newOrgnizations.setOrgnizationType(orgnizationsDto.getOrgnizationType());
@@ -54,14 +53,15 @@ public class OrgnizationServiceImpl implements OrgnizationService {
       return savedOrgnizations;
     }
   }
-//impeliments pagenation and sorting in this mathod
+
+  // impeliments pagenation and sorting in this mathod
   @Override
   public List<Orgnizations> getAllOrgnizations(Integer pageNumber, int size, String sortField, String sortOrder) {
     log.info("OrgnizationServiceImp , getAllOrgnization Method Start");
-    Sort sort =(sortField.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
-    Pageable p= PageRequest.of(pageNumber, size, sort);
+    Sort sort = (sortField.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+    Pageable p = PageRequest.of(pageNumber, size, sort);
     Page<Orgnizations> orgnizations = this.orgnizationRepo.findAll(p);
-    List<Orgnizations> o= orgnizations.getContent();
+    List<Orgnizations> o = orgnizations.getContent();
     log.info("OrgnizationServiceImp , getAllOrgnization Method Ends");
     return o;
   }
@@ -91,4 +91,11 @@ public class OrgnizationServiceImpl implements OrgnizationService {
     return savedOrgnizations;
   }
 
+  @Override
+  public List<Orgnizations> getAllOrgnizationsByName(String name) {
+    log.info("orgnizationSerivceImpl, getalllOrgnizationByName mathod is start");
+    List<Orgnizations> ogname = orgnizationRepo.getAllOrgnizationsByName(name);
+    log.info("orgnizationSerivceImpl, getalllOrgnizationByName mathod is and ");
+    return ogname;
+  }
 }

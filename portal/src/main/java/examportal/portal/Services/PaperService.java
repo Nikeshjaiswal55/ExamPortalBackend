@@ -20,7 +20,7 @@ public interface PaperService {
 //Get All Paper By UserID
     List<ExamDetails> getAllPaperByUserId(String userId);
 
-    //
+    List<Paper> getAllpaperByName(String name);
     String activatePaper(String paperID);
 
     PaperDto getPaperById(String paperID);
@@ -32,5 +32,7 @@ public interface PaperService {
     AttemptedPapers AttemptPaper(Assessment assessment);
 
     ExamDetails GetattemptedStudents(String paperId);
+
+
 
 }

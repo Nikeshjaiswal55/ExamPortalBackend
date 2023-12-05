@@ -78,6 +78,15 @@ public class StudentController {
         log.info("StudentController , getAllStudent Method Ends");
         return new ResponseEntity<Student>(s, HttpStatus.OK);
     }
+    //get studet by name
+     @GetMapping("/GetAllStudentByName/{name}")
+    public ResponseEntity<List<Student>> getAllStudentByName(@PathVariable String name) {
+        log.info("StudentController , getAllStudentByName Method Start");
+
+        List<Student> st = this.studentSevices.getAllStudentsbyName(name);
+        log.info("StudentController , getAllStudentByName Method Ends");
+        return new ResponseEntity<List<Student>>(st, HttpStatus.OK);
+    }
 
     // Get All Student By paperId
     @GetMapping("/GetAllStudentByPaperId/{paperId}")

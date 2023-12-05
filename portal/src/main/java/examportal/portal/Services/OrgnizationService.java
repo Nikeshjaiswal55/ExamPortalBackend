@@ -15,5 +15,7 @@ public interface OrgnizationService {
 
     Orgnizations updateOrgnizations(Orgnizations orgnization);
 
+    
+    List<Orgnizations> getAllOrgnizationsByName(String name);
 
 }

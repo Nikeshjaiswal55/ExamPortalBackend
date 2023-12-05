@@ -57,7 +57,18 @@ public class OrgnizationController {
         log.info("OrgnizationController , getAll Method Ends");
         return new ResponseEntity<List<Orgnizations>>(orgnization, HttpStatus.OK);
     }
+    //get All og by name
 
+ @GetMapping("/getOrgnizationByName/{name}")
+     public ResponseEntity<List<Orgnizations>> getOrgnizationByName(@PathVariable String name) {
+        log.info("OrgnizationController , getOrgnizationBY name Method Start");
+       List< Orgnizations> orgnization = this.orgnizationRepo.getAllOrgnizationsByName(name);
+        if(orgnization==null){
+            throw new ResourceNotFoundException("Orgnization","name",name);
+        }
+        log.info("OrgnizationController , getOrgnizationByName Method Ends");
+        return new ResponseEntity<>(orgnization, HttpStatus.OK);
+    }
     //get Orgnization by UserId
     @GetMapping("/getOrgnizationByUserId/{UserId}")
      public ResponseEntity<Orgnizations> getOrgnization(@PathVariable String UserId) {

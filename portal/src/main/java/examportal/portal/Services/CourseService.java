@@ -8,6 +8,8 @@ public interface CourseService {
 
     List<Course>getAllCourse(Integer pageNumber, int size, String sortField, String sortOrder);
 
+     List<Course>getAllCourseByStudentName(String name);
+
     Course getCourseByCouseId(String getId);
 
     Course addCourse(CourseDto course);

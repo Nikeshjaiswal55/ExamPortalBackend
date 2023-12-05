@@ -2,6 +2,8 @@ package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -319,4 +321,12 @@ public class PaperServiceImpl implements PaperService {
     }
     return examDetails;
   }
-}
+
+  @Override
+  public List<Paper> getAllpaperByName(String name) {
+  List<Paper> pprName=paperRepo. getAllpaperByName(name);
+  if(pprName.isEmpty()){
+      throw new NoSuchElementException("The Paper list is empty");
+  }
+  return pprName;
+}}

@@ -90,6 +90,19 @@ public class PaperController {
         log.info("paperService UpdatePaper method End's");
         return new ResponseEntity<PaperDto>(paperDto2, HttpStatus.OK);
     }
+    //get pepar BY name
+
+ @GetMapping("/getAllPaperbyName/{name}")
+    public ResponseEntity<List<Paper>> getallpaersByName(@PathVariable String name) {
+
+        log.info("paper repo getall paper by name method started");
+        List<Paper> peparByName= this.paperService.getAllpaperByName(name) ;
+        
+        log.info("paper repo getall paper by name method And");
+
+        return new ResponseEntity<>(peparByName, HttpStatus.ACCEPTED);
+
+    }
 
     // Getting All papers by userId
     @GetMapping("/getAllPaperbyUserId/{userId}")
