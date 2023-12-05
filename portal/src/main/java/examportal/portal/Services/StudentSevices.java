@@ -23,5 +23,8 @@ public interface StudentSevices{
 
     String addStudentPaper(StudentDto studentDto);
 
+    public String inviteStudents(String paperID ,String orgnizationId,List<String> emails,String token);
+
+
     
 }

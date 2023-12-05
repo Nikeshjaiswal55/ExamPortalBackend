@@ -96,7 +96,6 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setAssessmentName(paperdDto.getExamDetails().getAssessmentName());
 
     ExamDetails examDetails2 = this.examDetailsRepo.save(examDetails);
-    System.out.println("my paper Id ============" + examDetails2.getPaperId());
 
     List<Questions> questionsList = paperdDto.getQuestions();
 
@@ -104,15 +103,14 @@ public class PaperServiceImpl implements PaperService {
       questions.setPaperID(newpPaper.getPaperId());
       this.questionService.createQuestions(questions);
     }
-    StudentDto dto = new StudentDto();
-    dto.setEmail(paperdDto.getEmails());
-    dto.setToken(paperdDto.getToken());
-    dto.setPaperID(newpPaper.getPaperId());
-    dto.setOrgnizationId(paperdDto.getOrgnizationId());
-    dto.setBranch(examDetails2.getBranch());
-    String student = this.sevices.addStudentPaper(dto);
+    // StudentDto dto = new StudentDto();
+    // dto.setEmail(paperdDto.getEmails());
+    // dto.setToken(paperdDto.getToken());
+    // dto.setPaperID(newpPaper.getPaperId());
+    // dto.setOrgnizationId(paperdDto.getOrgnizationId());
+    // dto.setBranch(examDetails2.getBranch());
+    // String student = this.sevices.addStudentPaper(dto);
 
-    System.out.println(student);
 
     log.info("paperService Create paper method End's :");
 
@@ -282,7 +280,11 @@ public class PaperServiceImpl implements PaperService {
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Assessment assessment : assment) {
+      AttemptedPapers  attemptedPapers = this.attemptepaperRepo.getAllAttemptedPaperbyStudentID(userId, assessment.getPaperId());
       ExamDetails examDetail = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
+      if (attemptedPapers!=null) {
+        examDetail.set_attempted(true);
+      }
       examDetails.add(examDetail);
     }
 
@@ -310,7 +312,6 @@ public class PaperServiceImpl implements PaperService {
 
     if (student != null) {
       examDetails.set_attempted(true);
-      return examDetails;
     }
     return examDetails;
   }

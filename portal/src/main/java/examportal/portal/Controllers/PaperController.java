@@ -40,18 +40,6 @@ public class PaperController {
     private PaperService paperService;
 
     @Autowired
-    private PaperRepo paperRepo;
-
-    @Autowired
-    private QuestionsRepo questionsRepo;
-
-    @Autowired
-    private ExamDetailsRepo examDetailsRepo;
-
-    @Autowired
-    private StudentRepo studentRepo;
-
-    @Autowired
     private InvitationRepo invitationRepo;
 
     Logger log = LoggerFactory.getLogger("MetorController");
