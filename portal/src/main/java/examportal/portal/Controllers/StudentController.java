@@ -13,17 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Student;
-import examportal.portal.Payloads.PageableDto;
+import examportal.portal.Payloads.InvitationDto;
 import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.StudentRepo;
-import examportal.portal.Response.PageResponce;
 import examportal.portal.Services.StudentSevices;
-
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -106,6 +104,18 @@ public class StudentController {
 
         log.info("StudentController , getAllStudent Method Ends");
         return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
+    }
+
+    @PostMapping("/inviteStudents/")
+    public ResponseEntity<String> InviteStudentsByEmail(@RequestBody InvitationDto invitationDto,HttpServletRequest request)
+    {
+        log.info("StudentController , InviteStudentsByEmail Method Start");
+        invitationDto.setToken(request.getHeader("Authorization"));
+        String response  = this.studentSevices.inviteStudents(invitationDto);
+
+        log.info("StudentController , InviteStudentsByEmail Method end");
+
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
 }

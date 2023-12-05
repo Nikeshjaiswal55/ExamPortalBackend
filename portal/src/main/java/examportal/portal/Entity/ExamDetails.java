@@ -20,5 +20,6 @@ public class ExamDetails {
     private String assessmentName;
     private boolean is_Active;
     private boolean is_Setup;
+    private boolean is_attempted;
     private String paperId;
 }
