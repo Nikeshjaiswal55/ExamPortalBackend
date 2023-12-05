@@ -14,7 +14,7 @@ public interface PaperService {
     // String deletePaper(String paperId);
     List<PaperDto> getAllPaper(int page, int size, String sortField, String sortOrder);
     PaperDto getPaperById(String paperID);
-
+    public List<PaperDto> getAllPaperByUserId(String userId);
     String deletePaperByPaperId(String paperId);
 
 }

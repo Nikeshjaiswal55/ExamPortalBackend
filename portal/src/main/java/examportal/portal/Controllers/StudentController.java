@@ -1,6 +1,6 @@
 package examportal.portal.Controllers;
 
-
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Sort;
 import examportal.portal.Entity.Student;
-import examportal.portal.Payloads.PageableDto;
+
 import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.StudentRepo;
-import examportal.portal.Response.PageResponce;
+
 import examportal.portal.Services.StudentSevices;
 
 import org.springframework.web.bind.annotation.RequestBody;

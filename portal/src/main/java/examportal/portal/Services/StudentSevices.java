@@ -3,8 +3,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import examportal.portal.Entity.Student;
+// import java.util.List;
 
+import examportal.portal.Payloads.PageableDto;
 import examportal.portal.Payloads.StudentDto;
+import examportal.portal.Response.PageResponce;
 
 
 public interface StudentSevices{
@@ -20,7 +23,7 @@ public interface StudentSevices{
     //5. Deleting an existing Student by Id
     String deleteStudent(String studentId);
 
-    List<Student> getAllStudentByPaperId(String paperId);
+    PageResponce getAllStudentByPaperId(String paperId, PageableDto dto);
 
     
 }
