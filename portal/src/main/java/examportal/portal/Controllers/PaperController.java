@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Assessment;
+import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
@@ -137,5 +138,14 @@ public class PaperController {
 
 
         return new ResponseEntity<List<InvitedStudents>>(students,HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/attempt/paper")
+    public ResponseEntity<AttemptedPapers> attemptedpaper(@RequestBody Assessment assessment)
+    {
+        AttemptedPapers attemptedPapers2 = this.paperService.AttemptPaper(assessment);
+        
+        return new ResponseEntity<>(attemptedPapers2,HttpStatus.ACCEPTED);
+         
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Assessment;
+import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
@@ -19,6 +20,7 @@ import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.AssessmentRepo;
+import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Repo.PaperRepo;
@@ -64,6 +66,9 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private AssessmentRepo assessmentRepo;
+
+  @Autowired
+  private AttemptepaperRepo attemptepaperRepo;
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
@@ -243,8 +248,6 @@ public class PaperServiceImpl implements PaperService {
 
   }
 
-  
-
   @Override
   public String activatePaper(String paperId) {
     log.info("paperServiceImpl activatePaper  method Starts");
@@ -261,7 +264,7 @@ public class PaperServiceImpl implements PaperService {
           .orElseThrow(() -> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
       User user = this.userRepo.findById(invitedStudents.getStudentId())
           .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
-      String msg = "Use_Name => " + student.getEmail()+"\n" + "Password => " + user.getPassword();
+      String msg = "Use_Name => " + student.getEmail() + "\n" + "Password => " + user.getPassword();
 
       this.emailServiceImpl.sendFormateMail(student.getEmail(), msg, "login crenditials", user.getRole());
 
@@ -274,15 +277,41 @@ public class PaperServiceImpl implements PaperService {
 
   @Override
   public List<ExamDetails> getAllAssessmentsByUserId(String userId) {
-    
+
     List<Assessment> assment = this.assessmentRepo.getAssessmentsBy_userId(userId);
-     List<ExamDetails> examDetails = new ArrayList<>();
+    List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Assessment assessment : assment) {
       ExamDetails examDetail = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
       examDetails.add(examDetail);
     }
 
+    return examDetails;
+  }
+
+  @Override
+  public AttemptedPapers AttemptPaper(Assessment assessment) {
+    AttemptedPapers attemptedPapers = new AttemptedPapers();
+    attemptedPapers.setAssmentId(assessment.getAssessmentID());
+    attemptedPapers.setPaperId(assessment.getPaperId());
+    attemptedPapers.setStudentId(assessment.getUserId());
+
+    AttemptedPapers save = this.attemptepaperRepo.save(attemptedPapers);
+
+    return attemptedPapers;
+  }
+
+  @Override
+  public ExamDetails GetattemptedStudents(String paperId) {
+    AttemptedPapers attemptedPapers = this.attemptepaperRepo.GetattemptedStudentsByPaperId(paperId);
+    Student student = this.studentRepo.findById(attemptedPapers.getStudentId())
+        .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentID", attemptedPapers.getStudentId()));
+    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
+
+    if (student != null) {
+      examDetails.set_attempted(true);
+      return examDetails;
+    }
     return examDetails;
   }
 }
