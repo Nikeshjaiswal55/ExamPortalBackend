@@ -3,6 +3,7 @@ package examportal.portal.Services;
 import java.util.List;
 
 import examportal.portal.Entity.Assessment;
+import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
 // 
 import examportal.portal.Entity.Paper;
@@ -27,5 +28,9 @@ public interface PaperService {
     List<ExamDetails> getAllAssessmentsByUserId(String userId);
 
     String deletePaperByPaperId(String paperId);
+
+    AttemptedPapers AttemptPaper(Assessment assessment);
+
+    ExamDetails GetattemptedStudents(String paperId);
 
 }
