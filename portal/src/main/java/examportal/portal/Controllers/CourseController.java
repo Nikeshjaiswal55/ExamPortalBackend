@@ -40,9 +40,7 @@ public class CourseController {
         @RequestParam(value = "pageNumber",defaultValue = "0",required = false)Integer pageNumber, HttpServletRequest request
   ) {
     log.info("CourseController,getCourse Method Start");
-
-    String token = request.getHeader("Authorization");
-    System.out.println("my token    ========================="+token);
+    
     List<Course> l = courseService.getAllCourse(pageNumber);
 
     log.info("CourseController,getCourse Method Ends");

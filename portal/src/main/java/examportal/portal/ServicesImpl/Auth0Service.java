@@ -28,8 +28,6 @@ public class Auth0Service {
     public String createUser(String email, String password, String token) throws Exception {
         log.info("Auth0Service, createUser Method Started");
  
-        System.out
-                .println("method statted  ==========================================================================");
         String clientId = "HFjnwkNDl3VtcyC83VfiGWtmLXBT6Pvz";
         String connection = "Username-Password-Authentication";
         String res = "";
@@ -41,7 +39,7 @@ public class Auth0Service {
                 + "\"connection\": \"" + connection + "\""
                 + "}";
 
-        System.out.println("myjson body==================================" + jsonBody);
+     
 
         RequestBody body = RequestBody.create(mediaType, jsonBody);
 
@@ -55,7 +53,6 @@ public class Auth0Service {
 
         Response response = client.newCall(request).execute();
         if (response.isSuccessful()) {
-            System.out.println("User created successfully");
             try {
                 JsonObject jsonObject = JsonParser.parseString(response.body().string()).getAsJsonObject();
                 String id = jsonObject.get("_id").getAsString();
@@ -65,7 +62,6 @@ public class Auth0Service {
                 System.out.println("Error parsing JSON: " + e.getMessage());
             }
 
-            System.out.println("my response ========================" + res);
         } else {
             System.out.println("Failed to create user. Response: " + response.body().string());
         }

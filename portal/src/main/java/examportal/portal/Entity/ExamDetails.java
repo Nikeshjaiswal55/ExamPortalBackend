@@ -21,5 +21,7 @@ public class ExamDetails {
     private boolean is_Active;
     private boolean is_Setup;
     private boolean is_attempted;
+    private String totalMarks;
+    private String minimum_marks;
     private String paperId;
 }

@@ -1,6 +1,5 @@
 package examportal.portal.Entity;
 
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

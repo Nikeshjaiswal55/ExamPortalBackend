@@ -23,7 +23,6 @@ public class ResultController {
     @PostMapping("/saveresult")
     public ResponseEntity<ResultDto> createResults(@RequestBody ResultDto resultDto)
     {
-        System.out.println("My Quesetions =============================="+resultDto.getPaperID());
         ResultDto result = this.resultService.createResult(resultDto);
 
         return new ResponseEntity<>(result,HttpStatus.CREATED);

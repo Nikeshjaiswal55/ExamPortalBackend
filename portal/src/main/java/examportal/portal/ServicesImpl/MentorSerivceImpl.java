@@ -32,7 +32,6 @@ public class MentorSerivceImpl implements MentorService {
                 + "\nThankYou";
 
         emailServiceImpl.sendSimpleMail(email, msg, sub);
-        System.out.println("Email Successfully-------------------------------------");
 
         Mentor m1 = this.mentorRepo.save(mentor);
 
