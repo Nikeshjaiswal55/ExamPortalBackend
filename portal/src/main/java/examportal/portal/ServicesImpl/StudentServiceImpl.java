@@ -274,74 +274,80 @@ public class StudentServiceImpl implements StudentSevices {
         return "Student added successfully";
     }
 
-    @Deprecated
     @Override
-    public String inviteStudents(InvitationDto dto) {
-
-        for (String email : dto.getEmails()) {
-
-            Student st = this.studentRepo.getszStudentByEmail(email);
-            String password = RandomString.make(12)+"K80";
-
-            String response = "";
-            if (st != null) {
-
-                InvitedStudents invitedStudents = new InvitedStudents();
-                invitedStudents.setPaperId(dto.getPaperID());
-                invitedStudents.setStudentId(st.getStudentid());
-                this.invitationRepo.save(invitedStudents);
-
-                Assessment assessment = new Assessment();
-                assessment.setPaperId(dto.getPaperID());
-                assessment.setUserId(st.getStudentid());
-                assessment.setOrgnizationId(dto.getOrgnizationId());
-                Assessment newaAssessment = this.assessmentRepo.save(assessment);
- 
-            } else {
-
-                try {
-                    response = this.auth0Service.createUser(email, password, dto.getToken());
-                    if (response != null) {
-                        System.out.println("My response============================" + response);
-                    } else {
-                        throw new Exception("Auth0 UserCreation error");
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                User newUser = new User();
-                newUser.setUserId(response);
-                newUser.setEmail(email);
-                newUser.setPassword(password);
-                newUser.setRole("Student");
-                // userDto dto = this.mapper.map(newUser, userDto.class);
-                // User user2 = this.userService.createUser(dto);
-                User user2 = this.userRepo.save(newUser);
-
-                Student student = new Student();
-                student.setStudentid(response);
-                student.setEmail(email);
-                student.setOrgnizationId(dto.getOrgnizationId());
-                student.setPaperId(dto.getPaperID());
-                Student newsStudent = this.studentRepo.save(student);
-
-                InvitedStudents invitedStudents = new InvitedStudents();
-                invitedStudents.setPaperId(dto.getPaperID());
-                invitedStudents.setStudentId(newsStudent.getStudentid());
-                this.invitationRepo.save(invitedStudents);
-
-                Assessment assessment = new Assessment();
-                assessment.setPaperId(dto.getPaperID());
-                assessment.setUserId(newsStudent.getStudentid());
-                assessment.setOrgnizationId(dto.getOrgnizationId());
-                Assessment newaAssessment = this.assessmentRepo.save(assessment);
-
-            }
-        }
-        return "Student added successfully";
+    public String inviteStudents(String paperID, String orgnizationId, List<String> emails, String token) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'inviteStudents'");
     }
+
+    // @Deprecated
+    // @Override
+    // public String inviteStudents(InvitationDto dto) {
+
+    //     for (String email : dto.getEmails()) {
+
+    //         Student st = this.studentRepo.getszStudentByEmail(email);
+    //         String password = RandomString.make(12)+"K80";
+
+    //         String response = "";
+    //         if (st != null) {
+
+    //             InvitedStudents invitedStudents = new InvitedStudents();
+    //             invitedStudents.setPaperId(dto.getPaperID());
+    //             invitedStudents.setStudentId(st.getStudentid());
+    //             this.invitationRepo.save(invitedStudents);
+
+    //             Assessment assessment = new Assessment();
+    //             assessment.setPaperId(dto.getPaperID());
+    //             assessment.setUserId(st.getStudentid());
+    //             assessment.setOrgnizationId(dto.getOrgnizationId());
+    //             Assessment newaAssessment = this.assessmentRepo.save(assessment);
+ 
+    //         } else {
+
+    //             try {
+    //                 response = this.auth0Service.createUser(email, password, dto.getToken());
+    //                 if (response != null) {
+    //                     System.out.println("My response============================" + response);
+    //                 } else {
+    //                     throw new Exception("Auth0 UserCreation error");
+    //                 }
+
+    //             } catch (Exception e) {
+    //                 e.printStackTrace();
+    //             }
+
+    //             User newUser = new User();
+    //             newUser.setUserId(response);
+    //             newUser.setEmail(email);
+    //             newUser.setPassword(password);
+    //             newUser.setRole("Student");
+    //             // userDto dto = this.mapper.map(newUser, userDto.class);
+    //             // User user2 = this.userService.createUser(dto);
+    //             User user2 = this.userRepo.save(newUser);
+
+    //             Student student = new Student();
+    //             student.setStudentid(response);
+    //             student.setEmail(email);
+    //             student.setOrgnizationId(dto.getOrgnizationId());
+    //             student.setPaperId(dto.getPaperID());
+    //             Student newsStudent = this.studentRepo.save(student);
+
+    //             InvitedStudents invitedStudents = new InvitedStudents();
+    //             invitedStudents.setPaperId(dto.getPaperID());
+    //             invitedStudents.setStudentId(newsStudent.getStudentid());
+    //             this.invitationRepo.save(invitedStudents);
+
+    //             Assessment assessment = new Assessment();
+    //             assessment.setPaperId(dto.getPaperID());
+    //             assessment.setUserId(newsStudent.getStudentid());
+    //             assessment.setOrgnizationId(dto.getOrgnizationId());
+    //             Assessment newaAssessment = this.assessmentRepo.save(assessment);
+
+    //         }
+    //     }
+    //     return "Student added successfully";
+    // }
 
 
 }
