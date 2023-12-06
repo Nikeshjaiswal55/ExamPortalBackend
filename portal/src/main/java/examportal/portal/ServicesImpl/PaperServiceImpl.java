@@ -34,6 +34,7 @@ import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.ExamDetailsService;
 import examportal.portal.Services.PaperService;
+
 @Service
 public class PaperServiceImpl implements PaperService {
 
@@ -84,11 +85,29 @@ public class PaperServiceImpl implements PaperService {
     paper.set_Active(false);
     Paper newpPaper = this.paperRepo.save(paper);
 
-    ExamDetails examDetails = this.examDetailsService.createExamDetails(paperdDto.getExamDetails());
+    ExamDetails examDetails = new ExamDetails();
+    examDetails.setAssessmentName(paperdDto.getExamDetails().getAssessmentName());
+    examDetails.setBranch(paperdDto.getExamDetails().getBranch());
+    examDetails.setExamDuration(paperdDto.getExamDetails().getExamDuration());
+    examDetails.setExamMode(paperdDto.getExamDetails().getExamMode());
+    examDetails.setSession(paperdDto.getExamDetails().getSession());
+    examDetails.set_Setup(true);
+    examDetails.set_Active(false);
+    examDetails.setPaperChecked(false);
+    examDetails.setExamRounds(paperdDto.getExamDetails().getExamRounds());
+    examDetails.setPaperId(newpPaper.getPaperId());
+    examDetails.setTotalMarks(paperdDto.getExamDetails().getTotalMarks());
+    examDetails.setMinimum_marks(paperdDto.getExamDetails().getMinimum_marks());
+    this.examDetailsRepo.save(examDetails);
 
     List<Questions> questionsList = paperdDto.getQuestions();
 
-    this.questionsRepo.saveAll(questionsList);
+    for (Questions questions : questionsList) {
+      questions.setPaperID(newpPaper.getPaperId());
+      this.questionsRepo.save(questions);
+    }
+
+    // this.questionsRepo.saveAll(questionsList);
 
     log.info("paperService Create paper method End's :");
     return newpPaper;
@@ -222,18 +241,31 @@ public class PaperServiceImpl implements PaperService {
 
     }
 
-    return examDetails;
+    return examDetails;  
 
   }
 
   @Override
-  public String activatePaper(String paperId) {
+  public String activatePaper(String paperId, boolean active) {
     log.info("paperServiceImpl activatePaper  method Starts");
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
+    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
+    if (active == true) {
+      paper.set_Active(false);
+      paper.set_setup(true);
+      examDetails.set_Active(false);
+      examDetails.set_Setup(true);
+      Paper ActivePaper = this.paperRepo.save(paper);
+      this.examDetailsRepo.save(examDetails);
+      return "Deactive successfully";
+    }
     paper.set_Active(true);
     paper.set_setup(false);
+    examDetails.set_Active(true);
+    examDetails.set_Setup(false);
     Paper ActivePaper = this.paperRepo.save(paper);
+    this.examDetailsRepo.save(examDetails);
 
     List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
 
@@ -260,9 +292,10 @@ public class PaperServiceImpl implements PaperService {
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Assessment assessment : assment) {
-      AttemptedPapers  attemptedPapers = this.attemptepaperRepo.getAllAttemptedPaperbyStudentID(userId, assessment.getPaperId());
+      AttemptedPapers attemptedPapers = this.attemptepaperRepo.getAllAttemptedPaperbyStudentID(userId,
+          assessment.getPaperId());
       ExamDetails examDetail = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
-      if (attemptedPapers!=null) {
+      if (attemptedPapers != null) {
         examDetail.set_attempted(true);
       }
       examDetails.add(examDetail);

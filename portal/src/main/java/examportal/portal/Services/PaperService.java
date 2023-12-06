@@ -16,13 +16,12 @@ public interface PaperService {
     
     PaperDto updetPaper(PaperDto paperDto);
     
-    List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder);
+    List<PaperDto> getAllPaper();
 //Get All Paper By UserID
     List<ExamDetails> getAllPaperByUserId(String userId);
- //get All pepar by name 
-    List<Paper> getAllpaperByName(String name);
 
-    String activatePaper(String paperID);
+    //
+    String activatePaper(String paperID,boolean active);
 
     PaperDto getPaperById(String paperID);
 
@@ -33,7 +32,5 @@ public interface PaperService {
     AttemptedPapers AttemptPaper(Assessment assessment);
 
     ExamDetails GetattemptedStudents(String paperId);
-
-
 
 }
