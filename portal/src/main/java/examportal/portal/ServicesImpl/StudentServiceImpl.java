@@ -137,7 +137,7 @@ Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():So
     public String handleExistingStudent(InvitationDto dto, String studentId) {
 
         InvitedStudents invitedStudents = new InvitedStudents();
-        invitedStudents.setPaperId(dto.getPaperID());
+        invitedStudents.setPaperId(dto.getPaperId());
         invitedStudents.setStudentId(studentId);
         invitationRepo.save(invitedStudents);
 
@@ -148,7 +148,7 @@ Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():So
 
     public Assessment createAssessment(InvitationDto dto, String studentId) {
         Assessment assessment = new Assessment();
-        assessment.setPaperId(dto.getPaperID());
+        assessment.setPaperId(dto.getPaperId());
         assessment.setUserId(studentId);
         assessment.setOrgnizationId(dto.getOrgnizationId());
         return assessmentRepo.save(assessment);
@@ -173,7 +173,7 @@ Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():So
             student.setStudentid(response);
             student.setEmail(email);
             student.setOrgnizationId(dto.getOrgnizationId());
-            student.setPaperId(dto.getPaperID());
+            student.setPaperId(dto.getPaperId());
             Student newsStudent = this.studentRepo.save(student);
             
             handleExistingStudent(dto, newsStudent.getStudentid());
