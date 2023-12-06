@@ -30,12 +30,13 @@ import net.bytebuddy.utility.RandomString;
 public class CourseServiceimpl implements CourseService {
   @Autowired
   private CourseRepo courseRepo;
-
+  
   @Autowired
   private UserRepo userRepo;
 
   @Autowired
   private StudentRepo studentRepo;
+
 
   @Deprecated
   @Autowired
@@ -82,8 +83,8 @@ public class CourseServiceimpl implements CourseService {
   public Course addCourse(CourseDto course) {
 
     log.info("CourseServiceimpl,addCourse Method Start");
-    User us = userRepo.findById(course.getUserId())
-        .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
+    User us = userRepo.findById(course.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
+    String response = "";
 
     Course c = new Course();
     c.setCourse_name(course.getCourse_name());
@@ -95,47 +96,45 @@ public class CourseServiceimpl implements CourseService {
 
     for (EmailsDto email : dtos) {
 
-      Student st = this.studentRepo.getszStudentByEmail(email.getEmail());
+      String password = RandomString.make(12) + "K80";
+      Student st= this.studentRepo.getszStudentByEmail(email.getEmail());
 
-      if (st != null) {
+      if (st!= null) {
         System.out.println("User Allready Exist");
 
       } else {
-        createcourseStudents(email.getEmail(), course.getOrgnizationId(), course.getToken());
+
+        try {
+          response = this.auth0Service.createUser(email.getEmail(), password, course.getToken());
+          // res = userId
+          User use = new User();
+          use.setUserId(response);
+          use.setEmail(email.getEmail());
+          use.setPassword(password);
+          use.setRole("Student");
+          User savedUser = this.userRepo.save(use);
+
+          Student student = new Student();
+          student.setBranch(email.getBranch());
+          student.setName(email.getName());
+          student.setEmail(email.getEmail());
+          student.setOrgnizationId(course.getOrgnizationId());
+          student.setStudentid(savedUser.getUserId());
+          Student savedst =  this.studentRepo.save(student);
+
+        } catch (Exception e) {
+
+          e.printStackTrace();
+        }
+
       }
 
     }
-    
+
     this.courseRepo.save(c);
     log.info("CourseServiceimpl,addCourse Method Ends");
     return c;
-
-  }
-
-  @Deprecated
-  public String createcourseStudents(String email, String orgnizationId, String token) {
-    String response = "";
-    String password = RandomString.make(12) + "K80";
-    try {
-      response = this.auth0Service.createUser(email, password, token);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    User use = new User();
-    use.setUserId(response);
-    use.setEmail(email);
-    use.setPassword(password);
-    use.setRole("Student");
-    User savedUser = this.userRepo.save(use);
-
-    Student student = new Student();
-    student.setName(email);
-    student.setEmail(email);
-    student.setOrgnizationId(orgnizationId);
-    student.setStudentid(response);
-    Student savedst = this.studentRepo.save(student);
-    return "Students created successfully";
+    
   }
 
   @Override

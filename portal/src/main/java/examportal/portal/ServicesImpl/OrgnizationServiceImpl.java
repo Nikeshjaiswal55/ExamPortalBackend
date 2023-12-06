@@ -1,10 +1,15 @@
 package examportal.portal.ServicesImpl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Orgnizations;
@@ -37,7 +42,6 @@ public class OrgnizationServiceImpl implements OrgnizationService {
       throw new ResourceAlreadyExistException("Orgnization", "UserID", orgnizationsDto.getUserId());
     } else {
 
-      
       Orgnizations newOrgnizations = new Orgnizations();
       newOrgnizations.setOrgnizationName(orgnizationsDto.getOrgnizationName());
       newOrgnizations.setOrgnizationType(orgnizationsDto.getOrgnizationType());
@@ -51,12 +55,16 @@ public class OrgnizationServiceImpl implements OrgnizationService {
     }
   }
 
+  // impeliments pagenation and sorting in this mathod
   @Override
-  public List<Orgnizations> getAllOrgnizations() {
+  public List<Orgnizations> getAllOrgnizations(Integer pageNumber, int size, String sortField, String sortOrder) {
     log.info("OrgnizationServiceImp , getAllOrgnization Method Start");
-    List<Orgnizations> orgnizations = this.orgnizationRepo.findAll();
+    Sort sort = (sortField.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+    Pageable p = PageRequest.of(pageNumber, size, sort);
+    Page<Orgnizations> orgnizations = this.orgnizationRepo.findAll(p);
+    List<Orgnizations> o = orgnizations.getContent();
     log.info("OrgnizationServiceImp , getAllOrgnization Method Ends");
-    return orgnizations;
+    return o;
   }
 
   @Override
@@ -84,4 +92,15 @@ public class OrgnizationServiceImpl implements OrgnizationService {
     return savedOrgnizations;
   }
 
+  @Override
+  public List<Orgnizations> getAllOrgnizationsByName(String name) {
+    log.info("orgnizationSerivceImpl, getalllOrgnizationByName mathod is start");
+    List<Orgnizations> ogname = orgnizationRepo.getAllOrgnizationsByName(name);
+    if (ogname.isEmpty()){
+      throw new NoSuchElementException("this list is empty ");
+
+    }
+    log.info("orgnizationSerivceImpl, getalllOrgnizationByName mathod is and ");
+    return ogname;
+  }
 }

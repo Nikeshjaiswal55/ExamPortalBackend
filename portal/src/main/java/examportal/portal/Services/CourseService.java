@@ -6,7 +6,9 @@ import examportal.portal.Entity.Course;
 import examportal.portal.Payloads.CourseDto;
 public interface CourseService {
 
-    List<Course>getAllCourse(Integer pageNumber);
+    List<Course>getAllCourse(Integer pageNumber, int size, String sortField, String sortOrder);
+
+     List<Course>getAllCourseByStudentName(String name);
 
     Course getCourseByCouseId(String getId);
 

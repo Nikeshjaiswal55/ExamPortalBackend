@@ -2,10 +2,16 @@ package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Assessment;
@@ -26,7 +32,7 @@ import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
-import examportal.portal.Services.ExamDetailsService;
+// import examportal.portal.Services.ExamDetailsService;
 import examportal.portal.Services.PaperService;
 
 @Service
@@ -62,8 +68,8 @@ public class PaperServiceImpl implements PaperService {
   @Autowired
   private AttemptepaperRepo attemptepaperRepo;
 
-  @Autowired
-  private ExamDetailsService examDetailsService;
+  // @Autowired
+  // private ExamDetailsService examDetailsService;
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
@@ -108,10 +114,12 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public List<PaperDto> getAllPaper() {
+  public List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder) {
     log.info("paperService getAll paper method Starts :");
-
-    List<Paper> papers = this.paperRepo.findAll();
+ Sort sort = (sortOrder.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+        Pageable p = PageRequest.of(pageNumber, size, sort);
+        Page<Paper> pp =paperRepo.findAll(p);
+    List<Paper> papers = pp.getContent();
 
     List<PaperDto> paperDtos = new ArrayList<>();
 
@@ -221,7 +229,6 @@ public class PaperServiceImpl implements PaperService {
   @Override
   public List<ExamDetails> getAllPaperByUserId(String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-
     List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
     List<ExamDetails> examDetails = new ArrayList<>();
 
@@ -321,4 +328,12 @@ public class PaperServiceImpl implements PaperService {
     }
     return examDetails;
   }
-}
+
+  @Override
+  public List<Paper> getAllpaperByName(String name) {
+  List<Paper> pprName=paperRepo. getAllpaperByName(name);
+  if(pprName.isEmpty()){
+      throw new NoSuchElementException("The Paper list is empty");
+  }
+  return pprName;
+}}

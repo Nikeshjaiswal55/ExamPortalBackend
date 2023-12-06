@@ -7,9 +7,9 @@ public  interface UserService {
     
     User createUser(User user);
     
-    List<User>getAllUser();
+    List<User>getAllUser(Integer page,Integer size, String sortField, String sortOrder);
 
     User getUserById(String userId);
-
+ List<User>getAllUserByName(String name);
     
 }
