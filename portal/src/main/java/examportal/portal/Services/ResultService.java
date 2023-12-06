@@ -6,7 +6,7 @@ import examportal.portal.Payloads.checkpaperDto;
 public interface ResultService {
     ResultDto createResult(ResultDto result);
 
-    ResultDto getResultByResultId(String StudentId);
+    ResultDto getResultByStudentAndPaperId(String resultId);
 
     ResultDto checkPaper(checkpaperDto dto);
 }

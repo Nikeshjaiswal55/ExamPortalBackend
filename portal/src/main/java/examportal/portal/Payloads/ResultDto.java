@@ -23,6 +23,8 @@ public class ResultDto {
 
     private String  result;
 
+    private String date;
+
     private float percentage;
 
 }

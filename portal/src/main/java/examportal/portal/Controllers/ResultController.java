@@ -34,10 +34,10 @@ public class ResultController {
         return new ResponseEntity<>(result,HttpStatus.CREATED);
     }
 
-    @GetMapping("/Get/result/{resultID}")
-    public ResponseEntity<ResultDto> getresultByID(@PathVariable String resultID)
+    @GetMapping("/Get/result/{resultId}")
+    public ResponseEntity<ResultDto> getresultByID(@PathVariable String resultId)
     {
-        ResultDto resultDto = this.resultService.getResultByResultId(resultID);
+        ResultDto resultDto = this.resultService.getResultByStudentAndPaperId(resultId);
         return new ResponseEntity<>(resultDto,HttpStatus.OK);
     }
 
