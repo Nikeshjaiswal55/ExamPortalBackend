@@ -37,16 +37,11 @@ public class CourseController {
   // Get All 
   @GetMapping("/course/getAll")
   public ResponseEntity<List<Course>> getCourses(
-        @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
-        @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
-        @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
-        @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder, HttpServletRequest request
+        @RequestParam(value = "pageNumber",defaultValue = "0",required = false)Integer pageNumber, HttpServletRequest request
   ) {
     log.info("CourseController,getCourse Method Start");
-
-    String token = request.getHeader("Authorization");
-    System.out.println("my token    ========================="+token);
-    List<Course> l = courseService.getAllCourse(page,size,sortField,sortOrder);
+    
+    List<Course> l = courseService.getAllCourse(pageNumber);
 
     log.info("CourseController,getCourse Method Ends");
     return new ResponseEntity<List<Course>>(l, HttpStatus.OK);
@@ -59,14 +54,6 @@ public class CourseController {
     Course list = courseService.getCourseByCouseId(getId);
     log.info("CourseController,getCourseById Method Ends");
     return new ResponseEntity<Course>(list, HttpStatus.OK);
-  }
-  // get all cource by student name 
-  @GetMapping("/cource/{name}")
-  public ResponseEntity<List<Course>>getCourceBySutudentName(@PathVariable String name){
-     log.info("CourseController,getCourseByStudnetName Method Start");
-   List<Course> stName=courseService.getAllCourseByStudentName(name);
-    log.info("CourseController,getCourseByStudentName  mathod is and");
-   return new ResponseEntity<>(stName,HttpStatus.OK);
   }
 
   // Get Course by UserId
@@ -104,5 +91,4 @@ public class CourseController {
     log.info("CourseController,deleteCourse Method Ends");
     return "Record deleted";
   }
-
 }

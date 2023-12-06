@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Assessment;
@@ -26,7 +25,6 @@ import examportal.portal.Entity.Paper;
 
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Repo.InvitationRepo;
-
 import examportal.portal.Services.PaperService;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -37,19 +35,15 @@ public class PaperController {
     @Autowired
     private PaperService paperService;
 
-
     @Autowired
     private InvitationRepo invitationRepo;
 
     Logger log = LoggerFactory.getLogger("MetorController");
 
     @GetMapping("/getall/paper")
-    public ResponseEntity<List<PaperDto>> getallpaper( @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
-  @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
-  @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
-  @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder) {
+    public ResponseEntity<List<PaperDto>> getallpaper() {
         log.info("paperService getall paper method started");
-        List<PaperDto> papers = this.paperService.getAllPaper(page,size,sortField,sortOrder);
+        List<PaperDto> papers = this.paperService.getAllPaper();
         log.info("paperService getall paper method End's");
         return new ResponseEntity<>(papers, HttpStatus.OK);
     }
@@ -89,19 +83,6 @@ public class PaperController {
         PaperDto paperDto2 = this.paperService.updetPaper(paperDto);
         log.info("paperService UpdatePaper method End's");
         return new ResponseEntity<PaperDto>(paperDto2, HttpStatus.OK);
-    }
-    //get pepar BY name
-
- @GetMapping("/getAllPaperbyName/{name}")
-    public ResponseEntity<List<Paper>> getallpaersByName(@PathVariable String name) {
-
-        log.info("paper repo getall paper by name method started");
-        List<Paper> peparByName= this.paperService.getAllpaperByName(name) ;
-        
-        log.info("paper repo getall paper by name method And");
-
-        return new ResponseEntity<>(peparByName, HttpStatus.ACCEPTED);
-
     }
 
     // Getting All papers by userId

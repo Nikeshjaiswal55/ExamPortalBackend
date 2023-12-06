@@ -24,7 +24,6 @@ import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
-import examportal.portal.Payloads.StudentDto;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
@@ -33,10 +32,8 @@ import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
+import examportal.portal.Services.ExamDetailsService;
 import examportal.portal.Services.PaperService;
-import examportal.portal.Services.QuestionService;
-import examportal.portal.Services.StudentSevices;
-
 @Service
 public class PaperServiceImpl implements PaperService {
 
@@ -47,16 +44,10 @@ public class PaperServiceImpl implements PaperService {
   private StudentRepo studentRepo;
 
   @Autowired
-  private QuestionService questionService;
-
-  @Autowired
   private ModelMapper mapper;
 
   @Autowired
   private QuestionsRepo questionsRepo;
-
-  @Autowired
-  private StudentSevices sevices;
 
   @Autowired
   private ExamDetailsRepo examDetailsRepo;
@@ -76,6 +67,9 @@ public class PaperServiceImpl implements PaperService {
   @Autowired
   private AttemptepaperRepo attemptepaperRepo;
 
+  @Autowired
+  private ExamDetailsService examDetailsService;
+
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
   @Override
@@ -88,40 +82,15 @@ public class PaperServiceImpl implements PaperService {
     paper.setOrgnizationId(paperdDto.getOrgnizationId());
     paper.set_setup(true);
     paper.set_Active(false);
-
     Paper newpPaper = this.paperRepo.save(paper);
 
-    ExamDetails examDetails = new ExamDetails();
-    examDetails.setPaperId(newpPaper.getPaperId());
-    examDetails.setBranch(paperdDto.getExamDetails().getBranch());
-    examDetails.setExamDuration(paperdDto.getExamDetails().getExamDuration());
-    examDetails.setExamMode(paperdDto.getExamDetails().getExamMode());
-    examDetails.setExamRounds(paperdDto.getExamDetails().getExamRounds());
-    examDetails.setPaperChecked(false);
-    examDetails.setSession(paperdDto.getExamDetails().getSession());
-    examDetails.setAssessmentName(paperdDto.getExamDetails().getAssessmentName());
-
-    ExamDetails examDetails2 = this.examDetailsRepo.save(examDetails);
-    System.out.println("my paper Id ============" + examDetails2.getPaperId());
+    ExamDetails examDetails = this.examDetailsService.createExamDetails(paperdDto.getExamDetails());
 
     List<Questions> questionsList = paperdDto.getQuestions();
 
-    for (Questions questions : questionsList) {
-      questions.setPaperID(newpPaper.getPaperId());
-      this.questionService.createQuestions(questions);
-    }
-    StudentDto dto = new StudentDto();
-    dto.setEmail(paperdDto.getEmails());
-    dto.setToken(paperdDto.getToken());
-    dto.setPaperID(newpPaper.getPaperId());
-    dto.setOrgnizationId(paperdDto.getOrgnizationId());
-    dto.setBranch(examDetails2.getBranch());
-    String student = this.sevices.addStudentPaper(dto);
-
-    System.out.println(student);
+    this.questionsRepo.saveAll(questionsList);
 
     log.info("paperService Create paper method End's :");
-
     return newpPaper;
   }
 
@@ -202,6 +171,8 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setPaperChecked(false);
     examDetails.setSession(paperDto.getExamDetails().getSession());
     examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
+    examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
+    examDetails.setMinimum_marks(paperDto.getExamDetails().getMinimum_marks());
 
     ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
 
@@ -271,7 +242,7 @@ public class PaperServiceImpl implements PaperService {
           .orElseThrow(() -> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
       User user = this.userRepo.findById(invitedStudents.getStudentId())
           .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
-      String msg = "Use_Name => " + student.getEmail() + "\n" + "Password => " + user.getPassword();
+      String msg = "Use_Name => " + student.getEmail() + "\nPassword => " + user.getPassword();
 
       this.emailServiceImpl.sendFormateMail(student.getEmail(), msg, "login crenditials", user.getRole());
 
@@ -289,7 +260,11 @@ public class PaperServiceImpl implements PaperService {
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Assessment assessment : assment) {
+      AttemptedPapers  attemptedPapers = this.attemptepaperRepo.getAllAttemptedPaperbyStudentID(userId, assessment.getPaperId());
       ExamDetails examDetail = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
+      if (attemptedPapers!=null) {
+        examDetail.set_attempted(true);
+      }
       examDetails.add(examDetail);
     }
 
@@ -317,7 +292,6 @@ public class PaperServiceImpl implements PaperService {
 
     if (student != null) {
       examDetails.set_attempted(true);
-      return examDetails;
     }
     return examDetails;
   }

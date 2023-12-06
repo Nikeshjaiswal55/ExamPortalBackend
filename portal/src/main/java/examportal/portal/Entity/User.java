@@ -18,8 +18,6 @@ public class User {
     private String name;
 
     private String picture;
-
-    private String updatedAt;
     
     private String role;
 

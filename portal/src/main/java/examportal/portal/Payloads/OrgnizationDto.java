@@ -2,6 +2,7 @@ package examportal.portal.Payloads;
 
 import java.util.UUID;
 
+import examportal.portal.Entity.User;
 import lombok.Data;
 
 @Data
@@ -15,5 +16,5 @@ public class OrgnizationDto {
 
     private String userId;
 
-    private userDto user;
+    private User user;
 }

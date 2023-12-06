@@ -46,7 +46,6 @@ public class ResultServiceImpl implements ResultService {
         log.info("ResultServiceImpl, createResult Method Start");
 
         List<Questions> questions = result.getQuestions();
-        System.out.println("My Quesetions ==============================" + result.getQuestions());
 
         List<Questions> attemptQuestions = new ArrayList<>();
 
@@ -61,7 +60,6 @@ public class ResultServiceImpl implements ResultService {
             attemptedQuestions.setStudentID(result.getStudentID());
 
             AttemptedQuestions question = this.attemptedQuestionsRepo.save(attemptedQuestions);
-            System.out.println(question);
 
             attemptQuestions.add(questions2);
 
@@ -70,7 +68,6 @@ public class ResultServiceImpl implements ResultService {
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(result.getPaperID());
         examDetails.setPaperChecked(true);
         ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
-        System.out.println(updatecheck);
 
         Result newResult = new Result();
         newResult.setPaperID(result.getPaperID());
