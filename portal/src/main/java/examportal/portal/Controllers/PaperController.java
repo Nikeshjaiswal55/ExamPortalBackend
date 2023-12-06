@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Assessment;
@@ -41,9 +42,12 @@ public class PaperController {
     Logger log = LoggerFactory.getLogger("MetorController");
 
     @GetMapping("/getall/paper")
-    public ResponseEntity<List<PaperDto>> getallpaper() {
+    public ResponseEntity<List<PaperDto>> getallpaper( @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
+  @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
+  @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
+  @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder) {
         log.info("paperService getall paper method started");
-        List<PaperDto> papers = this.paperService.getAllPaper();
+        List<PaperDto> papers = this.paperService.getAllPaper(page,size,sortField,sortOrder);
         log.info("paperService getall paper method End's");
         return new ResponseEntity<>(papers, HttpStatus.OK);
     }
@@ -75,6 +79,14 @@ public class PaperController {
         PaperDto paperDto = this.paperService.getPaperById(paperID);
         log.info("paperService getall paper method End's");
         return new ResponseEntity<PaperDto>(paperDto, HttpStatus.OK);
+    }
+    // get All peparByName 
+     @GetMapping("/getPaperByName/{name}")
+    public ResponseEntity<List<Paper>> getpaperByNmae(@PathVariable String name) {
+        log.info("paperService get paper by id  method started");
+        List<Paper> paper= this.paperService.getAllpaperByName(name);
+        log.info("paperService getall paper method End's");
+        return new ResponseEntity<List<Paper>>(paper, HttpStatus.OK);
     }
 
     @PutMapping("/update/paper")

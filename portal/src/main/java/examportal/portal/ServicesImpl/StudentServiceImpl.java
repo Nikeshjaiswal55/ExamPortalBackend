@@ -5,6 +5,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Assessment;
@@ -47,11 +51,14 @@ public class StudentServiceImpl implements StudentSevices {
     private UserService userService;
 
     @Override
-    public List<Student> getAllStudents() {
+    public List<Student> getAllStudents(Integer page, int size, String sortField, String sortOrder) {
         log.info("StudentServiceImpl , getAllStudent Method Start");
-
+Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+        Pageable p=PageRequest.of(page,size,sort);
+        Page<Student> pa =this.studentRepo.findAll(p);
+        List<Student> list =pa.getContent();
         log.info("StudentServiceImpl , getAllStudent Method Ends");
-        return this.studentRepo.findAll();
+        return list;
     }
 
     @Override
@@ -171,6 +178,13 @@ public class StudentServiceImpl implements StudentSevices {
         } catch (Exception e) {
             log.error("Error inviting student: {}", e.getMessage());
         }
+    }
+
+    @Override
+    public List<Student> getAllStudentByName(String name) {
+        log.info("StudentserviceIml, getAllUserByName method is start");
+        List<Student> list=getAllStudentByName( name);
+        return list;
     }
 
 }

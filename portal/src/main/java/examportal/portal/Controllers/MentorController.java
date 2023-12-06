@@ -51,12 +51,13 @@ public class MentorController {
       log.info("MentorController , getAllMentors Method Ends");
       return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
    }
+   //get All mentor by name
    @GetMapping("/mentor/getAll/{name}")
    public ResponseEntity<List<Mentor>> getAllMentorsByName(@PathVariable String name){
       log.info("Mentor controller ,getAllmentorByName maathod is start");
       List<Mentor> mntr=mentorService.getAllMentorsByName(name);
       log.info("Mentor controller get All mentorby name mathod is and");
-      return new ResponseEntity<>(mntr,HttpStatus.OK);
+      return new ResponseEntity<List<Mentor>>(mntr,HttpStatus.OK);
 
    }
 

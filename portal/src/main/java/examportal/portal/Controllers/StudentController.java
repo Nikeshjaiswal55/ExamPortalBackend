@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Student;
@@ -47,13 +48,26 @@ public class StudentController {
 
     // Getting All Student
     @GetMapping("/student/getAll")
-    public ResponseEntity<List<Student>> getAllStudent() {
+    public ResponseEntity<List<Student>> getAllStudent(@RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
+  @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
+  @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
+  @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder) {
         log.info("StudentController , getAllStudent Method Start");
 
-        List<Student> list = this.studentSevices.getAllStudents();
+        List<Student> list = this.studentSevices.getAllStudents(page,size,sortField,sortOrder);
 
         log.info("StudentController , getAllStudent Method Ends");
         return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
+    }
+    //getAll Student by name
+     @GetMapping("/student/{name}")
+    public ResponseEntity<List<Student>> getAllStudentByname(@PathVariable String name) {
+        log.info("StudentController , getAllStudent Method Start");
+
+       List<Student> s = studentSevices.getAllStudentByName(name);
+        log.info("StudentController , getAllStudent Method Ends");
+        return new ResponseEntity<List<Student>>(s,HttpStatus.OK);
+        
     }
 
     // getting Student By Id

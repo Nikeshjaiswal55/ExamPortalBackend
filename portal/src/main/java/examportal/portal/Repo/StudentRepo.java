@@ -21,5 +21,8 @@ public interface StudentRepo extends JpaRepository<Student,String>{
 
     @Query("SELECT s FROM Student s where s.branch=:branch")
     List<Student>  getAllStudentBYBranch( @Param("branch") String branch);
+
+   @Query("SELECT s FROM Student s where s.name=:name")
+    List<Student>  getAllStudentByName( @Param("name") String name);
     
 }

@@ -66,7 +66,7 @@ public class OrgnizationController {
             throw new ResourceNotFoundException("Orgnization","name",name);
         }
         log.info("OrgnizationController , getOrgnizationByName Method Ends");
-        return new ResponseEntity<>(orgnization, HttpStatus.OK);
+        return new ResponseEntity<List<Orgnizations>>(orgnization, HttpStatus.OK);
     }
     //get Orgnization by UserId
     @GetMapping("/getOrgnizationByUserId/{UserId}")

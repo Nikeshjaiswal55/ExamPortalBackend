@@ -19,8 +19,9 @@ public interface PaperService {
     List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder);
 //Get All Paper By UserID
     List<ExamDetails> getAllPaperByUserId(String userId);
-
+ //get All pepar by name 
     List<Paper> getAllpaperByName(String name);
+
     String activatePaper(String paperID);
 
     PaperDto getPaperById(String paperID);

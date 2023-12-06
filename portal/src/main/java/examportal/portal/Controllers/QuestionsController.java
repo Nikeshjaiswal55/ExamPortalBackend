@@ -62,7 +62,7 @@ public class QuestionsController {
         List<Questions> questions = this.questionService.getAllQuestionsByName(name);
 
 
-        return new ResponseEntity<>(questions,HttpStatus.OK);
+        return new ResponseEntity<List<Questions>>(questions,HttpStatus.OK);
     }
 
     @DeleteMapping("/DeleteQuestion/{QuestionID}")

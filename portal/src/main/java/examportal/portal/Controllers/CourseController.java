@@ -37,11 +37,14 @@ public class CourseController {
   // Get All 
   @GetMapping("/course/getAll")
   public ResponseEntity<List<Course>> getCourses(
-        @RequestParam(value = "pageNumber",defaultValue = "0",required = false)Integer pageNumber, HttpServletRequest request
+    @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
+    @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
+    @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
+    @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder, HttpServletRequest request
   ) {
     log.info("CourseController,getCourse Method Start");
     
-    List<Course> l = courseService.getAllCourse(pageNumber);
+    List<Course> l = courseService.getAllCourse(page,size,sortField,sortOrder);
 
     log.info("CourseController,getCourse Method Ends");
     return new ResponseEntity<List<Course>>(l, HttpStatus.OK);
@@ -54,6 +57,14 @@ public class CourseController {
     Course list = courseService.getCourseByCouseId(getId);
     log.info("CourseController,getCourseById Method Ends");
     return new ResponseEntity<Course>(list, HttpStatus.OK);
+  }
+  //get All Student by name
+  @GetMapping("/course/{name}")
+  public ResponseEntity<List<Course>> getAllCourseByName(@PathVariable String name) {
+    log.info("CourseController,getCourseById Method Start");
+    List<Course> list = courseService.getAllCourseByStudentName(name);
+    log.info("CourseController,getCourseById Method Ends");
+    return new ResponseEntity<List<Course>>(list, HttpStatus.OK);
   }
 
   // Get Course by UserId
