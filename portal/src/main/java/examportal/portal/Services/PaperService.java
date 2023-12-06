@@ -21,7 +21,7 @@ public interface PaperService {
     List<ExamDetails> getAllPaperByUserId(String userId);
 
     //
-    String activatePaper(String paperID);
+    String activatePaper(String paperID,boolean active);
 
     PaperDto getPaperById(String paperID);
 

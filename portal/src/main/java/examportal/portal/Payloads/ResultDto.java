@@ -19,4 +19,10 @@ public class ResultDto {
 
     private Cheating cheating;
 
+    private int marks;
+
+    private String  result;
+
+    private float percentage;
+
 }

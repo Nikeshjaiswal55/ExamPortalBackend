@@ -107,10 +107,10 @@ public class PaperController {
 
     }
 
-    @PutMapping("/activetPaper/{paperId}")
-    public ResponseEntity<String> activetPaper(@PathVariable String paperId){
+    @PutMapping("/activetPaper/{paperId}/{active}")
+    public ResponseEntity<String> activetPaper(@PathVariable String paperId,boolean active){
         log.info("paper service activetPaper method started");
-        String activeMsg = paperService.activatePaper(paperId);
+        String activeMsg = paperService.activatePaper(paperId,active);
         log.info("paper service activetPaper method Ends");
         return new ResponseEntity<String>(activeMsg,HttpStatus.ACCEPTED);
     }
