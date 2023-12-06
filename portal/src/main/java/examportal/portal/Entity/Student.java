@@ -1,6 +1,5 @@
 package examportal.portal.Entity;
 
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -22,6 +21,10 @@ public class Student {
     private String branch;
 
     private String paperId;
+
+    private String year;
+
+    private boolean is_attempted;
 
     // public String setPaperId(String paperid){
     //     paperId.add(paperid);

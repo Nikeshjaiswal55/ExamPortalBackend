@@ -13,17 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Student;
-import examportal.portal.Payloads.PageableDto;
-import examportal.portal.Payloads.StudentDto;
+import examportal.portal.Payloads.InvitationDto;
 import examportal.portal.Repo.StudentRepo;
-import examportal.portal.Response.PageResponce;
 import examportal.portal.Services.StudentSevices;
-
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -38,15 +35,15 @@ public class StudentController {
     private Logger log = LoggerFactory.getLogger("StudentController.class");
 
     // Add student
-    @PostMapping("/student")
-    public ResponseEntity<Student> addStudent(@RequestBody StudentDto student) {
+    // @PostMapping("/student")
+    // public ResponseEntity<String> addStudent(@RequestBody StudentDto student) {
 
-        log.info("StudentController , addStudent Method Start");
-        Student savedStudent = this.studentSevices.addStudent(student);
-        log.info("StudentController , addStudent Method Ends");
-        return new ResponseEntity<Student>(savedStudent, HttpStatus.CREATED);
+    //     log.info("StudentController , addStudent Method Start");
+    //     String savedStudent = this.studentSevices.inviteStudents(student);
+    //     log.info("StudentController , addStudent Method Ends");
+    //     return new ResponseEntity<String>(savedStudent, HttpStatus.CREATED);
 
-    }
+    // }
 
     // Getting All Student
     @GetMapping("/student/getAll")
@@ -72,7 +69,7 @@ public class StudentController {
 
     // Get All Student By paperId
     @GetMapping("/GetAllStudentByPaperId/{paperId}")
-    public ResponseEntity<List<Student>> getAllStudentByPaperId(@PathVariable String paperId) {
+    public ResponseEntity<List<Student>> getAllStudentByPaperIds(@PathVariable String paperId) {
         log.info("StudentController , getAllStudent Method Start");
 
         List<Student> st = this.studentSevices.getAllStudentByPaperId(paperId);
@@ -106,6 +103,18 @@ public class StudentController {
 
         log.info("StudentController , getAllStudent Method Ends");
         return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
+    }
+
+    @PostMapping("/inviteStudents/")
+    public ResponseEntity<String> InviteStudentsByEmail(@RequestBody InvitationDto invitationDto,HttpServletRequest request)
+    {
+        log.info("StudentController , InviteStudentsByEmail Method Start");
+        invitationDto.setToken(request.getHeader("Authorization"));
+        String response  = this.studentSevices.inviteStudents(invitationDto);
+
+        log.info("StudentController , InviteStudentsByEmail Method end");
+
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
 }
