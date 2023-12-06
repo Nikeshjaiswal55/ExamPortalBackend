@@ -1,8 +1,8 @@
+
 package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +11,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import examportal.portal.Entity.Course;
+import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.CourseDto;
+import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Repo.CourseRepo;
+import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Services.CourseService;
 import jakarta.el.ELException;
@@ -26,8 +28,12 @@ import net.bytebuddy.utility.RandomString;
 public class CourseServiceImpl implements CourseService {
   @Autowired
   private CourseRepo courseRepo;
+
   @Autowired
   private UserRepo userRepo;
+
+  @Autowired
+  private StudentRepo studentRepo;
 
   @Deprecated
   @Autowired
@@ -38,10 +44,10 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public List<Course> getAllCourse(Integer pageNumber) {
     log.info("CourseServiceimpl,getCourse Method Start");
-  
-    Integer pageSize = 2;  
+
+    Integer pageSize = 2;
     Sort s = Sort.by("userId").ascending();
-    Pageable p = PageRequest.of(pageNumber, pageSize,s);
+    Pageable p = PageRequest.of(pageNumber, pageSize, s);
     Page<Course> page = courseRepo.findAll(p);
     List<Course> courseAll = page.getContent();
     System.out.println(courseAll.size());
@@ -77,47 +83,58 @@ public class CourseServiceImpl implements CourseService {
     log.info("CourseServiceimpl,addCourse Method Start");
     User us = userRepo.findById(course.getUserId())
         .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
-    String response = "";
 
     Course c = new Course();
     c.setCourse_name(course.getCourse_name());
     c.setUserId(course.getUserId());
     c.setUserName(us.getName());
+    Course savedcourse = this.courseRepo.save(c);
 
-    for (String i : course.getMails()) {
+    List<EmailsDto> dtos = course.getEmailsDto();
 
-      String password = RandomString.make(8) + i;
-      User user = userRepo.findByEmail(i);
+    for (EmailsDto email : dtos) {
 
-      if (user != null) {
+      Student st = this.studentRepo.getszStudentByEmail(email.getEmail());
+
+      if (st != null) {
         System.out.println("User Allready Exist");
 
       } else {
-
-        try {
-          System.out.println("+++++++++++Auth0Service Method Enter");
-          response = this.auth0Service.createUser(i, password, course.getToken());
-          System.out.println("UserID++++++++++" + response);
-          // res = userId
-          User use = new User();
-          use.setUserId(response);
-          use.setEmail(i);
-          use.setPassword(password);
-          use.setRole("Student");
-          userRepo.save(use);
-
-        } catch (Exception e) {
-
-          e.printStackTrace();
-        }
-
+        createcourseStudents(email.getEmail(), course.getOrgnizationId(), course.getToken());
       }
 
     }
-
+    
     this.courseRepo.save(c);
     log.info("CourseServiceimpl,addCourse Method Ends");
     return c;
+
+  }
+
+  @Deprecated
+  public String createcourseStudents(String email, String orgnizationId, String token) {
+    String response = "";
+    String password = RandomString.make(12) + "K80";
+    try {
+      response = this.auth0Service.createUser(email, password, token);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    User use = new User();
+    use.setUserId(response);
+    use.setEmail(email);
+    use.setPassword(password);
+    use.setRole("Student");
+    User savedUser = this.userRepo.save(use);
+
+    Student student = new Student();
+    student.setName(email);
+    student.setEmail(email);
+    student.setOrgnizationId(orgnizationId);
+    student.setStudentid(response);
+    Student savedst = this.studentRepo.save(student);
+    return "Students created successfully";
   }
 
   @Override

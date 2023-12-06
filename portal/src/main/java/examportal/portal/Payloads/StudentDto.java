@@ -15,6 +15,10 @@ public class StudentDto {
 
     private String token;
 
+    private String branch;
+
+    private String year;
+
     private String orgnizationId;
 
-}
+} 

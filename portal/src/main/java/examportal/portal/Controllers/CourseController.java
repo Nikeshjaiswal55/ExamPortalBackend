@@ -4,6 +4,8 @@ import examportal.portal.Entity.Course;
 import examportal.portal.Payloads.CourseDto;
 import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Services.CourseService;
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,10 +37,10 @@ public class CourseController {
   // Get All 
   @GetMapping("/course/getAll")
   public ResponseEntity<List<Course>> getCourses(
-        @RequestParam(value = "pageNumber",defaultValue = "0",required = false)Integer pageNumber
+        @RequestParam(value = "pageNumber",defaultValue = "0",required = false)Integer pageNumber, HttpServletRequest request
   ) {
     log.info("CourseController,getCourse Method Start");
-
+    
     List<Course> l = courseService.getAllCourse(pageNumber);
 
     log.info("CourseController,getCourse Method Ends");
@@ -65,8 +67,10 @@ public class CourseController {
 
   //create 
   @PostMapping("/course/create")
-  public ResponseEntity<Course> addCourses(@RequestBody CourseDto course) {
+  public ResponseEntity<Course> addCourses(@RequestBody CourseDto course,HttpServletRequest request) {
     log.info("CourseController,addCourses Method Start");
+    String token = request.getHeader("Authorization");
+    course.setToken(token);
     Course course2 = courseService.addCourse(course);
     log.info("CourseController,addCourses Method Ends");
     return new ResponseEntity<Course>(course2, HttpStatus.OK);

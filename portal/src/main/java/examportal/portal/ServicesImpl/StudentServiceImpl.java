@@ -1,28 +1,23 @@
 package examportal.portal.ServicesImpl;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Assessment;
+import examportal.portal.Entity.AttemptedPapers;
+import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
-import examportal.portal.Payloads.PageableDto;
-import examportal.portal.Payloads.StudentDto;
-import examportal.portal.Payloads.userDto;
+import examportal.portal.Payloads.InvitationDto;
 import examportal.portal.Repo.AssessmentRepo;
+import examportal.portal.Repo.AttemptepaperRepo;
+import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Repo.StudentRepo;
-import examportal.portal.Repo.UserRepo;
-import examportal.portal.Response.PageResponce;
 import examportal.portal.Services.StudentSevices;
 import examportal.portal.Services.UserService;
 import net.bytebuddy.utility.RandomString;
@@ -35,27 +30,25 @@ public class StudentServiceImpl implements StudentSevices {
     @Autowired
     private StudentRepo studentRepo;
 
-    @Autowired
-    private UserRepo userRepo;
-
-    @Autowired
-    private UserService userService;
-
     @Deprecated
     @Autowired
     private Auth0Service auth0Service;
 
     @Autowired
-    private ModelMapper mapper;
+    private AssessmentRepo assessmentRepo;
 
     @Autowired
-    private AssessmentRepo assessmentRepo;
+    private InvitationRepo invitationRepo;
+
+    @Autowired
+    private AttemptepaperRepo attemptepaperRepo;
+
+    @Autowired 
+    private UserService userService;
 
     @Override
     public List<Student> getAllStudents() {
         log.info("StudentServiceImpl , getAllStudent Method Start");
-
-
 
         log.info("StudentServiceImpl , getAllStudent Method Ends");
         return this.studentRepo.findAll();
@@ -67,80 +60,15 @@ public class StudentServiceImpl implements StudentSevices {
 
         log.info("StudentServiceImpl , getSingleStudent Method Ends");
 
-        return this.studentRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Student ", "id", id));
-    }
-
-    @Deprecated
-    @Override
-    public Student addStudent(StudentDto student) {
-
-        log.info("StudentServiceImpl , addStudent Method Start");
-
-        Student s = new Student();
-
-        String response = "";
-
-        for (String email : student.getEmail()) {
-
-            String password = RandomString.make(8);
-
-            User user = this.userRepo.findByEmail(email);
-
-            if (user != null) {
-                Assessment assessment = new Assessment();
-                assessment.setPaperId(student.getPaperID());
-                assessment.setUserId(user.getUserId());
-                assessment.setOrgnizationId(student.getOrgnizationId());
-                Assessment newaAssessment = this.assessmentRepo.save(assessment);
-                System.out.println("my assment ============================" + newaAssessment);
-
-                
-
-            } else {
-
-                try {
-                    response = this.auth0Service.createUser(email, password, student.getToken());
-                    System.out.println("My response============================" + response);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                User newUser = new User();
-                newUser.setUserId(response) ;
-                newUser.setEmail(email);
-                newUser.setPassword(password);
-                newUser.setRole("Student");
-                userDto dto = this.mapper.map(newUser, userDto.class);
-                User user2 = this.userService.createUser(dto);
-
-                Assessment assessment = new Assessment();
-                assessment.setPaperId(student.getPaperID());
-                assessment.setUserId(user2.getUserId());
-                assessment.setOrgnizationId(student.getOrgnizationId());
-                Assessment newAssessment = this.assessmentRepo.save(assessment);
-
-                System.out.println("my assment ============================" + newAssessment);
-
-
-                s.setEmail(email);
-                s.setStudentid(response);
-                s.setOrgnizationId(student.getOrgnizationId());
-                this.studentRepo.save(s);
-            }
-
-        }
-
-        log.info("StudentServiceImpl , addStudent Method Ends");
-
-        return s;
-
+        return this.studentRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Student ", "id", id));
     }
 
     @Override
     public Student updateStudent(Student student) {
 
         log.info("StudentServiceImpl , getSingleStudent Method Start");
-        Student s = studentRepo.findById(student.getStudentid()).orElseThrow(() -> new ResourceNotFoundException("Student", "id", student.getStudentid()));
+        Student s = studentRepo.findById(student.getStudentid())
+                .orElseThrow(() -> new ResourceNotFoundException("Student", "id", student.getStudentid()));
         s.setEmail(student.getEmail());
         s.setName(student.getName());
         Student updateStudtnt = this.studentRepo.save(s);
@@ -158,35 +86,91 @@ public class StudentServiceImpl implements StudentSevices {
         return "Record Deleted";
     }
 
+    @Override
+    public List<Student> getAllStudentByPaperId(String paperId) {
 
-    public PageResponce getAllStudentByPaperId(String paperId , PageableDto dto){
+        log.info("StudentServiceImpl , getAllStudentByPaperId Method Start");
+        List<InvitedStudents> stude = this.invitationRepo.getAllStudentByPaperId(paperId);
+        List<Student> students = new ArrayList<>();
 
-          Sort sort;
-        
-        if(dto.getSortDirection().equals("DESC")){
-            sort = Sort.by(dto.getProperty()).descending();
-         
-        }else{
-            sort = Sort.by(dto.getProperty()).ascending();    
+        for (InvitedStudents invitedStudents : stude) {
+            AttemptedPapers attemptedPapers = this.attemptepaperRepo
+                    .getAllAttemptedPaperbyStudentID(invitedStudents.getStudentId(), paperId);
+            Student s = this.studentRepo.findById(invitedStudents.getStudentId()).orElseThrow(
+                    () -> new ResourceNotFoundException("Student", "StudentId", invitedStudents.getStudentId()));
+            if (attemptedPapers != null) {
+                s.set_attempted(true);
+            }
+            students.add(s);
         }
-        Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
-        
-        Page<Student> st = studentRepo.findByPaperId(paperId, p);
-        
-        
-        // List<Student> student=st.getContent();
-        PageResponce pr = new PageResponce();
-        pr.setContent_Student(st.getContent());
-        pr.setPage(st.getNumber()+1);
-        pr.setTotalElements(st.getTotalElements());
-        pr.setTotalPages(st.getTotalPages());
-        pr.setPagesize(st.getSize());
-        pr.setIslastPage(st.isLast());
-        pr.setSortby(dto.getProperty());
-        pr.setSortDirection(dto.getSortDirection());
-        return pr ;
-        
+
+        return students;
+
     }
-  
+
+    @Deprecated
+    @Override
+    public String inviteStudents(InvitationDto dto) {
+
+        for (String email : dto.getEmails()) {
+
+            Student st = this.studentRepo.getszStudentByEmail(email);
+
+            if (st != null) {
+                handleExistingStudent(dto, st.getStudentid());
+            } else {
+                handleNewStudent(dto, email);
+            }
+        }
+        return "Student added successfully";
+    }
+
+    public String handleExistingStudent(InvitationDto dto, String studentId) {
+
+        InvitedStudents invitedStudents = new InvitedStudents();
+        invitedStudents.setPaperId(dto.getPaperID());
+        invitedStudents.setStudentId(studentId);
+        invitationRepo.save(invitedStudents);
+
+        Assessment assessment = createAssessment(dto, studentId);
+
+        return "invited successfully";
+    }
+
+    public Assessment createAssessment(InvitationDto dto, String studentId) {
+        Assessment assessment = new Assessment();
+        assessment.setPaperId(dto.getPaperID());
+        assessment.setUserId(studentId);
+        assessment.setOrgnizationId(dto.getOrgnizationId());
+        return assessmentRepo.save(assessment);
+    }
+
+    @Deprecated
+    public void handleNewStudent(InvitationDto dto, String email) {
+        try {
+
+            String password = RandomString.make(12) +"K80";
+
+            String response = this.auth0Service.createUser(email, password, dto.getToken());
+
+            User newUser = new User();
+            newUser.setUserId(response);
+            newUser.setEmail(email);
+            newUser.setPassword(password);
+            newUser.setRole("Student");
+            User user = this.userService.createUser(newUser);
+
+            Student student = new Student();
+            student.setStudentid(response);
+            student.setEmail(email);
+            student.setOrgnizationId(dto.getOrgnizationId());
+            student.setPaperId(dto.getPaperID());
+            Student newsStudent = this.studentRepo.save(student);
+            
+            handleExistingStudent(dto, newsStudent.getStudentid());
+        } catch (Exception e) {
+            log.error("Error inviting student: {}", e.getMessage());
+        }
+    }
 
 }

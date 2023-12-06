@@ -14,9 +14,9 @@ public class Orgnizations {
     private String orgnizationId=UUID.randomUUID().toString();
 
     private String orgnizationName;
-
     
     private String orgnizationType;
 
     private String userId;
+
 }
