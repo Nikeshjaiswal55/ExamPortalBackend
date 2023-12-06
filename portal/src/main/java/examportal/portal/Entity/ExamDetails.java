@@ -18,10 +18,7 @@ public class ExamDetails {
     private String branch;
     private String session;
     private String assessmentName;
-    private boolean is_Active;
-    private boolean is_Setup;
-    private boolean is_attempted;
     private String totalMarks;
-    private String minimum_marks;
+    private String minimumMarks;
     private String paperId;
 }
