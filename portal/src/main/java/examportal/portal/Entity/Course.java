@@ -18,7 +18,7 @@ public class Course {
     private String course_id = UUID.randomUUID().toString();
     // @JsonProperty("cname")
     private String course_name;
-
+    private String name;
     private String userId;
     private String userName;
 

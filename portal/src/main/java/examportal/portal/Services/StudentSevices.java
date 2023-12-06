@@ -8,7 +8,7 @@ import examportal.portal.Payloads.InvitationDto;
 public interface StudentSevices{
     
     //1. getting All Students
-    List<Student> getAllStudents();
+    List<Student> getAllStudents(Integer pageNumber, int size, String sortField, String sortOrder);
     //2. getting A single Student by Id
     Student getSingleStudent(String id);
     //3. Adding a new student to the database
@@ -23,7 +23,9 @@ public interface StudentSevices{
     // String addStudentPaper(StudentDto studentDto);
 
     public String inviteStudents(InvitationDto dto);
-
+    //getAllUserByName  
+    List<Student>getAllStudentByName(String name);
+    
 
     
 }

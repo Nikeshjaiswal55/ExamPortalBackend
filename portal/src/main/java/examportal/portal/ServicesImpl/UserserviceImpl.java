@@ -1,9 +1,13 @@
 package examportal.portal.ServicesImpl;
 import java.util.List;
-
+import java.util.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.User;
@@ -48,9 +52,12 @@ public class UserserviceImpl implements UserService {
 
 
     @Override
-    public List<User> getAllUser() {
+    public List<User> getAllUser(Integer page,Integer size, String sortField, String sortOrder) {
         log.info("userService , getAllUser Method Start");
-        List<User> u1 = this.userRepo.findAll();
+        Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+        Pageable p=PageRequest.of(page,size,sort);
+        Page<User> pa =this.userRepo.findAll(p);
+        List<User> u1 = pa.getContent();
         log.info("userService , getAllUser Method Start");
         return u1;
     }
@@ -62,6 +69,18 @@ public class UserserviceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("user", "userId", userId));
         log.info("userService , getAllUser Method Start");
         return user;
+    }
+
+
+    @Override
+    public List<User> getAllUserByName(String name) {
+        log.info("userService, getUserByName method Start");
+         List<User>list =userRepo.getAllUserByName(name);
+         if(list.isEmpty()){
+            throw new NoSuchElementException(" student list is empty ");
+         }
+         log.info("userService , getallUserByname method and");
+         return list;
     }
 
 }

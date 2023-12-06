@@ -9,11 +9,13 @@ public interface OrgnizationService {
     
     Orgnizations createOrgnizations(OrgnizationDto orgnizationsDto);
 
-    List<Orgnizations> getAllOrgnizations();
+    List<Orgnizations> getAllOrgnizations(Integer pageNumber, int size, String sortField, String sortOrder);
 
     String deleteorgnization(String OrgnizationID);
 
     Orgnizations updateOrgnizations(Orgnizations orgnization);
 
+    
+    List<Orgnizations> getAllOrgnizationsByName(String name);
 
 }

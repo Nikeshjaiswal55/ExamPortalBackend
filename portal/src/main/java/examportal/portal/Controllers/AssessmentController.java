@@ -17,6 +17,7 @@ import examportal.portal.Repo.ExamDetailsRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -55,6 +56,17 @@ public class AssessmentController {
 
         return new ResponseEntity<List<ExamDetails>>(examDetailsAll, HttpStatus.OK);
 
+    }
+    @GetMapping("getAllAsementByName/{name}")
+    public ResponseEntity<List<Assessment>> getAllAssesmenByName(String name){ 
+        log.info("AssessmentCinroler , get all assessment by name method start");
+    List<Assessment> list = this.assessmentRepo.getAllAssesmenByName(name);
+    if (list.isEmpty()) 
+    {
+        throw new NoSuchElementException("no assessment on this name");
+    }
+    log.info("AssessmentController , get All Assessment by name method and ");
+    return new ResponseEntity<List<Assessment>>(list,HttpStatus.OK);
     }
 
 }

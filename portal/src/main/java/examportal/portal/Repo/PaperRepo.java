@@ -17,4 +17,6 @@ public interface PaperRepo extends JpaRepository<Paper, String> {
 
     @Query("SELECT p FROM Paper p WHERE p.userId = :userId AND p.is_Active = true")
     List<Paper> findAllPaperThatAreActiveByUserId(@Param("userId")String userId);
+    @Query("SELECT s FROM Paper s WHERE s.name=:name")
+    List<Paper> getAllpaperByName(@Param("name")String name);
 }
