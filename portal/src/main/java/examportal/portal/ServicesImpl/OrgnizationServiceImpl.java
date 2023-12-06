@@ -1,6 +1,7 @@
 package examportal.portal.ServicesImpl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,6 +96,10 @@ public class OrgnizationServiceImpl implements OrgnizationService {
   public List<Orgnizations> getAllOrgnizationsByName(String name) {
     log.info("orgnizationSerivceImpl, getalllOrgnizationByName mathod is start");
     List<Orgnizations> ogname = orgnizationRepo.getAllOrgnizationsByName(name);
+    if (ogname.isEmpty()){
+      throw new NoSuchElementException("this list is empty ");
+
+    }
     log.info("orgnizationSerivceImpl, getalllOrgnizationByName mathod is and ");
     return ogname;
   }

@@ -2,6 +2,8 @@ package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -184,6 +186,9 @@ Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():So
     public List<Student> getAllStudentByName(String name) {
         log.info("StudentserviceIml, getAllUserByName method is start");
         List<Student> list=getAllStudentByName( name);
+        if(list.isEmpty()){
+            throw new NoSuchElementException(" thare are no student avalable in this name :"+name);
+        }
         return list;
     }
 
