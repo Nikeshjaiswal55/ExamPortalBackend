@@ -310,8 +310,8 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public ExamDetails GetattemptedStudents(String paperId) {
-    AttemptedPapers attemptedPapers = this.attemptepaperRepo.GetattemptedStudentsByPaperId(paperId);
+  public ExamDetails GetattemptedStudents(String paperId,String studentId) {
+    AttemptedPapers attemptedPapers = this.attemptepaperRepo.getAllAttemptedPaperbyStudentID(studentId, paperId);
     Student student = this.studentRepo.findById(attemptedPapers.getStudentId())
         .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentID", attemptedPapers.getStudentId()));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
