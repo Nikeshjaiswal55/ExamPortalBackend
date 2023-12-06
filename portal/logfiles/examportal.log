@@ -7267,3 +7267,27 @@ java.lang.NumberFormatException: For input string: "string"
 2023-12-06 11:37:30 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[]]
 2023-12-06 11:37:30 [http-nio-9090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
 2023-12-06 11:41:41 [HikariPool-3 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=1m43s98ms87µs100ns).
+2023-12-06 11:52:46 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:46 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:46 [http-nio-9090-exec-6] DEBUG o.s.web.client.RestTemplate - HTTP GET https://dev-uil1ecwkoehr31jg.us.auth0.com/.well-known/jwks.json
+2023-12-06 11:52:46 [http-nio-9090-exec-6] DEBUG o.s.web.client.RestTemplate - Accept=[text/plain, application/json, application/*+json, */*]
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.web.client.RestTemplate - Reading to [java.lang.String] as "application/json;charset=utf-8"
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/105410884551884874922", parameters={}
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-06 11:52:50 [http-nio-9090-exec-6] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-06 11:52:50 [http-nio-9090-exec-6] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserId  method Starts
+2023-12-06 11:52:50 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.is_active,p1_0.is_setup,p1_0.orgnization_id,p1_0.user_id from paper p1_0 where p1_0.user_id=?
+2023-12-06 11:52:51 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-06 11:52:52 [http-nio-9090-exec-6] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-06 11:52:52 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-06 11:52:52 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[ExamDetails(examid=28dba035-8925-45e8-aad9-8f745ac82f08, examDuration=null, examMode=null, examRoun (truncated)...]
+2023-12-06 11:52:52 [http-nio-9090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
