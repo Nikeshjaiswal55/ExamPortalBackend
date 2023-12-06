@@ -28,6 +28,7 @@ public class PaperDto {
     private List<Student> students;
     private String token;
     private String userId;
+    private String StudentId;
     private String orgnizationId;
     private boolean is_setup;
     private boolean is_Active;

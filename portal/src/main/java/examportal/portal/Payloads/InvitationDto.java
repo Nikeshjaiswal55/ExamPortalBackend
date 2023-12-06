@@ -8,5 +8,6 @@ public class InvitationDto {
     private String paperID;
     private String orgnizationId;
     private List<String> emails;
+    private String courseId;
     private String token;
 }
