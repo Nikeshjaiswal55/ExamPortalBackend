@@ -33,6 +33,6 @@ public interface PaperService {
 
     AttemptedPapers AttemptPaper(Assessment assessment);
 
-    ExamDetails GetattemptedStudents(String paperId);
+    ExamDetails GetattemptedStudents(String paperId,String studentId);
 
 }

@@ -116,9 +116,9 @@ public class PaperServiceImpl implements PaperService {
   @Override
   public List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder) {
     log.info("paperService getAll paper method Starts :");
- Sort sort = (sortOrder.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
-        Pageable p = PageRequest.of(pageNumber, size, sort);
-        Page<Paper> pp =paperRepo.findAll(p);
+    Sort sort = (sortOrder.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+    Pageable p = PageRequest.of(pageNumber, size, sort);
+    Page<Paper> pp = paperRepo.findAll(p);
     List<Paper> papers = pp.getContent();
 
     List<PaperDto> paperDtos = new ArrayList<>();
@@ -241,7 +241,7 @@ public class PaperServiceImpl implements PaperService {
 
     }
 
-    return examDetails;  
+    return examDetails;
 
   }
 
@@ -274,7 +274,8 @@ public class PaperServiceImpl implements PaperService {
           .orElseThrow(() -> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
       User user = this.userRepo.findById(invitedStudents.getStudentId())
           .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
-      String msg = "Use_Name => " + student.getEmail() + "\nPassword => " + user.getPassword();
+
+      String msg = "User_Name => " +student.getEmail()+ "    Password =>" + user.getPassword();
 
       this.emailServiceImpl.sendFormateMail(student.getEmail(), msg, "login crenditials", user.getRole());
 
@@ -317,8 +318,8 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public ExamDetails GetattemptedStudents(String paperId) {
-    AttemptedPapers attemptedPapers = this.attemptepaperRepo.GetattemptedStudentsByPaperId(paperId);
+  public ExamDetails GetattemptedStudents(String paperId, String studentId) {
+    AttemptedPapers attemptedPapers = this.attemptepaperRepo.getAllAttemptedPaperbyStudentID(studentId, paperId);
     Student student = this.studentRepo.findById(attemptedPapers.getStudentId())
         .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentID", attemptedPapers.getStudentId()));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
@@ -331,9 +332,10 @@ public class PaperServiceImpl implements PaperService {
 
   @Override
   public List<Paper> getAllpaperByName(String name) {
-  List<Paper> pprName=paperRepo. getAllpaperByName(name);
-  if(pprName.isEmpty()){
+    List<Paper> pprName = paperRepo.getAllpaperByName(name);
+    if (pprName.isEmpty()) {
       throw new NoSuchElementException("The Paper list is empty");
+    }
+    return pprName;
   }
-  return pprName;
-}}
+}
