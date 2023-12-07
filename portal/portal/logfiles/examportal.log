@@ -1,0 +1,55 @@
+2023-12-06 16:33:55 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 21.0.1 with PID 15120 (started by deven in D:\ExamPortalBackend\portal)
+2023-12-06 16:33:55 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-06 16:33:55 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-06 16:33:56 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@389adf1d
+2023-12-06 16:33:56 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 1.658 seconds (process running for 4.672)
+2023-12-06 16:33:56 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
+2023-12-06 16:33:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-06 16:33:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-06 16:33:57 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@389adf1d, started on Wed Dec 06 16:33:56 IST 2023
+2023-12-06 16:34:13 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 21.0.1 with PID 14796 (started by deven in D:\ExamPortalBackend\portal)
+2023-12-06 16:34:13 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-06 16:34:13 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-06 16:34:13 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@77307458
+2023-12-06 16:34:14 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 1.472 seconds (process running for 3.523)
+2023-12-06 16:34:14 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Start
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Ends
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-06 16:34:15 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-06 16:34:16 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@77307458, started on Wed Dec 06 16:34:13 IST 2023
+2023-12-06 16:34:51 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 21.0.1 with PID 14884 (started by deven in D:\ExamPortalBackend\portal)
+2023-12-06 16:34:51 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-06 16:34:51 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-06 16:34:51 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@389adf1d
+2023-12-06 16:34:51 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 1.253 seconds (process running for 3.426)
+2023-12-06 16:34:51 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
+2023-12-06 16:34:52 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@389adf1d, started on Wed Dec 06 16:34:51 IST 2023
+2023-12-06 16:36:16 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 21.0.1 with PID 11952 (started by deven in D:\ExamPortalBackend\portal)
+2023-12-06 16:36:16 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-06 16:36:16 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-06 16:36:16 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@77307458
+2023-12-06 16:36:16 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 1.318 seconds (process running for 3.648)
+2023-12-06 16:36:16 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
+2023-12-06 16:36:18 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@77307458, started on Wed Dec 06 16:36:16 IST 2023
+2023-12-06 16:39:42 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 21.0.1 with PID 14676 (started by deven in D:\ExamPortalBackend\portal)
+2023-12-06 16:39:42 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-06 16:39:42 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-06 16:39:42 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@389adf1d
+2023-12-06 16:39:42 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 1.38 seconds (process running for 3.525)
+2023-12-06 16:39:42 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
+2023-12-06 16:39:44 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@389adf1d, started on Wed Dec 06 16:39:42 IST 2023
+2023-12-06 16:40:11 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 21.0.1 with PID 6700 (started by deven in D:\ExamPortalBackend\portal)
+2023-12-06 16:40:11 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-06 16:40:11 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-06 16:40:11 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@77307458
+2023-12-06 16:40:11 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 1.258 seconds (process running for 3.535)
+2023-12-06 16:40:11 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
+2023-12-06 16:40:12 [main] ERROR StudentServiceImpl.class - Error inviting student: Cannot invoke "examportal.portal.ServicesImpl.Auth0Service.createUser(String, String, String)" because "this.auth0Service" is null
+2023-12-06 16:40:12 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@77307458, started on Wed Dec 06 16:40:11 IST 2023
