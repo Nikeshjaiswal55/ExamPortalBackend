@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.ResultService;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ResultServiceImpl implements ResultService {
@@ -54,51 +56,101 @@ public class ResultServiceImpl implements ResultService {
     Logger log = LoggerFactory.getLogger("ResultServiceImpl.class");
 
     @Override
+    @Transactional
     public ResultDto createResult(ResultDto dto) {
         log.info("ResultServiceImpl, createResult Method Start");
 
-        List<Questions> questions = dto.getQuestions();
+        // 1. Batch Insertion for AttemptedQuestions
+        List<AttemptedQuestions> attemptedQuestionsList = dto.getQuestions().stream()
+                .map(question -> {
+                    AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
+                    attemptedQuestions.setCorrectAns(question.getCorrectAns());
+                    attemptedQuestions.setOptions(question.getOptions());
+                    attemptedQuestions.setQuestions(question.getQuestion());
+                    attemptedQuestions.setPaperID(dto.getResult().getPaperID());
+                    attemptedQuestions.setStudentID(dto.getResult().getStudentID());
+                    return attemptedQuestions;
+                })
+                .collect(Collectors.toList());
 
-        List<Questions> attemptQuestions = new ArrayList<>();
+        List<AttemptedQuestions> savedQuestions = this.attemptedQuestionsRepo.saveAll(attemptedQuestionsList);
 
-        for (Questions questions2 : questions) {
-
-            AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
-            // this.mapper.map(result, AttemptedQuestions.class);
-            attemptedQuestions.setCorrectAns(questions2.getCorrectAns());
-            attemptedQuestions.setOptions(questions2.getOptions());
-            attemptedQuestions.setQuestions(questions2.getQuestion());
-            attemptedQuestions.setPaperID(dto.getResult().getPaperID());
-            attemptedQuestions.setStudentID(dto.getResult().getStudentID());
-            attemptedQuestions.setCorrectAns(questions2.getCorrectAns());
-
-            AttemptedQuestions question = this.attemptedQuestionsRepo.save(attemptedQuestions);
-            Questions att = this.mapper.map(question, Questions.class);
-            attemptQuestions.add(att);
-        }
-
+        // 2. Update ExamDetails
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
         examDetails.setPaperChecked(true);
-        ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
+        this.examDetailsRepo.save(examDetails);
 
+        // 3. Save Result
         Result newResult = this.resultRepo.save(dto.getResult());
 
+        // 4. Save Cheating
         Cheating cheating = new Cheating();
         cheating.setAudios(dto.getCheating().getAudios());
         cheating.setImages(dto.getCheating().getImages());
         cheating.setResultId(newResult.getResultID());
         cheating.setStudentId(newResult.getStudentID());
-        Cheating stdcheating = this.cheatingRepo.save(cheating);
+        Cheating stdCheating = this.cheatingRepo.save(cheating);
 
+        // 5. Build ResultDto
         ResultDto resultDto = new ResultDto();
-        resultDto.setQuestions(attemptQuestions);
+        resultDto.setQuestions((List<Questions>) this.mapper.map(savedQuestions, Questions.class));
         resultDto.setResultID(newResult.getResultID());
-        resultDto.setCheating(stdcheating);
+        resultDto.setCheating(stdCheating);
         resultDto.setResult(newResult);
+
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return resultDto;
     }
+
+    // @Override
+    // public ResultDto createResult(ResultDto dto) {
+    // log.info("ResultServiceImpl, createResult Method Start");
+
+    // List<Questions> questions = dto.getQuestions();
+
+    // List<Questions> attemptQuestions = new ArrayList<>();
+
+    // for (Questions questions2 : questions) {
+
+    // AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
+    // // this.mapper.map(result, AttemptedQuestions.class);
+    // attemptedQuestions.setCorrectAns(questions2.getCorrectAns());
+    // attemptedQuestions.setOptions(questions2.getOptions());
+    // attemptedQuestions.setQuestions(questions2.getQuestion());
+    // attemptedQuestions.setPaperID(dto.getResult().getPaperID());
+    // attemptedQuestions.setStudentID(dto.getResult().getStudentID());
+    // attemptedQuestions.setCorrectAns(questions2.getCorrectAns());
+
+    // AttemptedQuestions question =
+    // this.attemptedQuestionsRepo.save(attemptedQuestions);
+    // Questions att = this.mapper.map(question, Questions.class);
+    // attemptQuestions.add(att);
+    // }
+
+    // ExamDetails examDetails =
+    // this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
+    // examDetails.setPaperChecked(true);
+    // ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
+
+    // Result newResult = this.resultRepo.save(dto.getResult());
+
+    // Cheating cheating = new Cheating();
+    // cheating.setAudios(dto.getCheating().getAudios());
+    // cheating.setImages(dto.getCheating().getImages());
+    // cheating.setResultId(newResult.getResultID());
+    // cheating.setStudentId(newResult.getStudentID());
+    // Cheating stdcheating = this.cheatingRepo.save(cheating);
+
+    // ResultDto resultDto = new ResultDto();
+    // resultDto.setQuestions(attemptQuestions);
+    // resultDto.setResultID(newResult.getResultID());
+    // resultDto.setCheating(stdcheating);
+    // resultDto.setResult(newResult);
+    // log.info("ResultServiceImpl, createResult Method Ends");
+
+    // return resultDto;
+    // }
 
     @Override
     public ResultDto getResultByStudentAndPaperId(String resultID) {
@@ -110,16 +162,9 @@ public class ResultServiceImpl implements ResultService {
         List<AttemptedQuestions> questions2 = this.attemptedQuestionsRepo
                 .getAllQuestionsByStudentID(result.getStudentID(), result.getPaperID());
 
-        List<Questions> questions = new ArrayList<>();
-
-        for (AttemptedQuestions attemptedQuestions : questions2) {
-            Questions question = this.mapper.map(attemptedQuestions, Questions.class);
-            questions.add(question);
-
-        }
-
+        List<Questions> questions = (List<Questions>) this.mapper.map(questions2, Questions.class);
+        
         ResultDto dto = new ResultDto();
-
         dto.setQuestions(questions);
         dto.setResultID(result.getResultID());
         log.info("ResultServiceImpl, createResult Method Ends");

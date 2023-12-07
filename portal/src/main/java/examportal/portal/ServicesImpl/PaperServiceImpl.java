@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.CompletableFuture;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -15,13 +16,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.util.UriUtils;
-
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -117,7 +121,7 @@ public class PaperServiceImpl implements PaperService {
       questions.setPaperID(newpPaper.getPaperId());
       questions.setQuestion(questions.getQuestion());
       this.questionsRepo.save(questions);
-  }
+    }
 
     // this.questionsRepo.saveAll(questionsList);
 
@@ -157,46 +161,46 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperID", paperID));
     PaperDto paperDto = this.mapper.map(paper, PaperDto.class);
-    List<Questions> qList =  this.questionsRepo.getAllQuestionsByPaperId(paperID);
+    List<Questions> qList = this.questionsRepo.getAllQuestionsByPaperId(paperID);
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
 
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
 
-     String obj = encodeObject(paperDto);
+    String obj = encodeObject(paperDto);
 
     log.info("paperService getPaperByID method End's :");
 
     return obj;
   }
 
-   public String encodeObject(Object object) {
+  public String encodeObject(Object object) {
     ObjectMapper objectMapper = new ObjectMapper();
 
-        try {
-            String jsonString = objectMapper.writeValueAsString(object);
-            String encodedString = URLEncoder.encode(jsonString, StandardCharsets.UTF_8);
-            return encodedString;
-        } catch (JsonProcessingException e) {
-            // Handle the exception, e.g., log or throw a custom exception
-            e.printStackTrace();
-            return null;
-        }
+    try {
+      String jsonString = objectMapper.writeValueAsString(object);
+      String encodedString = URLEncoder.encode(jsonString, StandardCharsets.UTF_8);
+      return encodedString;
+    } catch (JsonProcessingException e) {
+      // Handle the exception, e.g., log or throw a custom exception
+      e.printStackTrace();
+      return null;
     }
-    
-     public Object decodeObject(String encodedString) {
-          ObjectMapper objectMapper = new ObjectMapper();
+  }
 
-        try {
-            String decodedString = UriUtils.decode(encodedString, StandardCharsets.UTF_8);
-            Object decodedObject = objectMapper.readValue(decodedString, Object.class);
-            return decodedObject;
-        } catch (JsonProcessingException e) {
-            // Handle the exception, e.g., log or throw a custom exception
-            e.printStackTrace();
-            return null;
-        }
+  public Object decodeObject(String encodedString) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    try {
+      String decodedString = UriUtils.decode(encodedString, StandardCharsets.UTF_8);
+      Object decodedObject = objectMapper.readValue(decodedString, Object.class);
+      return decodedObject;
+    } catch (JsonProcessingException e) {
+      // Handle the exception, e.g., log or throw a custom exception
+      e.printStackTrace();
+      return null;
     }
+  }
 
   @Override
   public PaperDto updetPaper(PaperDto paperDto) {
@@ -302,33 +306,37 @@ public class PaperServiceImpl implements PaperService {
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
       return "Deactive successfully";
-    }
-    paper.set_Active(true);
-    paper.set_setup(false);
-    examDetails.set_Active(true);
-    examDetails.set_Setup(false);
-    Paper ActivePaper = this.paperRepo.save(paper);
-    this.examDetailsRepo.save(examDetails);
-
-    List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
-
-    for (InvitedStudents invitedStudents : students) {
-      Student student = this.studentRepo.findById(invitedStudents.getStudentId())
-          .orElseThrow(() -> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
-      User user = this.userRepo.findById(invitedStudents.getStudentId())
-          .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
-
-      String msg = "User_Name => " +student.getEmail()+ "    Password =>" + user.getPassword();
-
-      this.emailServiceImpl.sendFormateMail(student.getEmail(), msg, "login crenditials", user.getRole());
-
+    } else {
+      paper.set_Active(true);
+      paper.set_setup(false);
+      examDetails.set_Active(true);
+      examDetails.set_Setup(false);
+      Paper ActivePaper = this.paperRepo.save(paper);
+      this.examDetailsRepo.save(examDetails);
     }
 
     log.info("paperServiceImpl activatePaper  method Ends");
 
     return "Paper Published Successfully";
   }
+  
+  @Async
+  public CompletableFuture<String> processInvitationsInBackground(String paperId) {
 
+      List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
+
+      students.forEach(invitedStudents -> {
+          User user = this.userRepo.findById(invitedStudents.getStudentId())
+                  .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
+
+          String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+
+          this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
+      });
+
+      return CompletableFuture.completedFuture("sending email in background");
+  }
+  
   @Override
   public List<ExamDetails> getAllAssessmentsByUserId(String userId) {
 
