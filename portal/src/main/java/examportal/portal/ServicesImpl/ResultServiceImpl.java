@@ -1,6 +1,9 @@
 package examportal.portal.ServicesImpl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -8,15 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException.NotFound;
-
 import examportal.portal.Entity.AttemptedQuestions;
 import examportal.portal.Entity.Cheating;
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Result;
+import examportal.portal.Entity.Student;
 import examportal.portal.Exceptions.ResourceNotFoundException;
-import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.AttemptedQuestionsRepo;
@@ -24,8 +25,8 @@ import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.ResultRepo;
+import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.ResultService;
-import java.util.Date;
 
 @Service
 public class ResultServiceImpl implements ResultService {
@@ -47,13 +48,16 @@ public class ResultServiceImpl implements ResultService {
     @Autowired
     private QuestionsRepo questionsRepo;
 
+    @Autowired
+    private StudentRepo studentRepo;
+
     Logger log = LoggerFactory.getLogger("ResultServiceImpl.class");
 
     @Override
-    public ResultDto createResult(ResultDto result) {
+    public ResultDto createResult(ResultDto dto) {
         log.info("ResultServiceImpl, createResult Method Start");
 
-        List<Questions> questions = result.getQuestions();
+        List<Questions> questions = dto.getQuestions();
 
         List<Questions> attemptQuestions = new ArrayList<>();
 
@@ -63,47 +67,48 @@ public class ResultServiceImpl implements ResultService {
             // this.mapper.map(result, AttemptedQuestions.class);
             attemptedQuestions.setCorrectAns(questions2.getCorrectAns());
             attemptedQuestions.setOptions(questions2.getOptions());
-            attemptedQuestions.setQuestions(questions2.getQuestions());
-            attemptedQuestions.setPaperID(result.getPaperID());
-            attemptedQuestions.setStudentID(result.getStudentID());
+            attemptedQuestions.setQuestions(questions2.getQuestion());
+            attemptedQuestions.setPaperID(dto.getResult().getPaperID());
+            attemptedQuestions.setStudentID(dto.getResult().getStudentID());
+            attemptedQuestions.setCorrectAns(questions2.getCorrectAns());
 
             AttemptedQuestions question = this.attemptedQuestionsRepo.save(attemptedQuestions);
-
-            attemptQuestions.add(questions2);
-
+            Questions att = this.mapper.map(question, Questions.class);
+            attemptQuestions.add(att);
         }
 
-        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(result.getPaperID());
+        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
         examDetails.setPaperChecked(true);
         ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
 
-        Result newResult = new Result();
-        newResult.setPaperID(result.getPaperID());
-        newResult.setStudentID(result.getStudentID());
-        Result savedResult = this.resultRepo.save(newResult);
+        Result newResult = this.resultRepo.save(dto.getResult());
 
-        Cheating cheating = this.cheatingRepo.save(result.getCheating());
+        Cheating cheating = new Cheating();
+        cheating.setAudios(dto.getCheating().getAudios());
+        cheating.setImages(dto.getCheating().getImages());
+        cheating.setResultId(newResult.getResultID());
+        cheating.setStudentId(newResult.getStudentID());
+        Cheating stdcheating = this.cheatingRepo.save(cheating);
 
-        ResultDto dto = new ResultDto();
-        dto.setQuestions(attemptQuestions);
-        dto.setPaperID(result.getPaperID());
-        dto.setStudentID(result.getStudentID());
-        dto.setResultID(savedResult.getResultID());
-        dto.setCheating(cheating);
+        ResultDto resultDto = new ResultDto();
+        resultDto.setQuestions(attemptQuestions);
+        resultDto.setResultID(newResult.getResultID());
+        resultDto.setCheating(stdcheating);
+        resultDto.setResult(newResult);
         log.info("ResultServiceImpl, createResult Method Ends");
 
-        return dto;
+        return resultDto;
     }
 
     @Override
-    public ResultDto getResultByResultId(String resultID) {
+    public ResultDto getResultByStudentAndPaperId(String resultID) {
         log.info("ResultServiceImpl, createResult Method Start");
 
         Result result = this.resultRepo.findById(resultID)
                 .orElseThrow(() -> new ResourceNotFoundException("result ", "Result Id", resultID));
 
         List<AttemptedQuestions> questions2 = this.attemptedQuestionsRepo
-                .getAllQuestionsByStudentID(result.getStudentID());
+                .getAllQuestionsByStudentID(result.getStudentID(), result.getPaperID());
 
         List<Questions> questions = new ArrayList<>();
 
@@ -116,9 +121,7 @@ public class ResultServiceImpl implements ResultService {
         ResultDto dto = new ResultDto();
 
         dto.setQuestions(questions);
-        dto.setPaperID(result.getPaperID());
         dto.setResultID(result.getResultID());
-        dto.setStudentID(result.getStudentID());
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return dto;
@@ -127,43 +130,70 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public ResultDto checkPaper(checkpaperDto dto) {
-        int count = 0;
-        float percentage;
-        int eachqMarks = 0;
-        Date date = new Date();
+
+        int obtainmarks = 0;
+        float percentage = 0;
+
+        LocalDateTime date = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = date.format(formatter);
+
         List<Questions> questions2 = new ArrayList();
+
+        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
+
+        int eachqMarks = (examDetails.getTotalMarks() / dto.getQuestions().size());
+
         for (Questions ques : dto.getQuestions()) {
             Questions q = this.questionsRepo.findById(ques.getQuestionId())
                     .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
             if (q.getCorrectAns().equals(ques.getUserAns())) {
-                count++;
+                obtainmarks += eachqMarks;
                 q.setUserAns(ques.getUserAns());
                 questions2.add(q);
             }
             questions2.add(ques);
         }
-        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
-        eachqMarks = (examDetails.getTotalMarks()) / dto.getQuestions().size();
 
-        percentage = (count / examDetails.getTotalMarks()) * 100;
+        percentage = ((float) obtainmarks / (float) examDetails.getTotalMarks()) * 100;
 
-        if (count > examDetails.getMinimum_marks()) {
-           dto.setResultstatus("pass");
+        if (obtainmarks > examDetails.getMinimum_marks()) {
+            dto.setResultstatus("pass");
         } else {
-         dto.setResultstatus("fail");
+            dto.setResultstatus("fail");
         }
 
-        ResultDto dto2 = new ResultDto();
-        dto2.setMarks(count);
-        dto2.setPaperID(dto.getPaperId());
-        dto2.setPercentage(percentage);
-        dto2.setQuestions(questions2);
-        dto2.setStudentID(dto.getStudentId());
-        dto2.setResult(dto.getResultstatus());
-        dto2.setCheating(dto.getCheating());
-        ResultDto newresult = createResult(dto2);
+        Result newResult = new Result();
+        newResult.setPaperID(dto.getPaperId());
+        newResult.setStudentID(dto.getStudentId());
+        newResult.setDate(formattedDate);
+        newResult.setMarks(obtainmarks);
+        newResult.setResultStatus(dto.getResultstatus());
+        newResult.setPercentage(percentage);
 
-        return newresult;
+        ResultDto dto2 = new ResultDto();
+        dto2.setQuestions(questions2);
+        dto2.setCheating(dto.getCheating());
+        dto2.setResult(newResult);
+        System.out.println("my  dt0 --=---========-" + dto2);
+        ResultDto paperrResultDto = createResult(dto2);
+
+        return paperrResultDto;
+    }
+
+    @Override
+    public List<Student> getTopThreeStudentByPaper(String paperId) {
+
+        List<Result> results = this.resultRepo.findAllByPaperIdOrderByPercentageDesc(paperId);
+        List<Student> TopThree = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            Result resu = results.get(i);
+            Student student = this.studentRepo.findById(resu.getStudentID())
+                    .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", resu.getStudentID()));
+            TopThree.add(student);
+        }
+
+        return TopThree;
     }
 
 }

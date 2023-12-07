@@ -1,5 +1,8 @@
 package examportal.portal.ServicesImpl;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -13,6 +16,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.util.UriUtils;
+
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
@@ -104,8 +115,9 @@ public class PaperServiceImpl implements PaperService {
 
     for (Questions questions : questionsList) {
       questions.setPaperID(newpPaper.getPaperId());
+      questions.setQuestion(questions.getQuestion());
       this.questionsRepo.save(questions);
-    }
+  }
 
     // this.questionsRepo.saveAll(questionsList);
 
@@ -140,20 +152,51 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public PaperDto getPaperById(String paperID) {
+  public String getPaperById(String paperID) {
     log.info("paperService getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperID", paperID));
     PaperDto paperDto = this.mapper.map(paper, PaperDto.class);
-    List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
+    List<Questions> qList =  this.questionsRepo.getAllQuestionsByPaperId(paperID);
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
 
-    paperDto.setQuestions(questions);
+    paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
 
+     String obj = encodeObject(paperDto);
+
     log.info("paperService getPaperByID method End's :");
-    return paperDto;
+
+    return obj;
   }
+
+   public String encodeObject(Object object) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            String jsonString = objectMapper.writeValueAsString(object);
+            String encodedString = URLEncoder.encode(jsonString, StandardCharsets.UTF_8);
+            return encodedString;
+        } catch (JsonProcessingException e) {
+            // Handle the exception, e.g., log or throw a custom exception
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+     public Object decodeObject(String encodedString) {
+          ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            String decodedString = UriUtils.decode(encodedString, StandardCharsets.UTF_8);
+            Object decodedObject = objectMapper.readValue(decodedString, Object.class);
+            return decodedObject;
+        } catch (JsonProcessingException e) {
+            // Handle the exception, e.g., log or throw a custom exception
+            e.printStackTrace();
+            return null;
+        }
+    }
 
   @Override
   public PaperDto updetPaper(PaperDto paperDto) {

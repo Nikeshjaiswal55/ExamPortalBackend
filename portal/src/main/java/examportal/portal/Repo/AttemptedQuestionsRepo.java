@@ -11,6 +11,6 @@ import examportal.portal.Entity.AttemptedQuestions;
 
 public interface AttemptedQuestionsRepo extends JpaRepository<AttemptedQuestions,String>{
     
-    @Query("SELECT s FROM AttemptedQuestions s WHERE s.studentID=:studentID and s.paperID=:paperID")
+    @Query("SELECT s FROM AttemptedQuestions s WHERE s.studentID=:studentID AND s.paperID=:paperID")
     List<AttemptedQuestions> getAllQuestionsByStudentID(@Param("studentID")String studentID, @Param("paperID") String paperID);
 }

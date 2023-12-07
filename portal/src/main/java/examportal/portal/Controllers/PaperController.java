@@ -74,11 +74,11 @@ public class PaperController {
     }
     // Getting paper by paperId
     @GetMapping("/getPaperbyPaperId/{paperID}")
-    public ResponseEntity<PaperDto> getpaperByID(@PathVariable String paperID) {
+    public ResponseEntity<String> getpaperByID(@PathVariable String paperID) {
         log.info("paperService get paper by id  method started");
-        PaperDto paperDto = this.paperService.getPaperById(paperID);
+        String paperDto = this.paperService.getPaperById(paperID);
         log.info("paperService getall paper method End's");
-        return new ResponseEntity<PaperDto>(paperDto, HttpStatus.OK);
+        return new ResponseEntity<String>(paperDto, HttpStatus.OK);
     }
     // get All peparByName 
      @GetMapping("/getPaperByName/{name}")

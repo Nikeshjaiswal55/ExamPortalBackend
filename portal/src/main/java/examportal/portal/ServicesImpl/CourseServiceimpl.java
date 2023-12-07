@@ -115,7 +115,7 @@ public class CourseServiceimpl implements CourseService {
           User savedUser = this.userRepo.save(use);
 
           Student student = new Student();
-          student.setBranch(email.getBranch());
+          student.setBranch(email.getBranch()); 
           student.setName(email.getName());
           student.setEmail(email.getEmail());
           student.setOrgnizationId(course.getOrgnizationId());
