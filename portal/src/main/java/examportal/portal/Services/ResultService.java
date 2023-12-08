@@ -14,4 +14,6 @@ public interface ResultService {
     ResultDto checkPaper(checkpaperDto dto);
 
     List<Student> getTopThreeStudentByPaper(String paperId);
+
+    ResultDto getResultByStudentIdAndPaperId(String papeId,String studentId);
 }

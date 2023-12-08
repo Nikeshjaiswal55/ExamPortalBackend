@@ -177,9 +177,13 @@ public class ResultServiceImpl implements ResultService {
                     Questions q = this.mapper.map(attemptedQuestions, Questions.class);
                     questions.add(q);
                 }
+        Cheating cheating = this.cheatingRepo.getCheatsOfA_Student_InA_Paper(result.getResultID(), result.getPaperID());
+
         ResultDto dto = new ResultDto();
         dto.setQuestions(questions);
+        dto.setResult(result);
         dto.setResultID(result.getResultID());
+        dto.setCheating(cheating);
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return dto;
@@ -254,4 +258,30 @@ public class ResultServiceImpl implements ResultService {
         return TopThree;
     }
 
+    @Override
+    public ResultDto getResultByStudentIdAndPaperId(String papeId, String studentId) {
+        
+        Result result = this.resultRepo.getresultBystdentandpaperId(papeId, studentId);
+
+        Cheating cheating = this.cheatingRepo.getCheatsOfA_Student_InA_Paper(studentId, papeId);
+
+        List<Questions> questions = new ArrayList<>();
+        List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo.getAllQuestionsByStudentID(studentId, papeId);
+
+        for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
+            Questions q = this.mapper.map(attemptedQuestions2,Questions.class);
+            questions.add(q);
+        }
+
+        ResultDto dto = new ResultDto();
+        dto.setCheating(cheating);
+        dto.setResult(result);
+        dto.setQuestions(questions);
+        return dto;
+    }
+
+    
+
 }
+
+

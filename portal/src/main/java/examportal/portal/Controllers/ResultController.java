@@ -20,6 +20,8 @@ import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Services.ResultService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -80,4 +82,11 @@ public class ResultController {
 
         return new ResponseEntity<>(results,HttpStatus.OK);
     }
+
+    @GetMapping("/getresultby/student/{studentId}/paperId/{paperId}")
+    public ResponseEntity<ResultDto> getbystudentandpaperId(@PathVariable String studentId , @PathVariable String paperId) {
+        ResultDto dto = this.resultService.getResultByStudentIdAndPaperId(paperId, studentId);
+        return new ResponseEntity<ResultDto>(dto,HttpStatus.OK);
+    }
+    
 }
