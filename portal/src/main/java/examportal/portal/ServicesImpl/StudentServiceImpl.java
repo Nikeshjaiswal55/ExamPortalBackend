@@ -3,8 +3,6 @@ package examportal.portal.ServicesImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.concurrent.ForkJoinPool;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -26,6 +23,7 @@ import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
+import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.PaperService;
 import examportal.portal.Services.StudentSevices;
@@ -58,6 +56,9 @@ public class StudentServiceImpl implements StudentSevices {
 
     @Autowired
     private PaperService paperService;
+
+    @Autowired
+    private PaperRepo paperRepo;
 
     @Autowired
     private ExamDetailsRepo examDetailsRepo;
@@ -219,5 +220,7 @@ public class StudentServiceImpl implements StudentSevices {
         }
         return list;
     }
+  
 
+    
 }

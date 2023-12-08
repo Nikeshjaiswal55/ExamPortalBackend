@@ -25,4 +25,5 @@ public interface StudentRepo extends JpaRepository<Student,String>{
    @Query("SELECT s FROM Student s where s.name=:name")
     List<Student>  getAllStudentByName( @Param("name") String name);
     
+    Integer countByOrganizatiosId(String organizationId);
 }

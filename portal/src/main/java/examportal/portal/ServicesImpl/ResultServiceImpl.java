@@ -75,10 +75,10 @@ public class ResultServiceImpl implements ResultService {
 
         List<AttemptedQuestions> savedQuestions = this.attemptedQuestionsRepo.saveAll(attemptedQuestionsList);
         List<Questions> questions = new ArrayList();
-                for (AttemptedQuestions attemptedQuestions : savedQuestions) {
-                    Questions question = this.mapper.map(attemptedQuestions, Questions.class);
-                    questions.add(question);
-                }
+        for (AttemptedQuestions attemptedQuestions : savedQuestions) {
+            Questions question = this.mapper.map(attemptedQuestions, Questions.class);
+            questions.add(question);
+        }
         // 2. Update ExamDetails
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
         examDetails.setPaperChecked(true);
@@ -90,7 +90,7 @@ public class ResultServiceImpl implements ResultService {
         // 3. Save Result
         Result newResult = new Result();
         newResult.setStudentID(dto.getResult().getStudentID());
-         this.resultRepo.save(newResult);
+        this.resultRepo.save(newResult);
 
         // 4. Save Cheating
         Cheating cheating = new Cheating();
@@ -112,55 +112,6 @@ public class ResultServiceImpl implements ResultService {
         return resultDto;
     }
 
-    // @Override
-    // public ResultDto createResult(ResultDto dto) {
-    // log.info("ResultServiceImpl, createResult Method Start");
-
-    // List<Questions> questions = dto.getQuestions();
-
-    // List<Questions> attemptQuestions = new ArrayList<>();
-
-    // for (Questions questions2 : questions) {
-
-    // AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
-    // // this.mapper.map(result, AttemptedQuestions.class);
-    // attemptedQuestions.setCorrectAns(questions2.getCorrectAns());
-    // attemptedQuestions.setOptions(questions2.getOptions());
-    // attemptedQuestions.setQuestions(questions2.getQuestion());
-    // attemptedQuestions.setPaperID(dto.getResult().getPaperID());
-    // attemptedQuestions.setStudentID(dto.getResult().getStudentID());
-    // attemptedQuestions.setCorrectAns(questions2.getCorrectAns());
-
-    // AttemptedQuestions question =
-    // this.attemptedQuestionsRepo.save(attemptedQuestions);
-    // Questions att = this.mapper.map(question, Questions.class);
-    // attemptQuestions.add(att);
-    // }
-
-    // ExamDetails examDetails =
-    // this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
-    // examDetails.setPaperChecked(true);
-    // ExamDetails updatecheck = this.examDetailsRepo.save(examDetails);
-
-    // Result newResult = this.resultRepo.save(dto.getResult());
-
-    // Cheating cheating = new Cheating();
-    // cheating.setAudios(dto.getCheating().getAudios());
-    // cheating.setImages(dto.getCheating().getImages());
-    // cheating.setResultId(newResult.getResultID());
-    // cheating.setStudentId(newResult.getStudentID());
-    // Cheating stdcheating = this.cheatingRepo.save(cheating);
-
-    // ResultDto resultDto = new ResultDto();
-    // resultDto.setQuestions(attemptQuestions);
-    // resultDto.setResultID(newResult.getResultID());
-    // resultDto.setCheating(stdcheating);
-    // resultDto.setResult(newResult);
-    // log.info("ResultServiceImpl, createResult Method Ends");
-
-    // return resultDto;
-    // }
-
     @Override
     public ResultDto getResultByStudentAndPaperId(String resultID) {
         log.info("ResultServiceImpl, createResult Method Start");
@@ -172,7 +123,7 @@ public class ResultServiceImpl implements ResultService {
                 .getAllQuestionsByStudentID(result.getStudentID(), result.getPaperID());
 
         List<Questions> questions = (List<Questions>) this.mapper.map(questions2, Questions.class);
-        
+
         ResultDto dto = new ResultDto();
         dto.setQuestions(questions);
         dto.setResultID(result.getResultID());
@@ -224,6 +175,7 @@ public class ResultServiceImpl implements ResultService {
         newResult.setMarks(obtainmarks);
         newResult.setResultStatus(dto.getResultstatus());
         newResult.setPercentage(percentage);
+        newResult.setAssesment_Name(dto.getAssesment_Name());
 
         ResultDto dto2 = new ResultDto();
         dto2.setQuestions(questions2);
@@ -250,4 +202,18 @@ public class ResultServiceImpl implements ResultService {
         return TopThree;
     }
 
+    public List<Result> getTopFiveAssesmentOfStudentByStudentId(String studentId) {
+
+        List<Result> ls = resultRepo.findAllResutlByStudentID(studentId);
+
+        List<Result> topFive = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+
+            Result rslt = ls.get(i);
+            topFive.add(rslt);
+        }
+
+        return topFive;
+    }
 }

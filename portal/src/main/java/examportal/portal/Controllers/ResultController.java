@@ -72,11 +72,11 @@ public class ResultController {
         return new ResponseEntity<>(toppers,HttpStatus.OK);
     }
 
-    @GetMapping("/getAllResultsByStudentId/{studentId}")
-    public ResponseEntity <List<Result>>getAllResult_ByStudentId(@PathVariable String studentId)
+    @GetMapping("/getTop5ResultOfStudent/{studentId}")
+    public ResponseEntity<List<Result>>getTop5_ResultOfStudentId(@PathVariable String studentId)
     {
        
-     List<Result> results = this.resultRepo.findByStudentID(studentId);
+     List<Result> results = this.resultService.getTopFiveAssesmentOfStudentByStudentId(studentId);
 
         return new ResponseEntity<>(results,HttpStatus.OK);
     }
