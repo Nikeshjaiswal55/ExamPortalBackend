@@ -60,8 +60,8 @@ public class StudentController {
         return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
     }
     //getAll Student by name
-     @GetMapping("/student/{name}")
-    public ResponseEntity<List<Student>> getAllStudentByname(@PathVariable String name) {
+     @GetMapping("/GetAllStudentByName")
+    public ResponseEntity<List<Student>> getAllStudentByname( @RequestParam(name = "name", defaultValue = "null",required = false) String name) {
         log.info("StudentController , getAllStudent Method Start");
 
        List<Student> s = studentSevices.getAllStudentByName(name);

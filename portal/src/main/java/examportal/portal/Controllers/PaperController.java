@@ -88,8 +88,8 @@ public class PaperController {
         return new ResponseEntity<String>(paperDto, HttpStatus.OK);
     }
     // get All peparByName 
-     @GetMapping("/getPaperByName/{name}")
-    public ResponseEntity<List<Paper>> getpaperByNmae(@PathVariable String name) {
+     @GetMapping("/getAllPaperByName")
+    public ResponseEntity<List<Paper>> getpaperByNmae( @RequestParam(name = "name", defaultValue = "null",required = false) String name) {
         log.info("paperService get paper by id  method started");
         List<Paper> paper= this.paperService.getAllpaperByName(name);
         log.info("paperService getall paper method End's");

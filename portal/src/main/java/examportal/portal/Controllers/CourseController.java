@@ -59,8 +59,8 @@ public class CourseController {
     return new ResponseEntity<Course>(list, HttpStatus.OK);
   }
   //get All Student by name
-  @GetMapping("/course/{name}")
-  public ResponseEntity<List<Course>> getAllCourseByName(@PathVariable String name) {
+  @GetMapping("/GetAllCourseByName")
+  public ResponseEntity<List<Course>> getAllCourseByName( @RequestParam(name = "name", defaultValue = "null",required = false) String name) {
     log.info("CourseController,getCourseById Method Start");
     List<Course> list = courseService.getAllCourseByStudentName(name);
     log.info("CourseController,getCourseById Method Ends");

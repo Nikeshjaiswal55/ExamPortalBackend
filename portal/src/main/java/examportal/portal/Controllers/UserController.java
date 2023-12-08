@@ -50,8 +50,8 @@ public class UserController {
         
     }
     //  get all user by name
-      @GetMapping("/user/getByName/{name}")
-    public ResponseEntity<List<User>> getAllUserByName(@PathVariable String name){
+      @GetMapping("/getAllUserByName")
+    public ResponseEntity<List<User>> getAllUserByName( @RequestParam(name = "name", defaultValue = "null",required = false) String name){
         
         List<User> us = this.userService.getAllUserByName(name); 
         log.info("UserController, getAllUserByName Method Ends");

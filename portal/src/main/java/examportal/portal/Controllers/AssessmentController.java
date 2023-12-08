@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Assessment;
@@ -57,8 +58,8 @@ public class AssessmentController {
         return new ResponseEntity<List<ExamDetails>>(examDetailsAll, HttpStatus.OK);
 
     }
-    @GetMapping("getAllAsementByName/{name}")
-    public ResponseEntity<List<Assessment>> getAllAssesmenByName(String name){ 
+    @GetMapping("getAllAsementByName")
+    public ResponseEntity<List<Assessment>> getAllAssesmenByName( @RequestParam(name = "name", defaultValue = "null",required = false) String name){ 
         log.info("AssessmentCinroler , get all assessment by name method start");
     List<Assessment> list = this.assessmentRepo.getAllAssesmenByName(name);
     if (list.isEmpty()) 
