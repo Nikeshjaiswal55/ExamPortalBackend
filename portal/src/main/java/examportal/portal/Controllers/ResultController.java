@@ -61,7 +61,7 @@ public class ResultController {
     @GetMapping("/Get/CheatingOfStudentOfPaper/{studentId}/{paperId}")
     public ResponseEntity<Cheating> getCheatingOfStudentInSpecificPaper(@PathVariable String studentId,@PathVariable String paperId)
     {
-        Cheating cheat = this.cheatingRepo.getCheatsOfA_Student_InA_Paper(studentId, paperId);
+        Cheating cheat = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, paperId);
         return new ResponseEntity<>(cheat,HttpStatus.OK);
     }
 
