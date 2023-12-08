@@ -109,6 +109,7 @@ public class ResultServiceImpl implements ResultService {
         cheating.setImages(dto.getCheating().getImages());
         cheating.setResultId(newResult.getResultID());
         cheating.setStudentId(newResult.getStudentID());
+        cheating.setPaperId(dto.getResult().getPaperID());
         Cheating stdCheating = this.cheatingRepo.save(cheating);
 
         // 5. Build ResultDto
