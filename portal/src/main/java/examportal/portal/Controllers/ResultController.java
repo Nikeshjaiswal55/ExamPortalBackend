@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Cheating;
+import examportal.portal.Entity.Result;
 import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.CheatingRepo;
+import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Services.ResultService;
 
 @RestController
@@ -23,6 +25,10 @@ public class ResultController {
 
     @Autowired
     private ResultService resultService;
+
+    
+    @Autowired
+    private ResultRepo resultRepo;
 
     @Autowired
     private CheatingRepo cheatingRepo;
@@ -63,5 +69,14 @@ public class ResultController {
         java.util.List<Student> toppers = this.resultService.getTopThreeStudentByPaper(paperId);
 
         return new ResponseEntity<>(toppers,HttpStatus.OK);
+    }
+
+      @GetMapping("/getAllResultsByStudentId/{studentId}")
+    public ResponseEntity <java.util.List<Result>>getAllResult_ByStudentId(@PathVariable String studentId)
+    {
+       
+        java.util.List<Result> results = this.resultRepo.findByStudentID(studentId);
+
+        return new ResponseEntity<>(results,HttpStatus.OK);
     }
 }

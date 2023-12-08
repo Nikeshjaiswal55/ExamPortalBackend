@@ -1,6 +1,5 @@
 package examportal.portal.ServicesImpl;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -16,19 +15,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.web.util.UriUtils;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -48,7 +40,6 @@ import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
-// import examportal.portal.Services.ExamDetailsService;
 import examportal.portal.Services.PaperService;
 
 @Service
@@ -83,9 +74,6 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private AttemptepaperRepo attemptepaperRepo;
-
-  // @Autowired
-  // private ExamDetailsService examDetailsService;
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
