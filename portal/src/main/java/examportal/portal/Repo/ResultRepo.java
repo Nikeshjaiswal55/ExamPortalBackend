@@ -16,4 +16,7 @@ public interface ResultRepo extends JpaRepository<Result,String> {
     @Query("SELECT r From Result r WHERE r.studentID =:studentID ORDER BY r.percentage DESC")
     List<Result> findAllResutlByStudentID(@Param("studentID")String studentID);
 
+    @Query("SELECT r FROM Result r WHERE r.paperID=:paperID And r.studentID=:studentID")
+    Result getresultBystdentandpaperId(@Param("paperID")String paperID,@Param("studentID") String studentID);
+
 }

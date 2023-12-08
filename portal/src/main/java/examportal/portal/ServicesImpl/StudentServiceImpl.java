@@ -134,33 +134,35 @@ public class StudentServiceImpl implements StudentSevices {
     public String inviteStudents(InvitationDto dto) {
 
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
-        if (examDetails.getBranch() != null) {
-            List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+        System.out.println(examDetails.getBranch()+"=====================================================================================================");
+        
+        if (examDetails.getBranch() !=null) {
 
+            List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+    
             for (Student student : students) {
                 Student st = this.studentRepo.getszStudentByEmail(student.getEmail());
                 if (st != null) {
                     handleExistingStudent(dto, st.getStudentid());
                 }
             }
-            this.paperService.processInvitationsInBackground(dto.getPaperId());
             return "Inviting students by branch";
         } 
         else {
+            System.out.println("i ma entetr in seconde conditions ==========================================");
             for (String email: dto.getEmails()) {
                 Student st = this.studentRepo.getszStudentByEmail(email);
-                if (st!=null) {
+                if (st != null) {
                     handleExistingStudent(dto, st.getStudentid());
                 }
-                else
-                {
+                else {
                     handleNewStudent(dto, email);
                 }
             }
             return "Student added successfully";
         }
-
     }
+    
 
     public String handleExistingStudent(InvitationDto dto, String studentId) {
 

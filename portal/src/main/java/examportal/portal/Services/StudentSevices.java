@@ -20,7 +20,7 @@ public interface StudentSevices{
 
     
 
-    public String inviteStudents(InvitationDto dto);
+     String inviteStudents(InvitationDto dto);
     //getAllUserByName  
     List<Student>getAllStudentByName(String name);
     

@@ -61,13 +61,13 @@ public class AssessmentController {
     }
 
     @GetMapping("/getAllAssessmentByStudentId/{studentId}")
-   public ResponseEntity<List<ExamDetails>> getAllAssessmentByStudentId(@PathVariable String studentId)
+   public ResponseEntity<List<ExamDetails>> getAllAssessmentByStudentId(@PathVariable String studentId,String paperId);
    {
-      List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_userId(studentId);
+      List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_userId(studentId,paperId);
         List<ExamDetails> examDetailsAll = new ArrayList<>();
         for (Assessment assessment : assessments) {
             ExamDetails examDetails = examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
-            if (examDetails.is_Active() || examDetails.is_attempted()) {
+            if (examDetails.is_Active()) {
                 examDetailsAll.add(examDetails);
             }
             
