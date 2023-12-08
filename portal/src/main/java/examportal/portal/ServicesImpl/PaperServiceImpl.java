@@ -1,8 +1,12 @@
 package examportal.portal.ServicesImpl;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.CompletableFuture;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -12,7 +16,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.util.UriUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
@@ -24,6 +39,7 @@ import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
@@ -104,6 +120,7 @@ public class PaperServiceImpl implements PaperService {
 
     for (Questions questions : questionsList) {
       questions.setPaperID(newpPaper.getPaperId());
+      questions.setQuestion(questions.getQuestion());
       this.questionsRepo.save(questions);
     }
 
@@ -140,19 +157,52 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public PaperDto getPaperById(String paperID) {
+  public PaperStringDto getPaperById(String paperID) {
     log.info("paperService getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperID", paperID));
     PaperDto paperDto = this.mapper.map(paper, PaperDto.class);
-    List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
+    List<Questions> qList = this.questionsRepo.getAllQuestionsByPaperId(paperID);
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
 
-    paperDto.setQuestions(questions);
+    paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
 
+    String obj = encodeObject(paperDto);
+
+    PaperStringDto paperStringDto = new PaperStringDto();
+    paperStringDto.setData(obj);
     log.info("paperService getPaperByID method End's :");
-    return paperDto;
+
+    return paperStringDto;
+  }
+
+  public String encodeObject(Object object) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    try {
+      String jsonString = objectMapper.writeValueAsString(object);
+      String encodedString = URLEncoder.encode(jsonString, StandardCharsets.UTF_8);
+      return encodedString;
+    } catch (JsonProcessingException e) {
+      // Handle the exception, e.g., log or throw a custom exception
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public Object decodeObject(String encodedString) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    try {
+      String decodedString = UriUtils.decode(encodedString, StandardCharsets.UTF_8);
+      Object decodedObject = objectMapper.readValue(decodedString, Object.class);
+      return decodedObject;
+    } catch (JsonProcessingException e) {
+      // Handle the exception, e.g., log or throw a custom exception
+      e.printStackTrace();
+      return null;
+    }
   }
 
   @Override
@@ -230,11 +280,11 @@ public class PaperServiceImpl implements PaperService {
   public List<ExamDetails> getAllPaperByUserId(String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
     List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
-
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Paper paper2 : paper) {
-      ExamDetails emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+      ExamDetails emd = new ExamDetails();
+      emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
       emd.set_Active(paper2.is_Active());
       emd.set_Setup(paper2.is_setup());
       examDetails.add(emd);
@@ -251,7 +301,6 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
-
     if (active == true) {
       paper.set_Active(false);
       paper.set_setup(true);
@@ -267,27 +316,30 @@ public class PaperServiceImpl implements PaperService {
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
+    }
+
+    log.info("paperServiceImpl activatePaper  method Ends");
+
+    return "Paper Published Successfully";
+  }
+  
+  @Async
+  public CompletableFuture<String> processInvitationsInBackground(String paperId) {
 
       List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
 
-      for (InvitedStudents invitedStudents : students) {
-        Student student = this.studentRepo.findById(invitedStudents.getStudentId())
-            .orElseThrow(() -> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
-        User user = this.userRepo.findById(invitedStudents.getStudentId())
-            .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
+      students.forEach(invitedStudents -> {
+          User user = this.userRepo.findById(invitedStudents.getStudentId())
+                  .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
 
-        String msg = "User_Name => " + student.getEmail() + "  \n  Password =>" + user.getPassword();
+          String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
 
-        this.emailServiceImpl.sendFormateMail(student.getEmail(), msg, "login crenditials", user.getRole());
+          this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
+      });
 
-      }
-
-      log.info("paperServiceImpl activatePaper  method Ends");
-
-    }
-    return "Paper Published Successfully";
+      return CompletableFuture.completedFuture("sending email in background");
   }
-
+  
   @Override
   public List<ExamDetails> getAllAssessmentsByUserId(String userId) {
 

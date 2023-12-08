@@ -2,6 +2,9 @@ package examportal.portal.Controllers;
 
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +28,8 @@ import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
 
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Payloads.PaperStringDto;
+import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Services.PaperService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,6 +43,9 @@ public class PaperController {
 
     @Autowired
     private InvitationRepo invitationRepo;
+
+    @Autowired
+    private ExamDetailsRepo examDetailsRepo;
 
     Logger log = LoggerFactory.getLogger("MetorController");
 
@@ -74,11 +82,11 @@ public class PaperController {
     }
     // Getting paper by paperId
     @GetMapping("/getPaperbyPaperId/{paperID}")
-    public ResponseEntity<PaperDto> getpaperByID(@PathVariable String paperID) {
+    public ResponseEntity<PaperStringDto> getpaperByID(@PathVariable String paperID) {
         log.info("paperService get paper by id  method started");
-        PaperDto paperDto = this.paperService.getPaperById(paperID);
+        PaperStringDto paperDto = this.paperService.getPaperById(paperID);
         log.info("paperService getall paper method End's");
-        return new ResponseEntity<PaperDto>(paperDto, HttpStatus.OK);
+        return new ResponseEntity<PaperStringDto>(paperDto, HttpStatus.OK);
     }
     // get All peparByName 
      @GetMapping("/getPaperByName/{name}")
@@ -143,5 +151,21 @@ public class PaperController {
         
         return new ResponseEntity<>(attemptedPapers2,HttpStatus.ACCEPTED);
          
+    }
+
+    
+    @GetMapping("/getexamdetaisbypaperId/{paperId}")
+    public ResponseEntity<ExamDetails> getexamdetailsbypeprId(@PathVariable String paperId)
+    {
+        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
+
+        return new ResponseEntity<ExamDetails>(examDetails,HttpStatus.OK);
+    }
+
+    @GetMapping("/sendmailInBackground/{paperId}")
+    public String processInBackground(@PathVariable String paperId) throws ExecutionException, InterruptedException {
+        Future<String> future = paperService.processInvitationsInBackground(paperId);
+        
+        return "Background processing started for paperId: " + paperId;
     }
 }

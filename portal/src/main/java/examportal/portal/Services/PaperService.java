@@ -1,6 +1,8 @@
 package examportal.portal.Services;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
@@ -9,6 +11,7 @@ import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Paper;
 // import examportal.portal.Entity.Questions;
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Payloads.PaperStringDto;
 
 public interface PaperService {
     
@@ -25,7 +28,7 @@ public interface PaperService {
 
     String activatePaper(String paperID,boolean active);
 
-    PaperDto getPaperById(String paperID);
+    PaperStringDto getPaperById(String paperID);
 
     List<ExamDetails> getAllAssessmentsByUserId(String userId);
 
@@ -35,4 +38,5 @@ public interface PaperService {
 
     ExamDetails GetattemptedStudents(String paperId,String studentId);
 
+    Future<String> processInvitationsInBackground(String paperId);
 }
