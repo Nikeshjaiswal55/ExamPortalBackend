@@ -67,7 +67,7 @@ public class AssessmentController {
         List<ExamDetails> examDetailsAll = new ArrayList<>();
         for (Assessment assessment : assessments) {
             ExamDetails examDetails = examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
-            if (examDetails.is_Active() || examDetails.is_attempted()) {
+            if (examDetails.is_Active()) {
                 examDetailsAll.add(examDetails);
             }
             

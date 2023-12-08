@@ -75,10 +75,10 @@ public class ResultServiceImpl implements ResultService {
 
         List<AttemptedQuestions> savedQuestions = this.attemptedQuestionsRepo.saveAll(attemptedQuestionsList);
         List<Questions> questions = new ArrayList();
-                for (AttemptedQuestions attemptedQuestions : savedQuestions) {
-                    Questions question = this.mapper.map(attemptedQuestions, Questions.class);
-                    questions.add(question);
-                }
+        for (AttemptedQuestions attemptedQuestions : savedQuestions) {
+            Questions question = this.mapper.map(attemptedQuestions, Questions.class);
+            questions.add(question);
+        }
         // 2. Update ExamDetails
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
         examDetails.setPaperChecked(true);
@@ -90,7 +90,7 @@ public class ResultServiceImpl implements ResultService {
         // 3. Save Result
         Result newResult = new Result();
         newResult.setStudentID(dto.getResult().getStudentID());
-         this.resultRepo.save(newResult);
+        this.resultRepo.save(newResult);
 
         // 4. Save Cheating
         Cheating cheating = new Cheating();
@@ -168,11 +168,15 @@ public class ResultServiceImpl implements ResultService {
         Result result = this.resultRepo.findById(resultID)
                 .orElseThrow(() -> new ResourceNotFoundException("result ", "Result Id", resultID));
 
+        List<Questions> questions = new ArrayList();
+
         List<AttemptedQuestions> questions2 = this.attemptedQuestionsRepo
                 .getAllQuestionsByStudentID(result.getStudentID(), result.getPaperID());
 
-        List<Questions> questions = (List<Questions>) this.mapper.map(questions2, Questions.class);
-        
+                for (AttemptedQuestions attemptedQuestions : questions2) {
+                    Questions q = this.mapper.map(attemptedQuestions, Questions.class);
+                    questions.add(q);
+                }
         ResultDto dto = new ResultDto();
         dto.setQuestions(questions);
         dto.setResultID(result.getResultID());
