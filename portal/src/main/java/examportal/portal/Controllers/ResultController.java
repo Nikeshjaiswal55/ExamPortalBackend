@@ -1,5 +1,7 @@
 package examportal.portal.Controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +28,11 @@ public class ResultController {
     @Autowired
     private ResultService resultService;
 
-    
-    @Autowired
-    private ResultRepo resultRepo;
-
     @Autowired
     private CheatingRepo cheatingRepo;
+
+    @Autowired
+    private ResultRepo resultRepo;
 
     @PostMapping("/saveresult")
     public ResponseEntity<ResultDto> createResults(@RequestBody ResultDto resultDto)
@@ -71,11 +72,11 @@ public class ResultController {
         return new ResponseEntity<>(toppers,HttpStatus.OK);
     }
 
-      @GetMapping("/getAllResultsByStudentId/{studentId}")
-    public ResponseEntity <java.util.List<Result>>getAllResult_ByStudentId(@PathVariable String studentId)
+    @GetMapping("/getAllResultsByStudentId/{studentId}")
+    public ResponseEntity <List<Result>>getAllResult_ByStudentId(@PathVariable String studentId)
     {
        
-        java.util.List<Result> results = this.resultRepo.findByStudentID(studentId);
+     List<Result> results = this.resultRepo.findByStudentID(studentId);
 
         return new ResponseEntity<>(results,HttpStatus.OK);
     }

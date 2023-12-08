@@ -74,14 +74,23 @@ public class ResultServiceImpl implements ResultService {
                 .collect(Collectors.toList());
 
         List<AttemptedQuestions> savedQuestions = this.attemptedQuestionsRepo.saveAll(attemptedQuestionsList);
-
+        List<Questions> questions = new ArrayList();
+                for (AttemptedQuestions attemptedQuestions : savedQuestions) {
+                    Questions question = this.mapper.map(attemptedQuestions, Questions.class);
+                    questions.add(question);
+                }
         // 2. Update ExamDetails
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
         examDetails.setPaperChecked(true);
+        examDetails.set_Active(true);
+        examDetails.set_Setup(false);
+        examDetails.set_attempted(true);
         this.examDetailsRepo.save(examDetails);
 
         // 3. Save Result
-        Result newResult = this.resultRepo.save(dto.getResult());
+        Result newResult = new Result();
+        newResult.setStudentID(dto.getResult().getStudentID());
+         this.resultRepo.save(newResult);
 
         // 4. Save Cheating
         Cheating cheating = new Cheating();
@@ -93,7 +102,7 @@ public class ResultServiceImpl implements ResultService {
 
         // 5. Build ResultDto
         ResultDto resultDto = new ResultDto();
-        resultDto.setQuestions((List<Questions>) this.mapper.map(savedQuestions, Questions.class));
+        resultDto.setQuestions(questions);
         resultDto.setResultID(newResult.getResultID());
         resultDto.setCheating(stdCheating);
         resultDto.setResult(newResult);

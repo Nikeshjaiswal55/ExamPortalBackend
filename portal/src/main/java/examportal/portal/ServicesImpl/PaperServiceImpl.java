@@ -286,6 +286,7 @@ public class PaperServiceImpl implements PaperService {
   @Override
   public String activatePaper(String paperId, boolean active) {
     log.info("paperServiceImpl activatePaper  method Starts");
+
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
@@ -310,24 +311,42 @@ public class PaperServiceImpl implements PaperService {
 
     return "Paper Published Successfully";
   }
-  
+
   @Async
   public CompletableFuture<String> processInvitationsInBackground(String paperId) {
+
+    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
+    if (examDetails.getBranch() != null) {
+
+      List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+
+      students.forEach(student -> {
+        User user = this.userRepo.findById(student.getStudentid())
+            .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", student.getStudentid()));
+
+        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+
+        this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
+
+      });
+      return CompletableFuture.completedFuture("sending email in background");
+    } else {
 
       List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
 
       students.forEach(invitedStudents -> {
-          User user = this.userRepo.findById(invitedStudents.getStudentId())
-                  .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
+        User user = this.userRepo.findById(invitedStudents.getStudentId())
+            .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
 
-          String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
 
-          this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
+        this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
       });
 
       return CompletableFuture.completedFuture("sending email in background");
+    }
   }
-  
+
   @Override
   public List<ExamDetails> getAllAssessmentsByUserId(String userId) {
 
