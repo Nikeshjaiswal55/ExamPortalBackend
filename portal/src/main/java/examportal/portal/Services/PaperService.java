@@ -11,6 +11,7 @@ import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Paper;
 // import examportal.portal.Entity.Questions;
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Payloads.PaperStringDto;
 
 public interface PaperService {
     
@@ -27,7 +28,7 @@ public interface PaperService {
 
     String activatePaper(String paperID,boolean active);
 
-    String getPaperById(String paperID);
+    PaperStringDto getPaperById(String paperID);
 
     List<ExamDetails> getAllAssessmentsByUserId(String userId);
 

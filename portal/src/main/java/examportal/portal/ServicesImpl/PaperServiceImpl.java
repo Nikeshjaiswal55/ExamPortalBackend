@@ -39,6 +39,7 @@ import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
@@ -156,7 +157,7 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public String getPaperById(String paperID) {
+  public PaperStringDto getPaperById(String paperID) {
     log.info("paperService getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperID", paperID));
@@ -169,9 +170,11 @@ public class PaperServiceImpl implements PaperService {
 
     String obj = encodeObject(paperDto);
 
+    PaperStringDto paperStringDto = new PaperStringDto();
+    paperStringDto.setData(obj);
     log.info("paperService getPaperByID method End's :");
 
-    return obj;
+    return paperStringDto;
   }
 
   public String encodeObject(Object object) {

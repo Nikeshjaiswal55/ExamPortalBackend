@@ -28,6 +28,7 @@ import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
 
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Services.PaperService;
@@ -81,11 +82,11 @@ public class PaperController {
     }
     // Getting paper by paperId
     @GetMapping("/getPaperbyPaperId/{paperID}")
-    public ResponseEntity<String> getpaperByID(@PathVariable String paperID) {
+    public ResponseEntity<PaperStringDto> getpaperByID(@PathVariable String paperID) {
         log.info("paperService get paper by id  method started");
-        String paperDto = this.paperService.getPaperById(paperID);
+        PaperStringDto paperDto = this.paperService.getPaperById(paperID);
         log.info("paperService getall paper method End's");
-        return new ResponseEntity<String>(paperDto, HttpStatus.OK);
+        return new ResponseEntity<PaperStringDto>(paperDto, HttpStatus.OK);
     }
     // get All peparByName 
      @GetMapping("/getPaperByName/{name}")
