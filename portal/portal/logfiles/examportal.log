@@ -1703,3 +1703,29 @@ Caused by: java.lang.ClassNotFoundException: net.bytebuddy.utility.GraalImageCod
 2023-12-06 15:44:37 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-12-06 15:44:37 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2023-12-06 15:44:45 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-12-08 14:08:40 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 21.0.1 with PID 15384 (started by deven in D:\ExamPortalBackend\portal)
+2023-12-08 14:08:40 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-08 14:08:40 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-08 14:08:40 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@389adf1d
+2023-12-08 14:08:40 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 1.171 seconds (process running for 3.095)
+2023-12-08 14:08:40 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
+2023-12-08 14:08:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Start
+2023-12-08 14:08:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Ends
+2023-12-08 14:08:42 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@389adf1d, started on Fri Dec 08 14:08:40 IST 2023
+2023-12-08 14:08:54 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 21.0.1 with PID 16468 (started by deven in D:\ExamPortalBackend\portal)
+2023-12-08 14:08:54 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-08 14:08:54 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-08 14:08:55 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@47874b25
+2023-12-08 14:08:55 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 1.907 seconds (process running for 3.765)
+2023-12-08 14:08:55 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Start
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Ends
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 14:08:57 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 14:08:57 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@47874b25, started on Fri Dec 08 14:08:55 IST 2023

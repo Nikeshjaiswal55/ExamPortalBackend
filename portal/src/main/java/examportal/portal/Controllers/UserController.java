@@ -39,8 +39,8 @@ public class UserController {
 
     @GetMapping("/user/getAll")
     public ResponseEntity<List<User>> getAllUser( @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
-            @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
-            @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
+            @RequestParam(name = "size", defaultValue = "100",required = false) Integer size,
+            @RequestParam(name = "sortField", defaultValue = "email",required = false) String sortField,
             @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder){
         log.info("UserController, getAllUser Method Ends");
 

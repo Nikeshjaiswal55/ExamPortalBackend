@@ -3,6 +3,7 @@ package examportal.portal.Services;
 import java.util.List;
 
 import examportal.portal.Entity.Orgnizations;
+
 import examportal.portal.Payloads.OrgnizationDto;
 
 public interface OrgnizationService {
@@ -17,5 +18,6 @@ public interface OrgnizationService {
 
     
     List<Orgnizations> getAllOrgnizationsByName(String name);
+    
 
 }
