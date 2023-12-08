@@ -34,9 +34,9 @@ import examportal.portal.ServicesImpl.QuestionServiceimpl;
 
 // ... (imports)
   @ExtendWith(SpringExtension.class)
-  @SpringBootTest(classes = QuesionServiceImp.class)
+  @SpringBootTest(classes = QuesionServiceImpTest.class)
   
-public class QuesionServiceImp {
+public class QuesionServiceImpTest {
 
     // ... (other methods)
 

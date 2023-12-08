@@ -2,8 +2,11 @@ package examportal.portal.Services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import examportal.portal.Entity.User;
 import examportal.portal.Payloads.userDto;
+@Service
 
 public  interface UserService {
     

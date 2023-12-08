@@ -1,131 +1,119 @@
-2023-12-05 11:53:16 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 28532 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 11:53:16 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 11:53:16 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 11:53:17 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 11:53:17 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.797 seconds (process running for 2.011)
-2023-12-05 11:53:17 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 11:53:18 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
-2023-12-05 11:53:18 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 11:53:17 IST 2023
-2023-12-05 11:55:48 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 14884 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 11:55:48 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 11:55:48 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 11:55:48 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 11:55:49 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.956 seconds (process running for 2.509)
-2023-12-05 11:55:49 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 11:55:50 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
-2023-12-05 11:55:50 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 11:55:48 IST 2023
-2023-12-05 12:00:03 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 9708 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 12:00:03 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 12:00:03 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 12:00:04 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 12:00:04 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.736 seconds (process running for 1.969)
-2023-12-05 12:00:04 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 12:00:05 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
-2023-12-05 12:00:05 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 12:00:04 IST 2023
-2023-12-05 12:03:48 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 12436 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 12:03:48 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 12:03:48 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 12:03:48 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 12:03:49 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.746 seconds (process running for 1.947)
-2023-12-05 12:03:49 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 12:03:49 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
-2023-12-05 12:03:49 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 12:03:48 IST 2023
-2023-12-05 13:32:53 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 8564 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 13:32:53 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 13:32:53 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 13:32:54 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 13:32:54 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.717 seconds (process running for 1.915)
-2023-12-05 13:32:54 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 13:32:55 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionsByID Question Method Starts
-2023-12-05 13:32:55 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionByID Method End's
-2023-12-05 13:32:55 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 13:32:54 IST 2023
-2023-12-05 13:33:05 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 2180 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 13:33:05 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 13:33:05 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 13:33:05 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 13:33:05 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.748 seconds (process running for 1.94)
-2023-12-05 13:33:05 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 13:33:06 [main] INFO  QuestionServiceImpl - Question Service deleteQuestion Method Starts
-2023-12-05 13:33:06 [main] INFO  QuestionServiceImpl - Question Service Create deleteQuestion Method Starts
-2023-12-05 13:33:06 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 13:33:05 IST 2023
-2023-12-05 13:33:20 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 28148 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 13:33:20 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 13:33:20 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 13:33:20 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 13:33:20 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.786 seconds (process running for 1.924)
-2023-12-05 13:33:20 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 13:33:21 [main] INFO  QuestionServiceImpl - Question Service Create Question Method Starts
-2023-12-05 13:33:21 [main] INFO  QuestionServiceImpl - Question Service Create Question Method End's
-2023-12-05 13:33:21 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 13:33:20 IST 2023
-2023-12-05 13:33:26 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 9004 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 13:33:26 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 13:33:26 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 13:33:26 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 13:33:26 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.699 seconds (process running for 1.871)
-2023-12-05 13:33:26 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 13:33:27 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
-2023-12-05 13:33:27 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 13:33:26 IST 2023
-2023-12-05 13:33:56 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 17088 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 13:33:56 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 13:33:56 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 13:33:56 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@362a019c
-2023-12-05 13:33:56 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.746 seconds (process running for 2.005)
-2023-12-05 13:33:56 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 13:33:57 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
-2023-12-05 13:33:57 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionsByID Question Method Starts
-2023-12-05 13:33:57 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionByID Method End's
-2023-12-05 13:33:57 [main] INFO  QuestionServiceImpl - Question Service deleteQuestion Method Starts
-2023-12-05 13:33:57 [main] INFO  QuestionServiceImpl - Question Service Create deleteQuestion Method Starts
-2023-12-05 13:33:57 [main] INFO  QuestionServiceImpl - Question Service Create Question Method Starts
-2023-12-05 13:33:57 [main] INFO  QuestionServiceImpl - Question Service Create Question Method End's
-2023-12-05 13:33:57 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@362a019c, started on Tue Dec 05 13:33:56 IST 2023
-2023-12-05 13:35:41 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 25908 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 13:35:41 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 13:35:41 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 13:35:41 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 13:35:41 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.821 seconds (process running for 2.123)
-2023-12-05 13:35:41 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 13:35:42 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
-2023-12-05 13:35:42 [main] INFO  QuestionServiceImpl - Question Service Update Question Method End's
-2023-12-05 13:35:42 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 13:35:41 IST 2023
-2023-12-05 13:35:50 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 23864 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 13:35:50 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 13:35:50 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 13:35:50 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@362a019c
-2023-12-05 13:35:50 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.788 seconds (process running for 1.955)
-2023-12-05 13:35:50 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 13:35:51 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
-2023-12-05 13:35:51 [main] INFO  QuestionServiceImpl - Question Service Update Question Method End's
-2023-12-05 13:35:51 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionsByID Question Method Starts
-2023-12-05 13:35:51 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionByID Method End's
-2023-12-05 13:35:51 [main] INFO  QuestionServiceImpl - Question Service deleteQuestion Method Starts
-2023-12-05 13:35:51 [main] INFO  QuestionServiceImpl - Question Service Create deleteQuestion Method Starts
-2023-12-05 13:35:51 [main] INFO  QuestionServiceImpl - Question Service Create Question Method Starts
-2023-12-05 13:35:51 [main] INFO  QuestionServiceImpl - Question Service Create Question Method End's
-2023-12-05 13:35:51 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@362a019c, started on Tue Dec 05 13:35:50 IST 2023
-2023-12-05 13:39:04 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 27400 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 13:39:04 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 13:39:04 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 13:39:04 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61
-2023-12-05 13:39:04 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.717 seconds (process running for 1.902)
-2023-12-05 13:39:04 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 13:39:05 [main] INFO  QuestionServiceImpl - Question Service Create getQuestionById Method Starts
-2023-12-05 13:39:05 [main] INFO  QuestionServiceImpl - Question Service Create getQuesionById Method End's
-2023-12-05 13:39:05 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@224b4d61, started on Tue Dec 05 13:39:04 IST 2023
-2023-12-05 13:39:16 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 6132 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
-2023-12-05 13:39:16 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
-2023-12-05 13:39:16 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
-2023-12-05 13:39:16 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1d9bec4d
-2023-12-05 13:39:16 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.731 seconds (process running for 2.05)
-2023-12-05 13:39:16 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service Update Question Method End's
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionsByID Question Method Starts
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionByID Method End's
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service deleteQuestion Method Starts
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service Create deleteQuestion Method Starts
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service Create Question Method Starts
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service Create Question Method End's
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service Create getQuestionById Method Starts
-2023-12-05 13:39:17 [main] INFO  QuestionServiceImpl - Question Service Create getQuesionById Method End's
-2023-12-05 13:39:17 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1d9bec4d, started on Tue Dec 05 13:39:16 IST 2023
+2023-12-08 13:26:30 [main] INFO  e.portal.UserserviceImplTest - Starting UserserviceImplTest using Java 18.0.2.1 with PID 18660 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
+2023-12-08 13:26:30 [main] INFO  e.portal.UserserviceImplTest - No active profile set, falling back to 1 default profile: "default"
+2023-12-08 13:26:30 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.UserserviceImplTest
+2023-12-08 13:26:30 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@10c8f62
+2023-12-08 13:26:30 [main] INFO  e.portal.UserserviceImplTest - Started UserserviceImplTest in 0.858 seconds (process running for 2.173)
+2023-12-08 13:26:30 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , createUser Method Start
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , createUser Method Start
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , send mail Method Start
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , sene mail Method End's
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , createUser Method Ends
+2023-12-08 13:26:31 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:26:31 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@10c8f62, started on Fri Dec 08 13:26:30 IST 2023
+2023-12-08 13:27:04 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 18.0.2.1 with PID 16296 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
+2023-12-08 13:27:04 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-08 13:27:04 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-08 13:27:05 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@4b6579e8
+2023-12-08 13:27:05 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 0.792 seconds (process running for 2.245)
+2023-12-08 13:27:05 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Start
+2023-12-08 13:27:06 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Ends
+2023-12-08 13:27:06 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@4b6579e8, started on Fri Dec 08 13:27:05 IST 2023
+2023-12-08 13:27:41 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 18.0.2.1 with PID 14512 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
+2023-12-08 13:27:41 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-08 13:27:41 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-08 13:27:41 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@25bcd0c7
+2023-12-08 13:27:41 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 0.77 seconds (process running for 2.029)
+2023-12-08 13:27:41 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Start
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Start
+2023-12-08 13:27:42 [main] INFO  StudentServiceImpl.class - StudentServiceImpl , getAllStudent Method Ends
+2023-12-08 13:27:42 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@25bcd0c7, started on Fri Dec 08 13:27:41 IST 2023
+2023-12-08 13:28:05 [main] INFO  e.portal.UserserviceImplTest - Starting UserserviceImplTest using Java 18.0.2.1 with PID 15040 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
+2023-12-08 13:28:05 [main] INFO  e.portal.UserserviceImplTest - No active profile set, falling back to 1 default profile: "default"
+2023-12-08 13:28:05 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.UserserviceImplTest
+2023-12-08 13:28:05 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@10c8f62
+2023-12-08 13:28:05 [main] INFO  e.portal.UserserviceImplTest - Started UserserviceImplTest in 0.723 seconds (process running for 2.032)
+2023-12-08 13:28:05 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , createUser Method Start
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , createUser Method Start
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , send mail Method Start
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , sene mail Method End's
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , createUser Method Ends
+2023-12-08 13:28:06 [main] INFO  userServiceImpl - userService , getAllUser Method Start
+2023-12-08 13:28:06 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@10c8f62, started on Fri Dec 08 13:28:05 IST 2023
+2023-12-08 13:28:15 [main] INFO  examportal.portal.QuesionServiceImp - Starting QuesionServiceImp using Java 18.0.2.1 with PID 10324 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
+2023-12-08 13:28:15 [main] INFO  examportal.portal.QuesionServiceImp - No active profile set, falling back to 1 default profile: "default"
+2023-12-08 13:28:15 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImp
+2023-12-08 13:28:15 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1d9bec4d
+2023-12-08 13:28:15 [main] INFO  examportal.portal.QuesionServiceImp - Started QuesionServiceImp in 0.777 seconds (process running for 2.546)
+2023-12-08 13:28:15 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service Update Question Method End's
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionsByID Question Method Starts
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionByID Method End's
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service deleteQuestion Method Starts
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service Create deleteQuestion Method Starts
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service Create Question Method Starts
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service Create Question Method End's
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service Create getQuestionById Method Starts
+2023-12-08 13:28:16 [main] INFO  QuestionServiceImpl - Question Service Create getQuesionById Method End's
+2023-12-08 13:28:16 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1d9bec4d, started on Fri Dec 08 13:28:15 IST 2023
+2023-12-08 13:28:23 [main] INFO  e.portal.MentorSericeImplTest - Starting MentorSericeImplTest using Java 18.0.2.1 with PID 8660 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
+2023-12-08 13:28:23 [main] INFO  e.portal.MentorSericeImplTest - No active profile set, falling back to 1 default profile: "default"
+2023-12-08 13:28:23 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.MentorSericeImplTest
+2023-12-08 13:28:24 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1d9bec4d
+2023-12-08 13:28:24 [main] INFO  e.portal.MentorSericeImplTest - Started MentorSericeImplTest in 0.91 seconds (process running for 2.185)
+2023-12-08 13:28:24 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , getAllMentors Method Start
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , getAllMentors Method Ends
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , updateMentor Method Start
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , updateMentor Method Ends
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , deleteMentor Method Start
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , deleteMentor Method Ends
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , createMentor Method Start
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , createMentor Method Ends
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , getMentorById Method Start
+2023-12-08 13:28:25 [main] INFO  MentorSerivceImpl.java - MentorSerivceImpl , getMentorById Method Ends
+2023-12-08 13:28:25 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1d9bec4d, started on Fri Dec 08 13:28:24 IST 2023
+2023-12-08 13:32:00 [main] INFO  e.portal.QuesionServiceImpTest - Starting QuesionServiceImpTest using Java 18.0.2.1 with PID 8860 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\Git_Code\ExamPortalBackend\portal)
+2023-12-08 13:32:00 [main] INFO  e.portal.QuesionServiceImpTest - No active profile set, falling back to 1 default profile: "default"
+2023-12-08 13:32:00 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.QuesionServiceImpTest
+2023-12-08 13:32:00 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1d9bec4d
+2023-12-08 13:32:00 [main] INFO  e.portal.QuesionServiceImpTest - Started QuesionServiceImpTest in 0.784 seconds (process running for 2.073)
+2023-12-08 13:32:00 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service Update Question Method Starts
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service Update Question Method End's
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionsByID Question Method Starts
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service getAllQuestionByID Method End's
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service deleteQuestion Method Starts
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service Create deleteQuestion Method Starts
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service Create Question Method Starts
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service Create Question Method End's
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service Create getQuestionById Method Starts
+2023-12-08 13:32:01 [main] INFO  QuestionServiceImpl - Question Service Create getQuesionById Method End's
+2023-12-08 13:32:01 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1d9bec4d, started on Fri Dec 08 13:32:00 IST 2023

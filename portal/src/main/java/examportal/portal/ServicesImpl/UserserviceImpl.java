@@ -29,22 +29,22 @@ public class UserserviceImpl implements UserService {
 
     @Deprecated
     @Override
-    public User createUser(userDto user) {
+    public User createUser(userDto savedUser2) {
 
         log.info("userService , createUser Method Start");
 
-        User findUser = this.userRepo.findByEmail(user.getEmail());
+        User findUser = this.userRepo.findByEmail(savedUser2.getEmail());
 
         if (findUser != null) {
-            throw new ResourceAlreadyExistException("user", "email", user.getEmail());
+            throw new ResourceAlreadyExistException("user", "email", savedUser2.getEmail());
         } else {
             User newuser = new User();
-            newuser.setUserId(user.getUserId());
-            newuser.setEmail(user.getEmail());
-            newuser.setName(user.getName());
-            newuser.setPicture(user.getPicture());
-            newuser.setUpdatedAt(user.getUpdatedAt());
-            newuser.setRole(user.getRole());
+            newuser.setUserId(savedUser2.getUserId());
+            newuser.setEmail(savedUser2.getEmail());
+            newuser.setName(savedUser2.getName());
+            newuser.setPicture(savedUser2.getPicture());
+            newuser.setUpdatedAt(savedUser2.getUpdatedAt());
+            newuser.setRole(savedUser2.getRole());
             User saveduser = this.userRepo.save(newuser);
             // creating user in auth0 with api only for testing
             // try {
