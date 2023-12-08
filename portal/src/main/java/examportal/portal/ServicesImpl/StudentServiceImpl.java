@@ -49,16 +49,17 @@ public class StudentServiceImpl implements StudentSevices {
     @Autowired
     private AttemptepaperRepo attemptepaperRepo;
 
-    @Autowired 
+    @Autowired
     private UserService userService;
 
     @Override
     public List<Student> getAllStudents(Integer page, int size, String sortField, String sortOrder) {
         log.info("StudentServiceImpl , getAllStudent Method Start");
-Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
-        Pageable p=PageRequest.of(page,size,sort);
-        Page<Student> pa =this.studentRepo.findAll(p);
-        List<Student> list =pa.getContent();
+        Sort sort = (sortOrder.equalsIgnoreCase("asc")) ? Sort.by(sortField).ascending()
+                : Sort.by(sortField).descending();
+        Pageable p = PageRequest.of(page, size, sort);
+        Page<Student> pa = this.studentRepo.findAll(p);
+        List<Student> list = pa.getContent();
         log.info("StudentServiceImpl , getAllStudent Method Ends");
         return list;
     }
@@ -117,6 +118,7 @@ Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():So
 
     }
 
+
     @Deprecated
     @Override
     public String inviteStudents(InvitationDto dto) {
@@ -158,7 +160,7 @@ Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():So
     public void handleNewStudent(InvitationDto dto, String email) {
         try {
 
-            String password = RandomString.make(12) +"K80";
+            String password = RandomString.make(12) + "K80";
 
             String response = this.auth0Service.createUser(email, password, dto.getToken());
 
@@ -175,8 +177,9 @@ Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():So
             student.setOrgnizationId(dto.getOrgnizationId());
             student.setPaperId(dto.getPaperId());
             Student newsStudent = this.studentRepo.save(student);
-            
+
             handleExistingStudent(dto, newsStudent.getStudentid());
+            
         } catch (Exception e) {
             log.error("Error inviting student: {}", e.getMessage());
         }
@@ -185,9 +188,9 @@ Sort sort =(sortOrder.equalsIgnoreCase("asc"))?Sort.by(sortField).ascending():So
     @Override
     public List<Student> getAllStudentByName(String name) {
         log.info("StudentserviceIml, getAllUserByName method is start");
-        List<Student> list=getAllStudentByName( name);
-        if(list.isEmpty()){
-            throw new NoSuchElementException(" thare are no student avalable in this name :"+name);
+        List<Student> list = getAllStudentByName(name);
+        if (list.isEmpty()) {
+            throw new NoSuchElementException(" thare are no student avalable in this name :" + name);
         }
         return list;
     }

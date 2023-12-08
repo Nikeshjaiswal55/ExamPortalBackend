@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Cheating;
+import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.CheatingRepo;
@@ -34,10 +35,10 @@ public class ResultController {
         return new ResponseEntity<>(result,HttpStatus.CREATED);
     }
 
-    @GetMapping("/Get/result/{resultID}")
-    public ResponseEntity<ResultDto> getresultByID(@PathVariable String resultID)
+    @GetMapping("/Get/result/{resultId}")
+    public ResponseEntity<ResultDto> getresultByID(@PathVariable String resultId)
     {
-        ResultDto resultDto = this.resultService.getResultByResultId(resultID);
+        ResultDto resultDto = this.resultService.getResultByStudentAndPaperId(resultId);
         return new ResponseEntity<>(resultDto,HttpStatus.OK);
     }
 
@@ -53,5 +54,14 @@ public class ResultController {
     {
         Cheating cheat = this.cheatingRepo.getCheatsOfA_Student_InA_Paper(studentId, paperId);
         return new ResponseEntity<>(cheat,HttpStatus.OK);
+    }
+
+    @GetMapping("/getTopperByPaperId/{paperId}")
+    public ResponseEntity <java.util.List<Student>>getTopThreeStudentsByPaperId(@PathVariable String paperId)
+    {
+       
+        java.util.List<Student> toppers = this.resultService.getTopThreeStudentByPaper(paperId);
+
+        return new ResponseEntity<>(toppers,HttpStatus.OK);
     }
 }

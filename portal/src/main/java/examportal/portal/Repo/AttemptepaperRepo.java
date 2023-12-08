@@ -15,6 +15,6 @@ public interface AttemptepaperRepo extends JpaRepository<AttemptedPapers ,String
 
 
     @Query("select s from  AttemptedPapers s where s.studentId=:studentId and s.paperId=:paperId")
-    AttemptedPapers getAllAttemptedPaperbyStudentID(@Param("studentId") String studentId, @Param("paperId") String paperId);
+    AttemptedPapers getAllAttemptedPaperbyStudentID(@Param("studentId") String studentId ,@Param("paperId") String paperId);
     
 }
