@@ -40,7 +40,7 @@ public class UserserviceImpl implements UserService {
         } else {
             User saveduser = this.userRepo.save(user);
             if(saveduser.getRole().equals("OG")){
-                 String msg = "Orginzation Created Succesfully by"+saveduser.getEmail();    
+                 String msg = "Orginzation Created Succesfully by "+saveduser.getEmail();    
                  emailServiceImpl.sendFormateMail(saveduser.getEmail(), msg, "Orgnizaton Creation", saveduser.getRole());
             }
             log.info("userService , createUser Method Ends");

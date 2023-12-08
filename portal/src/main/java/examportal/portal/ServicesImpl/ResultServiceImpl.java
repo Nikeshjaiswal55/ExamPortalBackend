@@ -8,15 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException.NotFound;
-
 import examportal.portal.Entity.AttemptedQuestions;
 import examportal.portal.Entity.Cheating;
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Result;
+import examportal.portal.Entity.Student;
 import examportal.portal.Exceptions.ResourceNotFoundException;
-import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.AttemptedQuestionsRepo;
@@ -24,6 +22,7 @@ import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.ResultRepo;
+import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.ResultService;
 import java.util.Date;
 
@@ -46,6 +45,9 @@ public class ResultServiceImpl implements ResultService {
 
     @Autowired
     private QuestionsRepo questionsRepo;
+
+    @Autowired
+    private StudentRepo studentRepo;
 
     Logger log = LoggerFactory.getLogger("ResultServiceImpl.class");
 
@@ -148,9 +150,9 @@ public class ResultServiceImpl implements ResultService {
         percentage = (count / examDetails.getTotalMarks()) * 100;
 
         if (count > examDetails.getMinimum_marks()) {
-           dto.setResultstatus("pass");
+            dto.setResultstatus("pass");
         } else {
-         dto.setResultstatus("fail");
+            dto.setResultstatus("fail");
         }
 
         ResultDto dto2 = new ResultDto();
@@ -165,5 +167,16 @@ public class ResultServiceImpl implements ResultService {
 
         return newresult;
     }
-
+    @Override
+    public List<Student> getTopThreeStudentByPaper(String paperId) {
+        
+        List<Result> results = this.resultRepo.findAllByPaperIdOrderByPercentageDesc(paperId);
+        List<Student> TopThree = new ArrayList<>();
+        
+        for (Result result : results) {
+            Student student = this.studentRepo.findById(result.getStudentID()).orElseThrow(()-> new ResourceNotFoundException("Student", "StudentId", result.getStudentID()));
+            TopThree.add(student);
+        }
+        return TopThree;
+    }
 }
