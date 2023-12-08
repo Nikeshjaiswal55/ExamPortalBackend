@@ -9441,3 +9441,13 @@ Unconditional classes:
 2023-12-08 20:49:58 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
 2023-12-08 20:49:58 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PaperDto(paperId=4aeddea3-b97d-4a5b-9a6f-d7917a4ff8c5, questions=[Questions(questionId=2103315f-6d3 (truncated)...]
 2023-12-08 20:49:58 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-12-08 20:51:31 [http-nio-9090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
