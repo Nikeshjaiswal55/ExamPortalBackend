@@ -317,6 +317,7 @@ public class PaperServiceImpl implements PaperService {
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
+      processInvitationsInBackground(paperId);
     }
 
     log.info("paperServiceImpl activatePaper  method Ends");
@@ -331,31 +332,28 @@ public class PaperServiceImpl implements PaperService {
     if (examDetails.getBranch() != null) {
 
       List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
-
-      students.forEach(student -> {
+      for (Student student : students) {
         User user = this.userRepo.findById(student.getStudentid())
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", student.getStudentid()));
 
-        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+        String msg = "User_Name => " + user.getEmail() + "  \nPassword =>" + user.getPassword();
         System.out.println("me mail send kr rha hu=========================================================");
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
 
-      });
+      }
       return CompletableFuture.completedFuture("sending email in background");
     } else {
 
       List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
-
-      students.forEach(invitedStudents -> {
-        User user = this.userRepo.findById(invitedStudents.getStudentId())
+      for (InvitedStudents invitedStudents : students) {
+         User user = this.userRepo.findById(invitedStudents.getStudentId())
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
 
-        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+        String msg = "User_Name => " + user.getEmail() + "Password =>" + user.getPassword();
         System.out.println("me mail send kr rha hu=========================================================");
 
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
-      });
-
+      }
       return CompletableFuture.completedFuture("sending email in background");
     }
   }

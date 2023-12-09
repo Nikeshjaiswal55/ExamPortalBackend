@@ -290,7 +290,7 @@ public class ResultServiceImpl implements ResultService {
         
         Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
 
-        Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, papeId);
+        // Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, papeId);
 
         List<Questions> questions = new ArrayList<>();
         List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo.getAllQuestionsByStudentID(studentId, papeId);
@@ -302,7 +302,7 @@ public class ResultServiceImpl implements ResultService {
 
         ResultDto dto = new ResultDto();
         dto.setResultID(result.getResultID());
-        dto.setCheating(cheating);
+        // dto.setCheating(cheating);
         dto.setResult(result);
         dto.setQuestions(questions);
         return dto;
