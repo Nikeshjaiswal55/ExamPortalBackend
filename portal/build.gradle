@@ -50,6 +50,8 @@ dependencies {
 		implementation 'net.bytebuddy:byte-buddy:1.11.12'
 		implementation 'com.google.code.gson:gson:2.8.9'
 		// implementation 'org.springframework.boot:spring-boot-starter-mail'
+		implementation 'com.cloudinary:cloudinary-http44:1.31.0' // Check for the latest version on Maven Central
+
 
 }
 
