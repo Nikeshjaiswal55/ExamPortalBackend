@@ -81,17 +81,6 @@ public class StudentController {
         return new ResponseEntity<List<Student>>(st, HttpStatus.OK);
     }
 
-
-    @GetMapping("/Find/{orgnizationId}")
-    public ResponseEntity<Integer[]> getTotolOfStudentAndPaperByOGId(@PathVariable String orgnizationId) {
-        log.info("StudentController , getAllStudent Method Start");
-
-        Integer[] totals =this.studentSevices.getTotolStudentAndAssesmentBy_OGId(orgnizationId);
-
-        log.info("StudentController , getAllStudent Method Ends");
-        return new ResponseEntity<Integer[]>(totals, HttpStatus.OK);
-    }
-
     // updating a student
     @PutMapping("/student/update")
     public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
@@ -132,4 +121,15 @@ public class StudentController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    //Get COunt of Student & paper
+    @GetMapping("/getCountOfStudentAndPaperBy_OGId/{orgnizationId}")
+    public ResponseEntity<List<Long>> getCountOfStudentAndPaperBy_OGId(@PathVariable String orgnizationId) {
+        log.info("StudentController , getAllStudent Method Start");
+
+        List<Long> list = this.studentSevices.getCountOfStudentAndPaperBy_OGId(orgnizationId);
+        
+        log.info("StudentController , getAllStudent Method Ends");
+        return new ResponseEntity<List<Long>>(list, HttpStatus.OK);
+
+    }
 }

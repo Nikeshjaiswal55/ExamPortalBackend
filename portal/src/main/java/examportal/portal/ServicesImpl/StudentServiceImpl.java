@@ -224,5 +224,18 @@ public class StudentServiceImpl implements StudentSevices {
     }
   
 
+    @Override
+    public List<Long> getCountOfStudentAndPaperBy_OGId(String orgnizationId) {
+
+        List<Long> data = new ArrayList();
+
+        Long total_student = this.studentRepo.countByOrganizationId(orgnizationId);
+        data.add(total_student);
+        Long total_paper = this.paperRepo.countByOrganizationId(orgnizationId);
+        data.add(total_paper);
+
+        return data;
+    }
+
     
 }
