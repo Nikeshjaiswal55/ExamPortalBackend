@@ -301,7 +301,7 @@ public class ResultServiceImpl implements ResultService {
         }
 
         ResultDto dto = new ResultDto();
-        dto.setResultID(result.getResultID());
+        // dto.setResultID(result.getResultID());
         // dto.setCheating(cheating);
         dto.setResult(result);
         dto.setQuestions(questions);
