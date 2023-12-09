@@ -77,7 +77,7 @@ public class ResultServiceImpl implements ResultService {
                     AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
                     attemptedQuestions.setCorrectAns(question.getCorrectAns());
                     attemptedQuestions.setOptions(question.getOptions());
-                    attemptedQuestions.setQuestions(question.getQuestion());
+                    attemptedQuestions.setQuestions(question.getQuestions());
                     attemptedQuestions.setPaperID(dto.getResult().getPaperID());
                     attemptedQuestions.setStudentID(dto.getResult().getStudentID());
                     return attemptedQuestions;

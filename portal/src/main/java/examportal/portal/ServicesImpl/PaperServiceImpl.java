@@ -120,7 +120,7 @@ public class PaperServiceImpl implements PaperService {
 
     for (Questions questions : questionsList) {
       questions.setPaperID(newpPaper.getPaperId());
-      questions.setQuestion(questions.getQuestion());
+      questions.setQuestions(questions.getQuestions());
       this.questionsRepo.save(questions);
     }
 

@@ -12,7 +12,7 @@ public class Questions {
     @Id
     private String questionId=UUID.randomUUID().toString();
     private List<String> options;
-    private String question; 
+    private String questions; 
     private String correctAns;
     private String userAns;
     private String paperID;
