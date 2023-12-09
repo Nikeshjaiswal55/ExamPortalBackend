@@ -108,7 +108,7 @@ public class PaperServiceImpl implements PaperService {
 
     for (Questions questions : questionsList) {
       questions.setPaperID(newpPaper.getPaperId());
-      questions.setQuestion(questions.getQuestion());
+      questions.setQuestions(questions.getQuestions());
       this.questionsRepo.save(questions);
     }
 
@@ -305,6 +305,7 @@ public class PaperServiceImpl implements PaperService {
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
+      processInvitationsInBackground(paperId);
     }
 
     log.info("paperServiceImpl activatePaper  method Ends");
@@ -312,39 +313,36 @@ public class PaperServiceImpl implements PaperService {
     return "Paper Published Successfully";
   }
 
+ 
   @Async
   public CompletableFuture<String> processInvitationsInBackground(String paperId) {
+      ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
 
-    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
-    if (examDetails.getBranch() != null) {
+      if (examDetails.getBranch() != null) {
+          List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+          for (Student student : students) {
+              sendEmailAsync(student.getStudentid());
+          }
+      } else {
+          List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
+          for (InvitedStudents invitedStudents : students) {
+              sendEmailAsync(invitedStudents.getStudentId());
+          }
+      }
 
-      List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+      return CompletableFuture.completedFuture("Sending email in the background");
+  }
 
-      students.forEach(student -> {
-        User user = this.userRepo.findById(student.getStudentid())
-            .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", student.getStudentid()));
+  @Async
+  public CompletableFuture<String> sendEmailAsync(String userId) {
+      User user = this.userRepo.findById(userId)
+              .orElseThrow(() -> new ResourceNotFoundException("user", "userID", userId));
 
-        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+      String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+      System.out.println("Sending email asynchronously for user: " + user.getEmail());
 
-        this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
-
-      });
-      return CompletableFuture.completedFuture("sending email in background");
-    } else {
-
-      List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
-
-      students.forEach(invitedStudents -> {
-        User user = this.userRepo.findById(invitedStudents.getStudentId())
-            .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
-
-        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
-
-        this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
-      });
-
-      return CompletableFuture.completedFuture("sending email in background");
-    }
+      this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
+      return CompletableFuture.completedFuture("Sendig email in background");
   }
 
   @Override

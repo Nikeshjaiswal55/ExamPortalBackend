@@ -77,7 +77,7 @@ public class ResultServiceImpl implements ResultService {
                     AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
                     attemptedQuestions.setCorrectAns(question.getCorrectAns());
                     attemptedQuestions.setOptions(question.getOptions());
-                    attemptedQuestions.setQuestions(question.getQuestion());
+                    attemptedQuestions.setQuestions(question.getQuestions());
                     attemptedQuestions.setPaperID(dto.getResult().getPaperID());
                     attemptedQuestions.setStudentID(dto.getResult().getStudentID());
                     return attemptedQuestions;
@@ -100,7 +100,12 @@ public class ResultServiceImpl implements ResultService {
 
         // 3. Save Result
         Result newResult = new Result();
+        newResult.setPaperID(dto.getResult().getPaperID());
         newResult.setStudentID(dto.getResult().getStudentID());
+        newResult.setDate(dto.getResult().getDate());
+        newResult.setMarks(dto.getResult().getMarks());
+        newResult.setResultStatus(dto.getResult().getResultStatus());
+        newResult.setPercentage(dto.getResult().getPercentage());
         this.resultRepo.save(newResult);
 
         // 4. Save Cheating
@@ -109,6 +114,7 @@ public class ResultServiceImpl implements ResultService {
         cheating.setImages(dto.getCheating().getImages());
         cheating.setResultId(newResult.getResultID());
         cheating.setStudentId(newResult.getStudentID());
+        cheating.setPaperId(dto.getResult().getPaperID());
         Cheating stdCheating = this.cheatingRepo.save(cheating);
 
         // 5. Build ResultDto
@@ -188,7 +194,7 @@ public class ResultServiceImpl implements ResultService {
                     Questions q = this.mapper.map(attemptedQuestions, Questions.class);
                     questions.add(q);
                 }
-        Cheating cheating = this.cheatingRepo.getCheatsOfA_Student_InA_Paper(result.getResultID(), result.getPaperID());
+        Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(result.getResultID(), result.getPaperID());
 
         ResultDto dto = new ResultDto();
         dto.setQuestions(questions);
@@ -282,9 +288,9 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public ResultDto getResultByStudentIdAndPaperId(String papeId, String studentId) {
         
-        Result result = this.resultRepo.getresultBystdentandpaperId(papeId, studentId);
+        Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
 
-        Cheating cheating = this.cheatingRepo.getCheatsOfA_Student_InA_Paper(studentId, papeId);
+        // Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, papeId);
 
         List<Questions> questions = new ArrayList<>();
         List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo.getAllQuestionsByStudentID(studentId, papeId);
@@ -296,13 +302,12 @@ public class ResultServiceImpl implements ResultService {
 
         ResultDto dto = new ResultDto();
         dto.setResultID(result.getResultID());
-        dto.setCheating(cheating);
+        // dto.setCheating(cheating);
         dto.setResult(result);
         dto.setQuestions(questions);
         return dto;
     }
 
-    
 
 }
 
