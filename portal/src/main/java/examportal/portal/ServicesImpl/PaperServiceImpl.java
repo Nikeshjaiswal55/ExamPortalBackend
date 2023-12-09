@@ -1,13 +1,26 @@
 package examportal.portal.ServicesImpl;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.concurrent.CompletableFuture;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriUtils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -18,6 +31,7 @@ import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
@@ -26,7 +40,6 @@ import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
-import examportal.portal.Services.ExamDetailsService;
 import examportal.portal.Services.PaperService;
 
 @Service
@@ -62,9 +75,6 @@ public class PaperServiceImpl implements PaperService {
   @Autowired
   private AttemptepaperRepo attemptepaperRepo;
 
-  @Autowired
-  private ExamDetailsService examDetailsService;
-
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
   @Override
@@ -98,6 +108,7 @@ public class PaperServiceImpl implements PaperService {
 
     for (Questions questions : questionsList) {
       questions.setPaperID(newpPaper.getPaperId());
+      questions.setQuestions(questions.getQuestions());
       this.questionsRepo.save(questions);
     }
 
@@ -108,10 +119,12 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public List<PaperDto> getAllPaper() {
+  public List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder) {
     log.info("paperService getAll paper method Starts :");
-
-    List<Paper> papers = this.paperRepo.findAll();
+    Sort sort = (sortOrder.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+    Pageable p = PageRequest.of(pageNumber, size, sort);
+    Page<Paper> pp = paperRepo.findAll(p);
+    List<Paper> papers = pp.getContent();
 
     List<PaperDto> paperDtos = new ArrayList<>();
 
@@ -132,19 +145,52 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public PaperDto getPaperById(String paperID) {
+  public PaperStringDto getPaperById(String paperID) {
     log.info("paperService getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperID", paperID));
     PaperDto paperDto = this.mapper.map(paper, PaperDto.class);
-    List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
+    List<Questions> qList = this.questionsRepo.getAllQuestionsByPaperId(paperID);
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
 
-    paperDto.setQuestions(questions);
+    paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
 
+    String obj = encodeObject(paperDto);
+
+    PaperStringDto paperStringDto = new PaperStringDto();
+    paperStringDto.setData(obj);
     log.info("paperService getPaperByID method End's :");
-    return paperDto;
+
+    return paperStringDto;
+  }
+
+  public String encodeObject(Object object) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    try {
+      String jsonString = objectMapper.writeValueAsString(object);
+      String encodedString = URLEncoder.encode(jsonString, StandardCharsets.UTF_8);
+      return encodedString;
+    } catch (JsonProcessingException e) {
+      // Handle the exception, e.g., log or throw a custom exception
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public Object decodeObject(String encodedString) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    try {
+      String decodedString = UriUtils.decode(encodedString, StandardCharsets.UTF_8);
+      Object decodedObject = objectMapper.readValue(decodedString, Object.class);
+      return decodedObject;
+    } catch (JsonProcessingException e) {
+      // Handle the exception, e.g., log or throw a custom exception
+      e.printStackTrace();
+      return null;
+    }
   }
 
   @Override
@@ -221,7 +267,6 @@ public class PaperServiceImpl implements PaperService {
   @Override
   public List<ExamDetails> getAllPaperByUserId(String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-
     List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
     List<ExamDetails> examDetails = new ArrayList<>();
 
@@ -234,13 +279,14 @@ public class PaperServiceImpl implements PaperService {
 
     }
 
-    return examDetails;  
+    return examDetails;
 
   }
 
   @Override
   public String activatePaper(String paperId, boolean active) {
     log.info("paperServiceImpl activatePaper  method Starts");
+
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
@@ -252,30 +298,51 @@ public class PaperServiceImpl implements PaperService {
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
       return "Deactive successfully";
-    }
-    paper.set_Active(true);
-    paper.set_setup(false);
-    examDetails.set_Active(true);
-    examDetails.set_Setup(false);
-    Paper ActivePaper = this.paperRepo.save(paper);
-    this.examDetailsRepo.save(examDetails);
-
-    List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
-
-    for (InvitedStudents invitedStudents : students) {
-      Student student = this.studentRepo.findById(invitedStudents.getStudentId())
-          .orElseThrow(() -> new ResourceNotFoundException("Student ", "StudentID", invitedStudents.getStudentId()));
-      User user = this.userRepo.findById(invitedStudents.getStudentId())
-          .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
-      String msg = "Use_Name => " + student.getEmail() + "\nPassword => " + user.getPassword();
-
-      this.emailServiceImpl.sendFormateMail(student.getEmail(), msg, "login crenditials", user.getRole());
-
+    } else {
+      paper.set_Active(true);
+      paper.set_setup(false);
+      examDetails.set_Active(true);
+      examDetails.set_Setup(false);
+      Paper ActivePaper = this.paperRepo.save(paper);
+      this.examDetailsRepo.save(examDetails);
+      processInvitationsInBackground(paperId);
     }
 
     log.info("paperServiceImpl activatePaper  method Ends");
 
     return "Paper Published Successfully";
+  }
+
+ 
+  @Async
+  public CompletableFuture<String> processInvitationsInBackground(String paperId) {
+      ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
+
+      if (examDetails.getBranch() != null) {
+          List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+          for (Student student : students) {
+              sendEmailAsync(student.getStudentid());
+          }
+      } else {
+          List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
+          for (InvitedStudents invitedStudents : students) {
+              sendEmailAsync(invitedStudents.getStudentId());
+          }
+      }
+
+      return CompletableFuture.completedFuture("Sending email in the background");
+  }
+
+  @Async
+  public CompletableFuture<String> sendEmailAsync(String userId) {
+      User user = this.userRepo.findById(userId)
+              .orElseThrow(() -> new ResourceNotFoundException("user", "userID", userId));
+
+      String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+      System.out.println("Sending email asynchronously for user: " + user.getEmail());
+
+      this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
+      return CompletableFuture.completedFuture("Sendig email in background");
   }
 
   @Override
@@ -310,7 +377,7 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public ExamDetails GetattemptedStudents(String paperId,String studentId) {
+  public ExamDetails GetattemptedStudents(String paperId, String studentId) {
     AttemptedPapers attemptedPapers = this.attemptepaperRepo.getAllAttemptedPaperbyStudentID(studentId, paperId);
     Student student = this.studentRepo.findById(attemptedPapers.getStudentId())
         .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentID", attemptedPapers.getStudentId()));
@@ -320,5 +387,14 @@ public class PaperServiceImpl implements PaperService {
       examDetails.set_attempted(true);
     }
     return examDetails;
+  }
+
+  @Override
+  public List<Paper> getAllpaperByName(String name) {
+    List<Paper> pprName = paperRepo.getAllpaperByName(name);
+    if (pprName.isEmpty()) {
+      throw new NoSuchElementException("The Paper list is empty");
+    }
+    return pprName;
   }
 }

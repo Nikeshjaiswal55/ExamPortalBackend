@@ -1,10 +1,15 @@
 package examportal.portal.ServicesImpl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Mentor;
@@ -42,11 +47,14 @@ public class MentorSerivceImpl implements MentorService {
     }
 
     @Override
-    public List<Mentor> getAllMentors() {
+    public List<Mentor> getAllMentors(Integer pageNumber, int size, String sortField, String sortOrder) {
         log.info("MentorSerivceImpl , getAllMentors Method Start");
-        List<Mentor> allM = this.mentorRepo.findAll();
+        Sort sort =(sortField.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+        Pageable p =PageRequest.of(pageNumber, size,sort);
+        Page<Mentor> allM = this.mentorRepo.findAll(p);
+        List<Mentor> amg= allM.getContent();
         log.info("MentorSerivceImpl , getAllMentors Method Ends");
-        return allM;
+        return amg;
     }
 
     @Override
@@ -79,6 +87,15 @@ public class MentorSerivceImpl implements MentorService {
 
         log.info("MentorSerivceImpl , deleteMentor Method Ends");
         return "Record Deleted";
+    }
+
+    @Override
+    public List<Mentor> getAllMentorsByName(String name) {
+         List<Mentor> mentors= mentorRepo.getAllMentorsByName(name);
+         if (mentors.isEmpty()) {
+    throw new NoSuchElementException("The mentor list is empty");
+}
+         return mentors;
     }
 
 }

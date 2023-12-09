@@ -2,13 +2,18 @@ package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
+import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
@@ -16,8 +21,11 @@ import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.InvitationDto;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
+import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
+import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.StudentRepo;
+import examportal.portal.Services.PaperService;
 import examportal.portal.Services.StudentSevices;
 import examportal.portal.Services.UserService;
 import net.bytebuddy.utility.RandomString;
@@ -43,15 +51,28 @@ public class StudentServiceImpl implements StudentSevices {
     @Autowired
     private AttemptepaperRepo attemptepaperRepo;
 
-    @Autowired 
+    @Autowired
     private UserService userService;
 
-    @Override
-    public List<Student> getAllStudents() {
-        log.info("StudentServiceImpl , getAllStudent Method Start");
+    @Autowired
+    private PaperService paperService;
 
+    @Autowired
+    private PaperRepo paperRepo;
+
+    @Autowired
+    private ExamDetailsRepo examDetailsRepo;
+
+    @Override
+    public List<Student> getAllStudents(Integer page, int size, String sortField, String sortOrder) {
+        log.info("StudentServiceImpl , getAllStudent Method Start");
+        Sort sort = (sortOrder.equalsIgnoreCase("asc")) ? Sort.by(sortField).ascending()
+                : Sort.by(sortField).descending();
+        Pageable p = PageRequest.of(page, size, sort);
+        Page<Student> pa = this.studentRepo.findAll(p);
+        List<Student> list = pa.getContent();
         log.info("StudentServiceImpl , getAllStudent Method Ends");
-        return this.studentRepo.findAll();
+        return list;
     }
 
     @Override
@@ -112,23 +133,41 @@ public class StudentServiceImpl implements StudentSevices {
     @Override
     public String inviteStudents(InvitationDto dto) {
 
-        for (String email : dto.getEmails()) {
+        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
+        System.out.println(examDetails.getBranch()+"=====================================================================================================");
+        
+        if (examDetails.getBranch() !=null) {
 
-            Student st = this.studentRepo.getszStudentByEmail(email);
-
-            if (st != null) {
-                handleExistingStudent(dto, st.getStudentid());
-            } else {
-                handleNewStudent(dto, email);
+            List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+    
+            for (Student student : students) {
+                Student st = this.studentRepo.getszStudentByEmail(student.getEmail());
+                if (st != null) {
+                    handleExistingStudent(dto, st.getStudentid());
+                }
             }
+            return "Inviting students by branch";
+        } 
+        else {
+            System.out.println("i ma entetr in seconde conditions ==========================================");
+            for (String email: dto.getEmails()) {
+                Student st = this.studentRepo.getszStudentByEmail(email);
+                if (st != null) {
+                    handleExistingStudent(dto, st.getStudentid());
+                }
+                else {
+                    handleNewStudent(dto, email);
+                }
+            }
+            return "Student added successfully";
         }
-        return "Student added successfully";
     }
+    
 
     public String handleExistingStudent(InvitationDto dto, String studentId) {
 
         InvitedStudents invitedStudents = new InvitedStudents();
-        invitedStudents.setPaperId(dto.getPaperID());
+        invitedStudents.setPaperId(dto.getPaperId());
         invitedStudents.setStudentId(studentId);
         invitationRepo.save(invitedStudents);
 
@@ -139,7 +178,7 @@ public class StudentServiceImpl implements StudentSevices {
 
     public Assessment createAssessment(InvitationDto dto, String studentId) {
         Assessment assessment = new Assessment();
-        assessment.setPaperId(dto.getPaperID());
+        assessment.setPaperId(dto.getPaperId());
         assessment.setUserId(studentId);
         assessment.setOrgnizationId(dto.getOrgnizationId());
         return assessmentRepo.save(assessment);
@@ -149,7 +188,7 @@ public class StudentServiceImpl implements StudentSevices {
     public void handleNewStudent(InvitationDto dto, String email) {
         try {
 
-            String password = RandomString.make(12) +"K80";
+            String password = RandomString.make(12) + "K80";
 
             String response = this.auth0Service.createUser(email, password, dto.getToken());
 
@@ -164,13 +203,39 @@ public class StudentServiceImpl implements StudentSevices {
             student.setStudentid(response);
             student.setEmail(email);
             student.setOrgnizationId(dto.getOrgnizationId());
-            student.setPaperId(dto.getPaperID());
+            student.setPaperId(dto.getPaperId());
             Student newsStudent = this.studentRepo.save(student);
-            
+
             handleExistingStudent(dto, newsStudent.getStudentid());
+
         } catch (Exception e) {
             log.error("Error inviting student: {}", e.getMessage());
         }
     }
 
+    @Override
+    public List<Student> getAllStudentByName(String name) {
+        log.info("StudentserviceIml, getAllUserByName method is start");
+        List<Student> list = getAllStudentByName(name);
+        if (list.isEmpty()) {
+            throw new NoSuchElementException(" thare are no student avalable in this name :" + name);
+        }
+        return list;
+    }
+  
+
+    @Override
+    public List<Long> getCountOfStudentAndPaperBy_OGId(String orgnizationId) {
+
+        List<Long> data = new ArrayList();
+
+        Long total_student = this.studentRepo.countByOrganizationId(orgnizationId);
+        data.add(total_student);
+        Long total_paper = this.paperRepo.countByOrganizationId(orgnizationId);
+        data.add(total_paper);
+
+        return data;
+    }
+
+    
 }

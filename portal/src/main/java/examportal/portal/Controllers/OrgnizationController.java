@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Orgnizations;
@@ -46,13 +47,27 @@ public class OrgnizationController {
     }
 
     @GetMapping("/getAllOrgnizations")
-    public ResponseEntity<List<Orgnizations>> getAll() {
+    public ResponseEntity<List<Orgnizations>> getAll( @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
+  @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
+  @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
+  @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder) {
         log.info("OrgnizationController , getAll Method Start");
-        List<Orgnizations> orgnization = this.orgnizationService.getAllOrgnizations();
+        List<Orgnizations> orgnization = this.orgnizationService.getAllOrgnizations(page,size,sortField,sortOrder);
         log.info("OrgnizationController , getAll Method Ends");
         return new ResponseEntity<List<Orgnizations>>(orgnization, HttpStatus.OK);
     }
+    //get All og by name
 
+ @GetMapping("/getOrgnizationByName/{name}")
+     public ResponseEntity<List<Orgnizations>> getOrgnizationByName(@PathVariable String name) {
+        log.info("OrgnizationController , getOrgnizationBY name Method Start");
+       List< Orgnizations> orgnization = this.orgnizationRepo.getAllOrgnizationsByName(name);
+        if(orgnization==null){
+            throw new ResourceNotFoundException("Orgnization","name",name);
+        }
+        log.info("OrgnizationController , getOrgnizationByName Method Ends");
+        return new ResponseEntity<List<Orgnizations>>(orgnization, HttpStatus.OK);
+    }
     //get Orgnization by UserId
     @GetMapping("/getOrgnizationByUserId/{UserId}")
      public ResponseEntity<Orgnizations> getOrgnization(@PathVariable String UserId) {

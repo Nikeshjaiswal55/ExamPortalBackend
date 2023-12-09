@@ -3,6 +3,8 @@ package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +27,16 @@ import jakarta.el.ELException;
 import net.bytebuddy.utility.RandomString;
 
 @Service
-public class CourseServiceImpl implements CourseService {
+public class CourseServiceimpl implements CourseService {
   @Autowired
   private CourseRepo courseRepo;
-
+  
   @Autowired
   private UserRepo userRepo;
 
   @Autowired
   private StudentRepo studentRepo;
+
 
   @Deprecated
   @Autowired
@@ -42,12 +45,11 @@ public class CourseServiceImpl implements CourseService {
   Logger log = LoggerFactory.getLogger("CourseServiceimpl.class");
 
   @Override
-  public List<Course> getAllCourse(Integer pageNumber) {
+  public List<Course> getAllCourse(Integer pageNumber, int size, String sortField, String sortOrder) {
     log.info("CourseServiceimpl,getCourse Method Start");
 
-    Integer pageSize = 2;
-    Sort s = Sort.by("userId").ascending();
-    Pageable p = PageRequest.of(pageNumber, pageSize, s);
+    Sort s = (sortOrder.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+    Pageable p = PageRequest.of(pageNumber, size, s);
     Page<Course> page = courseRepo.findAll(p);
     List<Course> courseAll = page.getContent();
     System.out.println(courseAll.size());
@@ -81,8 +83,8 @@ public class CourseServiceImpl implements CourseService {
   public Course addCourse(CourseDto course) {
 
     log.info("CourseServiceimpl,addCourse Method Start");
-    User us = userRepo.findById(course.getUserId())
-        .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
+    User us = userRepo.findById(course.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
+    String response = "";
 
     Course c = new Course();
     c.setCourse_name(course.getCourse_name());
@@ -94,47 +96,45 @@ public class CourseServiceImpl implements CourseService {
 
     for (EmailsDto email : dtos) {
 
-      Student st = this.studentRepo.getszStudentByEmail(email.getEmail());
+      String password = RandomString.make(12) + "K80";
+      Student st= this.studentRepo.getszStudentByEmail(email.getEmail());
 
-      if (st != null) {
+      if (st!= null) {
         System.out.println("User Allready Exist");
 
       } else {
-        createcourseStudents(email.getEmail(), course.getOrgnizationId(), course.getToken());
+
+        try {
+          response = this.auth0Service.createUser(email.getEmail(), password, course.getToken());
+          // res = userId
+          User use = new User();
+          use.setUserId(response);
+          use.setEmail(email.getEmail());
+          use.setPassword(password);
+          use.setRole("Student");
+          User savedUser = this.userRepo.save(use);
+
+          Student student = new Student();
+          student.setBranch(email.getBranch()); 
+          student.setName(email.getName());
+          student.setEmail(email.getEmail());
+          student.setOrgnizationId(course.getOrgnizationId());
+          student.setStudentid(savedUser.getUserId());
+          Student savedst =  this.studentRepo.save(student);
+
+        } catch (Exception e) {
+
+          e.printStackTrace();
+        }
+
       }
 
     }
-    
+
     this.courseRepo.save(c);
     log.info("CourseServiceimpl,addCourse Method Ends");
     return c;
-
-  }
-
-  @Deprecated
-  public String createcourseStudents(String email, String orgnizationId, String token) {
-    String response = "";
-    String password = RandomString.make(12) + "K80";
-    try {
-      response = this.auth0Service.createUser(email, password, token);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    User use = new User();
-    use.setUserId(response);
-    use.setEmail(email);
-    use.setPassword(password);
-    use.setRole("Student");
-    User savedUser = this.userRepo.save(use);
-
-    Student student = new Student();
-    student.setName(email);
-    student.setEmail(email);
-    student.setOrgnizationId(orgnizationId);
-    student.setStudentid(response);
-    Student savedst = this.studentRepo.save(student);
-    return "Students created successfully";
+    
   }
 
   @Override
@@ -153,6 +153,17 @@ public class CourseServiceImpl implements CourseService {
     log.info("CourseServiceimpl, deleteCourse Method Start");
     courseRepo.deleteById(getId);
     log.info("CourseServiceimpl, deleteCourse Method Ends");
+  }
+
+  @Override
+  public List<Course> getAllCourseByStudentName(String name) {
+    log.info("CourseServiceimpl, getAllCourseByStudentName  Method Start");
+    List<Course> list = courseRepo. getAllCourseByStudentName(name);
+     if(list.isEmpty()){
+      throw new NoSuchElementException("The Paper list is empty");
+  }
+    log.info("CourseServiceimpl, getAllCourseByStudentName  Method and");
+   return list;
   }
 
 }

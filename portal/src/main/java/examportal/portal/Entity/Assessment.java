@@ -17,4 +17,7 @@ public class Assessment {
     private String orgnizationId;
 
     private String paperId;
+
+    private String name;
+
 }
