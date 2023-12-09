@@ -20,6 +20,7 @@ public class ImageServiceImpl implements ImageService{
         try {
             
              Map data = this.cloudinary.uploader().upload(file.getBytes(),Map.of());
+             
              return data;
         } catch (IOException e) {
             throw new RuntimeException("Image uploding fail"); 
