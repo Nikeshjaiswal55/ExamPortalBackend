@@ -22,7 +22,7 @@ public interface StudentSevices{
 
     // String addStudentPaper(StudentDto studentDto);
 
-    public String inviteStudents(InvitationDto dto);
+     String inviteStudents(InvitationDto dto);
     //getAllUserByName  
     List<Student>getAllStudentByName(String name);
     

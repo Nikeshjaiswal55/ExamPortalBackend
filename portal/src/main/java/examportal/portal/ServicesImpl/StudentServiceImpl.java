@@ -3,6 +3,7 @@ package examportal.portal.ServicesImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ForkJoinPool;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
+import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
@@ -22,8 +24,10 @@ import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.InvitationDto;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
+import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Repo.StudentRepo;
+import examportal.portal.Services.PaperService;
 import examportal.portal.Services.StudentSevices;
 import examportal.portal.Services.UserService;
 import net.bytebuddy.utility.RandomString;
@@ -51,6 +55,12 @@ public class StudentServiceImpl implements StudentSevices {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PaperService paperService;
+
+    @Autowired
+    private ExamDetailsRepo examDetailsRepo;
 
     @Override
     public List<Student> getAllStudents(Integer page, int size, String sortField, String sortOrder) {
@@ -118,23 +128,40 @@ public class StudentServiceImpl implements StudentSevices {
 
     }
 
-
     @Deprecated
     @Override
     public String inviteStudents(InvitationDto dto) {
 
-        for (String email : dto.getEmails()) {
+        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
+        System.out.println(examDetails.getBranch()+"=====================================================================================================");
+        
+        if (examDetails.getBranch() !=null) {
 
-            Student st = this.studentRepo.getszStudentByEmail(email);
-
-            if (st != null) {
-                handleExistingStudent(dto, st.getStudentid());
-            } else {
-                handleNewStudent(dto, email);
+            List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+    
+            for (Student student : students) {
+                Student st = this.studentRepo.getszStudentByEmail(student.getEmail());
+                if (st != null) {
+                    handleExistingStudent(dto, st.getStudentid());
+                }
             }
+            return "Inviting students by branch";
+        } 
+        else {
+            System.out.println("i ma entetr in seconde conditions ==========================================");
+            for (String email: dto.getEmails()) {
+                Student st = this.studentRepo.getszStudentByEmail(email);
+                if (st != null) {
+                    handleExistingStudent(dto, st.getStudentid());
+                }
+                else {
+                    handleNewStudent(dto, email);
+                }
+            }
+            return "Student added successfully";
         }
-        return "Student added successfully";
     }
+    
 
     public String handleExistingStudent(InvitationDto dto, String studentId) {
 
@@ -179,7 +206,7 @@ public class StudentServiceImpl implements StudentSevices {
             Student newsStudent = this.studentRepo.save(student);
 
             handleExistingStudent(dto, newsStudent.getStudentid());
-            
+
         } catch (Exception e) {
             log.error("Error inviting student: {}", e.getMessage());
         }

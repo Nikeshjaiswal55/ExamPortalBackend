@@ -19,5 +19,8 @@ public interface AssessmentRepo extends JpaRepository<Assessment,String> {
 
     @Query("SELECT a FROM Assessment a WHERE a.name=:name")
     List<Assessment> getAllAssesmenByName(@Param("name")String name);
+
+    @Query("Select a From Assessment a WHERE a.userId=:userId And a.paperId=:paperId")
+    Assessment getAssessmentByStudentAndpaperId(@Param("userId")String userId,@Param("paperId") String paperId);
 }
 

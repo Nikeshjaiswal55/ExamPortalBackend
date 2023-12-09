@@ -12,6 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import examportal.portal.Entity.Assessment;
+import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.AttemptedQuestions;
 import examportal.portal.Entity.Cheating;
 import examportal.portal.Entity.ExamDetails;
@@ -21,7 +24,9 @@ import examportal.portal.Entity.Student;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Payloads.checkpaperDto;
+import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptedQuestionsRepo;
+import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.QuestionsRepo;
@@ -53,6 +58,12 @@ public class ResultServiceImpl implements ResultService {
     @Autowired
     private StudentRepo studentRepo;
 
+    @Autowired
+    private AssessmentRepo assessmentRepo;
+
+    @Autowired
+    private AttemptepaperRepo attemptepaperRepo;
+
     Logger log = LoggerFactory.getLogger("ResultServiceImpl.class");
 
     @Override
@@ -74,14 +85,28 @@ public class ResultServiceImpl implements ResultService {
                 .collect(Collectors.toList());
 
         List<AttemptedQuestions> savedQuestions = this.attemptedQuestionsRepo.saveAll(attemptedQuestionsList);
-
+        List<Questions> questions = new ArrayList();
+        for (AttemptedQuestions attemptedQuestions : savedQuestions) {
+            Questions question = this.mapper.map(attemptedQuestions, Questions.class);
+            questions.add(question);
+        }
         // 2. Update ExamDetails
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
         examDetails.setPaperChecked(true);
+        examDetails.set_Active(true);
+        examDetails.set_Setup(false);
+        examDetails.set_attempted(true);
         this.examDetailsRepo.save(examDetails);
 
         // 3. Save Result
-        Result newResult = this.resultRepo.save(dto.getResult());
+        Result newResult = new Result();
+        newResult.setPaperID(dto.getResult().getPaperID());
+        newResult.setStudentID(dto.getResult().getStudentID());
+        newResult.setDate(dto.getResult().getDate());
+        newResult.setMarks(dto.getResult().getMarks());
+        newResult.setResultStatus(dto.getResult().getResultStatus());
+        newResult.setPercentage(dto.getResult().getPercentage());
+        this.resultRepo.save(newResult);
 
         // 4. Save Cheating
         Cheating cheating = new Cheating();
@@ -89,11 +114,12 @@ public class ResultServiceImpl implements ResultService {
         cheating.setImages(dto.getCheating().getImages());
         cheating.setResultId(newResult.getResultID());
         cheating.setStudentId(newResult.getStudentID());
+        cheating.setPaperId(dto.getResult().getPaperID());
         Cheating stdCheating = this.cheatingRepo.save(cheating);
 
         // 5. Build ResultDto
         ResultDto resultDto = new ResultDto();
-        resultDto.setQuestions((List<Questions>) this.mapper.map(savedQuestions, Questions.class));
+        resultDto.setQuestions(questions);
         resultDto.setResultID(newResult.getResultID());
         resultDto.setCheating(stdCheating);
         resultDto.setResult(newResult);
@@ -159,14 +185,22 @@ public class ResultServiceImpl implements ResultService {
         Result result = this.resultRepo.findById(resultID)
                 .orElseThrow(() -> new ResourceNotFoundException("result ", "Result Id", resultID));
 
+        List<Questions> questions = new ArrayList();
+
         List<AttemptedQuestions> questions2 = this.attemptedQuestionsRepo
                 .getAllQuestionsByStudentID(result.getStudentID(), result.getPaperID());
 
-        List<Questions> questions = (List<Questions>) this.mapper.map(questions2, Questions.class);
-        
+                for (AttemptedQuestions attemptedQuestions : questions2) {
+                    Questions q = this.mapper.map(attemptedQuestions, Questions.class);
+                    questions.add(q);
+                }
+        Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(result.getResultID(), result.getPaperID());
+
         ResultDto dto = new ResultDto();
         dto.setQuestions(questions);
+        dto.setResult(result);
         dto.setResultID(result.getResultID());
+        dto.setCheating(cheating);
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return dto;
@@ -216,6 +250,16 @@ public class ResultServiceImpl implements ResultService {
         newResult.setResultStatus(dto.getResultstatus());
         newResult.setPercentage(percentage);
 
+        Assessment assessment = this.assessmentRepo.getAssessmentByStudentAndpaperId(dto.getStudentId(), dto.getPaperId());
+
+        AttemptedPapers attemptedPapers = new AttemptedPapers();
+        attemptedPapers.setPaperId(dto.getPaperId());
+        attemptedPapers.setStudentId(dto.getStudentId());
+        attemptedPapers.set_attempted(true);
+        attemptedPapers.setAssmentId(formattedDate);
+        attemptedPapers.setAssmentId(assessment.getAssessmentID());
+        this.attemptepaperRepo.save(attemptedPapers);
+
         ResultDto dto2 = new ResultDto();
         dto2.setQuestions(questions2);
         dto2.setCheating(dto.getCheating());
@@ -241,4 +285,30 @@ public class ResultServiceImpl implements ResultService {
         return TopThree;
     }
 
+    @Override
+    public ResultDto getResultByStudentIdAndPaperId(String papeId, String studentId) {
+        
+        Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
+
+        Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, papeId);
+
+        List<Questions> questions = new ArrayList<>();
+        List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo.getAllQuestionsByStudentID(studentId, papeId);
+
+        for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
+            Questions q = this.mapper.map(attemptedQuestions2,Questions.class);
+            questions.add(q);
+        }
+
+        ResultDto dto = new ResultDto();
+        dto.setResultID(result.getResultID());
+        dto.setCheating(cheating);
+        dto.setResult(result);
+        dto.setQuestions(questions);
+        return dto;
+    }
+
+
 }
+
+

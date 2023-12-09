@@ -1,5 +1,7 @@
 package examportal.portal.Controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Cheating;
+import examportal.portal.Entity.Result;
 import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.CheatingRepo;
+import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Services.ResultService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -26,6 +32,9 @@ public class ResultController {
 
     @Autowired
     private CheatingRepo cheatingRepo;
+
+    @Autowired
+    private ResultRepo resultRepo;
 
     @PostMapping("/saveresult")
     public ResponseEntity<ResultDto> createResults(@RequestBody ResultDto resultDto)
@@ -52,7 +61,7 @@ public class ResultController {
     @GetMapping("/Get/CheatingOfStudentOfPaper/{studentId}/{paperId}")
     public ResponseEntity<Cheating> getCheatingOfStudentInSpecificPaper(@PathVariable String studentId,@PathVariable String paperId)
     {
-        Cheating cheat = this.cheatingRepo.getCheatsOfA_Student_InA_Paper(studentId, paperId);
+        Cheating cheat = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, paperId);
         return new ResponseEntity<>(cheat,HttpStatus.OK);
     }
 
@@ -64,4 +73,20 @@ public class ResultController {
 
         return new ResponseEntity<>(toppers,HttpStatus.OK);
     }
+
+    @GetMapping("/getAllResultsByStudentId/{studentId}")
+    public ResponseEntity <List<Result>>getAllResult_ByStudentId(@PathVariable String studentId)
+    {
+       
+     List<Result> results = this.resultRepo.findByStudentID(studentId);
+
+        return new ResponseEntity<>(results,HttpStatus.OK);
+    }
+
+    @GetMapping("/getresultby/student/{studentId}/paperId/{paperId}")
+    public ResponseEntity<ResultDto> getbystudentandpaperId(@PathVariable String studentId , @PathVariable String paperId) {
+        ResultDto dto = this.resultService.getResultByStudentIdAndPaperId(paperId, studentId);
+        return new ResponseEntity<ResultDto>(dto,HttpStatus.OK);
+    }
+    
 }
