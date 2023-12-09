@@ -325,37 +325,36 @@ public class PaperServiceImpl implements PaperService {
     return "Paper Published Successfully";
   }
 
+ 
   @Async
   public CompletableFuture<String> processInvitationsInBackground(String paperId) {
+      ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
 
-    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
-    if (examDetails.getBranch() != null) {
-
-      List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
-      for (Student student : students) {
-        User user = this.userRepo.findById(student.getStudentid())
-            .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", student.getStudentid()));
-
-        String msg = "User_Name => " + user.getEmail() + "  \nPassword =>" + user.getPassword();
-        System.out.println("me mail send kr rha hu=========================================================");
-        this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
-
+      if (examDetails.getBranch() != null) {
+          List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+          for (Student student : students) {
+              sendEmailAsync(student.getStudentid());
+          }
+      } else {
+          List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
+          for (InvitedStudents invitedStudents : students) {
+              sendEmailAsync(invitedStudents.getStudentId());
+          }
       }
-      return CompletableFuture.completedFuture("sending email in background");
-    } else {
 
-      List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
-      for (InvitedStudents invitedStudents : students) {
-         User user = this.userRepo.findById(invitedStudents.getStudentId())
-            .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
+      return CompletableFuture.completedFuture("Sending email in the background");
+  }
 
-        String msg = "User_Name => " + user.getEmail() + "Password =>" + user.getPassword();
-        System.out.println("me mail send kr rha hu=========================================================");
+  @Async
+  public CompletableFuture<String> sendEmailAsync(String userId) {
+      User user = this.userRepo.findById(userId)
+              .orElseThrow(() -> new ResourceNotFoundException("user", "userID", userId));
 
-        this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
-      }
-      return CompletableFuture.completedFuture("sending email in background");
-    }
+      String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+      System.out.println("Sending email asynchronously for user: " + user.getEmail());
+
+      this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
+      return CompletableFuture.completedFuture("Sendig email in background");
   }
 
   @Override
