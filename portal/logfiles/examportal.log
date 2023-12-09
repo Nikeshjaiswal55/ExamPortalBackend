@@ -8185,3 +8185,137 @@ jakarta.persistence.NonUniqueResultException: query did not return a unique resu
 2023-12-09 11:14:50 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
 2023-12-09 11:14:50 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[]]
 2023-12-09 11:14:50 [http-nio-9090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-09 11:17:30 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:30 [http-nio-9090-exec-3] DEBUG o.s.web.client.RestTemplate - HTTP GET https://dev-uil1ecwkoehr31jg.us.auth0.com/.well-known/jwks.json
+2023-12-09 11:17:30 [http-nio-9090-exec-3] DEBUG o.s.web.client.RestTemplate - Accept=[text/plain, application/json, application/*+json, */*]
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.web.client.RestTemplate - Reading to [java.lang.String] as "application/json;charset=utf-8"
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/105410884551884874922", parameters={}
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:17:34 [http-nio-9090-exec-3] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-09 11:17:34 [http-nio-9090-exec-3] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserId  method Starts
+2023-12-09 11:17:34 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.is_active,p1_0.is_setup,p1_0.name,p1_0.orgnization_id,p1_0.user_id from paper p1_0 where p1_0.user_id=?
+2023-12-09 11:17:35 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-09 11:17:36 [http-nio-9090-exec-3] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-09 11:17:36 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-09 11:17:36 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[ExamDetails(examid=fe331a7e-5f14-44c5-a550-a5eaf92b4396, examDuration=00:15:00, examMode=Online, ex (truncated)...]
+2023-12-09 11:17:36 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-09 11:21:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllAssessmentByStudentId/6573f4cbe94488fb5f766512", parameters={}
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/6573f4cbe94488fb5f766512", parameters={}
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:03 [http-nio-9090-exec-1] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-09 11:21:03 [http-nio-9090-exec-1] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserId  method Starts
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.is_active,p1_0.is_setup,p1_0.name,p1_0.orgnization_id,p1_0.user_id from paper p1_0 where p1_0.user_id=?
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG org.hibernate.SQL - select a1_0.assessmentid,a1_0.name,a1_0.orgnization_id,a1_0.paper_id,a1_0.user_id from assessment a1_0 where a1_0.user_id=?
+2023-12-09 11:21:03 [http-nio-9090-exec-1] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-09 11:21:03 [http-nio-9090-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[]]
+2023-12-09 11:21:03 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-09 11:21:04 [http-nio-9090-exec-7] INFO  AssessmentController.class - AssessmentController.class, getAllassmentByUserId Ends 
+2023-12-09 11:21:04 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-09 11:21:04 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[ExamDetails(examid=fe331a7e-5f14-44c5-a550-a5eaf92b4396, examDuration=00:15:00, examMode=Online, ex (truncated)...]
+2023-12-09 11:21:04 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-09 11:21:31 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllAssessmentByStudentId/6573f4cbe94488fb5f766512", parameters={}
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/6573f4cbe94488fb5f766512", parameters={}
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:21:31 [http-nio-9090-exec-5] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-09 11:21:31 [http-nio-9090-exec-5] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserId  method Starts
+2023-12-09 11:21:31 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select a1_0.assessmentid,a1_0.name,a1_0.orgnization_id,a1_0.paper_id,a1_0.user_id from assessment a1_0 where a1_0.user_id=?
+2023-12-09 11:21:31 [http-nio-9090-exec-5] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.is_active,p1_0.is_setup,p1_0.name,p1_0.orgnization_id,p1_0.user_id from paper p1_0 where p1_0.user_id=?
+2023-12-09 11:21:32 [http-nio-9090-exec-5] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-09 11:21:32 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-09 11:21:32 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[]]
+2023-12-09 11:21:32 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-09 11:21:32 [http-nio-9090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-09 11:21:33 [http-nio-9090-exec-3] INFO  AssessmentController.class - AssessmentController.class, getAllassmentByUserId Ends 
+2023-12-09 11:21:33 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-09 11:21:33 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[ExamDetails(examid=fe331a7e-5f14-44c5-a550-a5eaf92b4396, examDuration=00:15:00, examMode=Online, ex (truncated)...]
+2023-12-09 11:21:33 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-09 11:22:23 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllAssessmentByStudentId/6573f4cbe94488fb5f766512", parameters={}
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/6573f4cbe94488fb5f766512", parameters={}
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String)
+2023-12-09 11:22:23 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select a1_0.assessmentid,a1_0.name,a1_0.orgnization_id,a1_0.paper_id,a1_0.user_id from assessment a1_0 where a1_0.user_id=?
+2023-12-09 11:22:23 [http-nio-9090-exec-6] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-09 11:22:23 [http-nio-9090-exec-6] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserId  method Starts
+2023-12-09 11:22:23 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.is_active,p1_0.is_setup,p1_0.name,p1_0.orgnization_id,p1_0.user_id from paper p1_0 where p1_0.user_id=?
+2023-12-09 11:22:24 [http-nio-9090-exec-6] INFO  MetorController - paper repo getall paper by user id method started
+2023-12-09 11:22:24 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-09 11:22:24 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-09 11:22:24 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[]]
+2023-12-09 11:22:24 [http-nio-9090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-09 11:22:24 [http-nio-9090-exec-4] INFO  AssessmentController.class - AssessmentController.class, getAllassmentByUserId Ends 
+2023-12-09 11:22:24 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-09 11:22:24 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[ExamDetails(examid=fe331a7e-5f14-44c5-a550-a5eaf92b4396, examDuration=00:15:00, examMode=Online, ex (truncated)...]
+2023-12-09 11:22:24 [http-nio-9090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK

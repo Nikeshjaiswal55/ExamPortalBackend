@@ -337,7 +337,7 @@ public class PaperServiceImpl implements PaperService {
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", student.getStudentid()));
 
         String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
-
+        System.out.println("me mail send kr rha hu=========================================================");
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
 
       });
@@ -351,6 +351,7 @@ public class PaperServiceImpl implements PaperService {
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
 
         String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+        System.out.println("me mail send kr rha hu=========================================================");
 
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
       });
