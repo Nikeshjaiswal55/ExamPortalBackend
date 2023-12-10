@@ -1,6 +1,5 @@
 package examportal.portal.ServicesImpl;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -16,19 +15,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.web.util.UriUtils;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -39,7 +31,6 @@ import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
-import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
@@ -163,7 +154,7 @@ public CompletableFuture<List<Questions>> saveQuestionsAsync(List<Questions> que
   }
 
   @Override
-  public PaperStringDto getPaperById(String paperID) {
+  public String getPaperById(String paperID) {
     log.info("paperService getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperID", paperID));
@@ -176,11 +167,9 @@ public CompletableFuture<List<Questions>> saveQuestionsAsync(List<Questions> que
 
     String obj = encodeObject(paperDto);
 
-    PaperStringDto paperStringDto = new PaperStringDto();
-    paperStringDto.setData(obj);
     log.info("paperService getPaperByID method End's :");
 
-    return paperStringDto;
+    return obj;
   }
 
   public String encodeObject(Object object) {

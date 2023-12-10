@@ -1,7 +1,6 @@
 package examportal.portal.Services;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
 import org.springframework.scheduling.annotation.Async;
@@ -13,7 +12,6 @@ import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Paper;
 // import examportal.portal.Entity.Questions;
 import examportal.portal.Payloads.PaperDto;
-import examportal.portal.Payloads.PaperStringDto;
 
 public interface PaperService {
     
@@ -31,7 +29,7 @@ public interface PaperService {
 
     String activatePaper(String paperID,boolean active);
 
-    PaperStringDto getPaperById(String paperID);
+    String getPaperById(String paperID);
 
     List<ExamDetails> getAllAssessmentsByUserId(String userId);
 

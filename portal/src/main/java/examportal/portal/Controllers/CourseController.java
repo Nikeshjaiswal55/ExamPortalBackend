@@ -39,7 +39,7 @@ public class CourseController {
   public ResponseEntity<List<Course>> getCourses(
     @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
     @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
-    @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
+    @RequestParam(name = "sortField", defaultValue = "email",required = false) String sortField,
     @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder
   ) {
     log.info("CourseController,getCourse Method Start");
@@ -59,8 +59,8 @@ public class CourseController {
     return new ResponseEntity<Course>(list, HttpStatus.OK);
   }
   //get All Student by name
-  @GetMapping("/course/{name}")
-  public ResponseEntity<List<Course>> getAllCourseByName(@PathVariable String name) {
+  @GetMapping("/GetAllCourseByName")
+  public ResponseEntity<List<Course>> getAllCourseByName( @RequestParam(name = "name", defaultValue = "null",required = false) String name) {
     log.info("CourseController,getCourseById Method Start");
     List<Course> list = courseService.getAllCourseByStudentName(name);
     log.info("CourseController,getCourseById Method Ends");

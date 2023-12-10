@@ -58,8 +58,8 @@ public class OrgnizationController {
     }
     //get All og by name
 
- @GetMapping("/getOrgnizationByName/{name}")
-     public ResponseEntity<List<Orgnizations>> getOrgnizationByName(@PathVariable String name) {
+ @GetMapping("/getAllOrgnizationByName")
+     public ResponseEntity<List<Orgnizations>> getOrgnizationByName( @RequestParam(name = "name", defaultValue = "null",required = false) String name) {
         log.info("OrgnizationController , getOrgnizationBY name Method Start");
        List< Orgnizations> orgnization = this.orgnizationRepo.getAllOrgnizationsByName(name);
         if(orgnization==null){

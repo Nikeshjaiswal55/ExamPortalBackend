@@ -20,7 +20,6 @@ import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Services.ResultService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
