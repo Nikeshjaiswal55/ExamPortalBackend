@@ -3,8 +3,6 @@ package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +23,7 @@ import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.CourseDto;
 import examportal.portal.Payloads.EmailsDto;
+import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Repo.StudentRepo;
 >>>>>>> krishna
@@ -34,7 +33,7 @@ import jakarta.el.ELException;
 import net.bytebuddy.utility.RandomString;
 
 @Service
-public class CourseServiceimpl implements CourseService {
+public class CourseServiceImpl implements CourseService {
   @Autowired
   private CourseRepo courseRepo;
 <<<<<<< HEAD
@@ -118,6 +117,7 @@ public class CourseServiceimpl implements CourseService {
     c.setUserId(course.getUserId());
     c.setUserName(us.getName());
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     for (String i : course.getMails()) {
 
@@ -127,6 +127,10 @@ public class CourseServiceimpl implements CourseService {
       if (user != null) {
 =======
     Course savedcourse = this.courseRepo.save(c);
+=======
+    c.setDuration(course.getDuration());
+    this.courseRepo.save(c);
+>>>>>>> krishna
 
     List<EmailsDto> dtos = course.getEmailsDto();
 
@@ -207,6 +211,7 @@ public class CourseServiceimpl implements CourseService {
 =======
   }
 
+<<<<<<< HEAD
   @Override
   public List<Course> getAllCourseByStudentName(String name) {
     log.info("CourseServiceimpl, getAllCourseByStudentName  Method Start");
@@ -218,5 +223,31 @@ public class CourseServiceimpl implements CourseService {
    return list;
 >>>>>>> krishna
   }
+=======
+  // @Override
+  // public List<Course> getAllCourseByStudentName(String name) {
+  //   log.info("CourseServiceimpl, getAllCourseByStudentName  Method Start");
+  //   List<Course> list = courseRepo. getAllCourseByStudentName(name);
+  //    if(list.isEmpty()){
+  //     throw new NoSuchElementException("The Paper list is empty");
+  // }
+  //   log.info("CourseServiceimpl, getAllCourseByStudentName  Method and");
+  //  return list;
+// }
+>>>>>>> krishna
 
+@Override
+  public List<Course>getAllCourseByUserId(String userId,PaginationDto dto){
+    
+    log.info("CourseServiceimpl, getAllCourseByUserId Method Start");
+     Sort s = (dto.getSortDirection().equalsIgnoreCase("ASC"))?Sort.by(dto.getProperty()).ascending():Sort.by(dto.getProperty()).descending();
+    Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), s);
+    
+    List<Course> allCourses = courseRepo.getCourseByUseId(userId,p);
+
+    
+    return allCourses;
+  }
 }
+  
+  

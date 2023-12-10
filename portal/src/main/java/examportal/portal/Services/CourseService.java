@@ -4,11 +4,12 @@ import java.util.List;
 
 import examportal.portal.Entity.Course;
 import examportal.portal.Payloads.CourseDto;
+import examportal.portal.Payloads.PaginationDto;
 public interface CourseService {
 
     List<Course>getAllCourse(Integer pageNumber, int size, String sortField, String sortOrder);
 
-     List<Course>getAllCourseByStudentName(String name);
+    //  List<Course>getAllCourseByStudentName(String name);
 
     Course getCourseByCouseId(String getId);
 
@@ -18,5 +19,6 @@ public interface CourseService {
 
     void deleteCourseById(String getId);
 
+    List<Course>getAllCourseByUserId(String userId,PaginationDto dto);
     
 } 
