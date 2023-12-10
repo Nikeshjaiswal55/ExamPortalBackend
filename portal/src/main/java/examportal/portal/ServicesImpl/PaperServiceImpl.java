@@ -19,6 +19,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import examportal.portal.Entity.Assessment;
@@ -80,6 +83,9 @@ public class PaperServiceImpl implements PaperService {
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
+  LocalDateTime date = LocalDateTime.now();
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+  String formattedDate = date.format(formatter);
   @Override
   public Paper createPaper(PaperDto paperdDto) {
 
@@ -88,6 +94,7 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = new Paper();
     paper.setUserId(paperdDto.getUserId());
     paper.setOrgnizationId(paperdDto.getOrgnizationId());
+    paper.setCreated_date(formattedDate);
     paper.set_setup(true);
     paper.set_Active(false);
     Paper newpPaper = this.paperRepo.save(paper);
@@ -105,6 +112,10 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setPaperId(newpPaper.getPaperId());
     examDetails.setTotalMarks(paperdDto.getExamDetails().getTotalMarks());
     examDetails.setMinimum_marks(paperdDto.getExamDetails().getMinimum_marks());
+    // set date in exame deteial
+     examDetails.setCreated_date(formattedDate);
+    // examDetails.setCreated_date(paper.getCreated_date());
+   // examDetails.setPublished_date(paper.getPublished_date());
     this.examDetailsRepo.save(examDetails);
 
     List<Questions> questionsList = paperdDto.getQuestions();
@@ -231,6 +242,9 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
     examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
     examDetails.setMinimum_marks(paperDto.getExamDetails().getMinimum_marks());
+// set date in exame deteal
+   // examDetails.setCreated_date(paper.getCreated_date());
+    //  examDetails.setPublished_date(formattedDate);
 
     ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
 
@@ -301,7 +315,10 @@ public class PaperServiceImpl implements PaperService {
       return "Deactive successfully";
     } else {
       paper.set_Active(true);
+      paper.setPublished_date(formattedDate);
       paper.set_setup(false);
+      //set date
+      examDetails.setPublished_date(formattedDate);
       examDetails.set_Active(true);
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
