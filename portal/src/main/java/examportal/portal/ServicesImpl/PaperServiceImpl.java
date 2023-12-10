@@ -42,7 +42,6 @@ import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
-// import examportal.portal.Services.ExamDetailsService;
 import examportal.portal.Services.PaperService;
 
 @Service
@@ -77,9 +76,6 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private AttemptepaperRepo attemptepaperRepo;
-
-  // @Autowired
-  // private ExamDetailsService examDetailsService;
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 

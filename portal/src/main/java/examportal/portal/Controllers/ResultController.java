@@ -50,6 +50,15 @@ public class ResultController {
         return new ResponseEntity<>(resultDto,HttpStatus.OK);
     }
 
+     @GetMapping("/getTop5ResultOfStudent/{studentId}")
+    public ResponseEntity<List<Result>>getTop5_ResultOfStudentId(@PathVariable String studentId)
+    {
+       
+     List<Result> results = this.resultService.getTopFiveResultOfStudentByStudentId(studentId);
+
+        return new ResponseEntity<>(results,HttpStatus.OK);
+    }
+
     @PostMapping("/checkPaper")
     public ResponseEntity<ResultDto> checkpaper( @RequestBody checkpaperDto dto)
     {
@@ -73,19 +82,12 @@ public class ResultController {
         return new ResponseEntity<>(toppers,HttpStatus.OK);
     }
 
-    @GetMapping("/getAllResultsByStudentId/{studentId}")
-    public ResponseEntity <List<Result>>getAllResult_ByStudentId(@PathVariable String studentId)
-    {
-       
-     List<Result> results = this.resultRepo.findByStudentID(studentId);
-
-        return new ResponseEntity<>(results,HttpStatus.OK);
-    }
-
+   
     @GetMapping("/getresultby/student/{studentId}/paperId/{paperId}")
     public ResponseEntity<ResultDto> getbystudentandpaperId(@PathVariable String studentId , @PathVariable String paperId) {
         ResultDto dto = this.resultService.getResultByStudentIdAndPaperId(paperId, studentId);
         return new ResponseEntity<ResultDto>(dto,HttpStatus.OK);
     }
     
+   
 }
