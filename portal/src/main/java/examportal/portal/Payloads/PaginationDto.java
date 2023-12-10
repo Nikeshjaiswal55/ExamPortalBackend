@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @Data
 @AllArgsConstructor
-public class PageableDto {
+public class PaginationDto {
 
     private Integer pageNo ;
     private Integer pageSize ;

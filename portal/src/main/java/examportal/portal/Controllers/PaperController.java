@@ -1,11 +1,8 @@
 package examportal.portal.Controllers;
 
-
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +17,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
-
+import examportal.portal.Filters.FilterPaper;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.ExamDetailsRepo;
@@ -50,12 +46,13 @@ public class PaperController {
     Logger log = LoggerFactory.getLogger("MetorController");
 
     @GetMapping("/getall/paper")
-    public ResponseEntity<List<PaperDto>> getallpaper( @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
-  @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
-  @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
-  @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder) {
+    public ResponseEntity<List<PaperDto>> getallpaper(
+            @RequestParam(name = "page", defaultValue = "0", required = false) Integer page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+            @RequestParam(name = "sortField", defaultValue = "name", required = false) String sortField,
+            @RequestParam(name = "sortOrder", defaultValue = "asc", required = false) String sortOrder) {
         log.info("paperService getall paper method started");
-        List<PaperDto> papers = this.paperService.getAllPaper(page,size,sortField,sortOrder);
+        List<PaperDto> papers = this.paperService.getAllPaper(page, size, sortField, sortOrder);
         log.info("paperService getall paper method End's");
         return new ResponseEntity<>(papers, HttpStatus.OK);
     }
@@ -69,9 +66,9 @@ public class PaperController {
     }
 
     @PostMapping("/create/paper")
-    public ResponseEntity<Paper> createNewpaper(@RequestBody PaperDto paperDto,HttpServletRequest request) {
+    public ResponseEntity<Paper> createNewpaper(@RequestBody PaperDto paperDto, HttpServletRequest request) {
         log.info("paperService create new paper method started");
- 
+
         String token = request.getHeader("Authorization");
         paperDto.setToken(token);
         Paper paper = this.paperService.createPaper(paperDto);
@@ -80,6 +77,7 @@ public class PaperController {
         log.info("paperService create new paper method End's");
         return new ResponseEntity<Paper>(paper, HttpStatus.CREATED);
     }
+
     // Getting paper by paperId
     @GetMapping("/getPaperbyPaperId/{paperID}")
     public ResponseEntity<PaperStringDto> getpaperByID(@PathVariable String paperID) {
@@ -88,11 +86,12 @@ public class PaperController {
         log.info("paperService getall paper method End's");
         return new ResponseEntity<PaperStringDto>(paperDto, HttpStatus.OK);
     }
-    // get All peparByName 
-     @GetMapping("/getPaperByName/{name}")
+
+    // get All peparByName
+    @GetMapping("/getPaperByName/{name}")
     public ResponseEntity<List<Paper>> getpaperByNmae(@PathVariable String name) {
         log.info("paperService get paper by id  method started");
-        List<Paper> paper= this.paperService.getAllpaperByName(name);
+        List<Paper> paper = this.paperService.getAllpaperByName(name);
         log.info("paperService getall paper method End's");
         return new ResponseEntity<List<Paper>>(paper, HttpStatus.OK);
     }
@@ -106,67 +105,66 @@ public class PaperController {
     }
 
     // Getting All papers by userId
+
     @GetMapping("/getAllPaperbyUserId/{userId}")
-    public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(@PathVariable String userId) {
+    public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(@PathVariable String userId,
+                    @RequestParam(name = "is_Active", required = false) Boolean is_Active,
+                    @RequestParam(name = "start_date", required = false) String start_date,   
+                    @RequestParam(name = "end_date", required = false) String end_date
+    ) {
 
         log.info("paper repo getall paper by user id method started");
-        List<ExamDetails> exmDeaDetails= this.paperService.getAllPaperByUserId(userId); 
-        
+    
+        List<ExamDetails> exmDeaDetails = this.paperService.getAllPaperByUserId(userId ,new FilterPaper(is_Active, start_date, end_date));
         log.info("paper repo getall paper by user id method started");
-
         return new ResponseEntity<List<ExamDetails>>(exmDeaDetails, HttpStatus.ACCEPTED);
 
     }
 
     @DeleteMapping("/deletePaperByPaperID/{paperId}")
     public ResponseEntity<String> deletePaper(@PathVariable String paperId) {
-        log.info("paper service deletePaper by paperid method started"); 
+        log.info("paper service deletePaper by paperid method started");
         String msg = this.paperService.deletePaperByPaperId(paperId);
 
-        return new ResponseEntity<>(msg,HttpStatus.OK);
+        return new ResponseEntity<>(msg, HttpStatus.OK);
 
     }
 
     @PutMapping("/activetPaper/{paperId}/{active}")
-    public ResponseEntity<String> activetPaper(@PathVariable String paperId,boolean active){
+    public ResponseEntity<String> activetPaper(@PathVariable String paperId, boolean active) {
         log.info("paper service activetPaper method started");
-        String activeMsg = paperService.activatePaper(paperId,active);
+        String activeMsg = paperService.activatePaper(paperId, active);
         log.info("paper service activetPaper method Ends");
-        return new ResponseEntity<String>(activeMsg,HttpStatus.ACCEPTED);
+        return new ResponseEntity<String>(activeMsg, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/invited/{paperId}")
-    public ResponseEntity<List<InvitedStudents>> getallstudentbypaperId(@PathVariable String paperId)
-    {
+    public ResponseEntity<List<InvitedStudents>> getallstudentbypaperId(@PathVariable String paperId) {
         List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
 
-
-        return new ResponseEntity<List<InvitedStudents>>(students,HttpStatus.ACCEPTED);
+        return new ResponseEntity<List<InvitedStudents>>(students, HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/attempt/paper")
-    public ResponseEntity<AttemptedPapers> attemptedpaper(@RequestBody Assessment assessment)
-    {
+    public ResponseEntity<AttemptedPapers> attemptedpaper(@RequestBody Assessment assessment) {
         AttemptedPapers attemptedPapers2 = this.paperService.AttemptPaper(assessment);
-        
-        return new ResponseEntity<>(attemptedPapers2,HttpStatus.ACCEPTED);
-         
+
+        return new ResponseEntity<>(attemptedPapers2, HttpStatus.ACCEPTED);
+
     }
 
-    
     @GetMapping("/getexamdetaisbypaperId/{paperId}")
-    public ResponseEntity<ExamDetails> getexamdetailsbypeprId(@PathVariable String paperId)
-    {
+    public ResponseEntity<ExamDetails> getexamdetailsbypeprId(@PathVariable String paperId) {
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
 
-        return new ResponseEntity<ExamDetails>(examDetails,HttpStatus.OK);
+        return new ResponseEntity<ExamDetails>(examDetails, HttpStatus.OK);
     }
 
     @GetMapping("/sendmailInBackground/{paperId}")
     public String processInBackground(@PathVariable String paperId) throws ExecutionException, InterruptedException {
         Future<String> future = paperService.processInvitationsInBackground(paperId);
-        
+
         return "Background processing started for paperId: " + paperId;
     }
-    
+
 }
