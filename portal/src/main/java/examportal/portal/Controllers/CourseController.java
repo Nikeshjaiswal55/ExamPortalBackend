@@ -60,22 +60,16 @@ public class CourseController {
     return new ResponseEntity<Course>(list, HttpStatus.OK);
   }
 
-  // get All Student by name
-  // @GetMapping("/course/{name}")
-  // public ResponseEntity<List<Course>> getAllCourseByName(@PathVariable String name) {
-  //   log.info("CourseController,getCourseById Method Start");
-  //   List<Course> list = courseService.getAllCourseByStudentName(name);
-  //   log.info("CourseController,getCourseById Method Ends");
-  //   return new ResponseEntity<List<Course>>(list, HttpStatus.OK);
-  // }
 
   // Get Course by UserId
   @GetMapping("/course/byUserId/{userId}")
   public ResponseEntity<List<Course>> getCourseByUserId(@PathVariable String userId,
       @RequestParam(name = "page", defaultValue = "0", required = false) Integer pageNo,
       @RequestParam(name = "size", defaultValue = "10", required = false) Integer Pagesize,
-      @RequestParam(name = "sortField", defaultValue = "name", required = false) String sortField,
+      @RequestParam(name = "sortField", defaultValue = "course_name", required = false) String sortField,
       @RequestParam(name = "sortOrder", defaultValue = "asc", required = false) String sortOrder) {
+
+
     log.info("CourseController,getCourseById Method Start");
 
     List<Course> ls = courseService.getAllCourseByUserId(userId,
@@ -120,4 +114,6 @@ public class CourseController {
 
     return new ResponseEntity<>(c,HttpStatus.OK);
   }
+
+  
 }

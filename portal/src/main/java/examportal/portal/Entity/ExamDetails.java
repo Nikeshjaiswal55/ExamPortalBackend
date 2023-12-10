@@ -18,7 +18,7 @@ public class ExamDetails {
     private String branch;
     private String session;
     private String assessmentName;
-    private boolean is_Active;
+    private String is_Active;
     private boolean is_Setup;
     private boolean is_attempted;
     private int totalMarks;

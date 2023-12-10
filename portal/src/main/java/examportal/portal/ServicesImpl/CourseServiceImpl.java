@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import examportal.portal.Entity.Course;
 import examportal.portal.Entity.Student;
@@ -83,7 +84,7 @@ public class CourseServiceImpl implements CourseService {
 
     log.info("CourseServiceimpl,addCourse Method Start");
     User us = userRepo.findById(course.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
-    String response = "";
+   
 
     Course c = new Course();
     c.setCourse_name(course.getCourse_name());
@@ -92,10 +93,24 @@ public class CourseServiceImpl implements CourseService {
     c.setDuration(course.getDuration());
     this.courseRepo.save(c);
 
-    List<EmailsDto> dtos = course.getEmailsDto();
+    // List<EmailsDto> dtos = course.getEmailsDto();
 
-    for (EmailsDto email : dtos) {
+    
+    this.courseRepo.save(c);
+    log.info("CourseServiceimpl,addCourse Method Ends");
+    return c;
+    
+  }
 
+  @Async
+  @Deprecated
+  @Override
+  public String creatingStudentInBackGround(List<EmailsDto> dto,String courseId ,String token){
+
+    Course course = this.courseRepo.findById(courseId).orElseThrow(()-> new ResourceNotFoundException("Course", "courseId", courseId));
+
+    for (EmailsDto email : dto) {
+       String response = "";
       String password = RandomString.make(12) + "K80";
       Student st= this.studentRepo.getszStudentByEmail(email.getEmail());
 
@@ -105,7 +120,7 @@ public class CourseServiceImpl implements CourseService {
       } else {
 
         try {
-          response = this.auth0Service.createUser(email.getEmail(), password, course.getToken());
+          response = this.auth0Service.createUser(email.getEmail(), password, token);
           // res = userId
           User use = new User();
           use.setUserId(response);
@@ -118,7 +133,7 @@ public class CourseServiceImpl implements CourseService {
           student.setBranch(email.getBranch()); 
           student.setName(email.getName());
           student.setEmail(email.getEmail());
-          student.setOrgnizationId(course.getOrgnizationId());
+          student.setOrgnizationId(email.getOrgnizationId());
           student.setStudentid(savedUser.getUserId());
           Student savedst =  this.studentRepo.save(student);
 
@@ -128,13 +143,9 @@ public class CourseServiceImpl implements CourseService {
         }
 
       }
-
     }
+    return " All Student Created Successfully ";
 
-    this.courseRepo.save(c);
-    log.info("CourseServiceimpl,addCourse Method Ends");
-    return c;
-    
   }
 
   @Override
@@ -155,16 +166,7 @@ public class CourseServiceImpl implements CourseService {
     log.info("CourseServiceimpl, deleteCourse Method Ends");
   }
 
-  // @Override
-  // public List<Course> getAllCourseByStudentName(String name) {
-  //   log.info("CourseServiceimpl, getAllCourseByStudentName  Method Start");
-  //   List<Course> list = courseRepo. getAllCourseByStudentName(name);
-  //    if(list.isEmpty()){
-  //     throw new NoSuchElementException("The Paper list is empty");
-  // }
-  //   log.info("CourseServiceimpl, getAllCourseByStudentName  Method and");
-  //  return list;
-// }
+  
 
 @Override
   public List<Course>getAllCourseByUserId(String userId,PaginationDto dto){

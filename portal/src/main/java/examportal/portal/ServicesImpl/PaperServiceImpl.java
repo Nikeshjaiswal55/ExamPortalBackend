@@ -1,12 +1,11 @@
 package examportal.portal.ServicesImpl;
-
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.concurrent.CompletableFuture;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import examportal.portal.Entity.Assessment;
@@ -30,7 +28,7 @@ import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
-import examportal.portal.Filters.FilterPaper;
+import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.AssessmentRepo;
@@ -87,7 +85,7 @@ public class PaperServiceImpl implements PaperService {
     paper.setUserId(paperdDto.getUserId());
     paper.setOrgnizationId(paperdDto.getOrgnizationId());
     paper.set_setup(true);
-    paper.set_Active(false);
+    paper.setIs_Active("false");
     Paper newpPaper = this.paperRepo.save(paper);
 
     ExamDetails examDetails = new ExamDetails();
@@ -97,7 +95,7 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setExamMode(paperdDto.getExamDetails().getExamMode());
     examDetails.setSession(paperdDto.getExamDetails().getSession());
     examDetails.set_Setup(true);
-    examDetails.set_Active(false);
+    examDetails.setIs_Active("false");
     examDetails.setPaperChecked(false);
     examDetails.setExamRounds(paperdDto.getExamDetails().getExamRounds());
     examDetails.setPaperId(newpPaper.getPaperId());
@@ -113,7 +111,6 @@ public class PaperServiceImpl implements PaperService {
       this.questionsRepo.save(questions);
     }
 
-    // this.questionsRepo.saveAll(questionsList);
 
     log.info("paperService Create paper method End's :");
     return newpPaper;
@@ -264,26 +261,63 @@ public class PaperServiceImpl implements PaperService {
     return "Deleted success fully";
 
   }
-
+// With FIlter 
   @Override
-  public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPaper) {
+  public List<ExamDetails> getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filter) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
 
-    List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
+    Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending(): Sort.by(dto.getProperty()).descending();
+    Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
+    
+    List<Paper> paper ;
+
+    if (!filter.isEmpty()) {
+      System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Enter in Filter "+filter);
+      paper = this.paperRepo.findByFiter(userId,p,filter);
+
+    } else {
+      paper = this.paperRepo.findAllPaperByUserId(userId, p);
+    }
+    // System.out.println(paper.get(0));
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Paper paper2 : paper) {
       ExamDetails emd = new ExamDetails();
       emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
-      emd.set_Active(paper2.is_Active());
+      emd.setIs_Active(paper2.getIs_Active());
       emd.set_Setup(paper2.is_setup());
       examDetails.add(emd);
 
     }
 
     return examDetails;
-
   }
+
+  // Without Filter
+  @Override
+   public List<ExamDetails> getAllPaperByUserIdWithOutFilter(String userId, PaginationDto dto) {
+    log.info("paperServiceImpl getAllPaperByUserId  method Starts");
+
+    Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
+        : Sort.by(dto.getProperty()).descending();
+    Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
+    
+    List<ExamDetails> examDetails = new ArrayList<>();
+
+    List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId, p);
+
+    for (Paper paper2 : paper) {
+      ExamDetails emd = new ExamDetails();
+      emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+      emd.setIs_Active(paper2.getIs_Active());
+      emd.set_Setup(paper2.is_setup());
+      examDetails.add(emd);
+
+    }
+
+    return examDetails;
+  }
+
 
   @Override
   public String activatePaper(String paperId, boolean active) {
@@ -293,26 +327,26 @@ public class PaperServiceImpl implements PaperService {
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
     if (active == true) {
-      paper.set_Active(false);
+      paper.setIs_Active("false");
       paper.set_setup(true);
-      examDetails.set_Active(false);
+      examDetails.setIs_Active("false");
       examDetails.set_Setup(true);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
+       log.info("paperServiceImpl activatePaper  method Ends");
       return "Deactive successfully";
     } else {
-      paper.set_Active(true);
+      paper.setIs_Active("true");
       paper.set_setup(false);
-      examDetails.set_Active(true);
+      examDetails.setIs_Active("true");
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
-      // processInvitationsInBackground(paperId);
+       log.info("paperServiceImpl activatePaper  method Ends");
+      return "Paper Activated Successfully";
+      
     }
 
-    log.info("paperServiceImpl activatePaper  method Ends");
-
-    return "Paper Published Successfully";
   }
 
   @Async
