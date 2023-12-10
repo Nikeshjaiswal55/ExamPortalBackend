@@ -99,22 +99,12 @@ public class ResultServiceImpl implements ResultService {
         this.examDetailsRepo.save(examDetails);
 
         // 3. Save Result
-        Result newResult = new Result();
-        newResult.setPaperID(dto.getResult().getPaperID());
-        newResult.setStudentID(dto.getResult().getStudentID());
-        newResult.setDate(dto.getResult().getDate());
-        newResult.setMarks(dto.getResult().getMarks());
-        newResult.setResultStatus(dto.getResult().getResultStatus());
-        newResult.setPercentage(dto.getResult().getPercentage());
-        this.resultRepo.save(newResult);
+        Result newResult = this.resultRepo.save(dto.getResult());
 
         // 4. Save Cheating
-        Cheating cheating = new Cheating();
-        cheating.setAudios(dto.getCheating().getAudios());
-        cheating.setImages(dto.getCheating().getImages());
-        cheating.setResultId(newResult.getResultID());
+        Cheating cheating = dto.getCheating();
+        cheating.setPaperId(newResult.getPaperID());
         cheating.setStudentId(newResult.getStudentID());
-        cheating.setPaperId(dto.getResult().getPaperID());
         Cheating stdCheating = this.cheatingRepo.save(cheating);
 
         // 5. Build ResultDto

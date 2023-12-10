@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
+import org.springframework.scheduling.annotation.Async;
+
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -15,7 +17,8 @@ import examportal.portal.Payloads.PaperStringDto;
 
 public interface PaperService {
     
-    Paper createPaper(PaperDto paperDto);
+    @Async
+    CompletableFuture<Paper> createPaper(PaperDto paperDto);
     
     PaperDto updetPaper(PaperDto paperDto);
     

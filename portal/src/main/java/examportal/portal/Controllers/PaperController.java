@@ -69,16 +69,16 @@ public class PaperController {
     }
 
     @PostMapping("/create/paper")
-    public ResponseEntity<Paper> createNewpaper(@RequestBody PaperDto paperDto,HttpServletRequest request) {
+    public CompletableFuture<Paper> createNewpaper(@RequestBody PaperDto paperDto,HttpServletRequest request) {
         log.info("paperService create new paper method started");
  
         String token = request.getHeader("Authorization");
         paperDto.setToken(token);
-        Paper paper = this.paperService.createPaper(paperDto);
+        CompletableFuture<Paper> paper = this.paperService.createPaper(paperDto);
 
         System.out.println("end..................");
         log.info("paperService create new paper method End's");
-        return new ResponseEntity<Paper>(paper, HttpStatus.CREATED);
+        return paper;
     }
     // Getting paper by paperId
     @GetMapping("/getPaperbyPaperId/{paperID}")

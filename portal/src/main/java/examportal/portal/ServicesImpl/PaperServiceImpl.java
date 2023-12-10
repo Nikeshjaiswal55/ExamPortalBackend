@@ -90,45 +90,51 @@ public class PaperServiceImpl implements PaperService {
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
   @Override
-  public Paper createPaper(PaperDto paperdDto) {
+  public Paper createPaper(PaperDto paperDto) {
+      log.info("paperService Create paper method Starts :");
 
-    log.info("paperService Create paper method Starts :");
+      Paper paper = new Paper();
+      paper.setUserId(paperDto.getUserId());
+      paper.setOrgnizationId(paperDto.getOrgnizationId());
+      paper.set_setup(true);
+      paper.set_Active(false);
+      Paper newPaper = this.paperRepo.save(paper);
 
-    Paper paper = new Paper();
-    paper.setUserId(paperdDto.getUserId());
-    paper.setOrgnizationId(paperdDto.getOrgnizationId());
-    paper.set_setup(true);
-    paper.set_Active(false);
-    Paper newpPaper = this.paperRepo.save(paper);
+      ExamDetails examDetails = paperDto.getExamDetails(); 
+      examDetails.setPaperId(newPaper.getPaperId());
+      this.examDetailsRepo.save(examDetails);
+      System.out.println(examDetails+"kge ==================================================================");
 
-    ExamDetails examDetails = new ExamDetails();
-    examDetails.setAssessmentName(paperdDto.getExamDetails().getAssessmentName());
-    examDetails.setBranch(paperdDto.getExamDetails().getBranch());
-    examDetails.setExamDuration(paperdDto.getExamDetails().getExamDuration());
-    examDetails.setExamMode(paperdDto.getExamDetails().getExamMode());
-    examDetails.setSession(paperdDto.getExamDetails().getSession());
-    examDetails.set_Setup(true);
-    examDetails.set_Active(false);
-    examDetails.setPaperChecked(false);
-    examDetails.setExamRounds(paperdDto.getExamDetails().getExamRounds());
-    examDetails.setPaperId(newpPaper.getPaperId());
-    examDetails.setTotalMarks(paperdDto.getExamDetails().getTotalMarks());
-    examDetails.setMinimum_marks(paperdDto.getExamDetails().getMinimum_marks());
-    this.examDetailsRepo.save(examDetails);
+      List<Questions> questionsList = paperDto.getQuestions();
 
-    List<Questions> questionsList = paperdDto.getQuestions();
+      // Save questions asynchronously
+      CompletableFuture<List<Questions>> saveQuestionsFuture = saveQuestionsAsync(questionsList, newPaper.getPaperId());
 
-    for (Questions questions : questionsList) {
-      questions.setPaperID(newpPaper.getPaperId());
-      questions.setQuestions(questions.getQuestions());
-      this.questionsRepo.save(questions);
-    }
+      // Perform other synchronous operations while waiting for saveQuestionsAsync to complete...
 
-    // this.questionsRepo.saveAll(questionsList);
+      // try {
+      //     // Get the result of the asynchronous saveQuestionsAsync call
+      //     List<Questions> savedQuestions = saveQuestionsFuture.get();
+      //     log.info("Questions saved asynchronously: {}", savedQuestions);
+      // } catch (Exception e) {
+      //     log.error("Error saving questions asynchronously: {}", e.getMessage());
+      //     // Handle the exception
+      // }
 
-    log.info("paperService Create paper method End's :");
-    return newpPaper;
+      log.info("paperService Create paper method End's :");
+      return newPaper;
   }
+
+@Async
+public CompletableFuture<List<Questions>> saveQuestionsAsync(List<Questions> questionsList, String paperId) {
+    // Set paperId for each question
+    questionsList.forEach(question -> question.setPaperID(paperId));
+    // Save all questions in a batch asynchronously
+    List<Questions> savedQuestions = this.questionsRepo.saveAll(questionsList);
+
+    return CompletableFuture.completedFuture(savedQuestions);
+}
+
 
   @Override
   public List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder) {
@@ -259,18 +265,11 @@ public class PaperServiceImpl implements PaperService {
 
   public String deletePaperByPaperId(String paperID) {
     log.info("paperServiceImpl deletePaperByPaperId  method Starts");
-    Paper p = this.paperRepo.findById(paperID)
-        .orElseThrow(() -> new ResourceNotFoundException("Paper", "paperId", paperID));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
     this.examDetailsRepo.deleteById(examDetails.getExamid());
     List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
-    for (Questions question : questions) {
-      Questions qu = this.questionsRepo.findById(question.getQuestionId())
-          .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionID", question.getQuestionId()));
-      this.questionsRepo.deleteById(question.getQuestionId());
-    }
+    this.questionsRepo.deleteAll(questions);
     this.paperRepo.deleteById(paperID);
-
     log.info("paperServiceImpl deletePaperByPaperId  method Ends");
     return "Deleted success fully";
 
@@ -317,7 +316,6 @@ public class PaperServiceImpl implements PaperService {
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
-      processInvitationsInBackground(paperId);
     }
 
     log.info("paperServiceImpl activatePaper  method Ends");
@@ -337,9 +335,14 @@ public class PaperServiceImpl implements PaperService {
           }
       } else {
           List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
+          if (students==null) {
+            throw new ResourceNotFoundException("Students","branch",examDetails.getBranch());
+          }
+          else
+          {
           for (InvitedStudents invitedStudents : students) {
               sendEmailAsync(invitedStudents.getStudentId());
-          }
+          }}
       }
 
       return CompletableFuture.completedFuture("Sending email in the background");
