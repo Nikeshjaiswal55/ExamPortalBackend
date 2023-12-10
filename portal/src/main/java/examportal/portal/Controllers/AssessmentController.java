@@ -3,6 +3,7 @@ package examportal.portal.Controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,10 +34,10 @@ public class AssessmentController {
     Logger log = LoggerFactory.getLogger("AssessmentController.class");
 
     @GetMapping("/getAllBy/OrgnizationId/{orgnizationId}")
-    public ResponseEntity<List<Assessment>> getAllassmentByOrgnizationId(@PathVariable String orgnizationId) {
+    public ResponseEntity<List<Assessment>> getAllassmentByOrgnizationId(@PathVariable String orgnizationId,Pageable p) {
         log.info("AssessmentController.class, getAllassmentByOrgnizationId Start ");
 
-        List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_orgnizationId(orgnizationId);
+        List<Assessment> assessments = (List<Assessment>) this.assessmentRepo.getAssessmentsBy_orgnizationId(orgnizationId, p);
 
         log.info("AssessmentController.class, getAllassmentByOrgnizationId Ends ");
         return new ResponseEntity<List<Assessment>>(assessments, HttpStatus.OK);

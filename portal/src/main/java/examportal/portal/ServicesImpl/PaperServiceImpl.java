@@ -34,6 +34,7 @@ import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.PaperDto;
+import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
@@ -79,54 +80,58 @@ public class PaperServiceImpl implements PaperService {
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
-  LocalDateTime date = LocalDateTime.now();
-  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-  String formattedDate = date.format(formatter);
   @Override
-  public Paper createPaper(PaperDto paperdDto) {
+  public Paper createPaper(PaperDto paperDto) {
+      log.info("paperService Create paper method Starts :");
 
-    log.info("paperService Create paper method Starts :");
+      LocalDateTime date = LocalDateTime.now();
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+      String formattedDate = date.format(formatter);
 
-    Paper paper = new Paper();
-    paper.setUserId(paperdDto.getUserId());
-    paper.setOrgnizationId(paperdDto.getOrgnizationId());
-    paper.setCreated_date(formattedDate);
-    paper.set_setup(true);
-    paper.set_Active(false);
-    Paper newpPaper = this.paperRepo.save(paper);
+      Paper paper = new Paper();
+      paper.setUserId(paperDto.getUserId());
+      paper.setOrgnizationId(paperDto.getOrgnizationId());
+      paper.set_setup(true);
+      paper.set_Active(false);
+      paper.setCreated_date(formattedDate);
+      Paper newPaper = this.paperRepo.save(paper);
 
-    ExamDetails examDetails = new ExamDetails();
-    examDetails.setAssessmentName(paperdDto.getExamDetails().getAssessmentName());
-    examDetails.setBranch(paperdDto.getExamDetails().getBranch());
-    examDetails.setExamDuration(paperdDto.getExamDetails().getExamDuration());
-    examDetails.setExamMode(paperdDto.getExamDetails().getExamMode());
-    examDetails.setSession(paperdDto.getExamDetails().getSession());
-    examDetails.set_Setup(true);
-    examDetails.set_Active(false);
-    examDetails.setPaperChecked(false);
-    examDetails.setExamRounds(paperdDto.getExamDetails().getExamRounds());
-    examDetails.setPaperId(newpPaper.getPaperId());
-    examDetails.setTotalMarks(paperdDto.getExamDetails().getTotalMarks());
-    examDetails.setMinimum_marks(paperdDto.getExamDetails().getMinimum_marks());
-    // set date in exame deteial
-     examDetails.setCreated_date(formattedDate);
-    // examDetails.setCreated_date(paper.getCreated_date());
-   // examDetails.setPublished_date(paper.getPublished_date());
-    this.examDetailsRepo.save(examDetails);
+      ExamDetails examDetails = paperDto.getExamDetails();
+      examDetails.setPaperId(newPaper.getPaperId());
+      this.examDetailsRepo.save(examDetails);
+      System.out.println(examDetails+"kger  =============================================================");
 
-    List<Questions> questionsList = paperdDto.getQuestions();
+      List<Questions> questionsList = paperDto.getQuestions();
 
-    for (Questions questions : questionsList) {
-      questions.setPaperID(newpPaper.getPaperId());
-      questions.setQuestion(questions.getQuestion());
-      this.questionsRepo.save(questions);
-    }
+      // Save questions asynchronously
+      CompletableFuture<List<Questions>> saveQuestionsFuture = saveQuestionsAsync(questionsList, newPaper.getPaperId());
 
-    // this.questionsRepo.saveAll(questionsList);
+      // Perform other synchronous operations while waiting for saveQuestionsAsync to complete...
 
-    log.info("paperService Create paper method End's :");
-    return newpPaper;
+      try {
+          // Get the result of the asynchronous saveQuestionsAsync call
+          List<Questions> savedQuestions = saveQuestionsFuture.get();
+          log.info("Questions saved asynchronously: {}", savedQuestions);
+      } catch (Exception e) {
+          log.error("Error saving questions asynchronously: {}", e.getMessage());
+          // Handle the exception
+      }
+
+      log.info("paperService Create paper method End's :");
+      return newPaper;
   }
+
+  @Async
+  public CompletableFuture<List<Questions>> saveQuestionsAsync(List<Questions> questionsList, String paperId) {
+      // Set paperId for each question
+      questionsList.forEach(question -> question.setPaperID(paperId));
+
+      // Save all questions in a batch asynchronously
+      List<Questions> savedQuestions = this.questionsRepo.saveAll(questionsList);
+
+      return CompletableFuture.completedFuture(savedQuestions);
+  }
+
 
   @Override
   public List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder) {
@@ -155,7 +160,7 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public String getPaperById(String paperID) {
+  public PaperStringDto getPaperById(String paperID) {
     log.info("paperService getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperID", paperID));
@@ -167,10 +172,11 @@ public class PaperServiceImpl implements PaperService {
     paperDto.setExamDetails(examDetails);
 
     String obj = encodeObject(paperDto);
-
+    PaperStringDto dto = new PaperStringDto();
+    dto.setData(obj);
     log.info("paperService getPaperByID method End's :");
 
-    return obj;
+    return dto;
   }
 
   public String encodeObject(Object object) {
@@ -238,9 +244,9 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
     examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
     examDetails.setMinimum_marks(paperDto.getExamDetails().getMinimum_marks());
-// set date in exame deteal
-   // examDetails.setCreated_date(paper.getCreated_date());
-    //  examDetails.setPublished_date(formattedDate);
+    // set date in exame deteal
+    // examDetails.setCreated_date(paper.getCreated_date());
+    // examDetails.setPublished_date(formattedDate);
 
     ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
 
@@ -298,6 +304,10 @@ public class PaperServiceImpl implements PaperService {
   public String activatePaper(String paperId, boolean active) {
     log.info("paperServiceImpl activatePaper  method Starts");
 
+    LocalDateTime date = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    String formattedDate = date.format(formatter);
+
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
@@ -313,7 +323,7 @@ public class PaperServiceImpl implements PaperService {
       paper.set_Active(true);
       paper.setPublished_date(formattedDate);
       paper.set_setup(false);
-      //set date
+      // set date
       examDetails.setPublished_date(formattedDate);
       examDetails.set_Active(true);
       examDetails.set_Setup(false);
@@ -326,8 +336,6 @@ public class PaperServiceImpl implements PaperService {
     return "Paper Published Successfully";
   }
 
-
-  
   @Async
   public CompletableFuture<String> processInvitationsInBackground(String paperId) {
 
