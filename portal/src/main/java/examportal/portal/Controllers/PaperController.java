@@ -107,10 +107,14 @@ public class PaperController {
 
     // Getting All papers by userId
     @GetMapping("/getAllPaperbyUserId/{userId}")
-    public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(@PathVariable String userId) {
+    public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(
+      @RequestParam(name = "page",defaultValue = "0",required = false)Integer page,
+      @RequestParam(name = "size",defaultValue = "10",required = false)Integer size,
+      @RequestParam(name = "sortfiled",defaultValue = "name",required = false)String  sortfield,
+      @RequestParam(name ="sortOrder",defaultValue = "asc",required = false) String sortOrder ,@PathVariable String userId) {
 
         log.info("paper repo getall paper by user id method started");
-        List<ExamDetails> exmDeaDetails= this.paperService.getAllPaperByUserId(userId); 
+        List<ExamDetails> exmDeaDetails= this.paperService.getAllPaperByUserId( page ,size,sortfield,sortOrder ,userId); 
         
         log.info("paper repo getall paper by user id method started");
 

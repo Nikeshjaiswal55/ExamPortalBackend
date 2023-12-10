@@ -265,9 +265,21 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public List<ExamDetails> getAllPaperByUserId(String userId) {
+  public List<ExamDetails> getAllPaperByUserId( Integer pageNumber, Integer size, String sortField, String sortOrder,String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-    List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
+    //  Sort sort=(sortOrder.equalsIgnoreCase("Asc"))? sort.by(sortField).ascending():sort.by(sortField).descending();
+    // Sort.Direction direction=sortOrder.equalsgttg(userId)
+
+    Sort sort;
+    if ("is_Active".equals(sortField)) {
+        sort = sortOrder.equalsIgnoreCase("Asc") ? Sort.by("is_Active").ascending() : Sort.by("is_Active").descending();
+    } else {
+        sort = sortOrder.equalsIgnoreCase("Asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+    }
+    Pageable p=PageRequest.of(pageNumber,size,sort);
+    Page<Paper> pp= paperRepo.findAllPaperByUserId(p,userId);
+    List<Paper>paper=pp.getContent();
+    // List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Paper paper2 : paper) {
