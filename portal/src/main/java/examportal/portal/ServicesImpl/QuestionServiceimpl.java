@@ -1,6 +1,7 @@
 package examportal.portal.ServicesImpl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,5 +81,14 @@ public class QuestionServiceimpl implements QuestionService  {
 
        return "deleted Successfully";
     }
+
+   @Override
+   public List<Questions> getAllQuestionsByName(String name) {
+      List<Questions>  list= questionsRepo.getAllQuestionsByName(name);
+      if (list.isEmpty()) {
+         throw new NoSuchElementException("resource not found ");
+      }
+      return list;
+   }
     
 }

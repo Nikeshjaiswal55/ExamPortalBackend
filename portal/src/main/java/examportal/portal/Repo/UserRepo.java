@@ -8,11 +8,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import examportal.portal.Entity.User;
-import examportal.portal.Response.PageResponce;
+
 
 @Repository
 public interface UserRepo extends JpaRepository<User,String>{
-    // @Query("SELECT s FROM User s Where s.email=:email")
+    
     User findByEmail(String email);
     
     List<User> findByName(String name);
@@ -20,6 +20,8 @@ public interface UserRepo extends JpaRepository<User,String>{
     List<User> findByRole(String role);
 
     List<User> findByUserId(String userId);
+    @Query("SELECT s FROM User s WHERE s.name=:name")
+    List<User> getAllUserByName(@Param("name")String name);
 
     
     

@@ -10,8 +10,18 @@ import org.springframework.stereotype.Repository;
 import examportal.portal.Entity.Paper;
 
 @Repository
-public interface PaperRepo extends JpaRepository<Paper,String>{
+public interface PaperRepo extends JpaRepository<Paper, String> {
 
     @Query("SELECT p FROM Paper p WHERE p.userId=:userId")
-    List<Paper> getAllPapersByUserId(@Param("userId") String userId);
-} 
+    List<Paper> findAllPaperByUserId(@Param("userId")String userId);
+
+    @Query("SELECT p FROM Paper p WHERE p.userId = :userId AND p.is_Active = true")
+    List<Paper> findAllPaperThatAreActiveByUserId(@Param("userId")String userId);
+    
+    @Query("SELECT s FROM Paper s WHERE s.name=:name")
+    List<Paper> getAllpaperByName(@Param("name")String name);
+
+    //it give count of paper by orgnizationIDs
+    @Query("SELECT COUNT(p) FROM Paper p WHERE p.orgnizationId = :orgnizationId")
+    Long countByOrganizationId(@Param("orgnizationId")String orgnizationId);
+}

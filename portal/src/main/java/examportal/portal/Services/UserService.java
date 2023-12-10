@@ -1,22 +1,24 @@
 package examportal.portal.Services;
 
 import java.util.List;
+<<<<<<< HEAD
 
 import org.springframework.stereotype.Service;
 
 import examportal.portal.Entity.User;
 import examportal.portal.Payloads.userDto;
 @Service
+=======
+import examportal.portal.Entity.User;
+>>>>>>> krishna
 
 public  interface UserService {
     
-    User createUser(userDto user);
+    User createUser(User user);
     
-    // String sendmail(User user);
-    
-    List<User>getAllUser();
+    List<User>getAllUser(Integer page,Integer size, String sortField, String sortOrder);
 
     User getUserById(String userId);
-
-    // String createAuth0User(userDto users);
+ List<User>getAllUserByName(String name);
+    
 }

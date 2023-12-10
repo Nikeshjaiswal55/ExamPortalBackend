@@ -16,6 +16,7 @@ public class userDto {
 
     private String picture;
 
+    private String password;
 
     private String updatedAt;
 
