@@ -57,7 +57,7 @@ public class CourseServiceImpl implements CourseService {
   Logger log = LoggerFactory.getLogger("CourseServiceimpl.class");
 
   @Override
-<<<<<<< HEAD
+<<<<<<< 
   public List<Course> getAllCourse(Integer pageNumber) {
     log.info("CourseServiceimpl,getCourse Method Start");
   
