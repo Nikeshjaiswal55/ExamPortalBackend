@@ -23,11 +23,7 @@ public interface PaperRepo extends JpaRepository<Paper, String> {
     org.springframework.data.domain.Page<Paper> findAllPaperByUserId(@Param("userId") Pageable pageable,String userId);
 
     @Query("SELECT p FROM Paper p WHERE p.userId = :userId AND p.is_Active = true")
-<<<<<<< Updated upstream
-    Page<Paper> findAllActivePaperByUserID(@Param("userId")String userId);
-=======
     List<Paper> findAllPaperThatAreActiveByUserId(@Param("userId") String userId);
->>>>>>> Stashed changes
     
     @Query("SELECT s FROM Paper s WHERE s.name=:name")
     List<Paper> getAllpaperByName(@Param("name")String name);

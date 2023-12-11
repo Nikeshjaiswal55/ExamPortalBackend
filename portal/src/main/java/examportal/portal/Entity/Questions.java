@@ -16,12 +16,6 @@ public class Questions {
     private String correctAns;
     private String userAns;
     private String paperID;
-<<<<<<< HEAD
-    public Object getMessage() {
-        return null;
-    }
-=======
     private String name;
->>>>>>> krishna
     
 }

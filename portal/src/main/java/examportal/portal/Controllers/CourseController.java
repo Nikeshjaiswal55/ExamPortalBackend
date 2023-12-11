@@ -71,7 +71,7 @@ public class CourseController {
   @GetMapping("/course/byUserId/{userId}")
   public ResponseEntity<List<Course>> getCourseByUserId(@PathVariable String userId) {
     log.info("CourseController,getCourseById Method Start");
-    List<Course> ls = courseRepo.getCourseByUseId(userId);
+    List<Course> ls = courseRepo. getCourseByUseId(userId);
     log.info("CourseController,getCourseById Method Ends");
     return new ResponseEntity<List<Course>>(ls, HttpStatus.OK);
   }
