@@ -25,4 +25,6 @@ public class Paper {
     private boolean is_shorted;
     private boolean is_auto_check;
     private String instruction;
+
+
 }

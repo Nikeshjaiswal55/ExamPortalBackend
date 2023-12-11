@@ -33,10 +33,10 @@ public class UserserviceImpl implements UserService {
 
         log.info("userService , createUser Method Start");
 
-        User findUser = this.userRepo.findByEmail(savedUser2.getEmail());
+        User findUser = this.userRepo.findByEmail(user.getEmail());
 
         if (findUser != null) {
-            throw new ResourceAlreadyExistException("user", "email", savedUser2.getEmail());
+            throw new ResourceAlreadyExistException("user", "email", user.getEmail());
         } else {
             User saveduser = this.userRepo.save(user);
             if(saveduser.getRole().equals("OG")){
