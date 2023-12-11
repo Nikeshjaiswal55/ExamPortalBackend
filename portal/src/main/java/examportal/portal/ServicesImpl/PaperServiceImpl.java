@@ -265,6 +265,7 @@ public class PaperServiceImpl implements PaperService {
 
   }
 
+<<<<<<< Updated upstream
   // @Override
   // public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPaper) {
   //   log.info("paperServiceImpl getAllPaperByUserId  method Starts");
@@ -294,6 +295,49 @@ public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPa
 
     // Use filter parameters from FilterPaper in your service logic
     // Example: If is_Active is not null, filter based on the is_Active value
+=======
+
+
+  
+
+  // @Override
+  // public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPaper) {
+  //   log.info("paperServiceImpl getAllPaperByUserId  method Starts");
+
+  //   List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
+  //   List<ExamDetails> examDetails = new ArrayList<>();
+
+  //   for (Paper paper2 : paper) {
+  //     ExamDetails emd = new ExamDetails();
+  //     emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+  //     emd.set_Active(paper2.is_Active());
+  //     emd.set_Setup(paper2.is_setup());
+  //     examDetails.add(emd);
+
+  //   }
+
+  //   return examDetails;
+
+  // }
+
+  @Override
+  public List<ExamDetails> getAllPaperByUserId( Integer pageNumber, Integer size, String sortField, String sortOrder,String userId) {
+    log.info("paperServiceImpl getAllPaperByUserId  method Starts");
+    //  Sort sort=(sortOrder.equalsIgnoreCase("Asc"))? sort.by(sortField).ascending():sort.by(sortField).descending();
+    // Sort.Direction direction=sortOrder.equalsgttg(userId)
+
+    Sort sort;
+    if ("is_Active".equals(sortField)) {
+        sort = sortOrder.equalsIgnoreCase("Asc") ? Sort.by("is_Active").ascending() : Sort.by("is_Active").descending();
+    } else {
+        sort = sortOrder.equalsIgnoreCase("Asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+    }
+    Pageable p=PageRequest.of(pageNumber,size,sort);
+     Page<Paper> pp= paperRepo.findAllPaperByUserId(p,userId);
+    List<Paper>paper=pp.getContent();
+    // List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
+    List<ExamDetails> examDetails = new ArrayList<>();
+>>>>>>> Stashed changes
 
     // Create a Sort object based on the desired sorting logic
     Sort sort = Sort.by("yourSortField").ascending();  // Replace "yourSortField" with the actual field for sorting
@@ -313,6 +357,7 @@ public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPa
         // If is_Active is not provided, retrieve all papers
         paperPage = paperRepo.findAllPaperByUserId(userId, pageable);
     }
+<<<<<<< Updated upstream
 
     // Extract the content (list of Paper entities) from the Page
     List<Paper> paperList = paperPage.getContent();
@@ -342,6 +387,14 @@ public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPa
 
 
 
+=======
+    return examDetails;
+  }
+>>>>>>> Stashed changes
+
+
+
+  
 
   @Override
   public String activatePaper(String paperId, boolean active) {

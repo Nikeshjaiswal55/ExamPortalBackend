@@ -1,5 +1,7 @@
 package examportal.portal.Controllers;
 
+
+
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -29,6 +31,7 @@ import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Services.PaperService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.data.domain.Page;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -104,22 +107,52 @@ public class PaperController {
         return new ResponseEntity<PaperDto>(paperDto2, HttpStatus.OK);
     }
 
-    // Getting All papers by userId
+
+
 
     @GetMapping("/getAllPaperbyUserId/{userId}")
-    public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(@PathVariable String userId,
-                    @RequestParam(name = "is_Active", required = false) Boolean is_Active,
-                    @RequestParam(name = "start_date", required = false) String start_date,   
-                    @RequestParam(name = "end_date", required = false) String end_date
-    ) {
+    public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(
+      @RequestParam(name = "page",defaultValue = "0",required = false)Integer page,
+      @RequestParam(name = "size",defaultValue = "10",required = false)Integer size,
+      @RequestParam(name = "sortfiled",defaultValue = "name",required = false)String  sortfield,
+      @RequestParam(name ="sortOrder",defaultValue = "asc",required = false) String sortOrder ,@PathVariable String userId) {
 
         log.info("paper repo getall paper by user id method started");
-    
-        List<ExamDetails> exmDeaDetails = this.paperService.getAllPaperByUserId(userId ,new FilterPaper(is_Active, start_date, end_date));
+        List<ExamDetails> exmDeaDetails= this.paperService.getAllPaperByUserId( page ,size,sortfield,sortOrder ,userId); 
+        
         log.info("paper repo getall paper by user id method started");
+
         return new ResponseEntity<List<ExamDetails>>(exmDeaDetails, HttpStatus.ACCEPTED);
 
     }
+
+
+
+
+
+    // Getting All papers by userId
+
+    // @GetMapping("/getAllPaperbyUserId/{userId}")
+    // public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(@PathVariable String userId,
+    //                 @RequestParam(name = "is_Active", required = false) Boolean is_Active,
+    //                 @RequestParam(name = "start_date", required = false) String start_date,   
+    //                 @RequestParam(name = "end_date", required = false) String end_date
+    // ) {
+
+    //     log.info("paper repo getall paper by user id method started");
+    
+    //     List<ExamDetails> exmDeaDetails = this.paperService.getAllPaperByUserId(userId ,new FilterPaper(is_Active, start_date, end_date));
+    //     log.info("paper repo getall paper by user id method started");
+    //     return new ResponseEntity<List<ExamDetails>>(exmDeaDetails, HttpStatus.ACCEPTED);
+
+    // }
+
+
+
+
+
+
+
 
     @DeleteMapping("/deletePaperByPaperID/{paperId}")
     public ResponseEntity<String> deletePaper(@PathVariable String paperId) {

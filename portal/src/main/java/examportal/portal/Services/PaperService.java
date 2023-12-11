@@ -2,7 +2,7 @@ package examportal.portal.Services;
 
 import java.util.List;
 import java.util.concurrent.Future;
-
+import org.springframework.data.domain.Page;
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -20,8 +20,8 @@ public interface PaperService {
     
     List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder);
 //Get All Paper By UserID
-    List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filerPaper);
-
+    // List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filerPaper);
+    List<ExamDetails> getAllPaperByUserId(  Integer pageNumber, Integer size, String sortField, String sortOrder,String userId);
     // get pepar by name
     public List<Paper> getAllpaperByName(String name);
 
