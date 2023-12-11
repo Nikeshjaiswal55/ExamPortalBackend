@@ -1,6 +1,9 @@
 package examportal.portal.Controllers;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,11 +117,11 @@ public class StudentController {
             HttpServletRequest request) {
         log.info("StudentController , InviteStudentsByEmail Method Start");
         invitationDto.setToken(request.getHeader("Authorization"));
-        String response = this.studentSevices.inviteStudents(invitationDto);
+        CompletableFuture<String> response = this.studentSevices.inviteStudents(invitationDto);
 
         log.info("StudentController , InviteStudentsByEmail Method end");
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>("inviting students in background", HttpStatus.OK);
     }
 
     //Get COunt of Student & paper

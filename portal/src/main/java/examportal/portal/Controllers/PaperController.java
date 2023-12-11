@@ -162,7 +162,7 @@ public class PaperController {
         return new ResponseEntity<ExamDetails>(examDetails,HttpStatus.OK);
     }
 
-    @GetMapping("/sendmailInBackground/{paperId}")
+    @PostMapping("/sendmailInBackground/{paperId}")
     public String processInBackground(@PathVariable String paperId) throws ExecutionException, InterruptedException {
         Future<String> future = paperService.processInvitationsInBackground(paperId);
         

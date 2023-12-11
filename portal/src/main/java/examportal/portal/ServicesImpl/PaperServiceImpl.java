@@ -331,6 +331,19 @@ public class PaperServiceImpl implements PaperService {
     return "Paper Published Successfully";
   }
 
+  public String decodeString(String encodedString) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    try {
+        String decodedString = UriUtils.decode(encodedString, StandardCharsets.UTF_8);
+        return decodedString;
+    } catch (Exception e) {
+        // Handle the exception, e.g., log or throw a custom exception
+        e.printStackTrace();
+        return null;
+    }
+}
+
   @Async
   public CompletableFuture<String> processInvitationsInBackground(String paperId) {
 
@@ -342,7 +355,7 @@ public class PaperServiceImpl implements PaperService {
       students.forEach(student -> {
         User user = this.userRepo.findById(student.getStudentid())
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", student.getStudentid()));
-
+        // String password =  decodeString(user.getPassword());
         String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
 
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());

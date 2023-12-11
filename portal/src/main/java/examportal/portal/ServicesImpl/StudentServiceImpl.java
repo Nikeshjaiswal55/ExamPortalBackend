@@ -1,8 +1,13 @@
 package examportal.portal.ServicesImpl;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.CompletableFuture;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +15,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -58,6 +69,9 @@ public class StudentServiceImpl implements StudentSevices {
 
     @Autowired
     private ExamDetailsRepo examDetailsRepo;
+
+    @Autowired 
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<Student> getAllStudents(Integer page, int size, String sortField, String sortOrder) {
@@ -127,7 +141,7 @@ public class StudentServiceImpl implements StudentSevices {
 
     @Deprecated
     @Override
-    public String inviteStudents(InvitationDto dto) {
+    public CompletableFuture<String> inviteStudents(InvitationDto dto) {
 
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
         System.out.println(examDetails.getBranch()+"=====================================================================================================");
@@ -155,7 +169,7 @@ public class StudentServiceImpl implements StudentSevices {
                 }
             }
         }
-         return "Student added successfully";
+         return  CompletableFuture.completedFuture("Student added successfully");
     }
     
 
@@ -179,12 +193,41 @@ public class StudentServiceImpl implements StudentSevices {
         return assessmentRepo.save(assessment);
     }
 
+    public String encodeString(String inputString) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            String encodedString = UriUtils.encode(objectMapper.writeValueAsString(inputString), StandardCharsets.UTF_8);
+            return encodedString;
+        } catch (Exception e) {
+            // Handle the exception, e.g., log or throw a custom exception
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String decodeString(String encodedString) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            String decodedString = UriUtils.decode(encodedString, StandardCharsets.UTF_8);
+            return decodedString;
+        } catch (Exception e) {
+            // Handle the exception, e.g., log or throw a custom exception
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Deprecated
     public void handleNewStudent(InvitationDto dto, String email) {
         try {
 
             String password = RandomString.make(12) + "K80";
 
+            // String encode = encodeString(password);
+
+            // String encode = this.passwordEncoder.encode(password);
             String response = this.auth0Service.createUser(email, password, dto.getToken());
 
             User newUser = new User();

@@ -151,11 +151,13 @@ public class ResultServiceImpl implements ResultService {
         dto.setResult(result);
         dto.setResultID(result.getResultID());
         dto.setCheating(cheating);
+        dto.set_attempted(true);
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return dto;
 
     }
+// is published ko string me convert krna h
 
     @Override
     public ResultDto checkPaper(checkpaperDto dto) {
@@ -207,7 +209,11 @@ public class ResultServiceImpl implements ResultService {
             newResult.setResultStatus(dto.getResultstatus());
             newResult.setPercentage(percentage);
             if (paper.is_auto_check()) {
-                newResult.set_published(true);
+                newResult.setIs_published("Approved");
+            }
+            else
+            {
+                newResult.setIs_published("pending");
             }
 
             Assessment assessment = this.assessmentRepo.getAssessmentByStudentAndpaperId(dto.getStudentId(),
@@ -258,7 +264,7 @@ public class ResultServiceImpl implements ResultService {
 
         Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
 
-        if (result.is_published() != true) {
+        if (result.getIs_published().equals("approved")) {
             ResultDto dto = new ResultDto();
             dto.setResult(result);
             return dto;
@@ -280,7 +286,7 @@ public class ResultServiceImpl implements ResultService {
             // dto.setCheating(cheating);
             dto.setResult(result);
             dto.setQuestions(questions);
-            dto.set_published(true);
+            dto.setIs_published("requested");
             return dto;
         }
     }
@@ -325,12 +331,12 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public String publishStudentResult(String studentId, String paperId) {
         Result result = this.resultRepo.getResultByStudentAndPaperId(paperId, studentId);
-        if (result.is_published()==true) {
-            result.set_published(false);
+        if (result.getIs_published().equals("approved")) {
+            result.setIs_published("pending");
             this.resultRepo.save(result);
             return "Result deactivated";
         } else {
-            result.set_published(true);
+            result.setIs_published("approved");
             this.resultRepo.save(result);
             return "Result published  Successfully";
         }

@@ -104,6 +104,14 @@ public class ResultController {
 
         return new ResponseEntity<String>(reponse,HttpStatus.OK);
     }
+
+    @GetMapping("/results/bypaperId/{paperID}")
+    public ResponseEntity<List<Result>> getresultbypaperId(@PathVariable String paperID)
+    {
+        List<Result> results = this.resultRepo.getAllResultsByPaperID(paperID);
+
+        return new ResponseEntity<>(results,HttpStatus.OK);
+    }
     
 
 }

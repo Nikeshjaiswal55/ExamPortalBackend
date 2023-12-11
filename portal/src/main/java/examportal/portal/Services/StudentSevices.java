@@ -1,6 +1,10 @@
 package examportal.portal.Services;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+import org.springframework.scheduling.annotation.Async;
+
 import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.InvitationDto;
 
@@ -19,7 +23,8 @@ public interface StudentSevices {
 
     List<Student> getAllStudentByPaperId(String paperId);
 
-    String inviteStudents(InvitationDto dto);
+    @Async
+    CompletableFuture<String> inviteStudents(InvitationDto dto);
 
     List<Long> getCountOfStudentAndPaperBy_OGId(String orgnizationId);
 

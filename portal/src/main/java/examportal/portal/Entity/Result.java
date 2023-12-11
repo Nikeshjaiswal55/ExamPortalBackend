@@ -28,6 +28,8 @@ public class Result {
 
     private String paperID;
 
-    private boolean is_published;
-    
+    private String student_email;
+
+    private String is_published;
+
 }

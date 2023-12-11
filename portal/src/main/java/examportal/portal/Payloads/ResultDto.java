@@ -20,7 +20,7 @@ public class ResultDto {
 
     private boolean is_attempted;
 
-    private boolean is_published;
+    private String is_published;
     
 
 }
