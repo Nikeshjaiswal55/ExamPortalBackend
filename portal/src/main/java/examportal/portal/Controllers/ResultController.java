@@ -20,6 +20,8 @@ import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Services.ResultService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -88,6 +90,20 @@ public class ResultController {
         ResultDto dto = this.resultService.getResultByStudentIdAndPaperId(paperId, studentId);
         return new ResponseEntity<ResultDto>(dto,HttpStatus.OK);
     }
+
+    @GetMapping("/getAvidanceofAStudent/{studentId}/paperId/{paperId}")
+    public ResponseEntity<ResultDto> getAvidanceBystudentandpaperId(@PathVariable String studentId , @PathVariable String paperId) {
+        ResultDto dto = this.resultService.getAvidenceByStudentIdAndPaperId(paperId, studentId);
+        return new ResponseEntity<ResultDto>(dto,HttpStatus.OK);
+    }
+
+    @PostMapping("/publisStudentResult/studentId/{studentId}/paperId/{paperId}")
+    public ResponseEntity<String> publishResult(@PathVariable String studentId,@PathVariable String paperId)
+    {
+        String reponse = this.resultService.publishStudentResult(studentId, paperId);
+
+        return new ResponseEntity<String>(reponse,HttpStatus.OK);
+    }
     
-   
+
 }

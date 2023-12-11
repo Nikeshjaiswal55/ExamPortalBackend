@@ -9,5 +9,6 @@ public class EmailsDto {
     private String branch;
     private String year;
     private String name;
+    private String orgnizationId;
     
 }

@@ -2,6 +2,7 @@ package examportal.portal.Controllers;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -58,26 +59,28 @@ public class ImageUploadController {
 
     @Value("${cloudinary.api-secret}")
     private String apiSecret;
+
     // uploading string image base64 in this method
-    @PostMapping("/uploadBase64Image")
-    public ResponseEntity<String> uploadImage(@RequestBody String base64Image) {
-        try {
-            Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-                    "cloud_name", cloudName,
-                    "api_key", apiKey,
-                    "api_secret", apiSecret));
+     @PostMapping("/uploadBase64Image")
+     public ResponseEntity<String> uploadImage(@RequestBody String base64Image) {
+      Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+              "cloud_name", cloudName,
+                        "api_key", apiKey,
+                       "api_secret", apiSecret));
 
-            // Upload base64 image to Cloudinary
-            Map<?, ?> result = cloudinary.uploader().upload(base64Image, ObjectUtils.emptyMap());
+      try {
+          // Upload base64 image to Cloudinary
+          Map<?, ?> result = cloudinary.uploader().upload(base64Image, ObjectUtils.emptyMap());
 
-            // Extract public URL of the uploaded image
-            String imageUrl = (String) result.get("url");
+          // Extract public URL of the uploaded image
+          String imageUrl = (String) result.get("url");
 
-            return ResponseEntity.ok("Image uploaded successfully. URL: " + imageUrl);
-        } catch (Exception e) {
-            e.printStackTrace(); // Consider logging the exception using a logger
-            return ResponseEntity.status(500).body("Error uploading image");
-        }
-    }
+          return ResponseEntity.ok("Image uploaded successfully. URL: " + imageUrl);
+      } catch (Exception e) {
+          e.printStackTrace();
+          return ResponseEntity.status(500).body("Error uploading image");
+      }
+  }
 
+  
 }

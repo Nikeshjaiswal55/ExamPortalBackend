@@ -49,8 +49,7 @@ public class UserserviceImpl implements UserService {
         }
 
     }
-
-
+    
     @Override
     public List<User> getAllUser(Integer page,Integer size, String sortField, String sortOrder) {
         log.info("userService , getAllUser Method Start");

@@ -19,4 +19,8 @@ public interface ResultService {
     ResultDto getResultByStudentIdAndPaperId(String papeId,String studentId);
 
     List<Result> getTopFiveResultOfStudentByStudentId(String studentId);
+
+    ResultDto getAvidenceByStudentIdAndPaperId(String papeId, String studentId);
+    
+    String publishStudentResult(String studentId,String paperId);
 }

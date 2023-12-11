@@ -25,6 +25,9 @@ public class Result {
     private String resultStatus;
     
     private String Assesment_Name;
+
     private String paperID;
 
+    private boolean is_published;
+    
 }

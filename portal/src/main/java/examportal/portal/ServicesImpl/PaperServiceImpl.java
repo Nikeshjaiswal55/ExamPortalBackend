@@ -82,56 +82,51 @@ public class PaperServiceImpl implements PaperService {
 
   @Override
   public Paper createPaper(PaperDto paperDto) {
-      log.info("paperService Create paper method Starts :");
+    log.info("paperService Create paper method Starts :");
 
-      LocalDateTime date = LocalDateTime.now();
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-      String formattedDate = date.format(formatter);
+    LocalDateTime date = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    String formattedDate = date.format(formatter);
 
-      Paper paper = new Paper();
-      paper.setUserId(paperDto.getUserId());
-      paper.setOrgnizationId(paperDto.getOrgnizationId());
-      paper.set_setup(true);
-      paper.set_Active(false);
-      paper.setCreated_date(formattedDate);
-      Paper newPaper = this.paperRepo.save(paper);
+    Paper paper = new Paper();
+    paper.setUserId(paperDto.getUserId());
+    paper.setOrgnizationId(paperDto.getOrgnizationId());
+    paper.set_setup(true);
+    paper.set_Active(false);
+    paper.setCreated_date(formattedDate);
+    Paper newPaper = this.paperRepo.save(paper);
 
-      ExamDetails examDetails = paperDto.getExamDetails();
-      examDetails.setPaperId(newPaper.getPaperId());
-      this.examDetailsRepo.save(examDetails);
-      System.out.println(examDetails+"kger  =============================================================");
+    List<Questions> questionsList = paperDto.getQuestions();
+    CompletableFuture<List<Questions>> saveQuestionsFuture = saveQuestionsAsync(questionsList, newPaper.getPaperId());
 
-      List<Questions> questionsList = paperDto.getQuestions();
+    ExamDetails examDetails = paperDto.getExamDetails();
+    examDetails.setPaperId(newPaper.getPaperId());
+    this.examDetailsRepo.save(examDetails);
+    System.out.println(examDetails + "kger  =============================================================");
 
-      // Save questions asynchronously
-      CompletableFuture<List<Questions>> saveQuestionsFuture = saveQuestionsAsync(questionsList, newPaper.getPaperId());
+    try {
+      // Get the result of the asynchronous saveQuestionsAsync call
+      List<Questions> savedQuestions = saveQuestionsFuture.get();
+      log.info("Questions saved asynchronously: {}", savedQuestions);
+    } catch (Exception e) {
+      log.error("Error saving questions asynchronously: {}", e.getMessage());
+      // Handle the exception
+    }
 
-      // Perform other synchronous operations while waiting for saveQuestionsAsync to complete...
-
-      try {
-          // Get the result of the asynchronous saveQuestionsAsync call
-          List<Questions> savedQuestions = saveQuestionsFuture.get();
-          log.info("Questions saved asynchronously: {}", savedQuestions);
-      } catch (Exception e) {
-          log.error("Error saving questions asynchronously: {}", e.getMessage());
-          // Handle the exception
-      }
-
-      log.info("paperService Create paper method End's :");
-      return newPaper;
+    log.info("paperService Create paper method End's :");
+    return newPaper;
   }
 
   @Async
   public CompletableFuture<List<Questions>> saveQuestionsAsync(List<Questions> questionsList, String paperId) {
-      // Set paperId for each question
-      questionsList.forEach(question -> question.setPaperID(paperId));
+    // Set paperId for each question
+    questionsList.forEach(question -> question.setPaperID(paperId));
 
-      // Save all questions in a batch asynchronously
-      List<Questions> savedQuestions = this.questionsRepo.saveAll(questionsList);
+    // Save all questions in a batch asynchronously
+    List<Questions> savedQuestions = this.questionsRepo.saveAll(questionsList);
 
-      return CompletableFuture.completedFuture(savedQuestions);
+    return CompletableFuture.completedFuture(savedQuestions);
   }
-
 
   @Override
   public List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder) {
