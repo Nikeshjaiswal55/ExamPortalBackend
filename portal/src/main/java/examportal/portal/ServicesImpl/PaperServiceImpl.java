@@ -265,25 +265,83 @@ public class PaperServiceImpl implements PaperService {
 
   }
 
+  // @Override
+  // public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPaper) {
+  //   log.info("paperServiceImpl getAllPaperByUserId  method Starts");
+
+  //   List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
+  //   List<ExamDetails> examDetails = new ArrayList<>();
+
+  //   for (Paper paper2 : paper) {
+  //     ExamDetails emd = new ExamDetails();
+  //     emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+  //     emd.set_Active(paper2.is_Active());
+  //     emd.set_Setup(paper2.is_setup());
+  //     examDetails.add(emd);
+
+  //   }
+
+  //   return examDetails;
+
+  // }
+
+
+
+
   @Override
-  public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPaper) {
-    log.info("paperServiceImpl getAllPaperByUserId  method Starts");
+public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPaper) {
+    log.info("paperServiceImpl getAllPaperByUserId method Starts");
 
-    List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
-    List<ExamDetails> examDetails = new ArrayList<>();
+    // Use filter parameters from FilterPaper in your service logic
+    // Example: If is_Active is not null, filter based on the is_Active value
 
-    for (Paper paper2 : paper) {
-      ExamDetails emd = new ExamDetails();
-      emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
-      emd.set_Active(paper2.is_Active());
-      emd.set_Setup(paper2.is_setup());
-      examDetails.add(emd);
+    // Create a Sort object based on the desired sorting logic
+    Sort sort = Sort.by("yourSortField").ascending();  // Replace "yourSortField" with the actual field for sorting
 
+    // Create a Pageable object for pagination
+    Pageable pageable = PageRequest.of(0, 10, sort);  // Example pagination, adjust as needed
+
+    Page<Paper> paperPage;
+    
+    // Check if is_Active is provided in the filter
+    if (filterPaper != null && filterPaper.getIs_Active() != null) {
+        // If is_Active is true, retrieve only active papers; otherwise, retrieve all papers
+        paperPage = filterPaper.getIs_Active()
+                ? paperRepo. findAllActivePaperByUserID(userId, pageable)
+                : paperRepo.findAllPaperByUserId(userId, pageable);
+    } else {
+        // If is_Active is not provided, retrieve all papers
+        paperPage = paperRepo.findAllPaperByUserId(userId, pageable);
     }
 
-    return examDetails;
+    // Extract the content (list of Paper entities) from the Page
+    List<Paper> paperList = paperPage.getContent();
 
-  }
+    // Create a list to store ExamDetails
+    List<ExamDetails> examDetailsList = new ArrayList<>();
+
+    // Iterate through the list of Paper entities and map them to ExamDetails
+    for (Paper paper : paperList) {
+        ExamDetails examDetails = examDetailsRepo.getExamDetailsByPaperID(paper.getPaperId());
+        examDetails.set_Active(paper.is_Active());
+        examDetails.set_Setup(paper.is_setup());
+        examDetailsList.add(examDetails);
+    }
+
+    return examDetailsList;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
   @Override
   public String activatePaper(String paperId, boolean active) {
