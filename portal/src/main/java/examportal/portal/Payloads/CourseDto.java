@@ -17,6 +17,8 @@ public class CourseDto {
 
     private String token;
 
+    private String duration;
+
     private String orgnizationId;
 
     private List<EmailsDto> emailsDto;

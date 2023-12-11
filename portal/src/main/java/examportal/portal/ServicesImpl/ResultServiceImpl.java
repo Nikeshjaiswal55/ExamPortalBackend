@@ -5,13 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.AttemptedQuestions;
@@ -102,7 +100,7 @@ public class ResultServiceImpl implements ResultService {
         // 2. Update ExamDetails
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
         examDetails.setPaperChecked(true);
-        examDetails.set_Active(true);
+        examDetails.setIs_Active("true");
         examDetails.set_Setup(false);
         examDetails.set_attempted(true);
         this.examDetailsRepo.save(examDetails);
