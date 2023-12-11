@@ -17,4 +17,10 @@ public class Paper {
     private boolean is_Active;
     private String orgnizationId;
     private String name;
+    private String created_date;
+    private String published_date;
+    private String description;
+    private boolean is_shorted;
+    private boolean is_auto_check;
+    private String instruction;
 }

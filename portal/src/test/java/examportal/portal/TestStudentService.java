@@ -1,11 +1,11 @@
 package examportal.portal;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.PageImpl;
 
 import examportal.portal.Entity.Student;
 import examportal.portal.Exceptions.ResourceNotFoundException;
+
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.ServicesImpl.StudentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,17 +19,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -49,48 +46,32 @@ public class TestStudentService {
         // Any setup or initialization before each test can go here
     }
 
-
-
     @Test
-    void getAllStudents() {
+    void testGetAllStudents() {
         // Arrange
-        List<Student> mockStudents = Arrays.asList(new Student(), new Student());
-        when(studentRepo.findAll()).thenReturn(mockStudents);
+        int page = 0;
+        int size = 10;
+        String sortField = "name";
+        String sortOrder = "asc";
+        Sort sort = Sort.by(sortField).ascending();
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<Student> mockedPage = mockPageWithOneStudent(); // Assuming a helper method to create a mock page
+
+        when(studentRepo.findAll(pageable)).thenReturn(mockedPage);
 
         // Act
-        List<Student> result = studentService.getAllStudents();
+        List<Student> result = studentService.getAllStudents(page, size, sortField, sortOrder);
 
         // Assert
-        assertEquals(mockStudents, result);
-        verify(studentRepo, times(1)).findAll();
+        assertEquals(1, result.size());  // Adjust based on the actual mocked data
+        // Add more assertions based on your specific requirements
     }
 
-    // @Test
-    // void testGetAllStudents() {
-    //     // Arrange
-    //     int page = 0;
-    //     int size = 10;
-    //     String sortField = "name";
-    //     String sortOrder = "asc";
-    //     Sort sort = Sort.by(sortField).ascending();
-    //     Pageable pageable = PageRequest.of(page, size, sort);
-    //     Page<Student> mockedPage = mockPageWithOneStudent(); // Assuming a helper method to create a mock page
-
-    //     when(studentRepo.findAll(pageable)).thenReturn(mockedPage);
-
-    //     // Act
-    //     List<Student> result = studentService.getAllStudents(page, size, sortField, sortOrder);
-
-    //     // Assert
-    //     assertEquals(1, result.size());  // Adjust based on the actual mocked data
-    //     // Add more assertions based on your specific requirements
-    // }
-
-    // private Page<Student> mockPageWithOneStudent() {
-    //     // You can create a mock Page with a single student for testing purposes
-    //     List<Student> students = Collections.singletonList(new Student());
-    //     return new PageImpl<>(students);
-    // }
+    private Page<Student> mockPageWithOneStudent() {
+        // You can create a mock Page with a single student for testing purposes
+        List<Student> students = Collections.singletonList(new Student());
+        return new PageImpl<>(students);
+    }
     @Test
     void testGetSingleStudent() {
         // Arrange
@@ -132,8 +113,6 @@ public class TestStudentService {
         // Add more assertions based on your specific requirements
     }
 
-
-
     @Test
     void testDeleteStudent() {
         // Arrange
@@ -148,4 +127,25 @@ public class TestStudentService {
         verify(studentRepo, times(1)).deleteById(studentId);
     }
 
+  
+
+
+
+
+// @Test
+// void testInviteStudents_HandleNewStudentException() {
+//     // Arrange
+//     InvitationDto invitationDto = new InvitationDto();
+//     invitationDto.setEmails(Collections.singletonList("test@example.com"));
+
+//     // Mocking behavior for handleNewStudent to simulate an exception
+//     doThrow(new RuntimeException("Simulated exception")).when(studentService).handleNewStudent(any(), anyString());
+
+//     // Act & Assert
+//     RuntimeException exception = assertThrows(RuntimeException.class, () -> studentService.inviteStudents(invitationDto));
+
+//     // Assert
+//     assertEquals("Simulated exception", exception.getMessage());
+//     // Add more assertions based on your specific requirements
+// }
 }

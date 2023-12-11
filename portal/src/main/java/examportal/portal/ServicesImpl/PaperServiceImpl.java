@@ -19,6 +19,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import examportal.portal.Entity.Assessment;
@@ -30,7 +33,6 @@ import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
-import examportal.portal.Filters.FilterPaper;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.AssessmentRepo;
@@ -79,45 +81,57 @@ public class PaperServiceImpl implements PaperService {
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
   @Override
-  public Paper createPaper(PaperDto paperdDto) {
+  public Paper createPaper(PaperDto paperDto) {
+      log.info("paperService Create paper method Starts :");
 
-    log.info("paperService Create paper method Starts :");
+      LocalDateTime date = LocalDateTime.now();
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+      String formattedDate = date.format(formatter);
 
-    Paper paper = new Paper();
-    paper.setUserId(paperdDto.getUserId());
-    paper.setOrgnizationId(paperdDto.getOrgnizationId());
-    paper.set_setup(true);
-    paper.set_Active(false);
-    Paper newpPaper = this.paperRepo.save(paper);
+      Paper paper = new Paper();
+      paper.setUserId(paperDto.getUserId());
+      paper.setOrgnizationId(paperDto.getOrgnizationId());
+      paper.set_setup(true);
+      paper.set_Active(false);
+      paper.setCreated_date(formattedDate);
+      Paper newPaper = this.paperRepo.save(paper);
 
-    ExamDetails examDetails = new ExamDetails();
-    examDetails.setAssessmentName(paperdDto.getExamDetails().getAssessmentName());
-    examDetails.setBranch(paperdDto.getExamDetails().getBranch());
-    examDetails.setExamDuration(paperdDto.getExamDetails().getExamDuration());
-    examDetails.setExamMode(paperdDto.getExamDetails().getExamMode());
-    examDetails.setSession(paperdDto.getExamDetails().getSession());
-    examDetails.set_Setup(true);
-    examDetails.set_Active(false);
-    examDetails.setPaperChecked(false);
-    examDetails.setExamRounds(paperdDto.getExamDetails().getExamRounds());
-    examDetails.setPaperId(newpPaper.getPaperId());
-    examDetails.setTotalMarks(paperdDto.getExamDetails().getTotalMarks());
-    examDetails.setMinimum_marks(paperdDto.getExamDetails().getMinimum_marks());
-    this.examDetailsRepo.save(examDetails);
+      ExamDetails examDetails = paperDto.getExamDetails();
+      examDetails.setPaperId(newPaper.getPaperId());
+      this.examDetailsRepo.save(examDetails);
+      System.out.println(examDetails+"kger  =============================================================");
 
-    List<Questions> questionsList = paperdDto.getQuestions();
+      List<Questions> questionsList = paperDto.getQuestions();
 
-    for (Questions questions : questionsList) {
-      questions.setPaperID(newpPaper.getPaperId());
-      questions.setQuestions(questions.getQuestions());
-      this.questionsRepo.save(questions);
-    }
+      // Save questions asynchronously
+      CompletableFuture<List<Questions>> saveQuestionsFuture = saveQuestionsAsync(questionsList, newPaper.getPaperId());
 
-    // this.questionsRepo.saveAll(questionsList);
+      // Perform other synchronous operations while waiting for saveQuestionsAsync to complete...
 
-    log.info("paperService Create paper method End's :");
-    return newpPaper;
+      try {
+          // Get the result of the asynchronous saveQuestionsAsync call
+          List<Questions> savedQuestions = saveQuestionsFuture.get();
+          log.info("Questions saved asynchronously: {}", savedQuestions);
+      } catch (Exception e) {
+          log.error("Error saving questions asynchronously: {}", e.getMessage());
+          // Handle the exception
+      }
+
+      log.info("paperService Create paper method End's :");
+      return newPaper;
   }
+
+  @Async
+  public CompletableFuture<List<Questions>> saveQuestionsAsync(List<Questions> questionsList, String paperId) {
+      // Set paperId for each question
+      questionsList.forEach(question -> question.setPaperID(paperId));
+
+      // Save all questions in a batch asynchronously
+      List<Questions> savedQuestions = this.questionsRepo.saveAll(questionsList);
+
+      return CompletableFuture.completedFuture(savedQuestions);
+  }
+
 
   @Override
   public List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder) {
@@ -158,12 +172,11 @@ public class PaperServiceImpl implements PaperService {
     paperDto.setExamDetails(examDetails);
 
     String obj = encodeObject(paperDto);
-
-    PaperStringDto paperStringDto = new PaperStringDto();
-    paperStringDto.setData(obj);
+    PaperStringDto dto = new PaperStringDto();
+    dto.setData(obj);
     log.info("paperService getPaperByID method End's :");
 
-    return paperStringDto;
+    return dto;
   }
 
   public String encodeObject(Object object) {
@@ -231,6 +244,9 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
     examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
     examDetails.setMinimum_marks(paperDto.getExamDetails().getMinimum_marks());
+    // set date in exame deteal
+    // examDetails.setCreated_date(paper.getCreated_date());
+    // examDetails.setPublished_date(formattedDate);
 
     ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
 
@@ -265,140 +281,32 @@ public class PaperServiceImpl implements PaperService {
 
   }
 
-<<<<<<< Updated upstream
-  // @Override
-  // public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPaper) {
-  //   log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-
-  //   List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
-  //   List<ExamDetails> examDetails = new ArrayList<>();
-
-  //   for (Paper paper2 : paper) {
-  //     ExamDetails emd = new ExamDetails();
-  //     emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
-  //     emd.set_Active(paper2.is_Active());
-  //     emd.set_Setup(paper2.is_setup());
-  //     examDetails.add(emd);
-
-  //   }
-
-  //   return examDetails;
-
-  // }
-
-
-
-
   @Override
-public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPaper) {
-    log.info("paperServiceImpl getAllPaperByUserId method Starts");
-
-    // Use filter parameters from FilterPaper in your service logic
-    // Example: If is_Active is not null, filter based on the is_Active value
-=======
-
-
-  
-
-  // @Override
-  // public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPaper) {
-  //   log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-
-  //   List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
-  //   List<ExamDetails> examDetails = new ArrayList<>();
-
-  //   for (Paper paper2 : paper) {
-  //     ExamDetails emd = new ExamDetails();
-  //     emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
-  //     emd.set_Active(paper2.is_Active());
-  //     emd.set_Setup(paper2.is_setup());
-  //     examDetails.add(emd);
-
-  //   }
-
-  //   return examDetails;
-
-  // }
-
-  @Override
-  public List<ExamDetails> getAllPaperByUserId( Integer pageNumber, Integer size, String sortField, String sortOrder,String userId) {
+  public List<ExamDetails> getAllPaperByUserId(String userId) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
-    //  Sort sort=(sortOrder.equalsIgnoreCase("Asc"))? sort.by(sortField).ascending():sort.by(sortField).descending();
-    // Sort.Direction direction=sortOrder.equalsgttg(userId)
-
-    Sort sort;
-    if ("is_Active".equals(sortField)) {
-        sort = sortOrder.equalsIgnoreCase("Asc") ? Sort.by("is_Active").ascending() : Sort.by("is_Active").descending();
-    } else {
-        sort = sortOrder.equalsIgnoreCase("Asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
-    }
-    Pageable p=PageRequest.of(pageNumber,size,sort);
-     Page<Paper> pp= paperRepo.findAllPaperByUserId(p,userId);
-    List<Paper>paper=pp.getContent();
-    // List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
+    List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId);
     List<ExamDetails> examDetails = new ArrayList<>();
->>>>>>> Stashed changes
 
-    // Create a Sort object based on the desired sorting logic
-    Sort sort = Sort.by("yourSortField").ascending();  // Replace "yourSortField" with the actual field for sorting
+    for (Paper paper2 : paper) {
+      ExamDetails emd = new ExamDetails();
+      emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+      emd.set_Active(paper2.is_Active());
+      emd.set_Setup(paper2.is_setup());
+      examDetails.add(emd);
 
-    // Create a Pageable object for pagination
-    Pageable pageable = PageRequest.of(0, 10, sort);  // Example pagination, adjust as needed
-
-    Page<Paper> paperPage;
-    
-    // Check if is_Active is provided in the filter
-    if (filterPaper != null && filterPaper.getIs_Active() != null) {
-        // If is_Active is true, retrieve only active papers; otherwise, retrieve all papers
-        paperPage = filterPaper.getIs_Active()
-                ? paperRepo. findAllActivePaperByUserID(userId, pageable)
-                : paperRepo.findAllPaperByUserId(userId, pageable);
-    } else {
-        // If is_Active is not provided, retrieve all papers
-        paperPage = paperRepo.findAllPaperByUserId(userId, pageable);
-    }
-<<<<<<< Updated upstream
-
-    // Extract the content (list of Paper entities) from the Page
-    List<Paper> paperList = paperPage.getContent();
-
-    // Create a list to store ExamDetails
-    List<ExamDetails> examDetailsList = new ArrayList<>();
-
-    // Iterate through the list of Paper entities and map them to ExamDetails
-    for (Paper paper : paperList) {
-        ExamDetails examDetails = examDetailsRepo.getExamDetailsByPaperID(paper.getPaperId());
-        examDetails.set_Active(paper.is_Active());
-        examDetails.set_Setup(paper.is_setup());
-        examDetailsList.add(examDetails);
     }
 
-    return examDetailsList;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-=======
     return examDetails;
+
   }
->>>>>>> Stashed changes
-
-
-
-  
 
   @Override
   public String activatePaper(String paperId, boolean active) {
     log.info("paperServiceImpl activatePaper  method Starts");
+
+    LocalDateTime date = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    String formattedDate = date.format(formatter);
 
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
@@ -413,12 +321,14 @@ public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPa
       return "Deactive successfully";
     } else {
       paper.set_Active(true);
+      paper.setPublished_date(formattedDate);
       paper.set_setup(false);
+      // set date
+      examDetails.setPublished_date(formattedDate);
       examDetails.set_Active(true);
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
-      // processInvitationsInBackground(paperId);
     }
 
     log.info("paperServiceImpl activatePaper  method Ends");
@@ -428,33 +338,37 @@ public List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filterPa
 
   @Async
   public CompletableFuture<String> processInvitationsInBackground(String paperId) {
+
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
-
     if (examDetails.getBranch() != null) {
+
       List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
-      for (Student student : students) {
-        sendEmailAsync(student.getStudentid());
-      }
+
+      students.forEach(student -> {
+        User user = this.userRepo.findById(student.getStudentid())
+            .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", student.getStudentid()));
+
+        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+
+        this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
+
+      });
+      return CompletableFuture.completedFuture("sending email in background");
     } else {
+
       List<InvitedStudents> students = this.invitationRepo.getAllStudentByPaperId(paperId);
-      for (InvitedStudents invitedStudents : students) {
-        sendEmailAsync(invitedStudents.getStudentId());
-      }
+
+      students.forEach(invitedStudents -> {
+        User user = this.userRepo.findById(invitedStudents.getStudentId())
+            .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
+
+        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+
+        this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
+      });
+
+      return CompletableFuture.completedFuture("sending email in background");
     }
-
-    return CompletableFuture.completedFuture("Sending email in the background");
-  }
-
-  @Async
-  public CompletableFuture<String> sendEmailAsync(String userId) {
-    User user = this.userRepo.findById(userId)
-        .orElseThrow(() -> new ResourceNotFoundException("user", "userID", userId));
-
-    String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
-    System.out.println("Sending email asynchronously for user: " + user.getEmail());
-
-    this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
-    return CompletableFuture.completedFuture("Sendig email in background");
   }
 
   @Override

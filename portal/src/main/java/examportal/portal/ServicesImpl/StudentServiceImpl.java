@@ -25,7 +25,6 @@ import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.StudentRepo;
-import examportal.portal.Services.PaperService;
 import examportal.portal.Services.StudentSevices;
 import examportal.portal.Services.UserService;
 import net.bytebuddy.utility.RandomString;
@@ -53,9 +52,6 @@ public class StudentServiceImpl implements StudentSevices {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private PaperService paperService;
 
     @Autowired
     private PaperRepo paperRepo;
@@ -146,7 +142,6 @@ public class StudentServiceImpl implements StudentSevices {
                     handleExistingStudent(dto, st.getStudentid());
                 }
             }
-            return "Inviting students by branch";
         } 
         else {
             System.out.println("i ma entetr in seconde conditions ==========================================");
@@ -159,8 +154,8 @@ public class StudentServiceImpl implements StudentSevices {
                     handleNewStudent(dto, email);
                 }
             }
-            return "Student added successfully";
         }
+         return "Student added successfully";
     }
     
 
