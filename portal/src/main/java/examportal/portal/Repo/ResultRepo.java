@@ -19,4 +19,6 @@ public interface ResultRepo extends JpaRepository<Result,String> {
     @Query("SELECT r FROM Result r WHERE r.paperID = :paperID AND r.studentID = :studentID")
     Result getResultByStudentAndPaperId(@Param("paperID") String paperID, @Param("studentID") String studentID);
     
+    
+    List<Result> findByPaperID(String paperID);
 }

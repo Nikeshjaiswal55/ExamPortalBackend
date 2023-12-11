@@ -1,14 +1,15 @@
 package examportal.portal.Services;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Future;
-import org.springframework.data.domain.Page;
+
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
 // 
 import examportal.portal.Entity.Paper;
-import examportal.portal.Filters.FilterPaper;
+import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.PaperStringDto;
 
@@ -20,8 +21,8 @@ public interface PaperService {
     
     List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder);
 //Get All Paper By UserID
-    // List<ExamDetails> getAllPaperByUserId(String userId, FilterPaper filerPaper);
-    List<ExamDetails> getAllPaperByUserId(  Integer pageNumber, Integer size, String sortField, String sortOrder,String userId);
+    List<ExamDetails> getAllPaperByUserId(String userId,PaginationDto dto,Map<String,String> filter);
+
     // get pepar by name
     public List<Paper> getAllpaperByName(String name);
 
@@ -38,4 +39,6 @@ public interface PaperService {
     ExamDetails GetattemptedStudents(String paperId,String studentId);
 
     Future<String> processInvitationsInBackground(String paperId);
+
+    List<ExamDetails> getAllPaperByUserIdWithOutFilter(String userId, PaginationDto dto);
 }

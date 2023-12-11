@@ -1,15 +1,18 @@
 package examportal.portal.Controllers;
 
-
-
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +27,13 @@ import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.InvitedStudents;
 import examportal.portal.Entity.Paper;
-import examportal.portal.Filters.FilterPaper;
+import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
 import examportal.portal.Services.PaperService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.data.domain.Page;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -90,14 +92,7 @@ public class PaperController {
         return new ResponseEntity<PaperStringDto>(paperDto, HttpStatus.OK);
     }
 
-    // get All peparByName
-    @GetMapping("/getPaperByName/{name}")
-    public ResponseEntity<List<Paper>> getpaperByNmae(@PathVariable String name) {
-        log.info("paperService get paper by id  method started");
-        List<Paper> paper = this.paperService.getAllpaperByName(name);
-        log.info("paperService getall paper method End's");
-        return new ResponseEntity<List<Paper>>(paper, HttpStatus.OK);
-    }
+    
 
     @PutMapping("/update/paper")
     public ResponseEntity<PaperDto> updatePaper(@RequestBody PaperDto paperDto) {
@@ -107,52 +102,41 @@ public class PaperController {
         return new ResponseEntity<PaperDto>(paperDto2, HttpStatus.OK);
     }
 
-
-
-
-    @GetMapping("/getAllPaperbyUserId/{userId}")
-    public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(
-      @RequestParam(name = "page",defaultValue = "0",required = false)Integer page,
-      @RequestParam(name = "size",defaultValue = "10",required = false)Integer size,
-      @RequestParam(name = "sortfiled",defaultValue = "name",required = false)String  sortfield,
-      @RequestParam(name ="sortOrder",defaultValue = "asc",required = false) String sortOrder ,@PathVariable String userId) {
-
-        log.info("paper repo getall paper by user id method started");
-        List<ExamDetails> exmDeaDetails= this.paperService.getAllPaperByUserId( page ,size,sortfield,sortOrder ,userId); 
-        
-        log.info("paper repo getall paper by user id method started");
-
-        return new ResponseEntity<List<ExamDetails>>(exmDeaDetails, HttpStatus.ACCEPTED);
-
-    }
-
-
-
-
-
     // Getting All papers by userId
 
-    // @GetMapping("/getAllPaperbyUserId/{userId}")
-    // public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(@PathVariable String userId,
-    //                 @RequestParam(name = "is_Active", required = false) Boolean is_Active,
-    //                 @RequestParam(name = "start_date", required = false) String start_date,   
-    //                 @RequestParam(name = "end_date", required = false) String end_date
-    // ) {
+    @GetMapping("/getAllPaperbyUserId/{userId}")
+    public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(@PathVariable String userId,
+            @RequestParam(name = "pageno", defaultValue = "0", required = false) Integer pageno,
+            @RequestParam(name = "pagesize", defaultValue = "10", required = false) Integer pagesize,
+            @RequestParam(name = "sortField", defaultValue = "name", required = false) String sortField,
+            @RequestParam(name = "sortOrder", defaultValue = "ASC", required = false) String sortOrder,
 
-    //     log.info("paper repo getall paper by user id method started");
-    
-    //     List<ExamDetails> exmDeaDetails = this.paperService.getAllPaperByUserId(userId ,new FilterPaper(is_Active, start_date, end_date));
-    //     log.info("paper repo getall paper by user id method started");
-    //     return new ResponseEntity<List<ExamDetails>>(exmDeaDetails, HttpStatus.ACCEPTED);
+            @RequestParam(required = false) MultiValueMap<String, String> params
 
-    // }
+    ) {
+        log.info("paper repo getall paper by user id method started");
 
+        List<ExamDetails> exmDetails;
 
+        if (params.containsKey("filter")) {
+            String filter = params.getFirst("filter");
+            Map<String, String> filters = Stream.of(filter.split(","))
+                    .map(entry -> entry.split(":"))
+                    .collect(Collectors.toMap(entry -> entry[0], entry -> entry[1]));
 
+            exmDetails = this.paperService.getAllPaperByUserId(userId,
+                    new PaginationDto(pageno, pagesize, sortField, sortOrder), filters);
 
+        } else {
+            exmDetails = this.paperService.getAllPaperByUserIdWithOutFilter(userId,
+                    new PaginationDto(pageno, pagesize, sortField, sortOrder));
 
+        }
 
+        log.info("paper repo getall paper by user id method started");
+        return new ResponseEntity<List<ExamDetails>>(exmDetails, HttpStatus.ACCEPTED);
 
+    }
 
     @DeleteMapping("/deletePaperByPaperID/{paperId}")
     public ResponseEntity<String> deletePaper(@PathVariable String paperId) {

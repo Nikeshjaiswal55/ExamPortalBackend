@@ -92,7 +92,7 @@ public class ResultServiceImpl implements ResultService {
         // 2. Update ExamDetails
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
         examDetails.setPaperChecked(true);
-        examDetails.set_Active(true);
+        examDetails.setIs_Active("true");
         examDetails.set_Setup(false);
         examDetails.set_attempted(true);
         this.examDetailsRepo.save(examDetails);
