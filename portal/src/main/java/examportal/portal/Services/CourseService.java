@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 import examportal.portal.Entity.Course;
-import examportal.portal.Payloads.CourseDto;
 import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Response.CourseResponce;
@@ -16,7 +15,7 @@ public interface CourseService {
 
     Course getCourseByCouseId(String getId);
 
-    Course addCourse(CourseDto course);
+    Course addCourse(Course course);
 
     Course updateCourse(Course course);
 

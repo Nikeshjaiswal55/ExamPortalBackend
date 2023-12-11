@@ -83,10 +83,10 @@ public class CourseController {
 
   // create
   @PostMapping("/course/create")
-  public ResponseEntity<Course> addCourses(@RequestBody CourseDto course, HttpServletRequest request) {
+  public ResponseEntity<Course> addCourses(@RequestBody Course course) {
     log.info("CourseController,addCourses Method Start");
-    String token = request.getHeader("Authorization");
-    course.setToken(token);
+    // String token = request.getHeader("Authorization");
+    // course.setToken(token);
     Course course2 = courseService.addCourse(course);
     log.info("CourseController,addCourses Method Ends");
     return new ResponseEntity<Course>(course2, HttpStatus.OK);
@@ -118,7 +118,7 @@ public class CourseController {
     return new ResponseEntity<>(c, HttpStatus.OK);
   }
 
-  @GetMapping("/creatStudentInBackgound")
+  @PostMapping("/creatStudentInBackgound")
   public String StudentCreatingProceeInBackground(@RequestBody List<EmailsDto> dto, HttpServletRequest request)
       throws ExecutionException, InterruptedException {
 

@@ -82,7 +82,7 @@ public class CourseServiceImpl implements CourseService {
 
   @Override
   @Deprecated
-  public Course addCourse(CourseDto course) {
+  public Course addCourse(Course course) {
 
     log.info("CourseServiceimpl,addCourse Method Start");
     User us = userRepo.findById(course.getUserId())
@@ -129,7 +129,7 @@ public class CourseServiceImpl implements CourseService {
 
           Student student = new Student();
           student.setBranch(email.getBranch());
-          student.setName(email.getName());
+          // student.setName(email.getName());
           student.setEmail(email.getEmail());
           student.setOrgnizationId(email.getOrgnizationId());
           student.setStudentid(savedUser.getUserId());
