@@ -12,6 +12,7 @@ import examportal.portal.Entity.Paper;
 import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.PaperStringDto;
+import examportal.portal.Response.PaperResponce;
 
 public interface PaperService {
     
@@ -21,10 +22,10 @@ public interface PaperService {
     
     List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder);
 //Get All Paper By UserID
-    List<ExamDetails> getAllPaperByUserId(String userId,PaginationDto dto,Map<String,String> filter);
+    PaperResponce getAllPaperByUserId(String userId,PaginationDto dto,Map<String,String> filter);
 
     // get pepar by name
-    public List<Paper> getAllpaperByName(String name);
+    
 
     String activatePaper(String paperID,boolean active);
 
@@ -40,5 +41,5 @@ public interface PaperService {
 
     Future<String> processInvitationsInBackground(String paperId);
 
-    List<ExamDetails> getAllPaperByUserIdWithOutFilter(String userId, PaginationDto dto);
+    PaperResponce getAllPaperByUserIdWithOutFilter(String userId, PaginationDto dto);
 }

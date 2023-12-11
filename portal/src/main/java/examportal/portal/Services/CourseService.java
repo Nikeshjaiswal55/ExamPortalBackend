@@ -1,11 +1,13 @@
 package examportal.portal.Services;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 import examportal.portal.Entity.Course;
 import examportal.portal.Payloads.CourseDto;
 import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Payloads.PaginationDto;
+import examportal.portal.Response.CourseResponce;
 public interface CourseService {
 
     List<Course>getAllCourse(Integer pageNumber, int size, String sortField, String sortOrder);
@@ -20,8 +22,8 @@ public interface CourseService {
 
     void deleteCourseById(String getId);
 
-    List<Course>getAllCourseByUserId(String userId,PaginationDto dto);
+    CourseResponce getAllCourseByUserId(String userId,PaginationDto dto);
 
-    String creatingStudentInBackGround(List<EmailsDto> dto,String courseId ,String token);
+    Future<String> creatingStudentInBackGround(List<EmailsDto> dto ,String token);
     
 } 

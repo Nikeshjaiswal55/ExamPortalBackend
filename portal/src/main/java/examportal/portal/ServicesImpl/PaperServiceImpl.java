@@ -1,10 +1,10 @@
 package examportal.portal.ServicesImpl;
+
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.concurrent.CompletableFuture;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -39,6 +39,7 @@ import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
+import examportal.portal.Response.PaperResponce;
 import examportal.portal.Services.PaperService;
 
 @Service
@@ -84,6 +85,7 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = new Paper();
     paper.setUserId(paperdDto.getUserId());
     paper.setOrgnizationId(paperdDto.getOrgnizationId());
+    paper.setPaper_name(paperdDto.getExamDetails().getAssessmentName());
     paper.set_setup(true);
     paper.setIs_Active("false");
     Paper newpPaper = this.paperRepo.save(paper);
@@ -94,8 +96,8 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setExamDuration(paperdDto.getExamDetails().getExamDuration());
     examDetails.setExamMode(paperdDto.getExamDetails().getExamMode());
     examDetails.setSession(paperdDto.getExamDetails().getSession());
-    examDetails.set_Setup(true);
-    examDetails.setIs_Active("false");
+    examDetails.set_Setup(paperdDto.getExamDetails().is_Setup());
+    examDetails.setIs_Active(paperdDto.getExamDetails().getIs_Active());
     examDetails.setPaperChecked(false);
     examDetails.setExamRounds(paperdDto.getExamDetails().getExamRounds());
     examDetails.setPaperId(newpPaper.getPaperId());
@@ -110,7 +112,6 @@ public class PaperServiceImpl implements PaperService {
       questions.setQuestions(questions.getQuestions());
       this.questionsRepo.save(questions);
     }
-
 
     log.info("paperService Create paper method End's :");
     return newpPaper;
@@ -261,24 +262,19 @@ public class PaperServiceImpl implements PaperService {
     return "Deleted success fully";
 
   }
-// With FIlter 
+
+  // With FIlter
   @Override
-  public List<ExamDetails> getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filter) {
+  public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filter) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
 
     Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending(): Sort.by(dto.getProperty()).descending();
     Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
-    
-    List<Paper> paper ;
 
-    if (!filter.isEmpty()) {
-      System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Enter in Filter "+filter);
-      paper = this.paperRepo.findByFiter(userId,p,filter);
+  
 
-    } else {
-      paper = this.paperRepo.findAllPaperByUserId(userId, p);
-    }
-    // System.out.println(paper.get(0));
+     Page<Paper> page = this.paperRepo.findByFiter(userId, p, filter);
+    List<Paper> paper = page.getContent();
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Paper paper2 : paper) {
@@ -287,24 +283,33 @@ public class PaperServiceImpl implements PaperService {
       emd.setIs_Active(paper2.getIs_Active());
       emd.set_Setup(paper2.is_setup());
       examDetails.add(emd);
-
     }
 
-    return examDetails;
+    PaperResponce paperResponce = new PaperResponce();
+    paperResponce.setCurrentPage(page.getNumber());
+    paperResponce.setData(examDetails);
+    paperResponce.setIslastPage(page.isLast());
+    paperResponce.setPagesize(page.getSize());
+    paperResponce.setTotalElements(page.getTotalElements());
+    paperResponce.setTotalPages(page.getTotalPages());
+
+    return paperResponce;
   }
 
   // Without Filter
   @Override
-   public List<ExamDetails> getAllPaperByUserIdWithOutFilter(String userId, PaginationDto dto) {
+  public PaperResponce getAllPaperByUserIdWithOutFilter(String userId, PaginationDto dto) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
 
     Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
         : Sort.by(dto.getProperty()).descending();
     Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
-    
+
     List<ExamDetails> examDetails = new ArrayList<>();
 
-    List<Paper> paper = this.paperRepo.findAllPaperByUserId(userId, p);
+    Page<Paper> page = this.paperRepo.findAllPaperByUserId(userId, p);
+
+    List<Paper> paper = page.getContent();
 
     for (Paper paper2 : paper) {
       ExamDetails emd = new ExamDetails();
@@ -315,9 +320,15 @@ public class PaperServiceImpl implements PaperService {
 
     }
 
-    return examDetails;
+    PaperResponce paperResponce = new PaperResponce();
+    paperResponce.setCurrentPage(page.getNumber()+1);
+    paperResponce.setData(examDetails);
+    paperResponce.setIslastPage(page.isLast());
+    paperResponce.setPagesize(page.getSize());
+    paperResponce.setTotalElements(page.getTotalElements());
+    paperResponce.setTotalPages(page.getTotalPages());
+    return paperResponce;
   }
-
 
   @Override
   public String activatePaper(String paperId, boolean active) {
@@ -326,25 +337,27 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
-    if (active == true) {
+    if (active==true) {
       paper.setIs_Active("false");
       paper.set_setup(true);
       examDetails.setIs_Active("false");
       examDetails.set_Setup(true);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
-       log.info("paperServiceImpl activatePaper  method Ends");
+      log.info("paperServiceImpl activatePaper  method Ends");
       return "Deactive successfully";
-    } else {
+    } if (active=false) {
+      
+    } {
       paper.setIs_Active("true");
       paper.set_setup(false);
       examDetails.setIs_Active("true");
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
-       log.info("paperServiceImpl activatePaper  method Ends");
+      log.info("paperServiceImpl activatePaper  method Ends");
       return "Paper Activated Successfully";
-      
+
     }
 
   }
@@ -373,7 +386,7 @@ public class PaperServiceImpl implements PaperService {
     User user = this.userRepo.findById(userId)
         .orElseThrow(() -> new ResourceNotFoundException("user", "userID", userId));
 
-    String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+    String msg = user.getPassword();
     System.out.println("Sending email asynchronously for user: " + user.getEmail());
 
     this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
@@ -424,12 +437,6 @@ public class PaperServiceImpl implements PaperService {
     return examDetails;
   }
 
-  @Override
-  public List<Paper> getAllpaperByName(String name) {
-    List<Paper> pprName = paperRepo.getAllpaperByName(name);
-    if (pprName.isEmpty()) {
-      throw new NoSuchElementException("The Paper list is empty");
-    }
-    return pprName;
-  }
+  
+  
 }

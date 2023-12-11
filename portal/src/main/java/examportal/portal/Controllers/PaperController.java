@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,7 @@ import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
+import examportal.portal.Response.PaperResponce;
 import examportal.portal.Services.PaperService;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -92,8 +92,6 @@ public class PaperController {
         return new ResponseEntity<PaperStringDto>(paperDto, HttpStatus.OK);
     }
 
-    
-
     @PutMapping("/update/paper")
     public ResponseEntity<PaperDto> updatePaper(@RequestBody PaperDto paperDto) {
         log.info("paperService Update paper  method started");
@@ -105,18 +103,16 @@ public class PaperController {
     // Getting All papers by userId
 
     @GetMapping("/getAllPaperbyUserId/{userId}")
-    public ResponseEntity<List<ExamDetails>> getallpaersbyuserId(@PathVariable String userId,
+    public ResponseEntity<PaperResponce> getallpaersbyuserId(@PathVariable String userId,
             @RequestParam(name = "pageno", defaultValue = "0", required = false) Integer pageno,
             @RequestParam(name = "pagesize", defaultValue = "10", required = false) Integer pagesize,
-            @RequestParam(name = "sortField", defaultValue = "name", required = false) String sortField,
+            @RequestParam(name = "sortField", defaultValue = "paper_name", required = false) String sortField,
             @RequestParam(name = "sortOrder", defaultValue = "ASC", required = false) String sortOrder,
 
-            @RequestParam(required = false) MultiValueMap<String, String> params
-
-    ) {
+            @RequestParam(required = false) MultiValueMap<String, String> params ) {
         log.info("paper repo getall paper by user id method started");
 
-        List<ExamDetails> exmDetails;
+        PaperResponce paperResponce;
 
         if (params.containsKey("filter")) {
             String filter = params.getFirst("filter");
@@ -124,17 +120,18 @@ public class PaperController {
                     .map(entry -> entry.split(":"))
                     .collect(Collectors.toMap(entry -> entry[0], entry -> entry[1]));
 
-            exmDetails = this.paperService.getAllPaperByUserId(userId,
+
+            paperResponce = this.paperService.getAllPaperByUserId(userId,
                     new PaginationDto(pageno, pagesize, sortField, sortOrder), filters);
 
         } else {
-            exmDetails = this.paperService.getAllPaperByUserIdWithOutFilter(userId,
+            paperResponce = this.paperService.getAllPaperByUserIdWithOutFilter(userId,
                     new PaginationDto(pageno, pagesize, sortField, sortOrder));
 
         }
 
         log.info("paper repo getall paper by user id method started");
-        return new ResponseEntity<List<ExamDetails>>(exmDetails, HttpStatus.ACCEPTED);
+        return new ResponseEntity<PaperResponce>(paperResponce, HttpStatus.ACCEPTED);
 
     }
 
@@ -183,5 +180,6 @@ public class PaperController {
 
         return "Background processing started for paperId: " + paperId;
     }
+    
 
 }

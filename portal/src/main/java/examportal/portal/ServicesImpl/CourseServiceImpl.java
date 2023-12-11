@@ -3,6 +3,8 @@ package examportal.portal.ServicesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
+import examportal.portal.Response.CourseResponce;
+import examportal.portal.Response.PaperResponce;
 import examportal.portal.Services.CourseService;
 import jakarta.el.ELException;
 import net.bytebuddy.utility.RandomString;
@@ -30,13 +34,12 @@ import net.bytebuddy.utility.RandomString;
 public class CourseServiceImpl implements CourseService {
   @Autowired
   private CourseRepo courseRepo;
-  
+
   @Autowired
   private UserRepo userRepo;
 
   @Autowired
   private StudentRepo studentRepo;
-
 
   @Deprecated
   @Autowired
@@ -48,7 +51,7 @@ public class CourseServiceImpl implements CourseService {
   public List<Course> getAllCourse(Integer pageNumber, int size, String sortField, String sortOrder) {
     log.info("CourseServiceimpl,getCourse Method Start");
 
-    Sort s = (sortOrder.equalsIgnoreCase("ASC"))?Sort.by(sortField).ascending():Sort.by(sortField).descending();
+    Sort s = (sortOrder.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
     Pageable p = PageRequest.of(pageNumber, size, s);
     Page<Course> page = courseRepo.findAll(p);
     List<Course> courseAll = page.getContent();
@@ -83,8 +86,8 @@ public class CourseServiceImpl implements CourseService {
   public Course addCourse(CourseDto course) {
 
     log.info("CourseServiceimpl,addCourse Method Start");
-    User us = userRepo.findById(course.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
-   
+    User us = userRepo.findById(course.getUserId())
+        .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", course.getUserId()));
 
     Course c = new Course();
     c.setCourse_name(course.getCourse_name());
@@ -93,28 +96,24 @@ public class CourseServiceImpl implements CourseService {
     c.setDuration(course.getDuration());
     this.courseRepo.save(c);
 
-    // List<EmailsDto> dtos = course.getEmailsDto();
-
-    
-    this.courseRepo.save(c);
     log.info("CourseServiceimpl,addCourse Method Ends");
     return c;
-    
+
   }
 
   @Async
   @Deprecated
   @Override
-  public String creatingStudentInBackGround(List<EmailsDto> dto,String courseId ,String token){
-
-    Course course = this.courseRepo.findById(courseId).orElseThrow(()-> new ResourceNotFoundException("Course", "courseId", courseId));
+  public CompletableFuture<String> creatingStudentInBackGround(List<EmailsDto> dto, String token) {
+    log.info("CourseServiceimpl,creatingStudentInBackGround Method Start");
+    Course course = this.courseRepo.findById(dto.get(0).getCourseId()).orElseThrow(() -> new ResourceNotFoundException("Course", "courseId",dto.get(0).getCourseId()));
 
     for (EmailsDto email : dto) {
-       String response = "";
+      String response = "";
       String password = RandomString.make(12) + "K80";
-      Student st= this.studentRepo.getszStudentByEmail(email.getEmail());
+      Student st = this.studentRepo.getszStudentByEmail(email.getEmail());
 
-      if (st!= null) {
+      if (st != null) {
         System.out.println("User Allready Exist");
 
       } else {
@@ -130,12 +129,12 @@ public class CourseServiceImpl implements CourseService {
           User savedUser = this.userRepo.save(use);
 
           Student student = new Student();
-          student.setBranch(email.getBranch()); 
+          student.setBranch(email.getBranch());
           student.setName(email.getName());
           student.setEmail(email.getEmail());
           student.setOrgnizationId(email.getOrgnizationId());
           student.setStudentid(savedUser.getUserId());
-          Student savedst =  this.studentRepo.save(student);
+          Student savedst = this.studentRepo.save(student);
 
         } catch (Exception e) {
 
@@ -144,7 +143,8 @@ public class CourseServiceImpl implements CourseService {
 
       }
     }
-    return " All Student Created Successfully ";
+    log.info("CourseServiceimpl,creatingStudentInBackGround Method End");
+    return CompletableFuture.completedFuture("Student are creating in background");
 
   }
 
@@ -166,20 +166,25 @@ public class CourseServiceImpl implements CourseService {
     log.info("CourseServiceimpl, deleteCourse Method Ends");
   }
 
-  
+  @Override
+  public CourseResponce getAllCourseByUserId(String userId, PaginationDto dto) {
 
-@Override
-  public List<Course>getAllCourseByUserId(String userId,PaginationDto dto){
-    
     log.info("CourseServiceimpl, getAllCourseByUserId Method Start");
-     Sort s = (dto.getSortDirection().equalsIgnoreCase("ASC"))?Sort.by(dto.getProperty()).ascending():Sort.by(dto.getProperty()).descending();
+    Sort s = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
+        : Sort.by(dto.getProperty()).descending();
     Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), s);
-    
-    List<Course> allCourses = courseRepo.getCourseByUseId(userId,p);
 
-    
-    return allCourses;
+    Page<Course> page = courseRepo.getCourseByUseId(userId, p);
+    List<Course> list = page.getContent();
+
+    CourseResponce courseResponce = new CourseResponce();
+    courseResponce.setCurrentPage(page.getNumber()+1);
+    courseResponce.setData(list);
+    courseResponce.setIslastPage(page.isLast());
+    courseResponce.setPagesize(page.getSize());
+    courseResponce.setTotalElements(page.getTotalElements());
+    courseResponce.setTotalPages(page.getTotalPages());
+
+    return courseResponce;
   }
 }
-  
-  

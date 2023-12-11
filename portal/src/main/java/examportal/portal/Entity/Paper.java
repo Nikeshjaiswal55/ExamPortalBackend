@@ -18,5 +18,5 @@ public class Paper {
     private String orgnizationId;
     private String created_date;
     private String published_date;
-    private String name;
+    private String paper_name;
 }
