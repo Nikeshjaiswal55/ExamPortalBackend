@@ -264,8 +264,11 @@ public class ResultServiceImpl implements ResultService {
 
         Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
 
+        Student s= this.studentRepo.findById(studentId).orElseThrow(()-> new ResourceNotFoundException("student", "studentId", studentId));
+
         if (result.getIs_published().equals("approved")) {
             ResultDto dto = new ResultDto();
+            result.setStudent_email(s.getEmail());
             dto.setResult(result);
             return dto;
         } else {
@@ -286,6 +289,7 @@ public class ResultServiceImpl implements ResultService {
             // dto.setCheating(cheating);
             dto.setResult(result);
             dto.setQuestions(questions);
+            dto.set_attempted(true);
             dto.setIs_published("requested");
             return dto;
         }
