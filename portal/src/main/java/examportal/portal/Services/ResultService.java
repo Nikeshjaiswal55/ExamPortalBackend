@@ -22,7 +22,11 @@ public interface ResultService {
 
     ResultDto getAvidenceByStudentIdAndPaperId(String papeId, String studentId);
     
+    
     String publishStudentResult(String studentId,String paperId);
+
+    public String DeactiveStudentResult(String studentId, String paperId);
+
 
     
 }

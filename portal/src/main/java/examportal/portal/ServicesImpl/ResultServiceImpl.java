@@ -86,6 +86,7 @@ public class ResultServiceImpl implements ResultService {
                     attemptedQuestions.setOptions(question.getOptions());
                     attemptedQuestions.setQuestions(question.getQuestions());
                     attemptedQuestions.setPaperID(dto.getResult().getPaperID());
+                    
                     attemptedQuestions.setUserAns(question.getUserAns());
                     attemptedQuestions.setStudentID(dto.getResult().getStudentID());
                     return attemptedQuestions;
@@ -208,6 +209,8 @@ public class ResultServiceImpl implements ResultService {
 
             dto.setResultstatus(obtainmarks > examDetails.getMinimum_marks() ? "pass" : "fail");
 
+            Student s = this.studentRepo.findById(dto.getStudentId()).orElseThrow(()-> new ResourceNotFoundException("Student", "StudentId", dto.getStudentId()));
+
             Result newResult = new Result();
             newResult.setPaperID(dto.getPaperId());
             newResult.setStudentID(dto.getStudentId());
@@ -215,6 +218,8 @@ public class ResultServiceImpl implements ResultService {
             newResult.setMarks(obtainmarks);
             newResult.setResultStatus(dto.getResultstatus());
             newResult.setPercentage(percentage);
+            newResult.setAssesment_Name(examDetails.getAssessmentName());
+            newResult.setStudent_email(s.getEmail());
             if (paper.is_auto_check()) {
                 newResult.setIs_published("Approved");
             }
@@ -279,8 +284,7 @@ public class ResultServiceImpl implements ResultService {
             dto.setResult(result);
             return dto;
         } else {
-            // Cheating cheating =
-            // this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, papeId);
+            
 
             List<Questions> questions = new ArrayList<>();
             List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
@@ -294,9 +298,9 @@ public class ResultServiceImpl implements ResultService {
             ResultDto dto = new ResultDto();
             // dto.setResultID(result.getResultID());
             // dto.setCheating(cheating);
-            dto.setResult(result);
-            dto.setQuestions(questions);
-            dto.set_attempted(true);
+            // dto.setResult(result);
+            // dto.setQuestions(questions);
+            // dto.set_attempted(true);
             dto.setIs_published("requested");
             return dto;
         }
@@ -323,15 +327,7 @@ public class ResultServiceImpl implements ResultService {
 
         Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, papeId);
 
-        // List<Questions> questions = new ArrayList<>();
-        // List<AttemptedQuestions> attemptedQuestions =
-        // this.attemptedQuestionsRepo.getAllQuestionsByStudentID(studentId, papeId);
-
-        // for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
-        // Questions q = this.mapper.map(attemptedQuestions2,Questions.class);
-        // questions.add(q);
-        // }
-
+       
         ResultDto dto = new ResultDto();
         dto.setResult(result);
         dto.setCheating(cheating);
@@ -339,18 +335,28 @@ public class ResultServiceImpl implements ResultService {
         return dto;
     }
 
+ 
+
+
     @Override
     public String publishStudentResult(String studentId, String paperId) {
         Result result = this.resultRepo.getResultByStudentAndPaperId(paperId, studentId);
-        if (result.getIs_published().equals("approved")) {
-            result.setIs_published("pending");
-            this.resultRepo.save(result);
-            return "Result deactivated";
-        } else {
+        // if (result.getIs_published().equals("approved")) {
+        //     result.setIs_published("Rejected");
+        //     this.resultRepo.save(result);
+        //     return "Result deactivated";
+        // } else {
             result.setIs_published("approved");
             this.resultRepo.save(result);
             return "Result published  Successfully";
-        }
+        // }
     }
 
+    @Override
+    public String DeactiveStudentResult(String studentId, String paperId) {
+        Result result = this.resultRepo.getResultByStudentAndPaperId(paperId, studentId);
+        result.setIs_published("Rejected");
+        this.resultRepo.save(result);
+        return null;
+    }
 }
