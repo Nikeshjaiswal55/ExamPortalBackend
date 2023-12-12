@@ -86,6 +86,7 @@ public class ResultServiceImpl implements ResultService {
                     AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
                     attemptedQuestions.setCorrectAns(question.getCorrectAns());
                     attemptedQuestions.setOptions(question.getOptions());
+                    attemptedQuestions.setUserAns(attemptedQuestions.getUserAns());
                     attemptedQuestions.setQuestions(question.getQuestions());
                     attemptedQuestions.setPaperID(dto.getResult().getPaperID());
                     attemptedQuestions.setStudentID(dto.getResult().getStudentID());
@@ -208,6 +209,8 @@ public class ResultServiceImpl implements ResultService {
             newResult.setMarks(obtainmarks);
             newResult.setResultStatus(dto.getResultstatus());
             newResult.setPercentage(percentage);
+            newResult.setAssesment_Name(dto.getAssesment_Name());
+            
             if (paper.is_auto_check()) {
                 newResult.setIs_published("Approved");
             }
