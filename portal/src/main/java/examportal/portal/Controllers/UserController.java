@@ -49,16 +49,7 @@ public class UserController {
         return new ResponseEntity<List<User>>(us,HttpStatus.OK);
         
     }
-    //  get all user by name
-      @GetMapping("/getAllUserByName")
-    public ResponseEntity<List<User>> getAllUserByName( @RequestParam(name = "name", defaultValue = "null",required = false) String name){
-        
-        List<User> us = this.userService.getAllUserByName(name); 
-        log.info("UserController, getAllUserByName Method Ends");
-
-        return new ResponseEntity<List<User>>(us,HttpStatus.OK);
-        
-    }
+   
 
       @GetMapping("/user/byid/{userId}")
     public ResponseEntity<User> getuserbyid(@PathVariable String userId){

@@ -71,15 +71,6 @@ public class UserserviceImpl implements UserService {
     }
 
 
-    @Override
-    public List<User> getAllUserByName(String name) {
-        log.info("userService, getUserByName method Start");
-         List<User>list =userRepo.getAllUserByName(name);
-         if(list.isEmpty()){
-            throw new NoSuchElementException(" student list is empty ");
-         }
-         log.info("userService , getallUserByname method and");
-         return list;
-    }
+ 
 
 }

@@ -10,7 +10,6 @@ public interface QuestionService {
     List<Questions> getAllQuestionsById(String paperId);
     Questions getQuestionsByID(String questionId);
     String deleteQuestion(String QuestionID);
-      List<Questions> getAllQuestionsByName(String name);
-
+  
     
 }

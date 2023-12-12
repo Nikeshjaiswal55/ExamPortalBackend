@@ -101,7 +101,6 @@ public class StudentServiceImpl implements StudentSevices {
         Student s = studentRepo.findById(student.getStudentid())
                 .orElseThrow(() -> new ResourceNotFoundException("Student", "id", student.getStudentid()));
         s.setEmail(student.getEmail());
-        s.setName(student.getName());
         Student updateStudtnt = this.studentRepo.save(s);
         log.info("StudentServiceImpl , getSingleStudent Method Ends");
         return updateStudtnt;
@@ -280,7 +279,7 @@ public class StudentServiceImpl implements StudentSevices {
         
         List<Student> allStudent = studentRepo.getTopThreeStudentByOrgnizationIdByMarks(orgnizationId);
         
-       
+    
         return allStudent;
         
     }

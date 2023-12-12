@@ -14,7 +14,7 @@ public class Student {
 
     private String email; 
     
-    private String name;
+
 
     private String orgnizationId;
 

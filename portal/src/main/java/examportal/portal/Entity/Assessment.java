@@ -18,6 +18,6 @@ public class Assessment {
 
     private String paperId;
 
-    private String name;
+
 
 }
