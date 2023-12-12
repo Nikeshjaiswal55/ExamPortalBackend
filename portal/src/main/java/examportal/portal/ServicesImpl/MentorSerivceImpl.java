@@ -89,13 +89,5 @@ public class MentorSerivceImpl implements MentorService {
         return "Record Deleted";
     }
 
-//     @Override
-//     public List<Mentor> getAllMentorsByName(String name) {
-//          List<Mentor> mentors= mentorRepo.getAllMentorsByName(name);
-//          if (mentors.isEmpty()) {
-//     throw new NoSuchElementException("The mentor list is empty");
-// }
-//          return mentors;
-//     }
 
 }

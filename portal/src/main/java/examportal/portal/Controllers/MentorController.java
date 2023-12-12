@@ -53,14 +53,7 @@ public class MentorController {
       return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
    }
    //get All mentor by name
-   @GetMapping("/mentorGetAllByName")
-   public ResponseEntity<List<Mentor>> getAllMentorsByName( @RequestParam(name = "name", defaultValue = "null",required = false) String name){
-      log.info("Mentor controller ,getAllmentorByName maathod is start");
-      List<Mentor> mntr=mentorService.getAllMentorsByName(name);
-      log.info("Mentor controller get All mentorby name mathod is and");
-      return new ResponseEntity<List<Mentor>>(mntr,HttpStatus.OK);
-
-   }
+ 
 
    @GetMapping("/Mentor/getByid/{mentorID}")
    public ResponseEntity<Mentor> getMentorById(@PathVariable String mentorID ) {
