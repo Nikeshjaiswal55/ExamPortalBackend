@@ -19,8 +19,8 @@ public interface StudentRepo extends JpaRepository<Student,String>{
     @Query("SELECT s FROM Student s Where s.paperId=:paperId")
     List<Student> findAllStudentByPaperId(@Param("paperId")String paperId);
 
-    @Query("SELECT s FROM Student s where s.branch=:branch")
-    List<Student>  getAllStudentBYBranch( @Param("branch") String branch);
+    @Query("SELECT s FROM Student s where s.branch=:branch AND s.year=:year")
+    List<Student>  getAllStudentBYBranchAndYear( @Param("branch") String branch, @Param("year") String year);
 
    @Query("SELECT s FROM Student s where s.name=:name")
     List<Student>  getAllStudentByName( @Param("name") String name);
@@ -28,4 +28,8 @@ public interface StudentRepo extends JpaRepository<Student,String>{
     //it give the total count of student by orginization ID
     @Query("SELECT COUNT(s) FROM Student s WHERE s.orgnizationId = :orgnizationId")
     Long countByOrganizationId(@Param("orgnizationId")String orgnizationId);
+
+
+    @Query("SELECT s FROM Student s WHERE s.orgnizationId =:orgnizationId ORDER BY s.topMarks DESC LIMIT 3 ")
+    List<Student> getTopThreeStudentByOrgnizationIdByMarks(String orgnizationId);
 }

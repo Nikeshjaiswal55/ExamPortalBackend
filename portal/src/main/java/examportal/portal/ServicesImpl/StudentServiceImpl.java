@@ -141,14 +141,14 @@ public class StudentServiceImpl implements StudentSevices {
 
     @Deprecated
     @Override
-    public CompletableFuture<String> inviteStudents(InvitationDto dto) {
+    public String inviteStudents(InvitationDto dto) {
 
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
         System.out.println(examDetails.getBranch()+"=====================================================================================================");
         
         if (examDetails.getBranch() !=null) {
 
-            List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+            List<Student> students = this.studentRepo.getAllStudentBYBranchAndYear(examDetails.getBranch(),examDetails.getSession());
     
             for (Student student : students) {
                 Student st = this.studentRepo.getszStudentByEmail(student.getEmail());
@@ -169,7 +169,7 @@ public class StudentServiceImpl implements StudentSevices {
                 }
             }
         }
-         return  CompletableFuture.completedFuture("Student added successfully");
+         return  "Student added successfully";
     }
     
 
@@ -275,5 +275,17 @@ public class StudentServiceImpl implements StudentSevices {
         return data;
     }
 
+    @Override
+    public List<Student> getTopThreeStudentByOrgnization(String orgnizationId) {
+        
+        List<Student> allStudent = studentRepo.getTopThreeStudentByOrgnizationIdByMarks(orgnizationId);
+        
+       
+        return allStudent;
+        
+    }
+
+
+    
     
 }

@@ -1,9 +1,6 @@
 package examportal.portal.Controllers;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,10 +100,10 @@ public class StudentController {
     }
 
     @GetMapping("/student/getAll/Bybranch/{branch}")
-    public ResponseEntity<List<Student>> getAllStudentbybranch(@PathVariable String branch) {
+    public ResponseEntity<List<Student>> getAllStudentbybranch(@PathVariable String branch,@PathVariable String year) {
         log.info("StudentController , getAllStudent Method Start");
 
-        List<Student> list = this.studentRepo.getAllStudentBYBranch(branch);
+        List<Student> list = this.studentRepo.getAllStudentBYBranchAndYear(branch,year);
 
         log.info("StudentController , getAllStudent Method Ends");
         return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
@@ -117,11 +114,11 @@ public class StudentController {
             HttpServletRequest request) {
         log.info("StudentController , InviteStudentsByEmail Method Start");
         invitationDto.setToken(request.getHeader("Authorization"));
-        CompletableFuture<String> response = this.studentSevices.inviteStudents(invitationDto);
+        String response = this.studentSevices.inviteStudents(invitationDto);
 
         log.info("StudentController , InviteStudentsByEmail Method end");
 
-        return new ResponseEntity<>("inviting students in background", HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     //Get COunt of Student & paper
@@ -135,4 +132,15 @@ public class StudentController {
         return new ResponseEntity<List<Long>>(list, HttpStatus.OK);
 
     }
+
+    //  @GetMapping("/getTopRankers/{orgnizationId}")
+    // public ResponseEntity<List<Student>> getTopRankersOfOrgnization(@PathVariable String orgnizationId) {
+    //     log.info("StudentController , getAllStudent Method Start");
+
+        
+        
+    //     log.info("StudentController , getAllStudent Method Ends");
+    //     return new ResponseEntity<List<Long>>(list, HttpStatus.OK);
+
+    // }
 }

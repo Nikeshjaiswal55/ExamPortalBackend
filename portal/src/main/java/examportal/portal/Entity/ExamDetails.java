@@ -2,8 +2,6 @@ package examportal.portal.Entity;
 
 import java.util.UUID;
 
-import org.aspectj.weaver.ast.Or;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;

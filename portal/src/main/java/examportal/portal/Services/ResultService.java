@@ -23,4 +23,6 @@ public interface ResultService {
     ResultDto getAvidenceByStudentIdAndPaperId(String papeId, String studentId);
     
     String publishStudentResult(String studentId,String paperId);
+
+    
 }

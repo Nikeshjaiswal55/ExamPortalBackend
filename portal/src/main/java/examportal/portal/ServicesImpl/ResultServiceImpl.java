@@ -86,6 +86,7 @@ public class ResultServiceImpl implements ResultService {
                     attemptedQuestions.setOptions(question.getOptions());
                     attemptedQuestions.setQuestions(question.getQuestions());
                     attemptedQuestions.setPaperID(dto.getResult().getPaperID());
+                    attemptedQuestions.setUserAns(question.getUserAns());
                     attemptedQuestions.setStudentID(dto.getResult().getStudentID());
                     return attemptedQuestions;
                 })
@@ -107,6 +108,14 @@ public class ResultServiceImpl implements ResultService {
 
         // 3. Save Result
         Result newResult = this.resultRepo.save(dto.getResult());
+
+        Student s= this.studentRepo.findById(newResult.getStudentID()).orElseThrow(()-> new ResourceNotFoundException("Student", "StudentId", newResult.getStudentID()));
+
+        if(s.getTopMarks()<newResult.getMarks()){
+            s.setTopMarks(newResult.getMarks());
+            s.setTop_paperId(newResult.getPaperID());
+            this.studentRepo.save(s);
+        }
 
         // 4. Save Cheating
         Cheating cheating = dto.getCheating();

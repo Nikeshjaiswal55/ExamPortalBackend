@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import examportal.portal.Entity.Cheating;
 import examportal.portal.Entity.Result;
 import examportal.portal.Entity.Student;
+import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ResultRepo;
+import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.ResultService;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,6 +38,9 @@ public class ResultController {
 
     @Autowired
     private ResultRepo resultRepo;
+
+    @Autowired
+    private StudentRepo studentRepo;
 
     @PostMapping("/saveresult")
     public ResponseEntity<ResultDto> createResults(@RequestBody ResultDto resultDto)
@@ -112,6 +117,19 @@ public class ResultController {
 
         return new ResponseEntity<>(results,HttpStatus.OK);
     }
+
+    @GetMapping("getTopAssesmentofStudent/{studentId}")
+    public Result topassesmentofStudent (@PathVariable String studentId) {
+        List<Result> results = this.resultRepo.findAllResutlByStudentID(studentId);
+        Student s = this.studentRepo.findById(studentId).orElseThrow(()-> new ResourceNotFoundException("student", "studentId", studentId));
+      s.setTopMarks(results.get(0).getMarks());
+      s.setTop_paperId(results.get(0).getPaperID());
+      this.studentRepo.save(s);
+        return results.get(0);
+    }
+    
+
+      
     
 
 }
