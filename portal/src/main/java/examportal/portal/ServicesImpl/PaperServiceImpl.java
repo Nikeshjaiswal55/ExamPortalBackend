@@ -5,7 +5,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.concurrent.CompletableFuture;
 
 import org.modelmapper.ModelMapper;
@@ -365,10 +364,11 @@ public class PaperServiceImpl implements PaperService {
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
       log.info("paperServiceImpl activatePaper  method Ends");
-      msg = "Deactive successfully";
+      
+     return msg = "Deactive successfully";
 
     }
-    if (active = false) {
+    else {
 
       paper.setIs_Active("true");
       paper.set_setup(false);
@@ -377,10 +377,10 @@ public class PaperServiceImpl implements PaperService {
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
       log.info("paperServiceImpl activatePaper  method Ends");
-      msg = "Paper Activated Successfully";
+    return   msg = "Paper Activated Successfully";
 
     }
-    return msg;
+  
   }
 
   public String decodeString(String encodedString) {
@@ -402,13 +402,13 @@ public class PaperServiceImpl implements PaperService {
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
     if (examDetails.getBranch() != null) {
 
-      List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+      List<Student> students = this.studentRepo.getAllStudentBYBranchAndYear(examDetails.getBranch(),examDetails.getSession());
 
       students.forEach(student -> {
         User user = this.userRepo.findById(student.getStudentid())
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", student.getStudentid()));
         // String password = decodeString(user.getPassword());
-        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+        String msg = user.getPassword();
 
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
 
@@ -422,7 +422,7 @@ public class PaperServiceImpl implements PaperService {
         User user = this.userRepo.findById(invitedStudents.getStudentId())
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
 
-        String msg = "User_Name => " + user.getEmail() + "    Password =>" + user.getPassword();
+        String msg = "Password =>" + user.getPassword();
 
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
       });

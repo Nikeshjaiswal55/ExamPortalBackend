@@ -1,22 +1,18 @@
 package examportal.portal.Controllers;
 
 import examportal.portal.Entity.Course;
-import examportal.portal.Payloads.CourseDto;
 import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Response.CourseResponce;
 import examportal.portal.Services.CourseService;
 import jakarta.servlet.http.HttpServletRequest;
-
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -73,11 +69,11 @@ public class CourseController {
       @RequestParam(name = "sortField", defaultValue = "course_name", required = false) String sortField,
       @RequestParam(name = "sortOrder", defaultValue = "ASC", required = false) String sortOrder) {
 
-    log.info("CourseController,getCourseById Method Start");
+    log.info("CourseController,getCourseByUserId Method Start");
 
     CourseResponce courseResponce = courseService.getAllCourseByUserId(userId,
         new PaginationDto(pageNo, Pagesize, sortField, sortOrder));
-    log.info("CourseController,getCourseById Method Ends");
+    log.info("CourseController,getCourseByUserId Method Ends");
     return new ResponseEntity<CourseResponce>(courseResponce, HttpStatus.OK);
   }
 
@@ -113,8 +109,10 @@ public class CourseController {
       @RequestParam(name = "course_Name", required = false) String course_Name,
       @RequestParam(name = "userName", required = false) String userName) {
 
+    log.info("CourseController,searchCouse Method Start");
     List<Course> c = courseRepo.SearchCouse(userName, course_Name);
 
+    log.info("CourseController,searchCouse Method Ends");
     return new ResponseEntity<>(c, HttpStatus.OK);
   }
 
@@ -122,8 +120,11 @@ public class CourseController {
   public String StudentCreatingProceeInBackground(@RequestBody List<EmailsDto> dto, HttpServletRequest request)
       throws ExecutionException, InterruptedException {
 
+    log.info("CourseController, StudentCreatingProceeInBackground Method Start");
     String token = request.getHeader("Authorization");
     Future<String> future = courseService.creatingStudentInBackGround(dto, token);
+
+    log.info("CourseController, StudentCreatingProceeInBackground Method Ends");
 
     return "Background processing started Creating Student for Course : " + dto.get(0).getCourseId();
   }
