@@ -281,6 +281,7 @@ public class ResultServiceImpl implements ResultService {
             ResultDto dto = new ResultDto();
             result.setStudent_email(s.getEmail());
             dto.setResult(result);
+            dto.setIs_published(result.getIs_published());
             log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
             return dto;
         } else {
