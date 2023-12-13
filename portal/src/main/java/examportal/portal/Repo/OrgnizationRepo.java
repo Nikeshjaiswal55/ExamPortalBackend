@@ -18,4 +18,5 @@ public interface OrgnizationRepo extends JpaRepository<Orgnizations,String>{
 
     List<Orgnizations> findByOrgnizationId(String orgnizationId);
     
+    
 }

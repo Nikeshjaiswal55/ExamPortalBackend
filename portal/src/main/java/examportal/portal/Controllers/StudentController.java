@@ -1,7 +1,6 @@
 package examportal.portal.Controllers;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Student;
@@ -34,46 +34,40 @@ public class StudentController {
 
     private Logger log = LoggerFactory.getLogger("StudentController.class");
 
-    // Add student
-    // @PostMapping("/student")
-    // public ResponseEntity<String> addStudent(@RequestBody StudentDto student) {
-
-    //     log.info("StudentController , addStudent Method Start");
-    //     String savedStudent = this.studentSevices.inviteStudents(student);
-    //     log.info("StudentController , addStudent Method Ends");
-    //     return new ResponseEntity<String>(savedStudent, HttpStatus.CREATED);
-
-    // }
-
-    // Getting All Student
     @GetMapping("/student/getAll")
-    public ResponseEntity<List<Student>> getAllStudent() {
+    public ResponseEntity<List<Student>> getAllStudent(
+            @RequestParam(name = "page", defaultValue = "0", required = false) Integer page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+            @RequestParam(name = "sortField", defaultValue = "name", required = false) String sortField,
+            @RequestParam(name = "sortOrder", defaultValue = "asc", required = false) String sortOrder) {
         log.info("StudentController , getAllStudent Method Start");
 
-        List<Student> list = this.studentSevices.getAllStudents();
+        List<Student> list = this.studentSevices.getAllStudents(page, size, sortField, sortOrder);
 
         log.info("StudentController , getAllStudent Method Ends");
         return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
     }
 
+   
+
     // getting Student By Id
     @GetMapping("/student/{studentId}")
     public ResponseEntity<Student> getAllStudentById(@PathVariable String studentId) {
-        log.info("StudentController , getAllStudent Method Start");
+        log.info("StudentController , getAllStudentById Method Start");
 
         Student s = studentSevices.getSingleStudent(studentId);
 
-        log.info("StudentController , getAllStudent Method Ends");
+        log.info("StudentController , getAllStudentById Method Ends");
         return new ResponseEntity<Student>(s, HttpStatus.OK);
     }
 
     // Get All Student By paperId
     @GetMapping("/GetAllStudentByPaperId/{paperId}")
     public ResponseEntity<List<Student>> getAllStudentByPaperIds(@PathVariable String paperId) {
-        log.info("StudentController , getAllStudent Method Start");
+        log.info("StudentController , getAllStudentByPaperIds Method Start");
 
         List<Student> st = this.studentSevices.getAllStudentByPaperId(paperId);
-        log.info("StudentController , getAllStudent Method Ends");
+        log.info("StudentController , getAllStudentByPaperIds Method Ends");
         return new ResponseEntity<List<Student>>(st, HttpStatus.OK);
     }
 
@@ -95,26 +89,58 @@ public class StudentController {
 
     }
 
-     @GetMapping("/student/getAll/Bybranch/{branch}")
-    public ResponseEntity<List<Student>> getAllStudentbybranch(@PathVariable String branch) {
+    @GetMapping("/student/getAll/Bybranch/{branch}")
+    public ResponseEntity<List<Student>> getAllStudentbybranch(@PathVariable String branch,@PathVariable String year) {
         log.info("StudentController , getAllStudent Method Start");
 
-        List<Student> list = this.studentRepo.getAllStudentBYBranch(branch);
+        List<Student> list = this.studentRepo.getAllStudentBYBranchAndYear(branch,year);
 
         log.info("StudentController , getAllStudent Method Ends");
         return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
     }
 
     @PostMapping("/inviteStudents/")
-    public ResponseEntity<String> InviteStudentsByEmail(@RequestBody InvitationDto invitationDto,HttpServletRequest request)
-    {
+    public ResponseEntity<String> InviteStudentsByEmail(@RequestBody InvitationDto invitationDto,
+            HttpServletRequest request) {
         log.info("StudentController , InviteStudentsByEmail Method Start");
         invitationDto.setToken(request.getHeader("Authorization"));
-        String response  = this.studentSevices.inviteStudents(invitationDto);
+        String response = this.studentSevices.inviteStudents(invitationDto);
 
         log.info("StudentController , InviteStudentsByEmail Method end");
 
-        return new ResponseEntity<>(response,HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    //Get COunt of Student & paper
+    @GetMapping("/getCountOfStudentAndPaperBy_OGId/{orgnizationId}")
+    public ResponseEntity<List<Long>> getCountOfStudentAndPaperBy_OGId(@PathVariable String orgnizationId) {
+        log.info("StudentController , getAllStudent Method Start");
+
+        List<Long> list = this.studentSevices.getCountOfStudentAndPaperBy_OGId(orgnizationId);
+        
+        log.info("StudentController , getAllStudent Method Ends");
+        return new ResponseEntity<List<Long>>(list, HttpStatus.OK);
+
+    }
+
+     @GetMapping("/getTopRankers/{orgnizationId}")
+    public ResponseEntity<List<Student>> getTopRankersOfOrgnization(@PathVariable String orgnizationId,
+                                                                   @RequestParam(required = false ,defaultValue = "") String branch ) 
+    {
+     
+        log.info("StudentController , getAllStudent Method Start");
+        List<Student> topRankers;
+         if(!branch.isEmpty()) {
+           
+            topRankers = studentRepo.filterTopRankerByBranch(orgnizationId,branch );         
+
+        } else {
+            
+            topRankers = this.studentRepo.getTopThreeStudentByOrgnizationIdByMarks(orgnizationId);
+        }
+        
+        log.info("StudentController , getAllStudent Method Ends");
+        return new ResponseEntity<List<Student>>(topRankers, HttpStatus.OK);
+
+    }
 }

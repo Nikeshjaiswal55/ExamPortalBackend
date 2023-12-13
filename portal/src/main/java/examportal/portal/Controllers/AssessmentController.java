@@ -3,6 +3,7 @@ package examportal.portal.Controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +19,7 @@ import examportal.portal.Repo.ExamDetailsRepo;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @RestController
 @CrossOrigin(origins = "*")
 public class AssessmentController {
@@ -31,10 +33,10 @@ public class AssessmentController {
     Logger log = LoggerFactory.getLogger("AssessmentController.class");
 
     @GetMapping("/getAllBy/OrgnizationId/{orgnizationId}")
-    public ResponseEntity<List<Assessment>> getAllassmentByOrgnizationId(@PathVariable String orgnizationId) {
+    public ResponseEntity<List<Assessment>> getAllassmentByOrgnizationId(@PathVariable String orgnizationId,Pageable p) {
         log.info("AssessmentController.class, getAllassmentByOrgnizationId Start ");
 
-        List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_orgnizationId(orgnizationId);
+        List<Assessment> assessments = (List<Assessment>) this.assessmentRepo.getAssessmentsBy_orgnizationId(orgnizationId, p);
 
         log.info("AssessmentController.class, getAllassmentByOrgnizationId Ends ");
         return new ResponseEntity<List<Assessment>>(assessments, HttpStatus.OK);
@@ -56,5 +58,25 @@ public class AssessmentController {
         return new ResponseEntity<List<ExamDetails>>(examDetailsAll, HttpStatus.OK);
 
     }
+
+    @GetMapping("/getAllAssessmentByStudentId/{studentId}")
+   public ResponseEntity<List<ExamDetails>> getAllAssessmentByStudentId(@PathVariable String studentId)
+   {
+    log.info("AssessmentController.class, getAllAssessmentByStudentId start ");
+      List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_userId(studentId);
+        List<ExamDetails> examDetailsAll = new ArrayList<>();
+        for (Assessment assessment : assessments) {
+            ExamDetails examDetails = examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
+            if (examDetails.getIs_Active().equals("true")) {
+                examDetailsAll.add(examDetails);
+            }
+            
+        }
+        log.info("AssessmentController.class, getAllAssessmentByStudentId Ends ");
+
+        return new ResponseEntity<List<ExamDetails>>(examDetailsAll, HttpStatus.OK);
+   }
+    
+    
 
 }

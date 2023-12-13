@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.util.Date;
 
 @Entity
 @Data
@@ -17,12 +16,20 @@ public class Result {
 
     private String studentID;
 
-    private Date date;
-
     private int marks;
 
     private float percentage;
+
+    private String date;
+
+    private String resultStatus;
     
+    private String Assesment_Name;
+
     private String paperID;
+
+    private String student_email;
+
+    private String is_published;
 
 }

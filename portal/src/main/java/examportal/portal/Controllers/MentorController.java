@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -40,13 +41,19 @@ public class MentorController {
    }
 
    @GetMapping("/Mentor/getAll")
-   public ResponseEntity<List<Mentor>> getAllMentors() {
+   public ResponseEntity<List<Mentor>> getAllMentors(
+   @RequestParam(name = "page", defaultValue = "0",required = false) Integer page,
+  @RequestParam(name = "size", defaultValue = "10",required = false) Integer size,
+  @RequestParam(name = "sortField", defaultValue = "name",required = false) String sortField,
+  @RequestParam(name = "sortOrder", defaultValue = "asc",required = false) String sortOrder) {
       log.info("MentorController , getAllMentors Method Start");
-      List<Mentor> mentorList = this.mentorService.getAllMentors();
+      List<Mentor> mentorList = this.mentorService.getAllMentors(page,size,sortField,sortOrder);
 
       log.info("MentorController , getAllMentors Method Ends");
       return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
    }
+   //get All mentor by name
+
 
    @GetMapping("/Mentor/getByid/{mentorID}")
    public ResponseEntity<Mentor> getMentorById(@PathVariable String mentorID ) {

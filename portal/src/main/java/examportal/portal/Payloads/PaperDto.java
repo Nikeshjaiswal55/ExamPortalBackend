@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 public class PaperDto {
     
-    private String paperId = UUID.randomUUID().toString();
+    private String paperId;
     private List<Questions> questions;
     private ExamDetails examDetails;
     private List<String> emails;
@@ -32,4 +32,10 @@ public class PaperDto {
     private String orgnizationId;
     private boolean is_setup;
     private boolean is_Active;
+    private String description;
+    private boolean is_shorted;
+    private boolean is_auto_check;
+    private String instruction;
+    private String student_email;
+
 }
