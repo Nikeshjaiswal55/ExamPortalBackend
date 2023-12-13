@@ -3,13 +3,13 @@
 *.gz
 HELP.md
 .gradle
-# build/
-# build/
+
 build/classes
 build/generated
 build/resources
 build/tmp
 build/test-result/test
+
 libs/portal-plain.jar
 build/resolvedMainClassName
 !gradle/wrapper/gradle-wrapper.jar
