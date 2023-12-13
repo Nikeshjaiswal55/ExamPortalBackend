@@ -18,7 +18,6 @@ import examportal.portal.Entity.Course;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
-import examportal.portal.Payloads.CourseDto;
 import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Repo.CourseRepo;
@@ -44,11 +43,11 @@ public class CourseServiceImpl implements CourseService {
   @Autowired
   private Auth0Service auth0Service;
 
-  Logger log = LoggerFactory.getLogger("CourseServiceimpl.class");
+  Logger log = LoggerFactory.getLogger("CourseServiceimpl");
 
   @Override
   public List<Course> getAllCourse(Integer pageNumber, int size, String sortField, String sortOrder) {
-    log.info("CourseServiceimpl,getCourse Method Start");
+    log.info("CourseServiceimpl,getAllCourse Method Start");
 
     Sort s = (sortOrder.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
     Pageable p = PageRequest.of(pageNumber, size, s);
@@ -63,19 +62,19 @@ public class CourseServiceImpl implements CourseService {
       course2.setUserName(user.getName());
       courses.add(course2);
     }
-    log.info("CourseServiceimpl,getCourse Method Ends");
+    log.info("CourseServiceimpl,getAllCourse Method Ends");
     return courses;
   }
 
   @Override
   public Course getCourseByCouseId(String getId) {
-    log.info("CourseServiceimpl,getCourseById Method Start");
+    log.info("CourseServiceimpl,getCourseByCouseId Method Start");
     Course c = this.courseRepo.findById(getId)
         .orElseThrow(() -> new ResourceNotFoundException("Course", "CourseId", getId));
     User user = this.userRepo.findById(c.getUserId())
         .orElseThrow(() -> new ResourceNotFoundException("User", "UserId", c.getUserId()));
     c.setUserName(user.getName());
-    log.info("CourseServiceimpl,getCourseById Method Ends");
+    log.info("CourseServiceimpl,getCourseByCouseId Method Ends");
 
     return c;
   }
@@ -183,7 +182,7 @@ public class CourseServiceImpl implements CourseService {
     courseResponce.setPagesize(page.getSize());
     courseResponce.setTotalElements(page.getTotalElements());
     courseResponce.setTotalPages(page.getTotalPages());
-
+      log.info("CourseServiceimpl, getAllCourseByUserId Method End");
     return courseResponce;
   }
 }

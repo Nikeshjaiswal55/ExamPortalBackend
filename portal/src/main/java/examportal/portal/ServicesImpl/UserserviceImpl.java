@@ -1,6 +1,5 @@
 package examportal.portal.ServicesImpl;
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class UserserviceImpl implements UserService {
     @Autowired
     private EmailServiceImpl emailServiceImpl;
 
-    Logger log = LoggerFactory.getLogger("userServiceImpl");
+    Logger log = LoggerFactory.getLogger("UserServiceImpl");
 
     @Deprecated
     @Override
@@ -71,15 +70,5 @@ public class UserserviceImpl implements UserService {
     }
 
 
-    @Override
-    public List<User> getAllUserByName(String name) {
-        log.info("userService, getUserByName method Start");
-         List<User>list =userRepo.getAllUserByName(name);
-         if(list.isEmpty()){
-            throw new NoSuchElementException(" student list is empty ");
-         }
-         log.info("userService , getallUserByname method and");
-         return list;
-    }
 
 }

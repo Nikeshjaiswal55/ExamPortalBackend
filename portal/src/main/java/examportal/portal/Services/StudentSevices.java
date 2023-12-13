@@ -28,7 +28,7 @@ public interface StudentSevices {
     List<Long> getCountOfStudentAndPaperBy_OGId(String orgnizationId);
 
     // getAllUserByName
-    List<Student> getAllStudentByName(String name);
+
 
     List<Student> getTopThreeStudentByOrgnization(String orgnizationId);
 

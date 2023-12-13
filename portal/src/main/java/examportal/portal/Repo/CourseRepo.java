@@ -22,9 +22,6 @@ public interface CourseRepo extends JpaRepository<Course,String> {
 
     @Query(value = "SELECT c FROM Course c where c.userName = :user_name OR c.course_name= :course_name")
     public List<Course> SearchCouse(@Param("user_name")String userName ,@Param("course_name")String course_name );
-
-    List<Course> findByUserName(String userName);
-
-    
+        
 
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,13 +21,15 @@ import examportal.portal.Services.ImageService;
 public class ImageServiceImpl implements ImageService {
     @Autowired
     private Cloudinary cloudinary;
+    Logger log = LoggerFactory.getLogger("ImageServiceImpl");
 
     @Override
     public Map Upload(MultipartFile file) {
         try {
+            log.info("ImageServiceImpl ,Upload Method Start");
 
             Map data = this.cloudinary.uploader().upload(file.getBytes(), Map.of());
-
+            log.info("ImageServiceImpl ,Upload Method End");
             return data;
         } catch (IOException e) {
             throw new RuntimeException("Image uploding fail");
@@ -42,6 +46,7 @@ public class ImageServiceImpl implements ImageService {
     private String apiSecret;
 
     public List<String> uploadbase64incloudnaru(List<String> images) {
+        log.info("ImageServiceImpl ,uploadbase64incloudnaru Method Start");
         List<String> imageUrl= new ArrayList();
         for (String string : images) {
             Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
@@ -60,6 +65,7 @@ public class ImageServiceImpl implements ImageService {
                 e.printStackTrace();
             }
         }
+        log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
         return imageUrl;
     }
 

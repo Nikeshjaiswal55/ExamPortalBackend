@@ -70,11 +70,11 @@ public class OrgnizationServiceImpl implements OrgnizationService {
   @Override
   public String deleteorgnization(String OrgnizationID) {
 
-    log.info("OrgnizationServiceImp , UpdateOrgnization Method Start");
+    log.info("OrgnizationServiceImp , deleteorgnization Method Start");
     Orgnizations deleteOrgnizations = this.orgnizationRepo.findById(OrgnizationID)
         .orElseThrow(() -> new ResourceNotFoundException("Orgnization", "OrgnizationID", OrgnizationID));
     this.orgnizationRepo.delete(deleteOrgnizations);
-    log.info("OrgnizationServiceImp , UpdateOrgnization Method Ends");
+    log.info("OrgnizationServiceImp , deleteorgnization Method Ends");
     return "deleted succesfully";
   }
 
@@ -92,15 +92,5 @@ public class OrgnizationServiceImpl implements OrgnizationService {
     return savedOrgnizations;
   }
 
-  @Override
-  public List<Orgnizations> getAllOrgnizationsByName(String name) {
-    log.info("orgnizationSerivceImpl, getalllOrgnizationByName mathod is start");
-    List<Orgnizations> ogname = orgnizationRepo.getAllOrgnizationsByName(name);
-    if (ogname.isEmpty()){
-      throw new NoSuchElementException("this list is empty ");
-
-    }
-    log.info("orgnizationSerivceImpl, getalllOrgnizationByName mathod is and ");
-    return ogname;
-  }
+ 
 }

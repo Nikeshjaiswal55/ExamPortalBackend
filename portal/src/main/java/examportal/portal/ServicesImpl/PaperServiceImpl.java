@@ -84,7 +84,7 @@ public class PaperServiceImpl implements PaperService {
 
   @Override
   public Paper createPaper(PaperDto paperDto) {
-    log.info("paperService Create paper method Starts :");
+    log.info("paperServiceIml Createpaper method Starts :");
 
     LocalDateTime date = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -115,24 +115,25 @@ public class PaperServiceImpl implements PaperService {
       // Handle the exception
     }
 
-    log.info("paperService Create paper method End's :");
+    log.info("paperServiceIml Create paper method End's :");
     return newPaper;
   }
 
   @Async
   public CompletableFuture<List<Questions>> saveQuestionsAsync(List<Questions> questionsList, String paperId) {
     // Set paperId for each question
+    log.info("paperServiceIml saveQuestionsAsync method Starts ");
     questionsList.forEach(question -> question.setPaperID(paperId));
 
     // Save all questions in a batch asynchronously
     List<Questions> savedQuestions = this.questionsRepo.saveAll(questionsList);
-
+    log.info("paperServiceIml saveQuestionsAsync method End ");
     return CompletableFuture.completedFuture(savedQuestions);
   }
 
   @Override
   public List<PaperDto> getAllPaper(Integer pageNumber, Integer size, String sortField, String sortOrder) {
-    log.info("paperService getAll paper method Starts :");
+    log.info("paperServiceIml getAllPaper method Starts ");
     Sort sort = (sortOrder.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
     Pageable p = PageRequest.of(pageNumber, size, sort);
     Page<Paper> pp = paperRepo.findAll(p);
@@ -152,13 +153,13 @@ public class PaperServiceImpl implements PaperService {
       paper.setExamDetails(examDetails);
       dto.add(paper);
     }
-    log.info("paperService Create paper method End's :");
+    log.info("paperServiceIml getAllPaper method End");
     return dto;
   }
 
   @Override
   public PaperStringDto getPaperById(String paperID) {
-    log.info("paperService getPaperById method Starts :");
+    log.info("paperServiceIml getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperID", paperID));
     PaperDto paperDto = this.mapper.map(paper, PaperDto.class);
@@ -171,12 +172,13 @@ public class PaperServiceImpl implements PaperService {
     String obj = encodeObject(paperDto);
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
-    log.info("paperService getPaperByID method End's :");
+    log.info("paperServiceIml getPaperByID method End's :");
 
     return dto;
   }
 
   public String encodeObject(Object object) {
+    log.info("paperServiceIml encodeObject method Starts ");
     ObjectMapper objectMapper = new ObjectMapper();
 
     try {
@@ -186,11 +188,13 @@ public class PaperServiceImpl implements PaperService {
     } catch (JsonProcessingException e) {
       // Handle the exception, e.g., log or throw a custom exception
       e.printStackTrace();
+        log.info("paperServiceIml encodeObject method End ");
       return null;
     }
   }
 
   public Object decodeObject(String encodedString) {
+    log.info("paperServiceIml decodeObject method Starts ");
     ObjectMapper objectMapper = new ObjectMapper();
 
     try {
@@ -200,6 +204,7 @@ public class PaperServiceImpl implements PaperService {
     } catch (JsonProcessingException e) {
       // Handle the exception, e.g., log or throw a custom exception
       e.printStackTrace();
+      log.info("paperServiceIml decodeObject method End ");
       return null;
     }
   }
@@ -207,7 +212,7 @@ public class PaperServiceImpl implements PaperService {
   @Override
   public PaperDto updetPaper(PaperDto paperDto) {
 
-    log.info("paperService Update paper method Starts :");
+    log.info("PaperSerivceImp Update paper method Starts :");
 
     Paper paper = this.paperRepo.findById(paperDto.getPaperId())
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperId", paperDto.getPaperId()));
@@ -251,7 +256,7 @@ public class PaperServiceImpl implements PaperService {
 
     dto.setExamDetails(updateExamDetails);
 
-    log.info("paperService Update paper method Starts :");
+    log.info("paperService Update paper method End :");
 
     return dto;
 
@@ -306,14 +311,14 @@ public class PaperServiceImpl implements PaperService {
     paperResponce.setPagesize(page.getSize());
     paperResponce.setTotalElements(page.getTotalElements());
     paperResponce.setTotalPages(page.getTotalPages());
-
+      log.info("paperServiceImpl getAllPaperByUserId  method End");
     return paperResponce;
   }
 
   // Without Filter
   @Override
   public PaperResponce getAllPaperByUserIdWithOutFilter(String userId, PaginationDto dto) {
-    log.info("paperServiceImpl getAllPaperByUserId  method Starts");
+    log.info("paperServiceImpl getAllPaperByUserIdWithOutFilter  method Starts");
 
     Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
         : Sort.by(dto.getProperty()).descending();
@@ -341,6 +346,7 @@ public class PaperServiceImpl implements PaperService {
     paperResponce.setPagesize(page.getSize());
     paperResponce.setTotalElements(page.getTotalElements());
     paperResponce.setTotalPages(page.getTotalPages());
+    log.info("paperServiceImpl getAllPaperByUserIdWithOutFilter  method End");
     return paperResponce;
   }
 
@@ -384,6 +390,7 @@ public class PaperServiceImpl implements PaperService {
   }
 
   public String decodeString(String encodedString) {
+    log.info("paperServiceImpl decodeString  method Starts");
     ObjectMapper objectMapper = new ObjectMapper();
 
     try {
@@ -392,13 +399,14 @@ public class PaperServiceImpl implements PaperService {
     } catch (Exception e) {
       // Handle the exception, e.g., log or throw a custom exception
       e.printStackTrace();
+      log.info("paperServiceImpl decodeString  method End");
       return null;
     }
   }
 
   @Async
   public CompletableFuture<String> processInvitationsInBackground(String paperId) {
-
+    log.info("paperServiceImpl processInvitationsInBackground  method Starts");
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
     if (examDetails.getBranch() != null) {
 
@@ -426,14 +434,14 @@ public class PaperServiceImpl implements PaperService {
 
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
       });
-
+      log.info("paperServiceImpl processInvitationsInBackground  method End");
       return CompletableFuture.completedFuture("sending email in background");
     }
   }
 
   @Override
   public List<ExamDetails> getAllAssessmentsByUserId(String userId) {
-
+    log.info("paperServiceImpl getAllAssessmentsByUserId  method Starts");
     List<Assessment> assment = this.assessmentRepo.getAssessmentsBy_userId(userId);
     List<ExamDetails> examDetails = new ArrayList<>();
 
@@ -446,24 +454,26 @@ public class PaperServiceImpl implements PaperService {
       }
       examDetails.add(examDetail);
     }
-
+    log.info("paperServiceImpl getAllAssessmentsByUserId  method End");
     return examDetails;
   }
 
   @Override
   public AttemptedPapers AttemptPaper(Assessment assessment) {
+    log.info("paperServiceImpl AttemptPaper  method Start");
     AttemptedPapers attemptedPapers = new AttemptedPapers();
     attemptedPapers.setAssmentId(assessment.getAssessmentID());
     attemptedPapers.setPaperId(assessment.getPaperId());
     attemptedPapers.setStudentId(assessment.getUserId());
 
     AttemptedPapers save = this.attemptepaperRepo.save(attemptedPapers);
-
+     log.info("paperServiceImpl AttemptPaper  method End");
     return attemptedPapers;
   }
 
   @Override
   public ExamDetails GetattemptedStudents(String paperId, String studentId) {
+    log.info("paperServiceImpl GetattemptedStudents  method Start");
     AttemptedPapers attemptedPapers = this.attemptepaperRepo.getAllAttemptedPaperbyStudentID(studentId, paperId);
     Student student = this.studentRepo.findById(attemptedPapers.getStudentId())
         .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentID", attemptedPapers.getStudentId()));
@@ -472,6 +482,7 @@ public class PaperServiceImpl implements PaperService {
     if (student != null) {
       examDetails.set_attempted(true);
     }
+        log.info("paperServiceImpl GetattemptedStudents  method End");
     return examDetails;
   }
 

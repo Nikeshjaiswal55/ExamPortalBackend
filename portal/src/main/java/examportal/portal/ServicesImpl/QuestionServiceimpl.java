@@ -77,18 +77,10 @@ public class QuestionServiceimpl implements QuestionService  {
        Questions questions = this.questionsRepo.findById(QuestionID).orElseThrow(()-> new ResourceNotFoundException("Question", "QuestionID", QuestionID));
        this.questionsRepo.delete(questions);
 
-       log.info("Question Service Create deleteQuestion Method Starts");
+       log.info("Question Service Create deleteQuestion Method End");
 
        return "deleted Successfully";
     }
 
-   @Override
-   public List<Questions> getAllQuestionsByName(String name) {
-      List<Questions>  list= questionsRepo.getAllQuestionsByName(name);
-      if (list.isEmpty()) {
-         throw new NoSuchElementException("resource not found ");
-      }
-      return list;
-   }
-    
+  
 }

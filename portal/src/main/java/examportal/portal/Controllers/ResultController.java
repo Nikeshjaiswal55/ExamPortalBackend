@@ -87,6 +87,7 @@ public class ResultController {
     {
         log.info("ResultController, getCheatingOfStudentInSpecificPaper  Method Start");
         Cheating cheat = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, paperId);
+        
         log.info("ResultController, getCheatingOfStudentInSpecificPaper  Method End");
         return new ResponseEntity<>(cheat,HttpStatus.OK);
     }

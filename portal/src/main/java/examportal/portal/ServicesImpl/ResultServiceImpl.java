@@ -33,7 +33,6 @@ import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.ImageService;
 import examportal.portal.Services.ResultService;
-import jakarta.el.ELException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -71,7 +70,7 @@ public class ResultServiceImpl implements ResultService {
     @Autowired
     private PaperRepo paperRepo;
 
-    Logger log = LoggerFactory.getLogger("ResultServiceImpl.class");
+    Logger log = LoggerFactory.getLogger("ResultServiceImpl");
 
     @Override
     @Transactional
@@ -138,7 +137,7 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public ResultDto getResultByStudentAndPaperId(String resultID) {
-        log.info("ResultServiceImpl, createResult Method Start");
+        log.info("ResultServiceImpl, getResultByStudentAndPaperId Method Start");
 
         Result result = this.resultRepo.findById(resultID)
                 .orElseThrow(() -> new ResourceNotFoundException("result ", "Result Id", resultID));
@@ -160,7 +159,7 @@ public class ResultServiceImpl implements ResultService {
         dto.setResultID(result.getResultID());
         dto.setCheating(cheating);
         dto.set_attempted(true);
-        log.info("ResultServiceImpl, createResult Method Ends");
+        log.info("ResultServiceImpl, getResultByStudentAndPaperId Method Ends");
 
         return dto;
 
@@ -169,7 +168,7 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public ResultDto checkPaper(checkpaperDto dto) {
-
+        log.info("ResultServiceImpl, checkPaper Method Start");
         Result r = this.resultRepo.getResultByStudentAndPaperId(dto.getPaperId(), dto.getStudentId());
         if (r != null) {
             ResultDto d = new ResultDto();
@@ -251,14 +250,14 @@ public class ResultServiceImpl implements ResultService {
             dto2.setCheating(dto.getCheating());
             dto2.setResult(newResult);
             System.out.println("my  dt0 --=---========-" + dto2);
-
+            log.info("ResultServiceImpl, checkPaper Method End");
             return createResult(dto2);
         }
     }
 
     @Override
     public List<Student> getTopThreeStudentByPaper(String paperId) {
-
+        log.info("ResultServiceImpl, getTopThreeStudentByPaper Method Start");
         List<Result> results = this.resultRepo.findAllByPaperIdOrderByPercentageDesc(paperId);
         List<Student> TopThree = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -267,13 +266,13 @@ public class ResultServiceImpl implements ResultService {
                     .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", resu.getStudentID()));
             TopThree.add(student);
         }
-
+        log.info("ResultServiceImpl, getTopThreeStudentByPaper Method End");
         return TopThree;
     }
 
     @Override
     public ResultDto getResultByStudentIdAndPaperId(String papeId, String studentId) {
-
+        log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method Start");
         Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
 
         Student s= this.studentRepo.findById(studentId).orElseThrow(()-> new ResourceNotFoundException("student", "studentId", studentId));
@@ -282,6 +281,7 @@ public class ResultServiceImpl implements ResultService {
             ResultDto dto = new ResultDto();
             result.setStudent_email(s.getEmail());
             dto.setResult(result);
+            log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
             return dto;
         } else {
             
@@ -296,19 +296,16 @@ public class ResultServiceImpl implements ResultService {
             }
 
             ResultDto dto = new ResultDto();
-            // dto.setResultID(result.getResultID());
-            // dto.setCheating(cheating);
-            // dto.setResult(result);
-            // dto.setQuestions(questions);
-            // dto.set_attempted(true);
+            
             dto.setIs_published("requested");
+            log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
             return dto;
         }
     }
 
     @Override
     public List<Result> getTopFiveResultOfStudentByStudentId(String studentId) {
-
+        log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method Start");
         List<Result> allResult = this.resultRepo.findAllResutlByStudentID(studentId);
         List<Result> top5 = new ArrayList<>();
 
@@ -317,12 +314,13 @@ public class ResultServiceImpl implements ResultService {
             result = allResult.get(i);
             top5.add(result);
         }
+          log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
         return top5;
     }
 
     @Override
     public ResultDto getAvidenceByStudentIdAndPaperId(String papeId, String studentId) {
-
+        log.info("ResultServiceImpl, getAvidenceByStudentIdAndPaperId Method Start");
         Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
 
         Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, papeId);
@@ -332,6 +330,7 @@ public class ResultServiceImpl implements ResultService {
         dto.setResult(result);
         dto.setCheating(cheating);
         // dto.setQuestions(questions);
+        log.info("ResultServiceImpl, getAvidenceByStudentIdAndPaperId Method End");
         return dto;
     }
 
@@ -340,23 +339,23 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public String publishStudentResult(String studentId, String paperId) {
+        log.info("ResultServiceImpl, publishStudentResult Method Start");
         Result result = this.resultRepo.getResultByStudentAndPaperId(paperId, studentId);
-        // if (result.getIs_published().equals("approved")) {
-        //     result.setIs_published("Rejected");
-        //     this.resultRepo.save(result);
-        //     return "Result deactivated";
-        // } else {
+        
             result.setIs_published("approved");
             this.resultRepo.save(result);
+            log.info("ResultServiceImpl, publishStudentResult Method End");
             return "Result published  Successfully";
         // }
     }
 
     @Override
     public String DeactiveStudentResult(String studentId, String paperId) {
+            log.info("ResultServiceImpl, DeactiveStudentResult Method Start");
         Result result = this.resultRepo.getResultByStudentAndPaperId(paperId, studentId);
         result.setIs_published("Rejected");
         this.resultRepo.save(result);
+        log.info("ResultServiceImpl, DeactiveStudentResult Method End");
         return null;
     }
 }
