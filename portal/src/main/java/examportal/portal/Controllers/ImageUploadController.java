@@ -21,15 +21,15 @@ public class ImageUploadController {
     @Autowired
     private ImageService imageService;
 
-      @Autowired
+    @Autowired
     private Cloudinary cloudinary;
 
     Logger log = LoggerFactory.getLogger("ImageUploadController.class");
 
-    // uploading file image in this method 
+    // uploading file image in this method
 
     @PostMapping("/upload")
-    public ResponseEntity<Map>UploadMeadiaFile(@RequestParam("image")MultipartFile file) {
+    public ResponseEntity<Map> UploadMeadiaFile(@RequestParam("image") MultipartFile file) {
 
         log.info("ImageUploadController ,UploadMeadiaFile Method Start");
 
@@ -38,7 +38,7 @@ public class ImageUploadController {
         log.info("ImageUploadController ,UploadMeadiaFile Method End");
 
         return new ResponseEntity<>(data, HttpStatus.OK);
-    
+
     }
 
     @Value("${cloudinary.cloud-name}")
@@ -51,26 +51,31 @@ public class ImageUploadController {
     private String apiSecret;
 
     // uploading string image base64 in this method
-     @PostMapping("/uploadBase64Image")
-     public ResponseEntity<String> uploadImage(@RequestBody String base64Image) {
-      Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-              "cloud_name", cloudName,
-                        "api_key", apiKey,
-                       "api_secret", apiSecret));
+    @PostMapping("/uploadBase64Image")
+    public ResponseEntity<String> uploadImage(@RequestBody String base64Image) {
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", cloudName,
+                "api_key", apiKey,
+                "api_secret", apiSecret));
 
-      try {
-          // Upload base64 image to Cloudinary
-          Map<?, ?> result = cloudinary.uploader().upload(base64Image, ObjectUtils.emptyMap());
+        try {
+            // Upload base64 image to Cloudinary
+            Map<?, ?> result = cloudinary.uploader().upload(base64Image, ObjectUtils.emptyMap());
 
-          // Extract public URL of the uploaded image
-          String imageUrl = (String) result.get("url");
+            // Extract public URL of the uploaded image
+            String imageUrl = (String) result.get("url");
 
-          return ResponseEntity.ok("Image uploaded successfully. URL: " + imageUrl);
-      } catch (Exception e) {
-          e.printStackTrace();
-          return ResponseEntity.status(500).body("Error uploading image");
-      }
-  }
+            return ResponseEntity.ok("Image uploaded successfully. URL: " + imageUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error uploading image");
+        }
+    }
 
-  
+    @PostMapping("/uploadSingleImageAtaTmie")
+    public ResponseEntity<String> uploadtatclounary(@RequestBody String image) {
+        String url = this.imageService.uploadbase64incloudnary(image);
+        return new ResponseEntity<>(url, HttpStatus.CREATED);
+    }
+
 }

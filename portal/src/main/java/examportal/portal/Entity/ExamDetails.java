@@ -26,5 +26,10 @@ public class ExamDetails {
     private String paperId;
     private String created_date;
     private String published_date;
+    private String description;
+    private boolean is_shorted;
+    private boolean is_auto_check;
+    private String instruction;
+    private String paper_name;
 
 }

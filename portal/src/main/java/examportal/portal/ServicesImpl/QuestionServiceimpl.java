@@ -1,6 +1,7 @@
 package examportal.portal.ServicesImpl;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
@@ -32,17 +33,20 @@ public class QuestionServiceimpl implements QuestionService  {
     }
 
     @Override
-    public Questions updateQuestions(Questions questions) {
+    public List<Questions> updateQuestions(List<Questions> questions) {
 
        log.info("Question Service Update Question Method Starts");
-
-       Questions updateqQuestions = this.questionsRepo.findById(questions.getQuestionId()).orElseThrow(()-> new ResourceNotFoundException("Question ", "questionId", questions.getQuestionId()));
-       updateqQuestions.setUserAns(questions.getUserAns());
+       List<Questions> qList = new ArrayList<>();
+      for (Questions updateq : questions) {
+         
+       Questions updateqQuestions = this.questionsRepo.findById(updateq.getQuestionId()).orElseThrow(()-> new ResourceNotFoundException("Question ", "questionId", updateq.getQuestionId()));
+       updateqQuestions = updateq;
        Questions update = this.questionsRepo.save(updateqQuestions);
-
+       qList.add(update);
+      }
        log.info("Question Service Update Question Method End's");
 
-       return update;
+       return qList;
     }
 
 

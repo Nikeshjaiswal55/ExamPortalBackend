@@ -27,6 +27,6 @@ public interface ResultService {
 
     public String DeactiveStudentResult(String studentId, String paperId);
 
-
+    List<Result> gettopAssesmentsByOrgnizationId(String orgnizationId);
     
 }

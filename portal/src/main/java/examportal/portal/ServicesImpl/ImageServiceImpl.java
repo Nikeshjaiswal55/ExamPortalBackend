@@ -19,6 +19,7 @@ import examportal.portal.Services.ImageService;
 
 @Service
 public class ImageServiceImpl implements ImageService {
+    private static final Object String = null;
     @Autowired
     private Cloudinary cloudinary;
     Logger log = LoggerFactory.getLogger("ImageServiceImpl");
@@ -68,5 +69,29 @@ public class ImageServiceImpl implements ImageService {
         log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
         return imageUrl;
     }
+    
+    @Override
+    public String uploadbase64incloudnary(String image) {
+        log.info("ImageServiceImpl ,uploadbase64incloudnaru Method Start");
+       
+        String Url="";
 
+            Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                    "cloud_name", cloudName,
+                    "api_key", apiKey,
+                    "api_secret", apiSecret));
+
+            try {
+                // Upload base64 image to Cloudinary
+                Map<?, ?> result = cloudinary.uploader().upload(String, ObjectUtils.emptyMap());
+
+                // Extract public URL of the uploaded image
+                  Url = (String) result.get("url");
+            } catch (Exception e) {
+                e.printStackTrace();
+            log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
+        }
+            return Url;
+
+}
 }

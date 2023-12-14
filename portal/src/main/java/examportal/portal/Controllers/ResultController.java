@@ -165,4 +165,11 @@ public class ResultController {
         return new ResponseEntity<String>(reponse,HttpStatus.OK);
     }
 
+    @GetMapping("/getTopAssesmentByOrgnizationId/{orgnizationId}")
+    public ResponseEntity<List<Result>> getTopAssesmentByOrgnizationId(@PathVariable String orgnizationId)
+    {
+        List<Result> results = this.resultService.gettopAssesmentsByOrgnizationId(orgnizationId);
+        return new ResponseEntity<>(results,HttpStatus.OK);
+    }
+
 }
