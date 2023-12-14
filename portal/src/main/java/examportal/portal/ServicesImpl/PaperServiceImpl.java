@@ -100,6 +100,8 @@ public class PaperServiceImpl implements PaperService {
     CompletableFuture<List<Questions>> saveQuestionsFuture = saveQuestionsAsync(questionsList, newPaper.getPaperId());
 
     ExamDetails examDetails = paperDto.getExamDetails();
+    examDetails.setCreated_date(formattedDate);
+    examDetails.setDescription(newPaper.getDescription());
     examDetails.setPaperId(newPaper.getPaperId());
     this.examDetailsRepo.save(examDetails);
     System.out.println(examDetails + "kger  =============================================================");
@@ -237,7 +239,7 @@ public class PaperServiceImpl implements PaperService {
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperDto.getPaperId());
     examDetails = paperDto.getExamDetails();
     ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
-    
+
     dto.setPaper(paper);
     dto.setQuestions(q2);
     dto.setExamDetails(updateExamDetails);

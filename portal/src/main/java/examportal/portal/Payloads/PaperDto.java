@@ -1,8 +1,6 @@
 package examportal.portal.Payloads;
 
 import java.util.List;
-import java.util.UUID;
-
 import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Paper;
 import examportal.portal.Entity.Questions;
