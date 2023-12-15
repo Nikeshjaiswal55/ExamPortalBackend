@@ -259,6 +259,10 @@ public class ResultServiceImpl implements ResultService {
     public List<Student> getTopThreeStudentByPaper(String paperId) {
         log.info("ResultServiceImpl, getTopThreeStudentByPaper Method Start");
         List<Result> results = this.resultRepo.findAllByPaperIdOrderByPercentageDesc(paperId);
+        if (results.isEmpty()) {
+            throw new ResourceNotFoundException("Result", "PaperId", paperId);
+            
+        }else{
         List<Student> TopThree = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             Result resu = results.get(i);
@@ -266,8 +270,11 @@ public class ResultServiceImpl implements ResultService {
                     .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", resu.getStudentID()));
             TopThree.add(student);
         }
+
+        
         log.info("ResultServiceImpl, getTopThreeStudentByPaper Method End");
         return TopThree;
+    }
     }
 
     @Override

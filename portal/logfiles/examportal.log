@@ -1,221 +1,54 @@
-2023-12-15 15:14:03 [http-nio-9090-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-12-15 15:14:03 [http-nio-9090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-12-15 15:14:03 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
-2023-12-15 15:14:03 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
-2023-12-15 15:14:03 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
-2023-12-15 15:14:03 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@14656790
-2023-12-15 15:14:03 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@17dfc49c
-2023-12-15 15:14:03 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2023-12-15 15:14:03 [http-nio-9090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
-2023-12-15 15:14:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:03 [http-nio-9090-exec-1] DEBUG o.s.web.client.RestTemplate - HTTP GET https://dev-uil1ecwkoehr31jg.us.auth0.com/.well-known/jwks.json
-2023-12-15 15:14:03 [http-nio-9090-exec-1] DEBUG o.s.web.client.RestTemplate - Accept=[text/plain, application/json, application/*+json, */*]
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.web.client.RestTemplate - Response 200 OK
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.web.client.RestTemplate - Reading to [java.lang.String] as "application/json;charset=utf-8"
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getall/questions/1f9ea903-ae99-48d0-89db-acc364c9d5cf", parameters={}
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:14:05 [http-nio-9090-exec-1] INFO  QuestionsController - QuestionsController, getall Method Start
-2023-12-15 15:14:05 [http-nio-9090-exec-1] INFO  QuestionServiceImpl - Question Service getAllQuestionsByID Question Method Starts
-2023-12-15 15:14:05 [http-nio-9090-exec-1] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.paperid=?
-2023-12-15 15:14:06 [http-nio-9090-exec-1] INFO  QuestionServiceImpl - Question Service getAllQuestionByID Method End's
-2023-12-15 15:14:06 [http-nio-9090-exec-1] INFO  QuestionsController - QuestionsController, getall Method End
-2023-12-15 15:14:06 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2023-12-15 15:14:06 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Questions(questionId=c77fcdaa-e2fb-413d-a7e9-56b5a4050d43, options=[girls, boys], questions=who is  (truncated)...]
-2023-12-15 15:14:06 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getall/questions/1f9ea903-ae99-48d0-89db-acc364c9d5cf", parameters={}
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:17:52 [http-nio-9090-exec-3] INFO  QuestionsController - QuestionsController, getall Method Start
-2023-12-15 15:17:52 [http-nio-9090-exec-3] INFO  QuestionServiceImpl - Question Service getAllQuestionsByID Question Method Starts
-2023-12-15 15:17:52 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.paperid=?
-2023-12-15 15:17:53 [http-nio-9090-exec-3] INFO  QuestionServiceImpl - Question Service getAllQuestionByID Method End's
-2023-12-15 15:17:53 [http-nio-9090-exec-3] INFO  QuestionsController - QuestionsController, getall Method End
-2023-12-15 15:17:53 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2023-12-15 15:17:53 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Questions(questionId=c77fcdaa-e2fb-413d-a7e9-56b5a4050d43, options=[girls, boys], questions=who is  (truncated)...]
-2023-12-15 15:17:53 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/105410884551884874922?&sortOrder=asc&pagesize=10", parameters={masked}
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
-2023-12-15 15:18:52 [http-nio-9090-exec-4] INFO  PaperController - PaperController, getallPaperbyuserId method Start
-2023-12-15 15:18:52 [http-nio-9090-exec-4] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method Starts
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.user_id=? order by p1_0.paper_name limit ?,?
-2023-12-15 15:18:52 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
-2023-12-15 15:18:53 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
-2023-12-15 15:18:53 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
-2023-12-15 15:18:54 [http-nio-9090-exec-4] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method End
-2023-12-15 15:18:54 [http-nio-9090-exec-4] INFO  PaperController - PaperController, getallPaperbyuserId method Start
-2023-12-15 15:18:54 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2023-12-15 15:18:54 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperResponce(data=[ExamDetails(examid=86ad5cef-e64c-4bf8-918d-bba54ff99292, examDuration=00:30:00,  (truncated)...]
-2023-12-15 15:18:54 [http-nio-9090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getall/questions/1f9ea903-ae99-48d0-89db-acc364c9d5cf", parameters={}
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.QuestionsController#getall(String)
-2023-12-15 15:18:56 [http-nio-9090-exec-7] INFO  QuestionsController - QuestionsController, getall Method Start
-2023-12-15 15:18:56 [http-nio-9090-exec-7] INFO  QuestionServiceImpl - Question Service getAllQuestionsByID Question Method Starts
-2023-12-15 15:18:56 [http-nio-9090-exec-7] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.paperid=?
-2023-12-15 15:18:57 [http-nio-9090-exec-7] INFO  QuestionServiceImpl - Question Service getAllQuestionByID Method End's
-2023-12-15 15:18:57 [http-nio-9090-exec-7] INFO  QuestionsController - QuestionsController, getall Method End
-2023-12-15 15:18:57 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2023-12-15 15:18:57 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Questions(questionId=c77fcdaa-e2fb-413d-a7e9-56b5a4050d43, options=[girls, boys], questions=who is  (truncated)...]
-2023-12-15 15:18:57 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2023-12-15 15:22:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:12 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:12 [http-nio-9090-exec-9] DEBUG o.s.web.client.RestTemplate - HTTP GET https://dev-uil1ecwkoehr31jg.us.auth0.com/.well-known/jwks.json
-2023-12-15 15:22:12 [http-nio-9090-exec-9] DEBUG o.s.web.client.RestTemplate - Accept=[text/plain, application/json, application/*+json, */*]
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.web.client.RestTemplate - Response 200 OK
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.web.client.RestTemplate - Reading to [java.lang.String] as "application/json;charset=utf-8"
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/activetPaper/1f9ea903-ae99-48d0-89db-acc364c9d5cf/true", parameters={}
-2023-12-15 15:22:13 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#activetPaper(String, boolean)
-2023-12-15 15:22:13 [http-nio-9090-exec-9] INFO  PaperController - PaperController activetPaper method started
-2023-12-15 15:22:13 [http-nio-9090-exec-9] INFO  PaperServiceImpl - paperServiceImpl activatePaper  method Starts
-2023-12-15 15:22:14 [http-nio-9090-exec-9] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.paper_id=?
-2023-12-15 15:22:15 [http-nio-9090-exec-9] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
-2023-12-15 15:22:16 [http-nio-9090-exec-9] DEBUG org.hibernate.SQL - update exam_details set assessment_name=?,branch=?,created_date=?,description=?,exam_duration=?,exam_mode=?,exam_rounds=?,instruction=?,is_active=?,is_setup=?,is_attempted=?,is_auto_check=?,is_shorted=?,minimum_marks=?,paper_checked=?,paper_id=?,paper_name=?,published_date=?,session=?,total_marks=? where examid=?
-2023-12-15 15:22:18 [http-nio-9090-exec-9] INFO  PaperServiceImpl - paperServiceImpl activatePaper  method Ends
-2023-12-15 15:22:18 [http-nio-9090-exec-9] INFO  PaperController - PaperController activetPaper method Ends
-2023-12-15 15:22:18 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
-2023-12-15 15:22:18 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing ["Paper Activated Successfully"]
-2023-12-15 15:22:18 [http-nio-9090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
-2023-12-15 15:22:18 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/sendmailInBackground/1f9ea903-ae99-48d0-89db-acc364c9d5cf", parameters={}
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#processInBackground(String)
-2023-12-15 15:22:18 [http-nio-9090-exec-2] INFO  PaperController - PaperController processInBackground method started
-2023-12-15 15:22:18 [http-nio-9090-exec-2] INFO  Config  -> AsyncConfig.java - Config  -> AsyncConfig.java, getAsyncExecutor Method Start
-2023-12-15 15:22:18 [http-nio-9090-exec-2] INFO  Config  -> AsyncConfig.java - Config  -> AsyncConfig.java, getAsyncExecutor Method End
-2023-12-15 15:22:18 [http-nio-9090-exec-2] INFO  PaperController - PaperController processInBackground method Ends
-2023-12-15 15:22:18 [Async-1] INFO  PaperServiceImpl - paperServiceImpl processInvitationsInBackground  method Starts
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["Background processing started for paperId: 1f9ea903-ae99-48d0-89db-acc364c9d5cf"]
-2023-12-15 15:22:18 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2023-12-15 15:22:18 [Async-1] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
-2023-12-15 15:22:19 [Async-1] DEBUG org.hibernate.SQL - select i1_0.invitation_id,i1_0.paper_id,i1_0.student_id from invited_students i1_0 where i1_0.paper_id=?
-2023-12-15 15:22:19 [Async-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
-2023-12-15 15:22:21 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method Start
-2023-12-15 15:22:26 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method End
-2023-12-15 15:22:27 [Async-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
-2023-12-15 15:22:28 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method Start
-2023-12-15 15:22:32 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method End
-2023-12-15 15:22:33 [Async-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
-2023-12-15 15:22:35 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method Start
-2023-12-15 15:22:39 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method End
-2023-12-15 15:22:40 [Async-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
-2023-12-15 15:22:41 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method Start
-2023-12-15 15:22:46 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method End
-2023-12-15 15:22:47 [Async-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
-2023-12-15 15:22:48 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method Start
-2023-12-15 15:22:53 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method End
-2023-12-15 15:22:53 [Async-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
-2023-12-15 15:22:55 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method Start
-2023-12-15 15:22:59 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method End
-2023-12-15 15:23:00 [Async-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
-2023-12-15 15:23:02 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method Start
-2023-12-15 15:23:06 [Async-1] INFO  EmailServiceImpl.class - EmailServiceImp , sendFormateMail Method End
-2023-12-15 15:23:06 [Async-1] INFO  PaperServiceImpl - paperServiceImpl processInvitationsInBackground  method End
-2023-12-15 15:31:35 [restartedMain] INFO  examportal.portal.PortalApplication - Starting PortalApplication using Java 19.0.2 with PID 25520 (C:\Users\devra\Documents\ExamPortalBackend\portal\build\classes\java\main started by devra in C:\Users\devra\Documents\ExamPortalBackend)
-2023-12-15 15:31:35 [restartedMain] INFO  examportal.portal.PortalApplication - No active profile set, falling back to 1 default profile: "default"
-2023-12-15 15:31:35 [restartedMain] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.PortalApplication
-2023-12-15 15:31:35 [restartedMain] DEBUG o.s.b.d.restart.ChangeableUrls - Matching URLs for reloading : [file:/C:/Users/devra/Documents/ExamPortalBackend/portal/build/resources/main/, file:/C:/Users/devra/Documents/ExamPortalBackend/portal/build/classes/java/main/]
-2023-12-15 15:31:35 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Included patterns for restart : []
-2023-12-15 15:31:35 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter-[\w-]+/, /spring-boot/(bin|build|out)/, /spring-boot-starter/(bin|build|out)/, /spring-boot-devtools/(bin|build|out)/, /spring-boot-actuator/(bin|build|out)/, /spring-boot-autoconfigure/(bin|build|out)/]
-2023-12-15 15:31:35 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-12-15 15:31:35 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-12-15 15:31:35 [restartedMain] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@555c66f
-2023-12-15 15:31:36 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-15 15:31:36 [restartedMain] DEBUG o.s.b.a.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'examportal.portal'. Automatic @Repository and @Entity scanning is enabled.
-2023-12-15 15:31:37 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 216 ms. Found 14 JPA repository interfaces.
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\devra\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\devra\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2023-12-15 15:31:38 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
-2023-12-15 15:31:38 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2023-12-15 15:31:38 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
-2023-12-15 15:31:38 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.s.c.ServletWebServerApplicationContext - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-2023-12-15 15:31:38 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3196 ms
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping servlets: dispatcherServlet urls=[/]
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.s.f.OrderedRequestContextFilter - Filter 'requestContextFilter' configured for use
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.s.f.OrderedCharacterEncodingFilter - Filter 'characterEncodingFilter' configured for use
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.s.DelegatingFilterProxyRegistrationBean$1 - Filter 'springSecurityFilterChain' configured for use
-2023-12-15 15:31:38 [restartedMain] DEBUG o.s.b.w.s.f.OrderedFormContentFilter - Filter 'formContentFilter' configured for use
-2023-12-15 15:31:38 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-15 15:31:38 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
-2023-12-15 15:31:38 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
-2023-12-15 15:31:39 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2023-12-15 15:31:39 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2023-12-15 15:31:43 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@25cb6abd
-2023-12-15 15:31:43 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2023-12-15 15:31:44 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2023-12-15 15:31:44 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2023-12-15 15:31:45 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2023-12-15 15:31:46 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-15 15:31:46 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2023-12-15 15:31:47 [restartedMain] INFO  Config  -> projectConfig.java - Config  -> projectConfig.java, Inside {} getCloudinary Class
-2023-12-15 15:31:48 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-12-15 15:31:48 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig , filterChain Method Start 
-2023-12-15 15:31:48 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 75 mappings in 'requestMappingHandlerMapping'
-2023-12-15 15:31:48 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2023-12-15 15:31:48 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig, jwtDecoder Method Start
-2023-12-15 15:31:48 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig, jwtDecoder Method Ends
-2023-12-15 15:31:48 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b3a6607, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6fe19f60, org.springframework.security.web.context.SecurityContextHolderFilter@c6e73e0, org.springframework.security.web.header.HeaderWriterFilter@5ad7ec68, org.springframework.web.filter.CorsFilter@52389949, org.springframework.security.web.authentication.logout.LogoutFilter@2172777f, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@7099bfba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@148dcb1b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@464bf24d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4493f552, org.springframework.security.web.access.ExceptionTranslationFilter@18844bd8, org.springframework.security.web.access.intercept.AuthorizationFilter@7b8deb2f]
-2023-12-15 15:31:48 [restartedMain] INFO  SwaggerConfig - SwaggerConfig ,openAPI Method Start
-2023-12-15 15:31:48 [restartedMain] INFO  SwaggerConfig - SwaggerConfig ,openAPI Method Ends
-2023-12-15 15:31:48 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2023-12-15 15:31:48 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2023-12-15 15:31:49 [restartedMain] DEBUG o.s.w.s.v.f.FreeMarkerConfigurer - File system access not preferred: using SpringTemplateLoader
-2023-12-15 15:31:49 [restartedMain] DEBUG o.s.b.d.livereload.LiveReloadServer - Starting live reload server on port 35729
-2023-12-15 15:31:49 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2023-12-15 15:31:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 9090 (http) with context path ''
-2023-12-15 15:31:49 [restartedMain] DEBUG o.s.b.a.l.ConditionEvaluationReportLogger - 
+2023-12-15 17:21:44 [restartedMain] INFO  examportal.portal.PortalApplication - Starting PortalApplication using Java 17.0.9 with PID 21292 (D:\Git\ExamPortalBackend\portal\bin\main started by HP in D:\Git\ExamPortalBackend)
+2023-12-15 17:21:44 [restartedMain] INFO  examportal.portal.PortalApplication - No active profile set, falling back to 1 default profile: "default"
+2023-12-15 17:21:44 [restartedMain] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.PortalApplication
+2023-12-15 17:21:44 [restartedMain] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@714b9bdc
+2023-12-15 17:21:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.a.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'examportal.portal'. Automatic @Repository and @Entity scanning is enabled.
+2023-12-15 17:21:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 56 ms. Found 14 JPA repository interfaces.
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\HP\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\HP\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2023-12-15 17:21:45 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2023-12-15 17:21:45 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-12-15 17:21:45 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-15 17:21:45 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.s.c.ServletWebServerApplicationContext - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2023-12-15 17:21:45 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 423 ms
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping servlets: dispatcherServlet urls=[/]
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.s.f.OrderedRequestContextFilter - Filter 'requestContextFilter' configured for use
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.s.f.OrderedCharacterEncodingFilter - Filter 'characterEncodingFilter' configured for use
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.s.DelegatingFilterProxyRegistrationBean$1 - Filter 'springSecurityFilterChain' configured for use
+2023-12-15 17:21:45 [restartedMain] DEBUG o.s.b.w.s.f.OrderedFormContentFilter - Filter 'formContentFilter' configured for use
+2023-12-15 17:21:45 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-15 17:21:45 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-15 17:21:45 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-13 - Starting...
+2023-12-15 17:21:49 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-13 - Added connection com.mysql.cj.jdbc.ConnectionImpl@796fbca8
+2023-12-15 17:21:49 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-13 - Start completed.
+2023-12-15 17:21:49 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-15 17:21:49 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-15 17:21:49 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-15 17:21:49 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-15 17:21:50 [restartedMain] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Repo.UserRepo
+2023-12-15 17:21:50 [restartedMain] INFO  Config  -> projectConfig.java - Config  -> projectConfig.java, Inside {} getCloudinary Class
+2023-12-15 17:21:50 [restartedMain] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Repo.OrgnizationRepo
+2023-12-15 17:21:50 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-15 17:21:50 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig , filterChain Method Start 
+2023-12-15 17:21:50 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 77 mappings in 'requestMappingHandlerMapping'
+2023-12-15 17:21:50 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2023-12-15 17:21:50 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig, jwtDecoder Method Start
+2023-12-15 17:21:50 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig, jwtDecoder Method Ends
+2023-12-15 17:21:50 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@695f6794, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@15151023, org.springframework.security.web.context.SecurityContextHolderFilter@519b3b15, org.springframework.security.web.header.HeaderWriterFilter@69010a98, org.springframework.web.filter.CorsFilter@17993f01, org.springframework.security.web.authentication.logout.LogoutFilter@1929f161, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@3fab3bf9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3abb2430, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@70d6b293, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@718bbaf8, org.springframework.security.web.access.ExceptionTranslationFilter@439126c2, org.springframework.security.web.access.intercept.AuthorizationFilter@3f57bb23]
+2023-12-15 17:21:50 [restartedMain] INFO  SwaggerConfig - SwaggerConfig ,openAPI Method Start
+2023-12-15 17:21:50 [restartedMain] INFO  SwaggerConfig - SwaggerConfig ,openAPI Method Ends
+2023-12-15 17:21:50 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-12-15 17:21:50 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-12-15 17:21:50 [restartedMain] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-12-15 17:21:50 [restartedMain] DEBUG o.s.w.s.v.f.FreeMarkerConfigurer - File system access not preferred: using SpringTemplateLoader
+2023-12-15 17:21:50 [restartedMain] WARN  o.s.b.a.f.FreeMarkerAutoConfiguration - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-15 17:21:50 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-12-15 17:21:50 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 9090 (http) with context path ''
+2023-12-15 17:21:50 [restartedMain] DEBUG o.s.b.a.l.ConditionEvaluationReportLogger - 
 
 
 ============================
@@ -1690,127 +1523,565 @@ Unconditional classes:
 
 
 
-2023-12-15 15:31:49 [restartedMain] INFO  examportal.portal.PortalApplication - Started PortalApplication in 14.855 seconds (process running for 15.659)
-2023-12-15 15:31:49 [restartedMain] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state LivenessState changed to CORRECT
-2023-12-15 15:31:49 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
-2023-12-15 15:31:49 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Immediately restarting application
-2023-12-15 15:31:49 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Starting application examportal.portal.PortalApplication with URLs [file:/C:/Users/devra/Documents/ExamPortalBackend/portal/build/resources/main/, file:/C:/Users/devra/Documents/ExamPortalBackend/portal/build/classes/java/main/]
-2023-12-15 15:31:49 [restartedMain] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
-2023-12-15 15:34:27 [http-nio-9090-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-12-15 15:34:27 [http-nio-9090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@44178376
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@70d9f277
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2023-12-15 15:34:27 [http-nio-9090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 13 ms
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:34:27 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2023-12-15 15:34:33 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:33 [http-nio-9090-exec-4] DEBUG o.s.web.client.RestTemplate - HTTP GET https://dev-uil1ecwkoehr31jg.us.auth0.com/.well-known/jwks.json
-2023-12-15 15:34:33 [http-nio-9090-exec-4] DEBUG o.s.web.client.RestTemplate - Accept=[text/plain, application/json, application/*+json, */*]
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.web.client.RestTemplate - Response 200 OK
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.web.client.RestTemplate - Reading to [java.lang.String] as "application/json;charset=utf-8"
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getPaperbyPaperId/e64efda5-1e14-489b-bdfa-4e6e07774622", parameters={}
-2023-12-15 15:34:35 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
-2023-12-15 15:34:35 [http-nio-9090-exec-4] INFO  PaperController - PaperController getpaperByID method started
-2023-12-15 15:34:35 [http-nio-9090-exec-4] INFO  PaperServiceImpl - paperServiceIml getPaperById method Starts :
-2023-12-15 15:34:36 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.paper_id=?
-2023-12-15 15:34:37 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.paperid=?
-2023-12-15 15:34:38 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
-2023-12-15 15:34:38 [http-nio-9090-exec-4] INFO  PaperServiceImpl - paperServiceIml encodeObject method Starts 
-2023-12-15 15:34:38 [http-nio-9090-exec-4] INFO  PaperServiceImpl - paperServiceIml getPaperByID method End's :
-2023-12-15 15:34:38 [http-nio-9090-exec-4] INFO  PaperController - PaperController getall paper method End's
-2023-12-15 15:34:38 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2023-12-15 15:34:38 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperStringDto(data=%7B%22paperId%22%3A%22e64efda5-1e14-489b-bdfa-4e6e07774622%22%2C%22paper%22%3A%7 (truncated)...]
-2023-12-15 15:34:38 [http-nio-9090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2023-12-15 15:35:44 [http-nio-9090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/update/paper", parameters={}
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#updatePaper(PaperDto)
-2023-12-15 15:36:01 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [PaperDto(paperId=e64efda5-1e14-489b-bdfa-4e6e07774622, paper=Paper(paperId=e64efda5-1e14-489b-bdfa-4 (truncated)...]
-2023-12-15 15:36:01 [http-nio-9090-exec-6] INFO  PaperController - PaperController Update paper  method started
-2023-12-15 15:36:01 [http-nio-9090-exec-6] INFO  PaperServiceImpl - PaperSerivceImp Update paper method Starts :
-2023-12-15 15:36:02 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.paper_id=?
-2023-12-15 15:36:05 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.question_id=?
-2023-12-15 15:36:08 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.question_id=?
-2023-12-15 15:36:09 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/user/byid/657c184e717a1f35b12a1ec7", parameters={}
-2023-12-15 15:36:09 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-10] INFO  UserController.class - UserController, createUser Method Ends
-2023-12-15 15:36:09 [http-nio-9090-exec-10] INFO  UserServiceImpl - userService , getAllUser Method Start
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getOrgnizationByUserId/657c184e717a1f35b12a1ec7", parameters={}
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
-2023-12-15 15:36:09 [http-nio-9090-exec-1] INFO  OrgnizationController.class - OrgnizationController , getOrgnization Method Start
-2023-12-15 15:36:09 [http-nio-9090-exec-1] DEBUG org.hibernate.SQL - select o1_0.orgnization_id,o1_0.orgnization_name,o1_0.orgnization_type,o1_0.user_id from orgnizations o1_0 where o1_0.user_id=?
-2023-12-15 15:36:10 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler examportal.portal.Exceptions.GlobalExceptionHandler#resourceNotFoundExceptionHandler(ResourceNotFoundException)
-2023-12-15 15:36:10 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2023-12-15 15:36:10 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ApiResponse(massage=Orgnization not found with this UserId : 657c184e717a1f35b12a1ec7 , success=fals (truncated)...]
-2023-12-15 15:36:10 [http-nio-9090-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [examportal.portal.Exceptions.ResourceNotFoundException: Orgnization not found with this UserId : 657c184e717a1f35b12a1ec7 ]
-2023-12-15 15:36:10 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
-2023-12-15 15:36:10 [http-nio-9090-exec-10] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
-2023-12-15 15:36:11 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.examid=?
-2023-12-15 15:36:11 [http-nio-9090-exec-10] INFO  UserServiceImpl - userService , getAllUser Method Start
-2023-12-15 15:36:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2023-12-15 15:36:11 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [User(userId=657c184e717a1f35b12a1ec7, email=dixitp034@gmail.com, name=null, picture=null, role=Stude (truncated)...]
-2023-12-15 15:36:11 [http-nio-9090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2023-12-15 15:36:12 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
-2023-12-15 15:36:13 [http-nio-9090-exec-6] DEBUG org.hibernate.SQL - update exam_details set assessment_name=?,branch=?,created_date=?,description=?,exam_duration=?,exam_mode=?,exam_rounds=?,instruction=?,is_active=?,is_setup=?,is_attempted=?,is_auto_check=?,is_shorted=?,minimum_marks=?,paper_checked=?,paper_id=?,paper_name=?,published_date=?,session=?,total_marks=? where examid=?
-2023-12-15 15:36:14 [http-nio-9090-exec-6] INFO  PaperServiceImpl - paperService Update paper method End :
-2023-12-15 15:36:14 [http-nio-9090-exec-6] INFO  PaperController - PaperController UpdatePaper method End's
-2023-12-15 15:36:14 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2023-12-15 15:36:14 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperDto(paperId=null, paper=Paper(paperId=e64efda5-1e14-489b-bdfa-4e6e07774622, userId=105410884551 (truncated)...]
-2023-12-15 15:36:14 [http-nio-9090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-15 17:21:50 [restartedMain] INFO  examportal.portal.PortalApplication - Started PortalApplication in 5.778 seconds (process running for 3565.965)
+2023-12-15 17:21:50 [restartedMain] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state LivenessState changed to CORRECT
+2023-12-15 17:21:50 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2023-12-15 17:21:50 [restartedMain] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2023-12-15 17:22:47 [http-nio-9090-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-15 17:22:47 [http-nio-9090-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-12-15 17:22:47 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2023-12-15 17:22:47 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2023-12-15 17:22:47 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2023-12-15 17:22:47 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6359f8a8
+2023-12-15 17:22:47 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@191d0262
+2023-12-15 17:22:47 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-12-15 17:22:47 [http-nio-9090-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2023-12-15 17:22:47 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:47 [http-nio-9090-exec-2] DEBUG o.s.web.client.RestTemplate - HTTP GET https://dev-uil1ecwkoehr31jg.us.auth0.com/.well-known/jwks.json
+2023-12-15 17:22:47 [http-nio-9090-exec-2] DEBUG o.s.web.client.RestTemplate - Accept=[text/plain, application/json, application/*+json, */*]
+2023-12-15 17:22:48 [http-nio-9090-exec-2] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2023-12-15 17:22:48 [http-nio-9090-exec-2] DEBUG o.s.web.client.RestTemplate - Reading to [java.lang.String] as "application/json;charset=utf-8"
+2023-12-15 17:22:53 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/115619680420997183545?filter=paper_name:ABS", parameters={masked}
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:22:54 [http-nio-9090-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.PaperController
+2023-12-15 17:22:54 [http-nio-9090-exec-3] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-15 17:22:54 [http-nio-9090-exec-3] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserId  method Starts
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.user_id=? and (? is null or p1_0.is_active=?) and (? is null or p1_0.created_date like replace(concat(?,'%'),'\\','\\\\')) and (? is null or p1_0.published_date like replace(concat(?,'%'),'\\','\\\\')) and (? is null or p1_0.paper_name like replace(concat(?,'%'),'\\','\\\\')) order by p1_0.paper_name limit ?,?
+2023-12-15 17:22:54 [http-nio-9090-exec-3] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserId  method End
+2023-12-15 17:22:54 [http-nio-9090-exec-3] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperResponce(data=[], totalElements=0, totalPages=0, currentPage=0, pagesize=10, islastPage=true)]
+2023-12-15 17:22:54 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/105410884551884874922", parameters={}
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/course/byUserId/105410884551884874922", parameters={}
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-8] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-15 17:23:02 [http-nio-9090-exec-8] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method Starts
+2023-12-15 17:23:02 [http-nio-9090-exec-7] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.CourseController
+2023-12-15 17:23:02 [http-nio-9090-exec-7] INFO  CourseController.class - CourseController,getCourseByUserId Method Start
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.user_id=? order by p1_0.paper_name limit ?,?
+2023-12-15 17:23:02 [http-nio-9090-exec-7] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method Start
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG org.hibernate.SQL - select c1_0.course_id,c1_0.course_name,c1_0.duration,c1_0.user_id,c1_0.user_name from course c1_0 where c1_0.user_id=? order by c1_0.course_name limit ?,?
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopRankers/9d3d731b-b633-4313-ba32-51db841ab3d6", parameters={}
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getCountOfStudentAndPaperBy_OGId/9d3d731b-b633-4313-ba32-51db841ab3d6", parameters={}
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopAssesmentByOrgnizationId/9d3d731b-b633-4313-ba32-51db841ab3d6", parameters={}
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:02 [http-nio-9090-exec-10] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.StudentController
+2023-12-15 17:23:02 [http-nio-9090-exec-9] INFO  StudentController.class - StudentController , getAllStudent Method Start
+2023-12-15 17:23:02 [http-nio-9090-exec-10] INFO  StudentController.class - StudentController , getAllStudent Method Start
+2023-12-15 17:23:02 [http-nio-9090-exec-9] INFO  StudentServiceImpl - StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method Start
+2023-12-15 17:23:02 [http-nio-9090-exec-1] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.ResultController
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG org.hibernate.SQL - select count(s1_0.studentid) from student s1_0 where s1_0.orgnization_id=?
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.orgnization_id=?
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG org.hibernate.SQL - select s1_0.studentid,s1_0.branch,s1_0.email,s1_0.is_attempted,s1_0.name,s1_0.orgnization_id,s1_0.paper_id,s1_0.top_marks,s1_0.top_paper_id,s1_0.year from student s1_0 where s1_0.orgnization_id=? order by s1_0.top_marks desc limit 5
+2023-12-15 17:23:02 [http-nio-9090-exec-9] DEBUG org.hibernate.SQL - select count(p1_0.paper_id) from paper p1_0 where p1_0.orgnization_id=?
+2023-12-15 17:23:02 [http-nio-9090-exec-8] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-15 17:23:02 [http-nio-9090-exec-10] INFO  StudentController.class - StudentController , getAllStudent Method Ends
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Student(studentid=657c376a07675b9c7ef6da4f, email=c1@gmail.com, name=null, orgnizationId=9d3d731b-b (truncated)...]
+2023-12-15 17:23:02 [http-nio-9090-exec-7] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method End
+2023-12-15 17:23:02 [http-nio-9090-exec-7] INFO  CourseController.class - CourseController,getCourseByUserId Method Ends
+2023-12-15 17:23:02 [http-nio-9090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [CourseResponce(data=[Course(course_id=4288c37c-72ea-42c7-a3d6-345b36fe078e, course_name=bca, userId= (truncated)...]
+2023-12-15 17:23:02 [http-nio-9090-exec-1] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-15 17:23:02 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-15 17:23:03 [http-nio-9090-exec-9] INFO  StudentServiceImpl - StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method End
+2023-12-15 17:23:03 [http-nio-9090-exec-9] INFO  StudentController.class - StudentController , getAllStudent Method Ends
+2023-12-15 17:23:03 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:03 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[9, 2]]
+2023-12-15 17:23:03 [http-nio-9090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-15 17:23:03 [http-nio-9090-exec-8] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-15 17:23:03 [http-nio-9090-exec-1] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-15 17:23:03 [http-nio-9090-exec-8] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method End
+2023-12-15 17:23:03 [http-nio-9090-exec-8] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-15 17:23:03 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:03 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperResponce(data=[ExamDetails(examid=659581f9-a23f-43c3-94e7-df722bfb3233, examDuration=00:30:00,  (truncated)...]
+2023-12-15 17:23:03 [http-nio-9090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-15 17:23:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:03 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Result(resultID=a3ed7635-3669-475e-9832-42f38222fe72, studentID=657c376a07675b9c7ef6da4f, marks=100 (truncated)...]
+2023-12-15 17:23:03 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/ede9a1b4-88ba-401f-b066-1a457d788d4b", parameters={}
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/47994280-bab2-4765-9c18-85a3babb39d5", parameters={}
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:03 [http-nio-9090-exec-2] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-15 17:23:03 [http-nio-9090-exec-3] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-15 17:23:03 [http-nio-9090-exec-2] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-15 17:23:03 [http-nio-9090-exec-3] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-15 17:23:03 [http-nio-9090-exec-2] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-15 17:23:03 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-15 17:23:04 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler examportal.portal.Exceptions.GlobalExceptionHandler#resourceNotFoundExceptionHandler(ResourceNotFoundException)
+2023-12-15 17:23:04 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:04 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ApiResponse(massage=Result not found with this PaperId : 47994280-bab2-4765-9c18-85a3babb39d5 , succ (truncated)...]
+2023-12-15 17:23:04 [http-nio-9090-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [examportal.portal.Exceptions.ResourceNotFoundException: Result not found with this PaperId : 47994280-bab2-4765-9c18-85a3babb39d5 ]
+2023-12-15 17:23:04 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
+2023-12-15 17:23:04 [http-nio-9090-exec-2] DEBUG org.hibernate.SQL - select s1_0.studentid,s1_0.branch,s1_0.email,s1_0.is_attempted,s1_0.name,s1_0.orgnization_id,s1_0.paper_id,s1_0.top_marks,s1_0.top_paper_id,s1_0.year from student s1_0 where s1_0.studentid=?
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Failed to complete request: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+2023-12-15 17:23:05 [http-nio-9090-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1] with root cause
+java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Unknown Source) ~[na:na]
+	at java.base/java.util.Objects.checkIndex(Unknown Source) ~[na:na]
+	at java.base/java.util.ArrayList.get(Unknown Source) ~[na:na]
+	at examportal.portal.ServicesImpl.ResultServiceImpl.getTopThreeStudentByPaper(ResultServiceImpl.java:268) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.13.jar:6.0.13]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:699) ~[spring-aop-6.0.13.jar:6.0.13]
+	at examportal.portal.ServicesImpl.ResultServiceImpl$$SpringCGLIB$$0.getTopThreeStudentByPaper(<generated>) ~[main/:na]
+	at examportal.portal.Controllers.ResultController.getTopThreeStudentsByPaperId(ResultController.java:99) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:145) ~[spring-security-oauth2-resource-server-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - "ERROR" dispatch for GET "/error", parameters={}
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=Fri Dec 15 17:23:05 IST 2023, status=500, error=Internal Server Error, trace=java.lang.In (truncated)...]
+2023-12-15 17:23:05 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Exiting from "ERROR" dispatch, status 500
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/course/byUserId/105410884551884874922", parameters={}
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/105410884551884874922", parameters={}
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:23:08 [http-nio-9090-exec-9] INFO  CourseController.class - CourseController,getCourseByUserId Method Start
+2023-12-15 17:23:08 [http-nio-9090-exec-7] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-15 17:23:08 [http-nio-9090-exec-9] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method Start
+2023-12-15 17:23:08 [http-nio-9090-exec-7] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method Starts
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG org.hibernate.SQL - select c1_0.course_id,c1_0.course_name,c1_0.duration,c1_0.user_id,c1_0.user_name from course c1_0 where c1_0.user_id=? order by c1_0.course_name limit ?,?
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.user_id=? order by p1_0.paper_name limit ?,?
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopAssesmentByOrgnizationId/9d3d731b-b633-4313-ba32-51db841ab3d6", parameters={}
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopRankers/9d3d731b-b633-4313-ba32-51db841ab3d6", parameters={}
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.orgnization_id=?
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getCountOfStudentAndPaperBy_OGId/9d3d731b-b633-4313-ba32-51db841ab3d6", parameters={}
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-15 17:23:08 [http-nio-9090-exec-1] INFO  StudentController.class - StudentController , getAllStudent Method Start
+2023-12-15 17:23:08 [http-nio-9090-exec-8] INFO  StudentController.class - StudentController , getAllStudent Method Start
+2023-12-15 17:23:08 [http-nio-9090-exec-8] INFO  StudentServiceImpl - StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method Start
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG org.hibernate.SQL - select count(s1_0.studentid) from student s1_0 where s1_0.orgnization_id=?
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG org.hibernate.SQL - select s1_0.studentid,s1_0.branch,s1_0.email,s1_0.is_attempted,s1_0.name,s1_0.orgnization_id,s1_0.paper_id,s1_0.top_marks,s1_0.top_paper_id,s1_0.year from student s1_0 where s1_0.orgnization_id=? order by s1_0.top_marks desc limit 5
+2023-12-15 17:23:08 [http-nio-9090-exec-9] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method End
+2023-12-15 17:23:08 [http-nio-9090-exec-9] INFO  CourseController.class - CourseController,getCourseByUserId Method Ends
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [CourseResponce(data=[Course(course_id=4288c37c-72ea-42c7-a3d6-345b36fe078e, course_name=bca, userId= (truncated)...]
+2023-12-15 17:23:08 [http-nio-9090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-15 17:23:08 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-15 17:23:08 [http-nio-9090-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-15 17:23:08 [http-nio-9090-exec-1] INFO  StudentController.class - StudentController , getAllStudent Method Ends
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Student(studentid=657c376a07675b9c7ef6da4f, email=c1@gmail.com, name=null, orgnizationId=9d3d731b-b (truncated)...]
+2023-12-15 17:23:08 [http-nio-9090-exec-8] DEBUG org.hibernate.SQL - select count(p1_0.paper_id) from paper p1_0 where p1_0.orgnization_id=?
+2023-12-15 17:23:08 [http-nio-9090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-15 17:23:09 [http-nio-9090-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-15 17:23:09 [http-nio-9090-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-15 17:23:09 [http-nio-9090-exec-8] INFO  StudentServiceImpl - StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method End
+2023-12-15 17:23:09 [http-nio-9090-exec-8] INFO  StudentController.class - StudentController , getAllStudent Method Ends
+2023-12-15 17:23:09 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:09 [http-nio-9090-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[9, 2]]
+2023-12-15 17:23:09 [http-nio-9090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-15 17:23:09 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:09 [http-nio-9090-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Result(resultID=a3ed7635-3669-475e-9832-42f38222fe72, studentID=657c376a07675b9c7ef6da4f, marks=100 (truncated)...]
+2023-12-15 17:23:09 [http-nio-9090-exec-7] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method End
+2023-12-15 17:23:09 [http-nio-9090-exec-7] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-15 17:23:09 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:09 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperResponce(data=[ExamDetails(examid=659581f9-a23f-43c3-94e7-df722bfb3233, examDuration=00:30:00,  (truncated)...]
+2023-12-15 17:23:09 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-15 17:23:09 [http-nio-9090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/ede9a1b4-88ba-401f-b066-1a457d788d4b", parameters={}
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/47994280-bab2-4765-9c18-85a3babb39d5", parameters={}
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-15 17:23:09 [http-nio-9090-exec-2] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-15 17:23:09 [http-nio-9090-exec-4] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-15 17:23:09 [http-nio-9090-exec-4] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-15 17:23:09 [http-nio-9090-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-15 17:23:10 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler examportal.portal.Exceptions.GlobalExceptionHandler#resourceNotFoundExceptionHandler(ResourceNotFoundException)
+2023-12-15 17:23:10 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:10 [http-nio-9090-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ApiResponse(massage=Result not found with this PaperId : 47994280-bab2-4765-9c18-85a3babb39d5 , succ (truncated)...]
+2023-12-15 17:23:10 [http-nio-9090-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [examportal.portal.Exceptions.ResourceNotFoundException: Result not found with this PaperId : 47994280-bab2-4765-9c18-85a3babb39d5 ]
+2023-12-15 17:23:10 [http-nio-9090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
+2023-12-15 17:23:10 [http-nio-9090-exec-2] DEBUG org.hibernate.SQL - select s1_0.studentid,s1_0.branch,s1_0.email,s1_0.is_attempted,s1_0.name,s1_0.orgnization_id,s1_0.paper_id,s1_0.top_marks,s1_0.top_paper_id,s1_0.year from student s1_0 where s1_0.studentid=?
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Failed to complete request: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+2023-12-15 17:23:11 [http-nio-9090-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1] with root cause
+java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Unknown Source) ~[na:na]
+	at java.base/java.util.Objects.checkIndex(Unknown Source) ~[na:na]
+	at java.base/java.util.ArrayList.get(Unknown Source) ~[na:na]
+	at examportal.portal.ServicesImpl.ResultServiceImpl.getTopThreeStudentByPaper(ResultServiceImpl.java:268) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.13.jar:6.0.13]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:699) ~[spring-aop-6.0.13.jar:6.0.13]
+	at examportal.portal.ServicesImpl.ResultServiceImpl$$SpringCGLIB$$0.getTopThreeStudentByPaper(<generated>) ~[main/:na]
+	at examportal.portal.Controllers.ResultController.getTopThreeStudentsByPaperId(ResultController.java:99) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:145) ~[spring-security-oauth2-resource-server-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - "ERROR" dispatch for GET "/error", parameters={}
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=Fri Dec 15 17:23:11 IST 2023, status=500, error=Internal Server Error, trace=java.lang.In (truncated)...]
+2023-12-15 17:23:11 [http-nio-9090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Exiting from "ERROR" dispatch, status 500
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/105410884551884874922?filter=paper_name:ABS", parameters={masked}
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-15 17:24:26 [http-nio-9090-exec-7] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-15 17:24:26 [http-nio-9090-exec-7] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserId  method Starts
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.user_id=? and (? is null or p1_0.is_active=?) and (? is null or p1_0.created_date like replace(concat(?,'%'),'\\','\\\\')) and (? is null or p1_0.published_date like replace(concat(?,'%'),'\\','\\\\')) and (? is null or p1_0.paper_name like replace(concat(?,'%'),'\\','\\\\')) order by p1_0.paper_name limit ?,?
+2023-12-15 17:24:26 [http-nio-9090-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.paper_name,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-15 17:24:27 [http-nio-9090-exec-7] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserId  method End
+2023-12-15 17:24:27 [http-nio-9090-exec-7] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-15 17:24:27 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-12-15 17:24:27 [http-nio-9090-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperResponce(data=[ExamDetails(examid=c542c857-d40f-4bca-a000-49d0dd6a6b52, examDuration=00:15:00,  (truncated)...]
+2023-12-15 17:24:27 [http-nio-9090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED

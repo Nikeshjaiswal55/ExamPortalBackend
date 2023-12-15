@@ -95,6 +95,7 @@ public class PaperServiceImpl implements PaperService {
     paper.setCreated_date(formattedDate);
     paper.setIs_Active("false");
     paper.set_setup(true);
+    paper.setPaper_name(paperDto.getExamDetails().getPaper_name());
     Paper newPaper = this.paperRepo.save(paper);
 
     List<Questions> questionsList = paperDto.getQuestions();
@@ -297,14 +298,14 @@ public class PaperServiceImpl implements PaperService {
 
   // With FIlter
   @Override
-  public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filter) {
+  public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filters) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
 
     Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
         : Sort.by(dto.getProperty()).descending();
     Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
 
-    Page<Paper> page = this.paperRepo.findByFiter(userId, p, filter);
+    Page<Paper> page = this.paperRepo.findByFiter(userId, p, filters);
     List<Paper> paper = page.getContent();
     List<ExamDetails> examDetails = new ArrayList<>();
 
