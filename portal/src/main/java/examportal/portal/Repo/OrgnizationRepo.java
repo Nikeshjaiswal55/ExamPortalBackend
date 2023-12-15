@@ -18,7 +18,5 @@ public interface OrgnizationRepo extends JpaRepository<Orgnizations,String>{
 
     List<Orgnizations> findByOrgnizationId(String orgnizationId);
     
-    @Query("SELECT s FROM Orgnizations s WHERE s.name=:name")
-    List<Orgnizations> getAllOrgnizationsByName(@Param("name")String name);
     
 }

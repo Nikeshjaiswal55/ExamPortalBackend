@@ -16,6 +16,6 @@ public class Questions {
     private String correctAns;
     private String userAns;
     private String paperID;
-    private String name;
+   
     
 }

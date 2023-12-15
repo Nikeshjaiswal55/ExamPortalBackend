@@ -17,7 +17,7 @@ public interface MentorService {
     //delete mentor
     String deleteMentor(String id);
     //get All meter by name
-     List<Mentor>getAllMentorsByName(String name);
+    
     
 }
 

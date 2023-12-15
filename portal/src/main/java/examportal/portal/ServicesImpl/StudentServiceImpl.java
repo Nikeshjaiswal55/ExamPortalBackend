@@ -1,13 +1,8 @@
 package examportal.portal.ServicesImpl;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.concurrent.CompletableFuture;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -43,7 +35,7 @@ import net.bytebuddy.utility.RandomString;
 @Service
 public class StudentServiceImpl implements StudentSevices {
 
-    Logger log = LoggerFactory.getLogger("StudentServiceImpl.class");
+    Logger log = LoggerFactory.getLogger("StudentServiceImpl");
 
     @Autowired
     private StudentRepo studentRepo;
@@ -97,23 +89,23 @@ public class StudentServiceImpl implements StudentSevices {
     @Override
     public Student updateStudent(Student student) {
 
-        log.info("StudentServiceImpl , getSingleStudent Method Start");
+        log.info("StudentServiceImpl , updateStudent Method Start");
         Student s = studentRepo.findById(student.getStudentid())
                 .orElseThrow(() -> new ResourceNotFoundException("Student", "id", student.getStudentid()));
         s.setEmail(student.getEmail());
         s.setName(student.getName());
         Student updateStudtnt = this.studentRepo.save(s);
-        log.info("StudentServiceImpl , getSingleStudent Method Ends");
+        log.info("StudentServiceImpl , updateStudent Method Ends");
         return updateStudtnt;
     }
 
     @Override
     public String deleteStudent(String Id) {
-        log.info("StudentServiceImpl , getSingleStudent Method Start");
+        log.info("StudentServiceImpl , deleteStudent Method Start");
 
         studentRepo.deleteById(Id);
 
-        log.info("StudentServiceImpl , getSingleStudent Method Ends");
+        log.info("StudentServiceImpl , deleteStudent Method Ends");
         return "Record Deleted";
     }
 
@@ -134,21 +126,21 @@ public class StudentServiceImpl implements StudentSevices {
             }
             students.add(s);
         }
-
+        log.info("StudentServiceImpl , getAllStudentByPaperId Method End");
         return students;
 
     }
 
     @Deprecated
     @Override
-    public CompletableFuture<String> inviteStudents(InvitationDto dto) {
-
+    public String inviteStudents(InvitationDto dto) {
+        log.info("StudentServiceImpl , inviteStudents Method Start");
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
         System.out.println(examDetails.getBranch()+"=====================================================================================================");
         
         if (examDetails.getBranch() !=null) {
 
-            List<Student> students = this.studentRepo.getAllStudentBYBranch(examDetails.getBranch());
+            List<Student> students = this.studentRepo.getAllStudentBYBranchAndYear(examDetails.getBranch(),examDetails.getSession());
     
             for (Student student : students) {
                 Student st = this.studentRepo.getszStudentByEmail(student.getEmail());
@@ -169,12 +161,13 @@ public class StudentServiceImpl implements StudentSevices {
                 }
             }
         }
-         return  CompletableFuture.completedFuture("Student added successfully");
+        log.info("StudentServiceImpl , inviteStudents Method End");
+         return  "Student added successfully";
     }
     
 
     public String handleExistingStudent(InvitationDto dto, String studentId) {
-
+            log.info("StudentServiceImpl , handleExistingStudent Method Start");
         InvitedStudents invitedStudents = new InvitedStudents();
         invitedStudents.setPaperId(dto.getPaperId());
         invitedStudents.setStudentId(studentId);
@@ -182,39 +175,51 @@ public class StudentServiceImpl implements StudentSevices {
 
         Assessment assessment = createAssessment(dto, studentId);
 
+        log.info("StudentServiceImpl , handleExistingStudent Method End");
+
         return "invited successfully";
     }
 
     public Assessment createAssessment(InvitationDto dto, String studentId) {
+        log.info("StudentServiceImpl , createAssessment Method Start");
         Assessment assessment = new Assessment();
         assessment.setPaperId(dto.getPaperId());
         assessment.setUserId(studentId);
         assessment.setOrgnizationId(dto.getOrgnizationId());
+        log.info("StudentServiceImpl , createAssessment Method End");
         return assessmentRepo.save(assessment);
     }
 
     public String encodeString(String inputString) {
+        log.info("StudentServiceImpl , encodeString Method Start");
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
             String encodedString = UriUtils.encode(objectMapper.writeValueAsString(inputString), StandardCharsets.UTF_8);
+            log.info("StudentServiceImpl , encodeString Method End");
             return encodedString;
         } catch (Exception e) {
             // Handle the exception, e.g., log or throw a custom exception
             e.printStackTrace();
+            log.info("StudentServiceImpl , encodeString Method End");
             return null;
         }
+
+
     }
 
     public String decodeString(String encodedString) {
+        log.info("StudentServiceImpl , decodeString Method Start");
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
             String decodedString = UriUtils.decode(encodedString, StandardCharsets.UTF_8);
+            log.info("StudentServiceImpl , decodeString Method End");
             return decodedString;
         } catch (Exception e) {
             // Handle the exception, e.g., log or throw a custom exception
             e.printStackTrace();
+            log.info("StudentServiceImpl , decodeString Method End");
             return null;
         }
     }
@@ -222,7 +227,7 @@ public class StudentServiceImpl implements StudentSevices {
     @Deprecated
     public void handleNewStudent(InvitationDto dto, String email) {
         try {
-
+            log.info("StudentServiceImpl , handleNewStudent Method Start");
             String password = RandomString.make(12) + "K80";
 
             // String encode = encodeString(password);
@@ -243,7 +248,7 @@ public class StudentServiceImpl implements StudentSevices {
             student.setOrgnizationId(dto.getOrgnizationId());
             student.setPaperId(dto.getPaperId());
             Student newsStudent = this.studentRepo.save(student);
-
+            log.info("StudentServiceImpl , handleNewStudent Method End");
             handleExistingStudent(dto, newsStudent.getStudentid());
 
         } catch (Exception e) {
@@ -251,29 +256,33 @@ public class StudentServiceImpl implements StudentSevices {
         }
     }
 
-    @Override
-    public List<Student> getAllStudentByName(String name) {
-        log.info("StudentserviceIml, getAllUserByName method is start");
-        List<Student> list = getAllStudentByName(name);
-        if (list.isEmpty()) {
-            throw new NoSuchElementException(" thare are no student avalable in this name :" + name);
-        }
-        return list;
-    }
+   
   
 
     @Override
     public List<Long> getCountOfStudentAndPaperBy_OGId(String orgnizationId) {
-
+        log.info("StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method Start");
         List<Long> data = new ArrayList();
 
         Long total_student = this.studentRepo.countByOrganizationId(orgnizationId);
         data.add(total_student);
         Long total_paper = this.paperRepo.countByOrganizationId(orgnizationId);
         data.add(total_paper);
-
+        log.info("StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method End");
         return data;
     }
 
+    @Override
+    public List<Student> getTopThreeStudentByOrgnization(String orgnizationId) {
+        log.info("StudentServiceImpl , getTopThreeStudentByOrgnization Method Start");
+        List<Student> allStudent = studentRepo.getTopThreeStudentByOrgnizationIdByMarks(orgnizationId);
+        log.info("StudentServiceImpl , getTopThreeStudentByOrgnization Method End");
+       
+        return allStudent;
+        
+    }
+
+
+    
     
 }

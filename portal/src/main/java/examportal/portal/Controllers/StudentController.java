@@ -1,10 +1,6 @@
 package examportal.portal.Controllers;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,35 +48,26 @@ public class StudentController {
         return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
     }
 
-    // getAll Student by name
-    @GetMapping("/student/{name}")
-    public ResponseEntity<List<Student>> getAllStudentByname(@PathVariable String name) {
-        log.info("StudentController , getAllStudent Method Start");
-
-        List<Student> s = studentSevices.getAllStudentByName(name);
-        log.info("StudentController , getAllStudent Method Ends");
-        return new ResponseEntity<List<Student>>(s, HttpStatus.OK);
-
-    }
+   
 
     // getting Student By Id
     @GetMapping("/student/{studentId}")
     public ResponseEntity<Student> getAllStudentById(@PathVariable String studentId) {
-        log.info("StudentController , getAllStudent Method Start");
+        log.info("StudentController , getAllStudentById Method Start");
 
         Student s = studentSevices.getSingleStudent(studentId);
 
-        log.info("StudentController , getAllStudent Method Ends");
+        log.info("StudentController , getAllStudentById Method Ends");
         return new ResponseEntity<Student>(s, HttpStatus.OK);
     }
 
     // Get All Student By paperId
     @GetMapping("/GetAllStudentByPaperId/{paperId}")
     public ResponseEntity<List<Student>> getAllStudentByPaperIds(@PathVariable String paperId) {
-        log.info("StudentController , getAllStudent Method Start");
+        log.info("StudentController , getAllStudentByPaperIds Method Start");
 
         List<Student> st = this.studentSevices.getAllStudentByPaperId(paperId);
-        log.info("StudentController , getAllStudent Method Ends");
+        log.info("StudentController , getAllStudentByPaperIds Method Ends");
         return new ResponseEntity<List<Student>>(st, HttpStatus.OK);
     }
 
@@ -103,10 +90,10 @@ public class StudentController {
     }
 
     @GetMapping("/student/getAll/Bybranch/{branch}")
-    public ResponseEntity<List<Student>> getAllStudentbybranch(@PathVariable String branch) {
+    public ResponseEntity<List<Student>> getAllStudentbybranch(@PathVariable String branch,@PathVariable String year) {
         log.info("StudentController , getAllStudent Method Start");
 
-        List<Student> list = this.studentRepo.getAllStudentBYBranch(branch);
+        List<Student> list = this.studentRepo.getAllStudentBYBranchAndYear(branch,year);
 
         log.info("StudentController , getAllStudent Method Ends");
         return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
@@ -117,11 +104,11 @@ public class StudentController {
             HttpServletRequest request) {
         log.info("StudentController , InviteStudentsByEmail Method Start");
         invitationDto.setToken(request.getHeader("Authorization"));
-        CompletableFuture<String> response = this.studentSevices.inviteStudents(invitationDto);
+        String response = this.studentSevices.inviteStudents(invitationDto);
 
         log.info("StudentController , InviteStudentsByEmail Method end");
 
-        return new ResponseEntity<>("inviting students in background", HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     //Get COunt of Student & paper
@@ -134,5 +121,33 @@ public class StudentController {
         log.info("StudentController , getAllStudent Method Ends");
         return new ResponseEntity<List<Long>>(list, HttpStatus.OK);
 
+    }
+
+     @GetMapping("/getTopRankers/{orgnizationId}")
+    public ResponseEntity<List<Student>> getTopRankersOfOrgnization(@PathVariable String orgnizationId,
+                                                                   @RequestParam(required = false ,defaultValue = "") String branch ) 
+    {
+     
+        log.info("StudentController , getAllStudent Method Start");
+        List<Student> topRankers;
+         if(!branch.isEmpty()) {
+           
+            topRankers = studentRepo.filterTopRankerByBranch(orgnizationId,branch );         
+
+        } else {
+            
+            topRankers = this.studentRepo.getTopThreeStudentByOrgnizationIdByMarks(orgnizationId);
+        }
+        
+        log.info("StudentController , getAllStudent Method Ends");
+        return new ResponseEntity<List<Student>>(topRankers, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/getAllStudentsBy/orgnizationId/{orgnizationId}")
+    public ResponseEntity<List<Student>> getAllStudentByorgnizationId(@PathVariable String orgnizationId)
+    {
+        List<Student> students = this.studentRepo.getAllStudentsByOrganizationId(orgnizationId);
+        return new ResponseEntity<>(students,HttpStatus.OK);
     }
 }

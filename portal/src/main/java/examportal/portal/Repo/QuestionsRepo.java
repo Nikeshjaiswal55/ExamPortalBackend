@@ -15,8 +15,6 @@ public interface QuestionsRepo extends JpaRepository<Questions,String>{
     
     @Query("SELECT s From Questions s where s.paperID=:paperID")
     List<Questions> getAllQuestionsByPaperId(@Param("paperID") String paperID);
-    
-    @Query("SELECT s FROM Questions s WHERE s.name=:name")
-    List<Questions> getAllQuestionsByName(@Param("name")String name);
+   
 }
 

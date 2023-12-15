@@ -2,8 +2,6 @@ package examportal.portal.Entity;
 
 import java.util.UUID;
 
-import org.aspectj.weaver.ast.Or;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -20,7 +18,7 @@ public class ExamDetails {
     private String branch;
     private String session;
     private String assessmentName;
-    private boolean is_Active;
+    private String is_Active;
     private boolean is_Setup;
     private boolean is_attempted;
     private int totalMarks;
@@ -28,5 +26,10 @@ public class ExamDetails {
     private String paperId;
     private String created_date;
     private String published_date;
+    private String description;
+    private boolean is_shorted;
+    private boolean is_auto_check;
+    private String instruction;
+    private String paper_name;
 
 }
