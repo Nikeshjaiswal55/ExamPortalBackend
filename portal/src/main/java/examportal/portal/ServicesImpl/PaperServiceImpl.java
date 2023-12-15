@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +17,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import examportal.portal.Entity.Assessment;
@@ -45,6 +42,7 @@ import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Response.PaperResponce;
+import examportal.portal.Services.ExamDetailsService;
 import examportal.portal.Services.PaperService;
 
 @Service
@@ -80,6 +78,9 @@ public class PaperServiceImpl implements PaperService {
   @Autowired
   private AttemptepaperRepo attemptepaperRepo;
 
+  @Autowired
+  private ExamDetailsService examDetailsService;
+
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
   @Override
@@ -94,6 +95,7 @@ public class PaperServiceImpl implements PaperService {
     paper.setCreated_date(formattedDate);
     paper.setIs_Active("false");
     paper.set_setup(true);
+    paper.setPaper_name(paperDto.getExamDetails().getPaper_name());
     Paper newPaper = this.paperRepo.save(paper);
 
     List<Questions> questionsList = paperDto.getQuestions();
@@ -102,6 +104,9 @@ public class PaperServiceImpl implements PaperService {
     ExamDetails examDetails = paperDto.getExamDetails();
     examDetails.setCreated_date(formattedDate);
     examDetails.setDescription(newPaper.getDescription());
+    examDetails.setIs_Active("false");
+    examDetails.set_Setup(true);
+    examDetails.set_shorted(newPaper.is_shorted());
     examDetails.setPaperId(newPaper.getPaperId());
     this.examDetailsRepo.save(examDetails);
     System.out.println(examDetails + "kger  =============================================================");
@@ -216,7 +221,8 @@ public class PaperServiceImpl implements PaperService {
 
     Paper paper = this.paperRepo.findById(paperDto.getPaperId())
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperId", paperDto.getPaperId()));
-
+    paper = paperDto.getPaper();
+     Paper npaper =this.paperRepo.save(paper);
     PaperDto dto = new PaperDto();
 
     List<Questions> q2 = new ArrayList<>();
@@ -236,13 +242,32 @@ public class PaperServiceImpl implements PaperService {
 
     }
 
-    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperDto.getPaperId());
-    examDetails = paperDto.getExamDetails();
-    ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
+    ExamDetails examDetails = this.examDetailsService.updateExamDetails(paperDto.getExamDetails());
 
-    dto.setPaper(paper);
+    // ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperDto.getPaperId());
+    // examDetails.setBranch(paperDto.getExamDetails().getBranch());
+    // examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
+    // examDetails.setCreated_date(paperDto.getExamDetails().getCreated_date());
+    // examDetails.setDescription(paperDto.getExamDetails().getDescription());
+    // examDetails.setExamDuration(paperDto.getExamDetails().getExamDuration());
+    // examDetails.setExamMode(paperDto.getExamDetails().getExamMode());
+    // examDetails.setExamRounds(paperDto.getExamDetails().getExamRounds());
+    // examDetails.setInstruction(paperDto.getExamDetails().getInstruction());
+    // examDetails.setIs_Active(paperDto.getExamDetails().getIs_Active());
+    // examDetails.setMinimum_marks(paperDto.getExamDetails().getMinimum_marks());
+    // examDetails.setPaperChecked(paperDto.getExamDetails().isPaperChecked());
+    // examDetails.setPaper_name(paperDto.getExamDetails().getPaper_name());
+    // examDetails.setSession(paperDto.getExamDetails().getSession());
+    // examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
+    // examDetails.set_Setup(paperDto.getExamDetails().is_Setup());
+    // examDetails.set_attempted(paperDto.getExamDetails().is_attempted());
+    // examDetails.set_auto_check(paperDto.getExamDetails().is_auto_check());
+    // examDetails.set_shorted(paperDto.getExamDetails().is_shorted());
+    // ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
+
+    dto.setPaper(npaper);
     dto.setQuestions(q2);
-    dto.setExamDetails(updateExamDetails);
+    dto.setExamDetails(examDetails);
 
     log.info("paperService Update paper method End :");
 
@@ -273,14 +298,14 @@ public class PaperServiceImpl implements PaperService {
 
   // With FIlter
   @Override
-  public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filter) {
+  public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filters) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
 
     Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
         : Sort.by(dto.getProperty()).descending();
     Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
 
-    Page<Paper> page = this.paperRepo.findByFiter(userId, p, filter);
+    Page<Paper> page = this.paperRepo.findByFiter(userId, p, filters);
     List<Paper> paper = page.getContent();
     List<ExamDetails> examDetails = new ArrayList<>();
 
