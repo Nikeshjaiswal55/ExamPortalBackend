@@ -1,10 +1,6 @@
 package examportal.portal.Services;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-
-import org.springframework.scheduling.annotation.Async;
-
 import examportal.portal.Entity.Student;
 import examportal.portal.Payloads.InvitationDto;
 
