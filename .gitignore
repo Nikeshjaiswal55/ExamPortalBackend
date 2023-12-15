@@ -7,8 +7,10 @@ HELP.md
 build/classes
 build/generated
 build/resources
+build/reports/tests/test
 build/tmp
-build/test-result/test
+build/test-results
+resolvedMainClassName
 
 libs/portal-plain.jar
 build/resolvedMainClassName

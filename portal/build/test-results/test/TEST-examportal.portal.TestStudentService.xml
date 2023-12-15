@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="examportal.portal.TestStudentService" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-12-15T05:57:03" hostname="LAPTOP-R6SKPEGN" time="0.225">
+  <properties/>
+  <testcase name="testGetSingleStudent()" classname="examportal.portal.TestStudentService" time="0.135"/>
+  <testcase name="testUpdateStudent()" classname="examportal.portal.TestStudentService" time="0.021"/>
+  <testcase name="testDeleteStudent()" classname="examportal.portal.TestStudentService" time="0.021"/>
+  <testcase name="testGetAllStudents()" classname="examportal.portal.TestStudentService" time="0.018"/>
+  <testcase name="testGetSingleStudent_NotFound()" classname="examportal.portal.TestStudentService" time="0.009"/>
+  <system-out><![CDATA[Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.5)
+
+2023-12-15 11:27:02 [Test worker] ?[34mINFO ?[0;39m e.portal.TestStudentService  INFO - Starting TestStudentService using Java 20.0.2 with PID 3536 (started by HP in D:\Git\ExamPortalBackend\portal)
+2023-12-15 11:27:02 [Test worker] ?[34mINFO ?[0;39m e.portal.TestStudentService  INFO - No active profile set, falling back to 1 default profile: "default"
+2023-12-15 11:27:02 [Test worker] ?[39mDEBUG?[0;39m o.s.boot.SpringApplication DEBUG - Loading source class examportal.portal.TestStudentService
+2023-12-15 11:27:02 [Test worker] ?[39mDEBUG?[0;39m o.s.w.c.s.GenericWebApplicationContext DEBUG - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@783ec989
+2023-12-15 11:27:02 [Test worker] ?[34mINFO ?[0;39m e.portal.TestStudentService  INFO - Started TestStudentService in 1.124 seconds (process running for 3.811)
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , getSingleStudent Method Start
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , updateStudent Method Start
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , updateStudent Method Ends
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , deleteStudent Method Start
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , deleteStudent Method Ends
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , getAllStudent Method Start
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , getAllStudent Method Ends
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , getSingleStudent Method Start
+2023-12-15 11:27:03 [Test worker] ?[34mINFO ?[0;39m StudentServiceImpl  INFO - StudentServiceImpl , getSingleStudent Method Ends
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
