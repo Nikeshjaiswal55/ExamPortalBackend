@@ -98,6 +98,7 @@ public class PaperServiceImpl implements PaperService {
     paper.setCreated_date(formattedDate);
     paper.setIs_Active("false");
     paper.set_setup(true);
+    paper.setIs_auto_check(paperDto.getPaper().getIs_auto_check());
     Paper newPaper = this.paperRepo.save(paper);
 
     List<Questions> questionsList = paperDto.getQuestions();
@@ -263,7 +264,7 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
     examDetails.set_Setup(paperDto.getExamDetails().is_Setup());
     examDetails.set_attempted(paperDto.getExamDetails().is_attempted());
-    examDetails.set_auto_check(paperDto.getExamDetails().is_auto_check());
+    examDetails.setIs_auto_check(paperDto.getExamDetails().getIs_auto_check());
     examDetails.set_shorted(paperDto.getExamDetails().is_shorted());
     ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
 
