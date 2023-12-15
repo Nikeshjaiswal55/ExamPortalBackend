@@ -102,6 +102,9 @@ public class PaperServiceImpl implements PaperService {
     ExamDetails examDetails = paperDto.getExamDetails();
     examDetails.setCreated_date(formattedDate);
     examDetails.setDescription(newPaper.getDescription());
+    examDetails.setIs_Active("false");
+    examDetails.set_Setup(false);
+    examDetails.set_shorted(newPaper.is_shorted());
     examDetails.setPaperId(newPaper.getPaperId());
     this.examDetailsRepo.save(examDetails);
     System.out.println(examDetails + "kger  =============================================================");
@@ -216,7 +219,8 @@ public class PaperServiceImpl implements PaperService {
 
     Paper paper = this.paperRepo.findById(paperDto.getPaperId())
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperId", paperDto.getPaperId()));
-
+    paper = paperDto.getPaper();
+     Paper npaper =this.paperRepo.save(paper);
     PaperDto dto = new PaperDto();
 
     List<Questions> q2 = new ArrayList<>();
@@ -240,7 +244,7 @@ public class PaperServiceImpl implements PaperService {
     examDetails = paperDto.getExamDetails();
     ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
 
-    dto.setPaper(paper);
+    dto.setPaper(npaper);
     dto.setQuestions(q2);
     dto.setExamDetails(updateExamDetails);
 
