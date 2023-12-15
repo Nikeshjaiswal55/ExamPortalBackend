@@ -65,6 +65,12 @@ public class ResultServiceImpl implements ResultService {
 
     Logger log = LoggerFactory.getLogger("ResultServiceImpl.class");
 
+    public ResultServiceImpl(AttemptedQuestionsRepo attemptedQuestionsRepoMock, ResultRepo resultRepoMock,
+            CheatingRepo cheatingRepoMock, ModelMapper modelMapperMock, ExamDetailsRepo examDetailsRepoMock,
+            Object object, AttemptepaperRepo attemptepaperRepoMock) {
+    }
+
+
     @Override
     @Transactional
     public ResultDto createResult(ResultDto dto) {

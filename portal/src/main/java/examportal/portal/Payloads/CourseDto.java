@@ -2,6 +2,7 @@ package examportal.portal.Payloads;
 
 import java.util.List;
 
+import examportal.portal.Entity.Course;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,9 @@ public class CourseDto {
     private String orgnizationId;
 
     private List<EmailsDto> emailsDto;
+
+    public List<Course> getMails() {
+        return null;
+    }
 
 }

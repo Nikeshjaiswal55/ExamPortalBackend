@@ -19,8 +19,8 @@ public class Paper {
     private String created_date;
     private String published_date;
     private String name;
-    private String created_date;
-    private String published_date;
+    // private String created_date;
+    // private String published_date;
     private String description;
     private boolean is_shorted;
     private boolean is_auto_check;

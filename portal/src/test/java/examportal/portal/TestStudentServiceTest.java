@@ -1,11 +1,11 @@
 package examportal.portal;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.PageImpl;
 
 import examportal.portal.Entity.Student;
 import examportal.portal.Exceptions.ResourceNotFoundException;
-
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.ServicesImpl.StudentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,21 +19,24 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doNothing;
-
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest(classes= TestStudentService.class)
-public class TestStudentService {
+@SpringBootTest(classes= TestStudentServiceTest.class)
+public class TestStudentServiceTest {
     
     @Mock
     private StudentRepo studentRepo;
@@ -45,6 +48,41 @@ public class TestStudentService {
     void setUp() {
         // Any setup or initialization before each test can go here
     }
+
+
+
+    // @Test
+    // void getAllStudents() {
+    //     // Arrange
+    //     List<Student> mockStudents = Arrays.asList(new Student(), new Student());
+    //     when(studentRepo.findAll()).thenReturn(mockStudents);
+
+    //     // Act
+    //     List<Student> result = studentService.getAllStudents(null, 0, null, null);
+        
+    //     // Assert
+    //     assertEquals(mockStudents, result);
+    //     verify(studentRepo, times(1)).findAll();
+    // }
+    
+
+//     @Test
+//     void getAllStudents() {
+//     // Arrange
+//     List<Student> mockStudents = Arrays.asList(new Student(), new Student());
+//     when(studentRepo.findAll()).thenReturn(mockStudents);
+
+//     // Act
+//     List<Student> result = studentService.getAllStudents(null, 0, null, "asc"); // Provide a non-null sortOrder
+
+//     // Assert
+//     assertEquals(mockStudents, result);
+//     verify(studentRepo, times(1)).findAll();
+// }
+
+
+
+
 
     @Test
     void testGetAllStudents() {
@@ -113,6 +151,8 @@ public class TestStudentService {
         // Add more assertions based on your specific requirements
     }
 
+
+
     @Test
     void testDeleteStudent() {
         // Arrange
@@ -127,25 +167,4 @@ public class TestStudentService {
         verify(studentRepo, times(1)).deleteById(studentId);
     }
 
-  
-
-
-
-
-// @Test
-// void testInviteStudents_HandleNewStudentException() {
-//     // Arrange
-//     InvitationDto invitationDto = new InvitationDto();
-//     invitationDto.setEmails(Collections.singletonList("test@example.com"));
-
-//     // Mocking behavior for handleNewStudent to simulate an exception
-//     doThrow(new RuntimeException("Simulated exception")).when(studentService).handleNewStudent(any(), anyString());
-
-//     // Act & Assert
-//     RuntimeException exception = assertThrows(RuntimeException.class, () -> studentService.inviteStudents(invitationDto));
-
-//     // Assert
-//     assertEquals("Simulated exception", exception.getMessage());
-//     // Add more assertions based on your specific requirements
-// }
 }
