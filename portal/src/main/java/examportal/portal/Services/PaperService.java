@@ -25,7 +25,7 @@ public interface PaperService {
     PaperResponce getAllPaperByUserId(String userId,PaginationDto dto,Map<String,String> filter);
 
     // get pepar by name
-    String activatePaper(String paperID,boolean active);
+    PaperStringDto activatePaper(String paperID);
 
     PaperStringDto getPaperById(String paperID);
 
