@@ -45,6 +45,7 @@ import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
 import examportal.portal.Response.PaperResponce;
+import examportal.portal.Services.ExamDetailsService;
 import examportal.portal.Services.PaperService;
 
 @Service
@@ -79,6 +80,9 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private AttemptepaperRepo attemptepaperRepo;
+
+  @Autowired
+  private ExamDetailsService examDetailsService;
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
@@ -240,13 +244,32 @@ public class PaperServiceImpl implements PaperService {
 
     }
 
-    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperDto.getPaperId());
-    examDetails = paperDto.getExamDetails();
-    ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
+    ExamDetails examDetails = this.examDetailsService.updateExamDetails(paperDto.getExamDetails());
+
+    // ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperDto.getPaperId());
+    // examDetails.setBranch(paperDto.getExamDetails().getBranch());
+    // examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
+    // examDetails.setCreated_date(paperDto.getExamDetails().getCreated_date());
+    // examDetails.setDescription(paperDto.getExamDetails().getDescription());
+    // examDetails.setExamDuration(paperDto.getExamDetails().getExamDuration());
+    // examDetails.setExamMode(paperDto.getExamDetails().getExamMode());
+    // examDetails.setExamRounds(paperDto.getExamDetails().getExamRounds());
+    // examDetails.setInstruction(paperDto.getExamDetails().getInstruction());
+    // examDetails.setIs_Active(paperDto.getExamDetails().getIs_Active());
+    // examDetails.setMinimum_marks(paperDto.getExamDetails().getMinimum_marks());
+    // examDetails.setPaperChecked(paperDto.getExamDetails().isPaperChecked());
+    // examDetails.setPaper_name(paperDto.getExamDetails().getPaper_name());
+    // examDetails.setSession(paperDto.getExamDetails().getSession());
+    // examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
+    // examDetails.set_Setup(paperDto.getExamDetails().is_Setup());
+    // examDetails.set_attempted(paperDto.getExamDetails().is_attempted());
+    // examDetails.set_auto_check(paperDto.getExamDetails().is_auto_check());
+    // examDetails.set_shorted(paperDto.getExamDetails().is_shorted());
+    // ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
 
     dto.setPaper(npaper);
     dto.setQuestions(q2);
-    dto.setExamDetails(updateExamDetails);
+    dto.setExamDetails(examDetails);
 
     log.info("paperService Update paper method End :");
 
