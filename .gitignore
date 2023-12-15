@@ -7,9 +7,9 @@ HELP.md
 build/classes
 build/generated
 build/resources
-build/reports/**
+build/reports
 build/tmp
-build/test-results/**
+build/test-results/test
 resolvedMainClassName
 
 libs/portal-plain.jar
