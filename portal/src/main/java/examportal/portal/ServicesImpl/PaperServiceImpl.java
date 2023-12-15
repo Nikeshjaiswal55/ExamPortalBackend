@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +17,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import examportal.portal.Entity.Assessment;
@@ -103,7 +100,7 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setCreated_date(formattedDate);
     examDetails.setDescription(newPaper.getDescription());
     examDetails.setIs_Active("false");
-    examDetails.set_Setup(false);
+    examDetails.set_Setup(true);
     examDetails.set_shorted(newPaper.is_shorted());
     examDetails.setPaperId(newPaper.getPaperId());
     this.examDetailsRepo.save(examDetails);

@@ -145,10 +145,27 @@ public class StudentController {
     }
 
     @GetMapping("/getTop15Students/ognizationId/{orgnizationId}")
-    public ResponseEntity<List<Student>> getTop15StudentsByorgnization(@PathVariable String orgnizationId)
-    {
-        List<Student> students = this.studentRepo.getTop15StudentsofOrgnizations(orgnizationId);
+    public ResponseEntity<List<Student>> getTop15StudentsByorgnization(@PathVariable String orgnizationId,
+                                @RequestParam(required = false,defaultValue = "") String branch        
+    )
+    
+     {
+        log.info("StudentController , getTop15StudentsByorgnization Method Start");
+        List<Student> Top15Students;
+         if(!branch.isEmpty()) {
+           
+            Top15Students = studentRepo.Top15StudentByBranch(orgnizationId,branch );         
 
-        return new ResponseEntity<>(students,HttpStatus.OK);
-    }
+        } else {
+            
+            Top15Students = this.studentRepo.getTop15StudentsofOrgnizations(orgnizationId);
+        }
+        
+        log.info("StudentController , getTop15StudentsByorgnization Method Ends");
+
+        return new ResponseEntity<>(Top15Students,HttpStatus.OK);
+
 }
+
+}
+
