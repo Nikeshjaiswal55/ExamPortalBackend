@@ -104,7 +104,8 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public CompletableFuture<String> creatingStudentInBackGround(List<EmailsDto> dto, String token) {
     log.info("CourseServiceimpl,creatingStudentInBackGround Method Start");
-    Course course = this.courseRepo.findById(dto.get(0).getCourseId()).orElseThrow(() -> new ResourceNotFoundException("Course", "courseId",dto.get(0).getCourseId()));
+    Course course = this.courseRepo.findById(dto.get(0).getCourseId())
+        .orElseThrow(() -> new ResourceNotFoundException("Course", "courseId", dto.get(0).getCourseId()));
 
     for (EmailsDto email : dto) {
       String response = "";
@@ -118,26 +119,27 @@ public class CourseServiceImpl implements CourseService {
 
         try {
           response = this.auth0Service.createUser(email.getEmail(), password, token);
-          // res = userId
-          User use = new User();
-          use.setUserId(response);
-          use.setEmail(email.getEmail());
-          use.setPassword(password);
-          use.setRole("Student");
-          User savedUser = this.userRepo.save(use);
-
-          Student student = new Student();
-          student.setBranch(email.getCourseId());
-          // student.setName(email.getName());
-          student.setEmail(email.getEmail());
-          student.setOrgnizationId(email.getOrgnizationId());
-          student.setStudentid(savedUser.getUserId());
-          Student savedst = this.studentRepo.save(student);
+          // res = userI
 
         } catch (Exception e) {
 
           e.printStackTrace();
         }
+        
+        User use = new User();
+        use.setUserId(response);
+        use.setEmail(email.getEmail());
+        use.setPassword(password);
+        use.setRole("Student");
+        User savedUser = this.userRepo.save(use);
+
+        Student student = new Student();
+        student.setBranch(email.getCourseId());
+        student.setYear(email.getYear());
+        student.setEmail(email.getEmail());
+        student.setOrgnizationId(email.getOrgnizationId());
+        student.setStudentid(savedUser.getUserId());
+        Student savedst = this.studentRepo.save(student);
 
       }
     }
@@ -176,13 +178,13 @@ public class CourseServiceImpl implements CourseService {
     List<Course> list = page.getContent();
 
     CourseResponce courseResponce = new CourseResponce();
-    courseResponce.setCurrentPage(page.getNumber()+1);
+    courseResponce.setCurrentPage(page.getNumber() + 1);
     courseResponce.setData(list);
     courseResponce.setIslastPage(page.isLast());
     courseResponce.setPagesize(page.getSize());
     courseResponce.setTotalElements(page.getTotalElements());
     courseResponce.setTotalPages(page.getTotalPages());
-      log.info("CourseServiceimpl, getAllCourseByUserId Method End");
+    log.info("CourseServiceimpl, getAllCourseByUserId Method End");
     return courseResponce;
   }
 }
