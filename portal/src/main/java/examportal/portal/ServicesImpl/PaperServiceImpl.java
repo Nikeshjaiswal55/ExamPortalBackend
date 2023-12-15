@@ -95,7 +95,7 @@ public class PaperServiceImpl implements PaperService {
     paper.setCreated_date(formattedDate);
     paper.setIs_Active("false");
     paper.set_setup(true);
-    paper.setPaper_name(paperDto.getExamDetails().getPaper_name());
+    paper.setPaper_name(paperDto.getExamDetails().getAssessmentName());
     Paper newPaper = this.paperRepo.save(paper);
 
     List<Questions> questionsList = paperDto.getQuestions();

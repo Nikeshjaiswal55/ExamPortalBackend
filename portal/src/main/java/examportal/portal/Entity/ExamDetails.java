@@ -30,6 +30,5 @@ public class ExamDetails {
     private boolean is_shorted;
     private boolean is_auto_check;
     private String instruction;
-    private String paper_name;
 
 }

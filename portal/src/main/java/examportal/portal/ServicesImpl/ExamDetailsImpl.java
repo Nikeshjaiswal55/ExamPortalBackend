@@ -42,7 +42,7 @@ public class ExamDetailsImpl implements ExamDetailsService {
     examDetails.setInstruction(examDetails.getInstruction());
     examDetails.setMinimum_marks(examDetails.getMinimum_marks());
     examDetails.setPaperChecked(examDetails.isPaperChecked());
-    examDetails.setPaper_name(examDetails.getPaper_name());
+    // examDetails.setPaper_name(examDetails.getPaper_name());
     examDetails.setSession(examDetails.getSession());
     examDetails.setTotalMarks(examDetails.getTotalMarks());
     examDetails.set_Setup(examDetails.is_Setup());
