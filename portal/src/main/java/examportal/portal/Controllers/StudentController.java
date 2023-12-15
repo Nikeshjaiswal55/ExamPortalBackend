@@ -143,4 +143,12 @@ public class StudentController {
         return new ResponseEntity<List<Student>>(topRankers, HttpStatus.OK);
 
     }
+
+    @GetMapping("/getTop15Students/ognizationId/{orgnizationId}")
+    public ResponseEntity<List<Student>> getTop15StudentsByorgnization(@PathVariable String orgnizationId)
+    {
+        List<Student> students = this.studentRepo.getTop15StudentsofOrgnizations(orgnizationId);
+
+        return new ResponseEntity<>(students,HttpStatus.OK);
+    }
 }

@@ -25,8 +25,12 @@ public interface StudentRepo extends JpaRepository<Student, String> {
     @Query("SELECT COUNT(s) FROM Student s WHERE s.orgnizationId = :orgnizationId")
     Long countByOrganizationId(@Param("orgnizationId") String orgnizationId);
 
-    @Query("SELECT s FROM Student s WHERE s.orgnizationId =:orgnizationId ORDER BY s.topMarks DESC LIMIT 3")
+    @Query("SELECT s FROM Student s WHERE s.orgnizationId =:orgnizationId ORDER BY s.topMarks DESC LIMIT 5")
     List<Student> getTopThreeStudentByOrgnizationIdByMarks(@Param("orgnizationId") String orgnizationId);
+
+
+    @Query("SELECT s FROM Student s WHERE s.orgnizationId =:orgnizationId ORDER BY s.topMarks DESC LIMIT 15")
+    List<Student> getTop15StudentsofOrgnizations(@Param("orgnizationId") String orgnizationId);
 
 
     // fitler top Ranker By Branch
