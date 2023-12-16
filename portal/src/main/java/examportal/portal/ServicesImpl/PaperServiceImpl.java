@@ -95,6 +95,7 @@ public class PaperServiceImpl implements PaperService {
     paper.setCreated_date(formattedDate);
     paper.setIs_Active("false");
     paper.set_setup(true);
+    paper.setPaper_name(paperDto.getExamDetails().getAssessmentName());
     paper.setIs_auto_check(paperDto.getPaper().getIs_auto_check());
     Paper newPaper = this.paperRepo.save(paper);
 
