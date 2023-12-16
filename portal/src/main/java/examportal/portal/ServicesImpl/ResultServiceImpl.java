@@ -221,8 +221,8 @@ public class ResultServiceImpl implements ResultService {
             newResult.setPercentage(percentage);
             newResult.setAssesment_Name(examDetails.getAssessmentName());
             newResult.setStudent_email(s.getEmail());
-            if (paper.is_auto_check()) {
-                newResult.setIs_published("Approved");
+            if (paper.getIs_auto_check().equals("true")) {
+                newResult.setIs_published("approved");
             } else {
                 newResult.setIs_published("pending");
             }

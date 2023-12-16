@@ -20,7 +20,7 @@ public class Paper {
     private String published_date;
     private String description;
     private boolean is_shorted;
-    private boolean is_auto_check;
+    private String is_auto_check;
     private String instruction;
     private String paper_name;
 }

@@ -95,7 +95,7 @@ public class PaperServiceImpl implements PaperService {
     paper.setCreated_date(formattedDate);
     paper.setIs_Active("false");
     paper.set_setup(true);
-    paper.setPaper_name(paperDto.getExamDetails().getAssessmentName());
+    paper.setIs_auto_check(paperDto.getPaper().getIs_auto_check());
     Paper newPaper = this.paperRepo.save(paper);
 
     List<Questions> questionsList = paperDto.getQuestions();
@@ -242,32 +242,32 @@ public class PaperServiceImpl implements PaperService {
 
     }
 
-    ExamDetails examDetails = this.examDetailsService.updateExamDetails(paperDto.getExamDetails());
+    // ExamDetails examDetails = this.examDetailsService.updateExamDetails(paperDto.getExamDetails());
 
-    // ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperDto.getPaperId());
-    // examDetails.setBranch(paperDto.getExamDetails().getBranch());
-    // examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
-    // examDetails.setCreated_date(paperDto.getExamDetails().getCreated_date());
-    // examDetails.setDescription(paperDto.getExamDetails().getDescription());
-    // examDetails.setExamDuration(paperDto.getExamDetails().getExamDuration());
-    // examDetails.setExamMode(paperDto.getExamDetails().getExamMode());
-    // examDetails.setExamRounds(paperDto.getExamDetails().getExamRounds());
-    // examDetails.setInstruction(paperDto.getExamDetails().getInstruction());
-    // examDetails.setIs_Active(paperDto.getExamDetails().getIs_Active());
-    // examDetails.setMinimum_marks(paperDto.getExamDetails().getMinimum_marks());
-    // examDetails.setPaperChecked(paperDto.getExamDetails().isPaperChecked());
+    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperDto.getPaperId());
+    examDetails.setBranch(paperDto.getExamDetails().getBranch());
+    examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
+    examDetails.setCreated_date(paperDto.getExamDetails().getCreated_date());
+    examDetails.setDescription(paperDto.getExamDetails().getDescription());
+    examDetails.setExamDuration(paperDto.getExamDetails().getExamDuration());
+    examDetails.setExamMode(paperDto.getExamDetails().getExamMode());
+    examDetails.setExamRounds(paperDto.getExamDetails().getExamRounds());
+    examDetails.setInstruction(paperDto.getExamDetails().getInstruction());
+    examDetails.setIs_Active(paperDto.getExamDetails().getIs_Active());
+    examDetails.setMinimum_marks(paperDto.getExamDetails().getMinimum_marks());
+    examDetails.setPaperChecked(paperDto.getExamDetails().isPaperChecked());
     // examDetails.setPaper_name(paperDto.getExamDetails().getPaper_name());
-    // examDetails.setSession(paperDto.getExamDetails().getSession());
-    // examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
-    // examDetails.set_Setup(paperDto.getExamDetails().is_Setup());
-    // examDetails.set_attempted(paperDto.getExamDetails().is_attempted());
-    // examDetails.set_auto_check(paperDto.getExamDetails().is_auto_check());
-    // examDetails.set_shorted(paperDto.getExamDetails().is_shorted());
-    // ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
+    examDetails.setSession(paperDto.getExamDetails().getSession());
+    examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
+    examDetails.set_Setup(paperDto.getExamDetails().is_Setup());
+    examDetails.set_attempted(paperDto.getExamDetails().is_attempted());
+    examDetails.setIs_auto_check(paperDto.getExamDetails().getIs_auto_check());
+    examDetails.set_shorted(paperDto.getExamDetails().is_shorted());
+    ExamDetails updateExamDetails = this.examDetailsRepo.save(examDetails);
 
     dto.setPaper(npaper);
     dto.setQuestions(q2);
-    dto.setExamDetails(examDetails);
+    dto.setExamDetails(updateExamDetails);
 
     log.info("paperService Update paper method End :");
 
@@ -364,7 +364,7 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
-  public String activatePaper(String paperId, boolean active) {
+  public PaperStringDto activatePaper(String paperId) {
     log.info("paperServiceImpl activatePaper  method Starts");
     String msg = "";
 
@@ -375,7 +375,7 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperId);
-    if (active == true) {
+    if (paper.getIs_Active().equals("true")) {
       paper.setIs_Active("false");
       paper.set_setup(true);
       examDetails.setIs_Active("false");
@@ -384,7 +384,9 @@ public class PaperServiceImpl implements PaperService {
       this.examDetailsRepo.save(examDetails);
       log.info("paperServiceImpl activatePaper  method Ends");
 
-      return msg = "Deactive successfully";
+      PaperStringDto dto = new PaperStringDto();
+      dto.setData("is_deactivated");
+      return dto;
 
     } else {
 
@@ -394,9 +396,11 @@ public class PaperServiceImpl implements PaperService {
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
+      
+      PaperStringDto dto = new PaperStringDto();
+      dto.setData("is_published");
       log.info("paperServiceImpl activatePaper  method Ends");
-      return msg = "Paper Activated Successfully";
-
+      return dto;
     }
 
   }
@@ -443,7 +447,7 @@ public class PaperServiceImpl implements PaperService {
         User user = this.userRepo.findById(invitedStudents.getStudentId())
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
 
-        String msg = "Password =>" + user.getPassword();
+        String msg =  user.getPassword();
 
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
       });
