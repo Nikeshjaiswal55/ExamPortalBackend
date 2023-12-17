@@ -224,6 +224,7 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = this.paperRepo.findById(paperDto.getPaperId())
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperId", paperDto.getPaperId()));
     paper = paperDto.getPaper();
+    paper.setPaper_name(paperDto.getExamDetails().getAssessmentName());
      Paper npaper =this.paperRepo.save(paper);
     PaperDto dto = new PaperDto();
 
