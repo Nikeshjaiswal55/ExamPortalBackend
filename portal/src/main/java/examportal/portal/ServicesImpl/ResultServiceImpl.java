@@ -130,7 +130,6 @@ public class ResultServiceImpl implements ResultService {
         resultDto.setResultID(newResult.getResultID());
         resultDto.setCheating(stdCheating);
         resultDto.setResult(newResult);
-
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return resultDto;
@@ -297,19 +296,19 @@ public class ResultServiceImpl implements ResultService {
             return dto;
         } else {
 
-            List<Questions> questions = new ArrayList<>();
-            List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
-                    .getAllQuestionsByStudentID(studentId, papeId);
+            // List<Questions> questions = new ArrayList<>();
+            // List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
+            //         .getAllQuestionsByStudentID(studentId, papeId);
 
-            for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
-                Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
-                questions.add(q);
-            }
+            // for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
+            //     Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
+            //     questions.add(q);
+            // }
 
             ResultDto dto = new ResultDto();
 
             dto.setIs_published("requested");
-            dto.setQuestions(questions);
+            // dto.setQuestions(questions);
             log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
             return dto;
         }
