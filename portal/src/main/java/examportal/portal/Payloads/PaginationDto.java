@@ -16,7 +16,6 @@ public class PaginationDto {
 
     private Integer pageNo ;
     private Integer pageSize ;
-
     private String property ;
     private String sortDirection;
 

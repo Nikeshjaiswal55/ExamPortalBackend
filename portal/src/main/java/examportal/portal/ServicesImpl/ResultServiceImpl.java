@@ -5,18 +5,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.AttemptedQuestions;
 import examportal.portal.Entity.Cheating;
 import examportal.portal.Entity.ExamDetails;
+import examportal.portal.Entity.Paper;
 import examportal.portal.Entity.Questions;
 import examportal.portal.Entity.Result;
 import examportal.portal.Entity.Student;
@@ -28,9 +27,11 @@ import examportal.portal.Repo.AttemptedQuestionsRepo;
 import examportal.portal.Repo.AttemptepaperRepo;
 import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
+import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Repo.StudentRepo;
+import examportal.portal.Services.ImageService;
 import examportal.portal.Services.ResultService;
 import jakarta.transaction.Transactional;
 
@@ -63,7 +64,13 @@ public class ResultServiceImpl implements ResultService {
     @Autowired
     private AttemptepaperRepo attemptepaperRepo;
 
-    Logger log = LoggerFactory.getLogger("ResultServiceImpl.class");
+    @Autowired
+    private ImageService imageService;
+
+    @Autowired
+    private PaperRepo paperRepo;
+
+    Logger log = LoggerFactory.getLogger("ResultServiceImpl");
 
     public ResultServiceImpl(AttemptedQuestionsRepo attemptedQuestionsRepoMock, ResultRepo resultRepoMock,
             CheatingRepo cheatingRepoMock, ModelMapper modelMapperMock, ExamDetailsRepo examDetailsRepoMock,
@@ -84,6 +91,8 @@ public class ResultServiceImpl implements ResultService {
                     attemptedQuestions.setOptions(question.getOptions());
                     attemptedQuestions.setQuestions(question.getQuestions());
                     attemptedQuestions.setPaperID(dto.getResult().getPaperID());
+
+                    attemptedQuestions.setUserAns(question.getUserAns());
                     attemptedQuestions.setStudentID(dto.getResult().getStudentID());
                     return attemptedQuestions;
                 })
@@ -106,6 +115,15 @@ public class ResultServiceImpl implements ResultService {
         // 3. Save Result
         Result newResult = this.resultRepo.save(dto.getResult());
 
+        Student s = this.studentRepo.findById(newResult.getStudentID())
+                .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", newResult.getStudentID()));
+
+        if (s.getTopMarks() < newResult.getMarks()) {
+            s.setTopMarks(newResult.getMarks());
+            s.setTop_paperId(newResult.getPaperID());
+            this.studentRepo.save(s);
+        }
+
         // 4. Save Cheating
         Cheating cheating = dto.getCheating();
         cheating.setPaperId(newResult.getPaperID());
@@ -118,16 +136,14 @@ public class ResultServiceImpl implements ResultService {
         resultDto.setResultID(newResult.getResultID());
         resultDto.setCheating(stdCheating);
         resultDto.setResult(newResult);
-
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return resultDto;
     }
 
-    
     @Override
     public ResultDto getResultByStudentAndPaperId(String resultID) {
-        log.info("ResultServiceImpl, createResult Method Start");
+        log.info("ResultServiceImpl, getResultByStudentAndPaperId Method Start");
 
         Result result = this.resultRepo.findById(resultID)
                 .orElseThrow(() -> new ResourceNotFoundException("result ", "Result Id", resultID));
@@ -137,10 +153,10 @@ public class ResultServiceImpl implements ResultService {
         List<AttemptedQuestions> questions2 = this.attemptedQuestionsRepo
                 .getAllQuestionsByStudentID(result.getStudentID(), result.getPaperID());
 
-                for (AttemptedQuestions attemptedQuestions : questions2) {
-                    Questions q = this.mapper.map(attemptedQuestions, Questions.class);
-                    questions.add(q);
-                }
+        for (AttemptedQuestions attemptedQuestions : questions2) {
+            Questions q = this.mapper.map(attemptedQuestions, Questions.class);
+            questions.add(q);
+        }
         Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(result.getResultID(), result.getPaperID());
 
         ResultDto dto = new ResultDto();
@@ -148,78 +164,105 @@ public class ResultServiceImpl implements ResultService {
         dto.setResult(result);
         dto.setResultID(result.getResultID());
         dto.setCheating(cheating);
-        log.info("ResultServiceImpl, createResult Method Ends");
+        dto.set_attempted(true);
+        log.info("ResultServiceImpl, getResultByStudentAndPaperId Method Ends");
 
         return dto;
 
     }
+    // is published ko string me convert krna h
 
     @Override
     public ResultDto checkPaper(checkpaperDto dto) {
-
-        int obtainmarks = 0;
-        float percentage = 0;
-
-        LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedDate = date.format(formatter);
-
-        List<Questions> questions2 = new ArrayList();
-
-        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
-
-        int eachqMarks = (examDetails.getTotalMarks() / dto.getQuestions().size());
-
-        for (Questions ques : dto.getQuestions()) {
-            Questions q = this.questionsRepo.findById(ques.getQuestionId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
-            if (q.getCorrectAns().equals(ques.getUserAns())) {
-                obtainmarks += eachqMarks;
-                q.setUserAns(ques.getUserAns());
-                questions2.add(q);
-            }
-            questions2.add(ques);
-        }
-
-        percentage = ((float) obtainmarks / (float) examDetails.getTotalMarks()) * 100;
-
-        if (obtainmarks > examDetails.getMinimum_marks()) {
-            dto.setResultstatus("pass");
+        log.info("ResultServiceImpl, checkPaper Method Start");
+        Result r = this.resultRepo.getResultByStudentAndPaperId(dto.getPaperId(), dto.getStudentId());
+        if (r != null) {
+            ResultDto d = new ResultDto();
+            d.setResult(r);
+            d.set_attempted(true);
+            System.out.println("i am here in result ==============");
+            return d;
         } else {
-            dto.setResultstatus("fail");
+            int obtainmarks = 0;
+            float percentage = 0;
+
+            LocalDateTime date = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            StringBuilder formattedDate = new StringBuilder(date.format(formatter));
+
+            List<Questions> questions2 = new ArrayList<>();
+
+            ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
+            int eachqMarks = examDetails.getTotalMarks() / dto.getQuestions().size();
+
+            for (Questions ques : dto.getQuestions()) {
+                Questions q = this.questionsRepo.findById(ques.getQuestionId())
+                        .orElseThrow(
+                                () -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
+                if (q.getCorrectAns().equals(ques.getUserAns())) {
+                    obtainmarks += eachqMarks;
+                    q.setUserAns(ques.getUserAns());
+                    questions2.add(q);
+                }
+                questions2.add(ques);
+            }
+
+            Paper paper = this.paperRepo.findById(dto.getPaperId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Paper", "paperId", "paperId"));
+
+            percentage = ((float) obtainmarks / (float) examDetails.getTotalMarks()) * 100;
+
+            dto.setResultstatus(obtainmarks > examDetails.getMinimum_marks() ? "pass" : "fail");
+
+            Student s = this.studentRepo.findById(dto.getStudentId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", dto.getStudentId()));
+
+            Result newResult = new Result();
+            newResult.setPaperID(dto.getPaperId());
+            newResult.setStudentID(dto.getStudentId());
+            newResult.setDate(formattedDate.toString());
+            newResult.setMarks(obtainmarks);
+            newResult.setResultStatus(dto.getResultstatus());
+            newResult.setPercentage(percentage);
+            newResult.setAssesment_Name(examDetails.getAssessmentName());
+            newResult.setStudent_email(s.getEmail());
+            if (paper.getIs_auto_check().equals("true")) {
+                newResult.setIs_published("approved");
+            } else {
+                newResult.setIs_published("pending");
+            }
+
+            Assessment assessment = this.assessmentRepo.getAssessmentByStudentAndpaperId(dto.getStudentId(),
+                    dto.getPaperId());
+
+            AttemptedPapers attemptedPapers = new AttemptedPapers();
+            attemptedPapers.setPaperId(dto.getPaperId());
+            attemptedPapers.setStudentId(dto.getStudentId());
+            attemptedPapers.set_attempted(true);
+            attemptedPapers.setAssmentId(assessment.getAssessmentID());
+            this.attemptepaperRepo.save(attemptedPapers);
+
+            List<String> response = this.imageService.uploadbase64incloudnaru(dto.getCheating().getImages());
+
+            Cheating cheating = dto.getCheating();
+            cheating.setPaperId(dto.getPaperId());
+            cheating.setImages(response);
+            System.out.println(response
+                    + "my images upload ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+            ResultDto dto2 = new ResultDto();
+            dto2.setQuestions(questions2);
+            dto2.setCheating(dto.getCheating());
+            dto2.setResult(newResult);
+            System.out.println("my  dt0 --=---========-" + dto2);
+            log.info("ResultServiceImpl, checkPaper Method End");
+            return createResult(dto2);
         }
-
-        Result newResult = new Result();
-        newResult.setPaperID(dto.getPaperId());
-        newResult.setStudentID(dto.getStudentId());
-        newResult.setDate(formattedDate);
-        newResult.setMarks(obtainmarks);
-        newResult.setResultStatus(dto.getResultstatus());
-        newResult.setPercentage(percentage);
-
-        Assessment assessment = this.assessmentRepo.getAssessmentByStudentAndpaperId(dto.getStudentId(), dto.getPaperId());
-
-        AttemptedPapers attemptedPapers = new AttemptedPapers();
-        attemptedPapers.setPaperId(dto.getPaperId());
-        attemptedPapers.setStudentId(dto.getStudentId());
-        attemptedPapers.set_attempted(true);
-        attemptedPapers.setAssmentId(formattedDate);
-        attemptedPapers.setAssmentId(assessment.getAssessmentID());
-        this.attemptepaperRepo.save(attemptedPapers);
-
-        ResultDto dto2 = new ResultDto();
-        dto2.setQuestions(questions2);
-        dto2.setCheating(dto.getCheating());
-        dto2.setResult(newResult);
-        System.out.println("my  dt0 --=---========-" + dto2);
-        ResultDto paperrResultDto = createResult(dto2);
-
-        return paperrResultDto;
     }
 
     @Override
     public List<Student> getTopThreeStudentByPaper(String paperId) {
-
+        log.info("ResultServiceImpl, getTopThreeStudentByPaper Method Start");
         List<Result> results = this.resultRepo.findAllByPaperIdOrderByPercentageDesc(paperId);
         List<Student> TopThree = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -228,36 +271,58 @@ public class ResultServiceImpl implements ResultService {
                     .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", resu.getStudentID()));
             TopThree.add(student);
         }
-
+        log.info("ResultServiceImpl, getTopThreeStudentByPaper Method End");
         return TopThree;
     }
 
     @Override
     public ResultDto getResultByStudentIdAndPaperId(String papeId, String studentId) {
-        
+        log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method Start");
         Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
 
-        // Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, papeId);
+        Student s = this.studentRepo.findById(studentId)
+                .orElseThrow(() -> new ResourceNotFoundException("student", "studentId", studentId));
 
-        List<Questions> questions = new ArrayList<>();
-        List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo.getAllQuestionsByStudentID(studentId, papeId);
+        if (result.getIs_published().equals("approved")) {
+             List<Questions> questions = new ArrayList<>();
+            List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
+                    .getAllQuestionsByStudentID(studentId, papeId);
 
-        for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
-            Questions q = this.mapper.map(attemptedQuestions2,Questions.class);
-            questions.add(q);
+            for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
+                Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
+                questions.add(q);
+            }
+
+            ResultDto dto = new ResultDto();
+            result.setStudent_email(s.getEmail());
+            dto.setResult(result);
+            dto.setQuestions(questions);
+            dto.setIs_published(result.getIs_published());
+            log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
+            return dto;
+        } else {
+
+            // List<Questions> questions = new ArrayList<>();
+            // List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
+            //         .getAllQuestionsByStudentID(studentId, papeId);
+
+            // for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
+            //     Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
+            //     questions.add(q);
+            // }
+
+            ResultDto dto = new ResultDto();
+
+            dto.setIs_published("requested");
+            // dto.setQuestions(questions);
+            log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
+            return dto;
         }
-
-        ResultDto dto = new ResultDto();
-        // dto.setResultID(result.getResultID());
-        // dto.setCheating(cheating);
-        dto.setResult(result);
-        dto.setQuestions(questions);
-        return dto;
     }
 
     @Override
     public List<Result> getTopFiveResultOfStudentByStudentId(String studentId) {
-       
+        log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method Start");
         List<Result> allResult = this.resultRepo.findAllResutlByStudentID(studentId);
         List<Result> top5 = new ArrayList<>();
 
@@ -266,10 +331,55 @@ public class ResultServiceImpl implements ResultService {
             result = allResult.get(i);
             top5.add(result);
         }
+        log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
         return top5;
     }
 
+    @Override
+    public ResultDto getAvidenceByStudentIdAndPaperId(String papeId, String studentId) {
+        log.info("ResultServiceImpl, getAvidenceByStudentIdAndPaperId Method Start");
+        Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
+
+        Cheating cheating = this.cheatingRepo.getCheatingByStudentAndPaperId(studentId, papeId);
+
+        ResultDto dto = new ResultDto();
+        dto.setResult(result);
+        dto.setCheating(cheating);
+        // dto.setQuestions(questions);
+        log.info("ResultServiceImpl, getAvidenceByStudentIdAndPaperId Method End");
+        return dto;
+    }
+
+    @Override
+    public String publishStudentResult(String studentId, String paperId) {
+        log.info("ResultServiceImpl, publishStudentResult Method Start");
+        Result result = this.resultRepo.getResultByStudentAndPaperId(paperId, studentId);
+
+        result.setIs_published("approved");
+        this.resultRepo.save(result);
+        log.info("ResultServiceImpl, publishStudentResult Method End");
+        return "Result published  Successfully";
+        // }
+    }
+
+    @Override
+    public String DeactiveStudentResult(String studentId, String paperId) {
+        log.info("ResultServiceImpl, DeactiveStudentResult Method Start");
+        Result result = this.resultRepo.getResultByStudentAndPaperId(paperId, studentId);
+        result.setIs_published("Rejected");
+        this.resultRepo.save(result);
+        log.info("ResultServiceImpl, DeactiveStudentResult Method End");
+        return null;
+    }
+
+    @Override
+    public List<Result> gettopAssesmentsByOrgnizationId(String orgnizationId) {
+        List<Paper> papers = this.paperRepo.getAllPapersByOrgnizationId(orgnizationId);
+        List<Result> results = new ArrayList<>();
+        for (Paper paper : papers) {
+            results.addAll(this.resultRepo.findAllByPaperIdOrderByPercentageDescAndPass(paper.getPaperId()));
+        }
+        return results;
+    }
 
 }
-
-

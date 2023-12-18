@@ -18,4 +18,9 @@ public class ResultDto {
 
     private Cheating cheating;
 
+    private boolean is_attempted;
+
+    private String is_published;
+    
+
 }

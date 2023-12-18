@@ -26,6 +26,11 @@ public class Student {
 
     private boolean is_attempted;
 
+    private int topMarks;
+
+    private String top_paperId;
+
+
     // public String setPaperId(String paperid){
     //     paperId.add(paperid);
     //     return "paperId add"+paperId;

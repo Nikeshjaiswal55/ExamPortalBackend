@@ -1,8 +1,6 @@
 package examportal.portal.ServicesImpl;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,13 +87,6 @@ public class MentorSerivceImpl implements MentorService {
         return "Record Deleted";
     }
 
-    @Override
-    public List<Mentor> getAllMentorsByName(String name) {
-         List<Mentor> mentors= mentorRepo.getAllMentorsByName(name);
-         if (mentors.isEmpty()) {
-    throw new NoSuchElementException("The mentor list is empty");
-}
-         return mentors;
-    }
+
 
 }

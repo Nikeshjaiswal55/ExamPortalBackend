@@ -28,6 +28,11 @@ public class Result {
     private String resultStatus;
     
     private String Assesment_Name;
+
     private String paperID;
+
+    private String student_email;
+
+    private String is_published;
 
 }

@@ -10,6 +10,7 @@ public  interface UserService {
     List<User>getAllUser(Integer page,Integer size, String sortField, String sortOrder);
 
     User getUserById(String userId);
- List<User>getAllUserByName(String name);
+ 
+    
     
 }

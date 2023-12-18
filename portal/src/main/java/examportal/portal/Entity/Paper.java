@@ -1,8 +1,11 @@
 package examportal.portal.Entity;
 
 import java.util.UUID;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.Data;
 
 
@@ -18,13 +21,13 @@ public class Paper {
     private String orgnizationId;
     private String created_date;
     private String published_date;
-    private String name;
-    // private String created_date;
-    // private String published_date;
     private String description;
     private boolean is_shorted;
-    private boolean is_auto_check;
+    private String is_auto_check;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private String instruction;
 
-
+    private String paper_name;
 }

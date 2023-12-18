@@ -2,16 +2,12 @@ package examportal.portal.Entity;
 
 import java.util.UUID;
 
-import org.aspectj.weaver.ast.Or;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Lob;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Data
 public class ExamDetails {
@@ -32,5 +28,12 @@ public class ExamDetails {
     private String paperId;
     private String created_date;
     private String published_date;
+    private String description;
+    private boolean is_shorted;
+    private String is_auto_check;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private String instruction;
 
 }

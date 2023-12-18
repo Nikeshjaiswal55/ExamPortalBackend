@@ -27,5 +27,5 @@ public class Mentor {
     private String orgnizationId;
     @Email 
     private String email;
-    private String name;
+  
 }

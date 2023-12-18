@@ -7,10 +7,10 @@ import java.util.List;
 
 @Data
 public class checkpaperDto {
-    
-   private  List<Questions> questions;
-   private  String paperId;
-   private  String StudentId;
+
+    private List<Questions> questions;
+    private String paperId;
+    private String StudentId;
     private String orgnizationId;
     private Cheating cheating;
     private String resultstatus;

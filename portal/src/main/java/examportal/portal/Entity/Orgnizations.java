@@ -20,5 +20,5 @@ public class Orgnizations {
 
     private String userId;
 
-    private String name;
+   
 }
