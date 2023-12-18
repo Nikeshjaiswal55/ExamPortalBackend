@@ -153,12 +153,12 @@ public class PaperController {
 
     }
 
-    @PutMapping("/activetPaper/{paperId}/{active}")
-    public ResponseEntity<String> activetPaper(@PathVariable String paperId, boolean active) {
+    @PutMapping("/activetPaper/{paperId}")
+    public ResponseEntity<PaperStringDto> activetPaper(@PathVariable String paperId) {
         log.info("PaperController activetPaper method started");
-        String activeMsg = paperService.activatePaper(paperId, active);
+        PaperStringDto activeMsg = paperService.activatePaper(paperId);
         log.info("PaperController activetPaper method Ends");
-        return new ResponseEntity<String>(activeMsg, HttpStatus.ACCEPTED);
+        return new ResponseEntity<PaperStringDto>(activeMsg, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/invited/{paperId}")

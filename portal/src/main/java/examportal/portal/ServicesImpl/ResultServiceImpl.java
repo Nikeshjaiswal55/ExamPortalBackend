@@ -221,8 +221,8 @@ public class ResultServiceImpl implements ResultService {
             newResult.setPercentage(percentage);
             newResult.setAssesment_Name(examDetails.getAssessmentName());
             newResult.setStudent_email(s.getEmail());
-            if (paper.is_auto_check()) {
-                newResult.setIs_published("Approved");
+            if (paper.getIs_auto_check().equals("true")) {
+                newResult.setIs_published("approved");
             } else {
                 newResult.setIs_published("pending");
             }
@@ -259,10 +259,6 @@ public class ResultServiceImpl implements ResultService {
     public List<Student> getTopThreeStudentByPaper(String paperId) {
         log.info("ResultServiceImpl, getTopThreeStudentByPaper Method Start");
         List<Result> results = this.resultRepo.findAllByPaperIdOrderByPercentageDesc(paperId);
-        if (results.isEmpty()) {
-            throw new ResourceNotFoundException("Result", "PaperId", paperId);
-            
-        }else{
         List<Student> TopThree = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             Result resu = results.get(i);
@@ -270,11 +266,8 @@ public class ResultServiceImpl implements ResultService {
                     .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", resu.getStudentID()));
             TopThree.add(student);
         }
-
-        
         log.info("ResultServiceImpl, getTopThreeStudentByPaper Method End");
         return TopThree;
-    }
     }
 
     @Override
@@ -286,9 +279,19 @@ public class ResultServiceImpl implements ResultService {
                 .orElseThrow(() -> new ResourceNotFoundException("student", "studentId", studentId));
 
         if (result.getIs_published().equals("approved")) {
+             List<Questions> questions = new ArrayList<>();
+            List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
+                    .getAllQuestionsByStudentID(studentId, papeId);
+
+            for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
+                Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
+                questions.add(q);
+            }
+
             ResultDto dto = new ResultDto();
             result.setStudent_email(s.getEmail());
             dto.setResult(result);
+            dto.setQuestions(questions);
             dto.setIs_published(result.getIs_published());
             log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
             return dto;
@@ -306,6 +309,7 @@ public class ResultServiceImpl implements ResultService {
             ResultDto dto = new ResultDto();
 
             dto.setIs_published("requested");
+            dto.setQuestions(questions);
             log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
             return dto;
         }
