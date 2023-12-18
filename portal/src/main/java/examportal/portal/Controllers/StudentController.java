@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -150,4 +151,32 @@ public class StudentController {
         List<Student> students = this.studentRepo.getAllStudentsByOrganizationId(orgnizationId);
         return new ResponseEntity<>(students,HttpStatus.OK);
     }
+
+
+
+    @GetMapping("/getTop15StudentBY_OGID/{orgnizationId}")
+    public ResponseEntity<List<Student>> getTop15StudentByOGID(@PathVariable String orgnizationId,
+                                    @RequestParam(required = false,defaultValue = "") String branch
+    ) {
+        List<Student> top15Student;
+        if (!branch.isEmpty()) {
+
+            top15Student = studentRepo.getTop15StudentBYBranch(orgnizationId, branch);
+            
+        }else{
+            top15Student = studentRepo.getTop15StudentByOGID(orgnizationId);
+        }
+
+        return new ResponseEntity<>(top15Student,HttpStatus.OK);
+    }
+    
+    @GetMapping("/getAllStudentBy_OGID/{orgnizationId}")
+    public ResponseEntity<List<Student>> getAllStudentByOGID(@PathVariable String orgnizationId ) {
+
+        List<Student> allStudent_of_OG = studentRepo.getAllStudentsByOrganizationId(orgnizationId);
+
+
+        return new ResponseEntity<>(null,HttpStatus.OK);
+    }
+    
 }

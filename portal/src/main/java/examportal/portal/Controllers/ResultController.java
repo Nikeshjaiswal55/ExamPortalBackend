@@ -24,6 +24,8 @@ import examportal.portal.Repo.CheatingRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.ResultService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -171,5 +173,13 @@ public class ResultController {
         List<Result> results = this.resultService.gettopAssesmentsByOrgnizationId(orgnizationId);
         return new ResponseEntity<>(results,HttpStatus.OK);
     }
+
+    @GetMapping("/getAllPassedResultByStudentId/{studentId}")
+    public ResponseEntity<List<Result>> getALLPassedResultByStudentId(@RequestParam String studentId) {
+
+        List<Result> passedResult = this.resultRepo.getAllPassedResultByStudentId(studentId);
+        return new ResponseEntity<>(passedResult,HttpStatus.OK);
+    }
+    
 
 }

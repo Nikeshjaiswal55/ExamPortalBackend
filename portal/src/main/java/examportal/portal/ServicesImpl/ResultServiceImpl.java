@@ -130,7 +130,6 @@ public class ResultServiceImpl implements ResultService {
         resultDto.setResultID(newResult.getResultID());
         resultDto.setCheating(stdCheating);
         resultDto.setResult(newResult);
-
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return resultDto;
@@ -279,15 +278,7 @@ public class ResultServiceImpl implements ResultService {
                 .orElseThrow(() -> new ResourceNotFoundException("student", "studentId", studentId));
 
         if (result.getIs_published().equals("approved")) {
-            ResultDto dto = new ResultDto();
-            result.setStudent_email(s.getEmail());
-            dto.setResult(result);
-            dto.setIs_published(result.getIs_published());
-            log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
-            return dto;
-        } else {
-
-            List<Questions> questions = new ArrayList<>();
+             List<Questions> questions = new ArrayList<>();
             List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
                     .getAllQuestionsByStudentID(studentId, papeId);
 
@@ -297,8 +288,27 @@ public class ResultServiceImpl implements ResultService {
             }
 
             ResultDto dto = new ResultDto();
+            result.setStudent_email(s.getEmail());
+            dto.setResult(result);
+            dto.setQuestions(questions);
+            dto.setIs_published(result.getIs_published());
+            log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
+            return dto;
+        } else {
+
+            // List<Questions> questions = new ArrayList<>();
+            // List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
+            //         .getAllQuestionsByStudentID(studentId, papeId);
+
+            // for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
+            //     Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
+            //     questions.add(q);
+            // }
+
+            ResultDto dto = new ResultDto();
 
             dto.setIs_published("requested");
+            // dto.setQuestions(questions);
             log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
             return dto;
         }

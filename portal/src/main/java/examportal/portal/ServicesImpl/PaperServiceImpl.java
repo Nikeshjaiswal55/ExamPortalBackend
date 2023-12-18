@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +17,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import examportal.portal.Entity.Assessment;
@@ -98,6 +95,7 @@ public class PaperServiceImpl implements PaperService {
     paper.setCreated_date(formattedDate);
     paper.setIs_Active("false");
     paper.set_setup(true);
+    paper.setPaper_name(paperDto.getExamDetails().getAssessmentName());
     paper.setIs_auto_check(paperDto.getPaper().getIs_auto_check());
     Paper newPaper = this.paperRepo.save(paper);
 
@@ -108,7 +106,8 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setCreated_date(formattedDate);
     examDetails.setDescription(newPaper.getDescription());
     examDetails.setIs_Active("false");
-    examDetails.set_Setup(false);
+    examDetails.set_Setup(true);
+    examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
     examDetails.set_shorted(newPaper.is_shorted());
     examDetails.setPaperId(newPaper.getPaperId());
     this.examDetailsRepo.save(examDetails);
@@ -225,6 +224,7 @@ public class PaperServiceImpl implements PaperService {
     Paper paper = this.paperRepo.findById(paperDto.getPaperId())
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperId", paperDto.getPaperId()));
     paper = paperDto.getPaper();
+    paper.setPaper_name(paperDto.getExamDetails().getAssessmentName());
      Paper npaper =this.paperRepo.save(paper);
     PaperDto dto = new PaperDto();
 
@@ -259,7 +259,7 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setIs_Active(paperDto.getExamDetails().getIs_Active());
     examDetails.setMinimum_marks(paperDto.getExamDetails().getMinimum_marks());
     examDetails.setPaperChecked(paperDto.getExamDetails().isPaperChecked());
-    examDetails.setPaper_name(paperDto.getExamDetails().getPaper_name());
+    // examDetails.setPaper_name(paperDto.getExamDetails().getPaper_name());
     examDetails.setSession(paperDto.getExamDetails().getSession());
     examDetails.setTotalMarks(paperDto.getExamDetails().getTotalMarks());
     examDetails.set_Setup(paperDto.getExamDetails().is_Setup());
@@ -301,14 +301,14 @@ public class PaperServiceImpl implements PaperService {
 
   // With FIlter
   @Override
-  public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filter) {
+  public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filters) {
     log.info("paperServiceImpl getAllPaperByUserId  method Starts");
 
     Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
         : Sort.by(dto.getProperty()).descending();
     Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
 
-    Page<Paper> page = this.paperRepo.findByFiter(userId, p, filter);
+    Page<Paper> page = this.paperRepo.findByFiter(userId, p, filters);
     List<Paper> paper = page.getContent();
     List<ExamDetails> examDetails = new ArrayList<>();
 
