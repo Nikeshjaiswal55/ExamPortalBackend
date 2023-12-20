@@ -103,7 +103,7 @@ public class ResultServiceImpl implements ResultService {
         examDetails.setPaperChecked(true);
         examDetails.setIs_Active("true");
         examDetails.set_Setup(false);
-        examDetails.set_attempted(true);
+        // examDetails.set_attempted(true);
         this.examDetailsRepo.save(examDetails);
 
         // 3. Save Result
@@ -130,6 +130,7 @@ public class ResultServiceImpl implements ResultService {
         resultDto.setResultID(newResult.getResultID());
         resultDto.setCheating(stdCheating);
         resultDto.setResult(newResult);
+        resultDto.set_attempted(true);
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return resultDto;
@@ -198,7 +199,11 @@ public class ResultServiceImpl implements ResultService {
                     q.setUserAns(ques.getUserAns());
                     questions2.add(q);
                 }
-                questions2.add(ques);
+                else
+                {
+                     questions2.add(ques);
+                }
+               
             }
 
             Paper paper = this.paperRepo.findById(dto.getPaperId())
