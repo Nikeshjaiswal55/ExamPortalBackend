@@ -195,11 +195,13 @@ public class PaperController {
     }
 
     @GetMapping("/getInstructionBy/PaperId/{paperId}")
-    public ResponseEntity<String> getInstructionn(@PathVariable String paperId)
+    public ResponseEntity<PaperStringDto> getInstructionn(@PathVariable String paperId)
     {
         String instruction = this.paperRepo.getInstructionBypaperId(paperId);
+        PaperStringDto dto = new PaperStringDto();
+        dto.setData(instruction);
 
-        return new ResponseEntity<String>(instruction,HttpStatus.OK);
+        return new ResponseEntity<PaperStringDto>(dto,HttpStatus.OK);
     }
 
 }

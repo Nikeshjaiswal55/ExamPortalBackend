@@ -103,7 +103,7 @@ public class ResultServiceImpl implements ResultService {
         examDetails.setPaperChecked(true);
         examDetails.setIs_Active("true");
         examDetails.set_Setup(false);
-        examDetails.set_attempted(true);
+        // examDetails.set_attempted(true);
         this.examDetailsRepo.save(examDetails);
 
         // 3. Save Result

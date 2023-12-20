@@ -28,5 +28,5 @@ public interface StudentSevices {
 
     List<Student> getTopThreeStudentByOrgnization(String orgnizationId);
 
-
+    public String handleNewStudent(InvitationDto dto, String email);
 }

@@ -225,7 +225,8 @@ public class StudentServiceImpl implements StudentSevices {
     }
 
     @Deprecated
-    public void handleNewStudent(InvitationDto dto, String email) {
+    @Override
+    public String handleNewStudent(InvitationDto dto, String email) {
         try {
             log.info("StudentServiceImpl , handleNewStudent Method Start");
             String password = RandomString.make(12) + "K80";
@@ -254,6 +255,7 @@ public class StudentServiceImpl implements StudentSevices {
         } catch (Exception e) {
             log.error("Error inviting student: {}", e.getMessage());
         }
+        return "Inviting student";
     }
 
    
