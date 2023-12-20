@@ -1,0 +1,7 @@
+2023-12-18 14:02:01 [main] INFO  examportal.portal.t - Starting t using Java 17.0.9 with PID 12172 (started by devra in D:\codolympics\ExamPortalBackend\portal)
+2023-12-18 14:02:01 [main] INFO  examportal.portal.t - No active profile set, falling back to 1 default profile: "default"
+2023-12-18 14:02:01 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.t
+2023-12-18 14:02:01 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@236ab296
+2023-12-18 14:02:01 [main] INFO  examportal.portal.t - Started t in 0.724 seconds (process running for 2.902)
+2023-12-18 14:02:01 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-18 14:02:03 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@236ab296, started on Mon Dec 18 14:02:01 IST 2023
