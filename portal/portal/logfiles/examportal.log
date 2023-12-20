@@ -5,3 +5,29 @@
 2023-12-18 14:02:01 [main] INFO  examportal.portal.t - Started t in 0.724 seconds (process running for 2.902)
 2023-12-18 14:02:01 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
 2023-12-18 14:02:03 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@236ab296, started on Mon Dec 18 14:02:01 IST 2023
+2023-12-20 23:02:19 [Test worker] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 20.0.2 with PID 20116 (started by HP in D:\Git\ExamPortalBackend\portal)
+2023-12-20 23:02:19 [Test worker] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-20 23:02:19 [Test worker] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-20 23:02:19 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@703feacd
+2023-12-20 23:02:19 [Test worker] INFO  e.portal.TestStudentService - Started TestStudentService in 0.553 seconds (process running for 2.292)
+2023-12-20 23:02:19 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getSingleStudent Method Start
+2023-12-20 23:02:19 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-20 23:02:20 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , updateStudent Method Start
+2023-12-20 23:02:20 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , updateStudent Method Ends
+2023-12-20 23:02:20 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , deleteStudent Method Start
+2023-12-20 23:02:20 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , deleteStudent Method Ends
+2023-12-20 23:02:20 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getAllStudent Method Start
+2023-12-20 23:02:20 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getAllStudent Method Ends
+2023-12-20 23:02:20 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getSingleStudent Method Start
+2023-12-20 23:02:20 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-20 23:02:20 [Test worker] DEBUG o.s.b.t.c.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [t]: using SpringBootContextLoader
+2023-12-20 23:02:20 [Test worker] DEBUG o.s.b.t.c.SpringBootTestContextBootstrapper - Using ContextCustomizers for test class [t]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, WebDriverContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+2023-12-20 23:02:20 [Test worker] DEBUG o.s.b.t.c.SpringBootTestContextBootstrapper - Using TestExecutionListeners for test class [t]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+2023-12-20 23:02:20 [Test worker] DEBUG o.s.b.w.s.c.ApplicationServletEnvironment - Activating profiles []
+2023-12-20 23:02:20 [Test worker] INFO  examportal.portal.t - Starting t using Java 20.0.2 with PID 20116 (started by HP in D:\Git\ExamPortalBackend\portal)
+2023-12-20 23:02:20 [Test worker] INFO  examportal.portal.t - No active profile set, falling back to 1 default profile: "default"
+2023-12-20 23:02:20 [Test worker] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.t
+2023-12-20 23:02:20 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@59edb4f5
+2023-12-20 23:02:20 [Test worker] INFO  examportal.portal.t - Started t in 0.056 seconds (process running for 3.122)
+2023-12-20 23:02:20 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@703feacd, started on Wed Dec 20 23:02:19 IST 2023
+2023-12-20 23:02:20 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@59edb4f5, started on Wed Dec 20 23:02:20 IST 2023
