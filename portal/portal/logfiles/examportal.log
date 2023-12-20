@@ -1,0 +1,16 @@
+2023-12-20 10:37:21 [Test worker] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 20.0.2 with PID 7484 (started by HP in D:\Git\ExamPortalBackend\portal)
+2023-12-20 10:37:21 [Test worker] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-20 10:37:21 [Test worker] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-20 10:37:21 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@783ec989
+2023-12-20 10:37:21 [Test worker] INFO  e.portal.TestStudentService - Started TestStudentService in 0.551 seconds (process running for 2.166)
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getSingleStudent Method Start
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , updateStudent Method Start
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , updateStudent Method Ends
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , deleteStudent Method Start
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , deleteStudent Method Ends
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getAllStudent Method Start
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getAllStudent Method Ends
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getSingleStudent Method Start
+2023-12-20 10:37:22 [Test worker] INFO  StudentServiceImpl - StudentServiceImpl , getSingleStudent Method Ends
+2023-12-20 10:37:22 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@783ec989, started on Wed Dec 20 10:37:21 IST 2023
