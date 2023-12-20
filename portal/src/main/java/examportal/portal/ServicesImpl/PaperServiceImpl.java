@@ -109,6 +109,7 @@ public class PaperServiceImpl implements PaperService {
     examDetails.set_Setup(true);
     examDetails.setAssessmentName(paperDto.getExamDetails().getAssessmentName());
     examDetails.set_shorted(newPaper.is_shorted());
+    examDetails.setIs_auto_check(newPaper.getIs_auto_check());
     examDetails.setPaperId(newPaper.getPaperId());
     this.examDetailsRepo.save(examDetails);
     System.out.println(examDetails + "kger  =============================================================");
