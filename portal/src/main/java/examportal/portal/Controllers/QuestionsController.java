@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import examportal.portal.Entity.ExamDetails;
 import examportal.portal.Entity.Questions;
+import examportal.portal.Services.ExamDetailsService;
 import examportal.portal.Services.QuestionService;
 
 
@@ -29,6 +32,9 @@ public class QuestionsController {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private ExamDetailsService examDetailsService;
+
     @PostMapping("/create/Question")
     public ResponseEntity<Questions> createQuestion(@RequestBody Questions questions)
     {   log.info("QuestionsController, createQuestion Method Start");
@@ -38,10 +44,10 @@ public class QuestionsController {
     }    
 
     @PutMapping("/updateQuestions")
-    public ResponseEntity<Questions> updateQuestion(@RequestBody Questions questions)
+    public ResponseEntity<List<Questions>> updateQuestion(@RequestBody List<Questions> questions)
     {
           log.info("QuestionsController, updateQuestion Method Start");
-        Questions questions2 = this.questionService.updateQuestions(questions);
+        List<Questions> questions2 = this.questionService.updateQuestions(questions);
         log.info("QuestionsController, updateQuestion Method End");
         return new ResponseEntity<>(questions2,HttpStatus.ACCEPTED);
     }
@@ -72,6 +78,13 @@ public class QuestionsController {
         this.questionService.deleteQuestion(QuestionID);
         log.info("QuestionsController, deleteQuestions Method Start");
         return new ResponseEntity<>("deleted Successfully",HttpStatus.OK);
+    }
+
+    @PutMapping("/updateExamdetails")
+    public ResponseEntity<ExamDetails> updateExamdetails(@RequestBody ExamDetails examDetails)
+    {
+        ExamDetails exam = this.examDetailsService.updateExamDetails(examDetails);
+        return new ResponseEntity<>(exam,HttpStatus.OK);
     }
 
 }

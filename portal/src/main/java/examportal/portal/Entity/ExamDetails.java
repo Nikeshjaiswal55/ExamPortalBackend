@@ -2,8 +2,10 @@ package examportal.portal.Entity;
 
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.Data;
 
 @Entity
@@ -26,5 +28,12 @@ public class ExamDetails {
     private String paperId;
     private String created_date;
     private String published_date;
+    private String description;
+    private boolean is_shorted;
+    private String is_auto_check;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private String instruction;
 
 }

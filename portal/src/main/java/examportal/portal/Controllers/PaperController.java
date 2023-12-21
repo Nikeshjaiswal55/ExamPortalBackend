@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -31,6 +33,7 @@ import examportal.portal.Payloads.PaperDto;
 import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.ExamDetailsRepo;
 import examportal.portal.Repo.InvitationRepo;
+import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Response.PaperResponce;
 import examportal.portal.Services.PaperService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,6 +50,9 @@ public class PaperController {
 
     @Autowired
     private ExamDetailsRepo examDetailsRepo;
+
+    @Autowired
+    private PaperRepo paperRepo;
 
     Logger log = LoggerFactory.getLogger("PaperController");
 
@@ -147,12 +153,12 @@ public class PaperController {
 
     }
 
-    @PutMapping("/activetPaper/{paperId}/{active}")
-    public ResponseEntity<String> activetPaper(@PathVariable String paperId, boolean active) {
+    @PutMapping("/activetPaper/{paperId}")
+    public ResponseEntity<PaperStringDto> activetPaper(@PathVariable String paperId) {
         log.info("PaperController activetPaper method started");
-        String activeMsg = paperService.activatePaper(paperId, active);
+        PaperStringDto activeMsg = paperService.activatePaper(paperId);
         log.info("PaperController activetPaper method Ends");
-        return new ResponseEntity<String>(activeMsg, HttpStatus.ACCEPTED);
+        return new ResponseEntity<PaperStringDto>(activeMsg, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/invited/{paperId}")
@@ -186,6 +192,18 @@ public class PaperController {
         Future<String> future = paperService.processInvitationsInBackground(paperId);
         log.info("PaperController processInBackground method Ends");
         return "Background processing started for paperId: " + paperId;
+    }
+
+    @GetMapping("/getInstructionBy/PaperId/{paperId}")
+    public ResponseEntity<PaperStringDto> getInstructionn(@PathVariable String paperId)
+    {
+        String instruction = this.paperRepo.getInstructionBypaperId(paperId);
+
+        PaperStringDto dto = new PaperStringDto();
+        dto.setData(instruction);
+
+
+        return new ResponseEntity<PaperStringDto>(dto,HttpStatus.OK);
     }
 
 }
