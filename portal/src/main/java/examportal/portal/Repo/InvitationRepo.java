@@ -18,5 +18,7 @@ public interface InvitationRepo extends JpaRepository<InvitedStudents,String>{
     @Query("SELECT s from InvitedStudents s where s.studentId=:studentId")
     InvitedStudents getStudentByStudentId(@Param("studentId") String studentId); 
 
+    @Query("SELECT s from InvitedStudents s WHERE s.studentId=:studentId AND s.paperId=:paperId")
+    InvitedStudents getInvitedStudentsByStudentAndPaperId(@Param("studentId") String studentId , @Param("paperId") String paperId);
 
 }

@@ -62,7 +62,7 @@ public class StudentServiceImpl implements StudentSevices {
     @Autowired
     private ExamDetailsRepo examDetailsRepo;
 
-    @Autowired 
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -136,44 +136,51 @@ public class StudentServiceImpl implements StudentSevices {
     public String inviteStudents(InvitationDto dto) {
         log.info("StudentServiceImpl , inviteStudents Method Start");
         ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
-        System.out.println(examDetails.getBranch()+"=====================================================================================================");
-        
-        if (examDetails.getBranch() !=null) {
+        System.out.println(examDetails.getBranch()
+                + "=====================================================================================================");
 
-            List<Student> students = this.studentRepo.getAllStudentBYBranchAndYear(examDetails.getBranch(),examDetails.getSession());
-    
+        if (examDetails.getBranch() != null) {
+
+            List<Student> students = this.studentRepo.getAllStudentBYBranchAndYear(examDetails.getBranch(),
+                    examDetails.getSession());
+
             for (Student student : students) {
                 Student st = this.studentRepo.getszStudentByEmail(student.getEmail());
                 if (st != null) {
                     handleExistingStudent(dto, st.getStudentid());
                 }
             }
-        } 
-        else {
+        } else {
             System.out.println("i ma entetr in seconde conditions ==========================================");
-            for (String email: dto.getEmails()) {
+            for (String email : dto.getEmails()) {
                 Student st = this.studentRepo.getszStudentByEmail(email);
                 if (st != null) {
                     handleExistingStudent(dto, st.getStudentid());
-                }
-                else {
+                } else {
                     handleNewStudent(dto, email);
                 }
             }
         }
         log.info("StudentServiceImpl , inviteStudents Method End");
-         return  "Student added successfully";
+        return "Student added successfully";
     }
-    
 
     public String handleExistingStudent(InvitationDto dto, String studentId) {
-            log.info("StudentServiceImpl , handleExistingStudent Method Start");
-        InvitedStudents invitedStudents = new InvitedStudents();
-        invitedStudents.setPaperId(dto.getPaperId());
-        invitedStudents.setStudentId(studentId);
-        invitationRepo.save(invitedStudents);
+        log.info("StudentServiceImpl , handleExistingStudent Method Start");
+        InvitedStudents student = this.invitationRepo.getInvitedStudentsByStudentAndPaperId(studentId,
+                dto.getPaperId());
+        if (student != null) {
+            System.out.println("Student already invited to this paper");
+        } else {
 
-        Assessment assessment = createAssessment(dto, studentId);
+            InvitedStudents invitedStudents = new InvitedStudents();
+            invitedStudents.setPaperId(dto.getPaperId());
+            invitedStudents.setStudentId(studentId);
+            invitationRepo.save(invitedStudents);
+
+            Assessment assessment = createAssessment(dto, studentId);
+
+        }
 
         log.info("StudentServiceImpl , handleExistingStudent Method End");
 
@@ -195,7 +202,8 @@ public class StudentServiceImpl implements StudentSevices {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            String encodedString = UriUtils.encode(objectMapper.writeValueAsString(inputString), StandardCharsets.UTF_8);
+            String encodedString = UriUtils.encode(objectMapper.writeValueAsString(inputString),
+                    StandardCharsets.UTF_8);
             log.info("StudentServiceImpl , encodeString Method End");
             return encodedString;
         } catch (Exception e) {
@@ -204,7 +212,6 @@ public class StudentServiceImpl implements StudentSevices {
             log.info("StudentServiceImpl , encodeString Method End");
             return null;
         }
-
 
     }
 
@@ -256,9 +263,6 @@ public class StudentServiceImpl implements StudentSevices {
         }
     }
 
-   
-  
-
     @Override
     public List<Long> getCountOfStudentAndPaperBy_OGId(String orgnizationId) {
         log.info("StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method Start");
@@ -277,12 +281,9 @@ public class StudentServiceImpl implements StudentSevices {
         log.info("StudentServiceImpl , getTopThreeStudentByOrgnization Method Start");
         List<Student> allStudent = studentRepo.getTopThreeStudentByOrgnizationIdByMarks(orgnizationId);
         log.info("StudentServiceImpl , getTopThreeStudentByOrgnization Method End");
-       
+
         return allStudent;
-        
+
     }
 
-
-    
-    
 }
