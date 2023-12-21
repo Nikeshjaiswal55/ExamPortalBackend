@@ -13,9 +13,8 @@ public class Questions {
     private String questionId=UUID.randomUUID().toString();
     private List<String> options;
     private String questions; 
-    private String correctAns;
-    private String userAns;
+    private List<String> correctAns;
+    private List<String> userAns;
     private String paperID;
-   
     
 }

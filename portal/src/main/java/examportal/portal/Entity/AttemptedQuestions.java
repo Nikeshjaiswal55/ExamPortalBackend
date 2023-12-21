@@ -14,8 +14,8 @@ public class AttemptedQuestions {
     private String attempteQuestionId=UUID.randomUUID().toString();
     private List<String> options;
     private String questions;
-    private String correctAns;
-    private String userAns;
+    private List<String> correctAns;
+    private List<String> userAns;
     private String paperID;
     private String studentID;
 }
