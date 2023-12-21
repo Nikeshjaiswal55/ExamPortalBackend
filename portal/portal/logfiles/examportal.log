@@ -1,0 +1,9 @@
+2023-12-18 13:54:32 [main] INFO  e.portal.TestStudentService - Starting TestStudentService using Java 17.0.9 with PID 8412 (started by deven in C:\Users\deven\OneDrive\Documents\Git Backend Dev_devendra\ExamPortalBackend\portal)
+2023-12-18 13:54:32 [main] INFO  e.portal.TestStudentService - No active profile set, falling back to 1 default profile: "default"
+2023-12-18 13:54:32 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.TestStudentService
+2023-12-18 13:54:32 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6134ac4a
+2023-12-18 13:54:33 [main] INFO  e.portal.TestStudentService - Started TestStudentService in 1.996 seconds (process running for 7.273)
+2023-12-18 13:54:33 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-18 13:54:35 [main] INFO  StudentServiceImpl - StudentServiceImpl , getAllStudent Method Start
+2023-12-18 13:54:35 [main] INFO  StudentServiceImpl - StudentServiceImpl , getAllStudent Method Ends
+2023-12-18 13:54:36 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6134ac4a, started on Mon Dec 18 13:54:32 IST 2023
