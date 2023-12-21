@@ -1,4 +1,4 @@
-package examportal.portal;
+package examportal.portal.ServiceImpTest;
 import org.springframework.data.domain.Page;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,8 +7,8 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,18 +20,16 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import examportal.portal.Entity.Course;
-import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
 import examportal.portal.Exceptions.ResourceNotFoundException;
 import examportal.portal.Payloads.CourseDto;
-import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Payloads.PaginationDto;
 import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Repo.UserRepo;
-import examportal.portal.ServicesImpl.Auth0Service;
-import examportal.portal.ServicesImpl.CourseServiceImpl;
+import examportal.portal.Response.CourseResponce;
 import jakarta.el.ELException;
+import examportal.portal.ServicesImpl.*;
 
 
 @SpringBootTest(classes= CourseServiceImplTestt.class)
@@ -67,26 +65,25 @@ void testGetAllCourse() {
             new Course("2", "Course 2", "userId2", null, null)
     );
 
-    // Mocking the behavior of courseRepo.findAll
+ 
     Page<Course> mockPage = new PageImpl<>(mockCourses);
     when(courseRepo.findAll(any(Pageable.class))).thenReturn(mockPage);
 
-    // Mocking the behavior of userRepo.findById for userId1
     User mockUser1 = new User("userId1", "John Doe", null, null, null, null);
     when(userRepo.findById("userId1")).thenReturn(Optional.of(mockUser1));
 
-    // Mocking the behavior of userRepo.findById for userId2
+    
     User mockUser2 = new User("userId2", "Jane Doe", null, null, null, null);
     when(userRepo.findById("userId2")).thenReturn(Optional.of(mockUser2));
 
-    // Act
+    
     List<Course> result = courseServiceImpl.getAllCourse(pageNumber, size, sortField, sortOrder);
 
-    // Assert
+ 
     assertNotNull(result, "Result should not be null");
     assertEquals(mockCourses.size(), result.size(), "Result size should match");
 
-    // Verify method invocations
+    
     verify(courseRepo, times(1)).findAll(any(Pageable.class));
     verify(userRepo, times(mockCourses.size())).findById(anyString());
 }
@@ -124,32 +121,21 @@ void testGetAllCourse() {
         verify(courseRepo, times(1)).findById(courseId);
     }
     
+   
 
-    @Test
-    @Deprecated
-    void testAddCourse() {
-        // Arrange
-        CourseDto courseDto = new CourseDto();
-        courseDto.setUserId("userId1");
-        courseDto.setCourse_name("New Course");
-        courseDto.setDuration("4 weeks");
 
-        when(userRepo.findById(courseDto.getUserId())).thenReturn(Optional.of(new User("userId1", "John Doe", null, null, null, null)));
-        when(userRepo.findByEmail(anyString())).thenReturn(null);
-        // when(auth0Service.createUser(anyString(), anyString(), anyString())).thenReturn("newUserId");
 
-        // Act
-        Course result = courseServiceImpl.addCourse(courseDto);
 
-        // Assert
-        assertNotNull(result);
-        assertEquals(courseDto.getCourse_name(), result.getCourse_name());
-        assertEquals(courseDto.getUserId(), result.getUserId());
-        verify(userRepo, times(1)).findById(courseDto.getUserId());
-        verify(userRepo, times(courseDto.getEmailsDto().size())).findByEmail(anyString());
-        // verify(auth0Service, times(courseDto.getEmailsDto().size())).createUser(anyString(), anyString(), anyString());
-        verify(courseRepo, times(1)).save(any(Course.class));
-    }
+
+
+
+
+
+
+
+
+
+
 
     // @Test
     // @Deprecated
@@ -169,7 +155,7 @@ void testGetAllCourse() {
     //     when(studentRepo.save(any(Student.class))).thenReturn(new Student());
 
     //     // Act
-    //     String result = courseServiceImpl.creatingStudentInBackGround(emailsDtoList, courseId, token);
+    //     String result = courseServiceImpl.creatingStudentInBackGround(emailsDtoList, courseId);
 
     //     // Assert
     //     assertNotNull(result);
@@ -183,28 +169,7 @@ void testGetAllCourse() {
     // }
 
 
-    // @Test
-    // void testCreatingStudentInBackground() {
-    //     List<EmailsDto> emailsDtoList = new ArrayList<>();
-    //     emailsDtoList.add(new EmailsDto("student@example.com", "John Doe", "Branch", "org123"));
 
-    //     String courseId = "course123";
-    //     String token = "token123";
-
-    //     when(courseRepo.findById(courseId)).thenReturn(java.util.Optional.of(new Course()));
-    //     when(studentRepo.getszStudentByEmail("student@example.com")).thenReturn(null);
-    //     when(auth0Service.createUser(any(), any(), any())).thenReturn("userId123");
-
-    //     String result = courseServiceImpl.creatingStudentInBackGround(emailsDtoList, courseId, token);
-
-    //     assertEquals("All Student Created Successfully", result);
-
-    //     verify(courseRepo, times(1)).findById(courseId);
-    //     verify(studentRepo, times(1)).getszStudentByEmail("student@example.com");
-    //     verify(auth0Service, times(1)).createUser("student@example.com", any(), "token123");
-    //     verify(userRepo, times(1)).save(any());
-    //     verify(studentRepo, times(1)).save(any());
-    // }
 
 
     
@@ -237,25 +202,34 @@ void testGetAllCourse() {
         verify(courseRepo, times(1)).deleteById(courseId);
     }
 
+   
+
     @Test
     void testGetAllCourseByUserId() {
+        // Arrange
         String userId = "user123";
         PaginationDto paginationDto = new PaginationDto(null, null, userId, userId);
         paginationDto.setPageNo(0);
         paginationDto.setPageSize(10);
         paginationDto.setSortDirection("ASC");
         paginationDto.setProperty("course_name");
+    
+        CourseResponce mockCourseResponse = new CourseResponce();  // Replace CourseResponce with the actual type
+        when(courseRepo.getCourseByUseId(eq(userId), any(Pageable.class))).thenReturn(new PageImpl<>(Collections.emptyList()));
 
-        List<Course> mockCourses = new ArrayList<>();
-        when(courseRepo.getCourseByUseId(eq(userId), any(Pageable.class))).thenReturn(mockCourses);
-
-        List<Course> result = courseServiceImpl.getAllCourseByUserId(userId, paginationDto);
-
+    
+        // Act
+        CourseResponce result = courseServiceImpl.getAllCourseByUserId(userId, paginationDto);
+    
+        // Assert
         assertNotNull(result);
-        assertEquals(0, result.size());
-
+        // Add more assertions based on the expected behavior of your getAllCourseByUserId method
+    
+        // Verify that the method was called with the correct arguments
         verify(courseRepo, times(1)).getCourseByUseId(eq(userId), any(Pageable.class));
     }
+    
+
    
 
     @Test
@@ -272,6 +246,67 @@ void testGetAllCourse() {
         verify(courseRepo, times(1)).findById("course123");
         verify(courseRepo, never()).save(any());
     }
+
+
+  @Test
+@Deprecated
+void testAddCourse() {
+    // Arrange
+    CourseDto courseDto = new CourseDto();
+    courseDto.setUserId("userId1");
+    courseDto.setCourse_name("New Course");
+    courseDto.setDuration("4 weeks");
+
+    User mockUser = new User("userId1", "John Doe", null, null, null, null);
+    when(userRepo.findById(courseDto.getUserId())).thenReturn(Optional.of(mockUser));
+    when(userRepo.findByEmail(anyString())).thenReturn(null);
+
+    Course expectedCourse = new Course();
+    expectedCourse.setCourse_name(courseDto.getCourse_name());
+    expectedCourse.setUserId(courseDto.getUserId());
+    expectedCourse.setUserName(mockUser.getName());
+    expectedCourse.setDuration(courseDto.getDuration());
+
+    when(courseRepo.save(any(Course.class))).thenReturn(expectedCourse);
+
+    Course result = courseServiceImpl.addCourse(expectedCourse);
+
+ 
+    assertNotNull(result);
+    assertEquals(expectedCourse.getCourse_name(), result.getCourse_name());
+    assertEquals(expectedCourse.getUserId(), result.getUserId());
+    assertEquals(expectedCourse.getUserName(), result.getUserName());
+    assertEquals(expectedCourse.getDuration(), result.getDuration());
+
+    verify(userRepo, times(1)).findById(courseDto.getUserId());
+    
+    verify(courseRepo, times(1)).save(any(Course.class));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

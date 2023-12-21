@@ -1,4 +1,4 @@
-package examportal.portal;
+package examportal.portal.ServiceImpTest;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,27 +30,29 @@ public class ExamDetailsImplTest {
 
     @Test
     public void testCreateExamDetails() {
-        // Arrange
-        ExamDetails inputExamDetails = new ExamDetails( "duration", "mode", null, 1, true, "branch", "session", "assessment", "active", true, true, 100, 50,
-    "paperId", "createdDate", "publishedDate");
-        // You may set properties of inputExamDetails as needed
+      
+    ExamDetails inputExamDetails = new ExamDetails(
+        "duration", "mode", null, 1, true, "branch", "session", "assessment",
+        "active", true, true, 100, 50, "paperId", "createdDate", "publishedDate",
+        "description", true, "auto check", "introduction"
+    );
 
-        ExamDetails savedExamDetails = new ExamDetails("duration", "mode", null, 1, true, "branch", "session", "assessment", "active", true, true, 100, 50,
-        "paperId", "createdDate", "publishedDate");
-        // You may set properties of savedExamDetails as expected after saving
-
+      
+        ExamDetails savedExamDetails = new ExamDetails(
+            null, "duration", "mode", 1, true, "branch", "session", "assessment",
+            "active", true, true, 100, 50, "paperId", "createdDate", "publishedDate",
+            "description", true, "auto check", "introduction"
+        );
         when(examDetailsRepo.save(any(ExamDetails.class))).thenReturn(savedExamDetails);
 
-        // Act
         ExamDetails result = examDetailsService.createExamDetails(inputExamDetails);
 
-        // Assert
+     
         assertEquals(savedExamDetails, result);
         
-        // Verify that the save method of examDetailsRepo was called once with any ExamDetails
         verify(examDetailsRepo, times(1)).save(any(ExamDetails.class));
         
-        // Verify that log.info was called with the specified message
+        
         verify(log).info("ExamDetails CreateExamDetails method Starts ");
         verify(log).info("ExamDetails CreateExamDetails method Ends ");
     }

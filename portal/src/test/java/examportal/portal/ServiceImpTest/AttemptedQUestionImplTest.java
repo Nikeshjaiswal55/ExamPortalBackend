@@ -1,4 +1,4 @@
-package examportal.portal;
+package examportal.portal.ServiceImpTest;
 
 import java.util.List;
 
@@ -15,7 +15,8 @@ import org.junit.jupiter.api.Test;
 import examportal.portal.Entity.AttemptedQuestions;
 import examportal.portal.Repo.AttemptedQuestionsRepo;
 import examportal.portal.ServicesImpl.AttemptedQuestionImpl;
-@SpringBootTest
+
+@SpringBootTest(classes=AttemptedQUestionImplTest.class)
 public class AttemptedQUestionImplTest {
 
     @Mock
@@ -30,7 +31,7 @@ public class AttemptedQUestionImplTest {
 
     @Test
     public void testCreateAttemptedQuestions() {
-        // Create a sample AttemptedQuestions object for testing
+        
         AttemptedQuestions sampleAttemptedQuestions = new AttemptedQuestions();
         sampleAttemptedQuestions.setOptions(List.of("Option1", "Option2"));
         sampleAttemptedQuestions.setQuestions("Sample Question");
@@ -39,17 +40,15 @@ public class AttemptedQUestionImplTest {
         sampleAttemptedQuestions.setPaperID("Paper123");
         sampleAttemptedQuestions.setStudentID("Student456");
 
-        // Mock the behavior of the AttemptedQuestionsRepo save method
         when(attemptedQuestionsRepo.save(any(AttemptedQuestions.class))).thenReturn(sampleAttemptedQuestions);
 
-        // Call the method to be tested
+       
         AttemptedQuestions result = attemptedQuestionService.createAttemptedQuestions(sampleAttemptedQuestions);
 
-        // Verify that the save method of the repository was called
+    
         verify(attemptedQuestionsRepo, times(1)).save(any(AttemptedQuestions.class));
 
-        // Verify that the returned AttemptedQuestions object matches the expected result
-        assertEquals(sampleAttemptedQuestions.getAttempteQuestionId(), result.getAttempteQuestionId());
+                assertEquals(sampleAttemptedQuestions.getAttempteQuestionId(), result.getAttempteQuestionId());
         assertEquals(sampleAttemptedQuestions.getOptions(), result.getOptions());
         assertEquals(sampleAttemptedQuestions.getQuestions(), result.getQuestions());
         assertEquals(sampleAttemptedQuestions.getCorrectAns(), result.getCorrectAns());

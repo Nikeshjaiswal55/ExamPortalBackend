@@ -1,4 +1,4 @@
-package examportal.portal.repotest;
+package examportal.portal.RepoTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
@@ -23,19 +23,16 @@ public class AttemptedQuestionsRepoTest {
 
     @Test
     public void testGetAllQuestionsByStudentID() {
-        // Arrange
+       
         String studentID = "student123";
         String paperID = "paper123";
         List<AttemptedQuestions> mockAttemptedQuestions = new ArrayList<>();
-        // Add mock AttemptedQuestions to the list based on your requirements
-
-        // Mocking the behavior of the repository method
+       
         when(attemptedQuestionsRepo.getAllQuestionsByStudentID(eq(studentID), eq(paperID))).thenReturn(mockAttemptedQuestions);
 
-        // Act
         List<AttemptedQuestions> result = attemptedQuestionsRepo.getAllQuestionsByStudentID(studentID, paperID);
 
-        // Assert
+      
         assertEquals(mockAttemptedQuestions, result);
     }
 

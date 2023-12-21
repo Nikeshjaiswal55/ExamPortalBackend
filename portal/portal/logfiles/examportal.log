@@ -1,0 +1,121 @@
+2023-12-21 10:57:59 [main] INFO  examportal.portal.course - Starting course using Java 18.0.2.1 with PID 24276 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 10:57:59 [main] INFO  examportal.portal.course - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 10:57:59 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.course
+2023-12-21 10:57:59 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@72ccd81a
+2023-12-21 10:57:59 [main] INFO  examportal.portal.course - Started course in 1.561 seconds (process running for 4.276)
+2023-12-21 10:57:59 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl,getCourseByCouseId Method Start
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl, updateCourse Method Start
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl, updateCourse Method Ends
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl, deleteCourse Method Start
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl, deleteCourse Method Ends
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl,getAllCourse Method Start
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl,getAllCourse Method Ends
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl,getCourseByCouseId Method Start
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl,getCourseByCouseId Method Ends
+2023-12-21 10:58:00 [main] INFO  CourseServiceimpl - CourseServiceimpl, updateCourse Method Start
+2023-12-21 10:58:00 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@72ccd81a, started on Thu Dec 21 10:57:59 IST 2023
+2023-12-21 11:04:03 [main] INFO  e.portal.CourseServiceImplTestt - Starting CourseServiceImplTestt using Java 18.0.2.1 with PID 18772 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:04:03 [main] INFO  e.portal.CourseServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:04:03 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.CourseServiceImplTestt
+2023-12-21 11:04:03 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db
+2023-12-21 11:04:03 [main] INFO  e.portal.CourseServiceImplTestt - Started CourseServiceImplTestt in 1.191 seconds (process running for 3.632)
+2023-12-21 11:04:03 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:04:04 [main] INFO  CourseServiceimpl - CourseServiceimpl,addCourse Method Start
+2023-12-21 11:04:04 [main] INFO  CourseServiceimpl - CourseServiceimpl,addCourse Method Ends
+2023-12-21 11:04:04 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db, started on Thu Dec 21 11:04:03 IST 2023
+2023-12-21 11:05:49 [main] INFO  e.portal.CourseServiceImplTestt - Starting CourseServiceImplTestt using Java 18.0.2.1 with PID 16552 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:05:49 [main] INFO  e.portal.CourseServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:05:49 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.CourseServiceImplTestt
+2023-12-21 11:05:49 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db
+2023-12-21 11:05:49 [main] INFO  e.portal.CourseServiceImplTestt - Started CourseServiceImplTestt in 1.224 seconds (process running for 3.498)
+2023-12-21 11:05:49 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:05:50 [main] INFO  CourseServiceimpl - CourseServiceimpl,addCourse Method Start
+2023-12-21 11:05:50 [main] INFO  CourseServiceimpl - CourseServiceimpl,addCourse Method Ends
+2023-12-21 11:05:50 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db, started on Thu Dec 21 11:05:49 IST 2023
+2023-12-21 11:09:05 [main] INFO  e.portal.CourseServiceImplTestt - Starting CourseServiceImplTestt using Java 18.0.2.1 with PID 24728 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:09:05 [main] INFO  e.portal.CourseServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:09:05 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.CourseServiceImplTestt
+2023-12-21 11:09:05 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db
+2023-12-21 11:09:06 [main] INFO  e.portal.CourseServiceImplTestt - Started CourseServiceImplTestt in 0.957 seconds (process running for 2.945)
+2023-12-21 11:09:06 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:09:07 [main] INFO  CourseServiceimpl - CourseServiceimpl,addCourse Method Start
+2023-12-21 11:09:07 [main] INFO  CourseServiceimpl - CourseServiceimpl,addCourse Method Ends
+2023-12-21 11:09:07 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db, started on Thu Dec 21 11:09:05 IST 2023
+2023-12-21 11:12:27 [main] INFO  e.portal.CourseServiceImplTestt - Starting CourseServiceImplTestt using Java 18.0.2.1 with PID 18024 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:12:27 [main] INFO  e.portal.CourseServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:12:27 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.CourseServiceImplTestt
+2023-12-21 11:12:28 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db
+2023-12-21 11:12:28 [main] INFO  e.portal.CourseServiceImplTestt - Started CourseServiceImplTestt in 0.916 seconds (process running for 3.13)
+2023-12-21 11:12:28 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:12:29 [main] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method Start
+2023-12-21 11:12:29 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db, started on Thu Dec 21 11:12:28 IST 2023
+2023-12-21 11:13:42 [main] INFO  e.portal.CourseServiceImplTestt - Starting CourseServiceImplTestt using Java 18.0.2.1 with PID 10264 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:13:42 [main] INFO  e.portal.CourseServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:13:42 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.CourseServiceImplTestt
+2023-12-21 11:13:42 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db
+2023-12-21 11:13:43 [main] INFO  e.portal.CourseServiceImplTestt - Started CourseServiceImplTestt in 0.993 seconds (process running for 3.189)
+2023-12-21 11:13:43 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:13:44 [main] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method Start
+2023-12-21 11:13:44 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db, started on Thu Dec 21 11:13:42 IST 2023
+2023-12-21 11:14:08 [main] INFO  e.portal.CourseServiceImplTestt - Starting CourseServiceImplTestt using Java 18.0.2.1 with PID 19848 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:14:08 [main] INFO  e.portal.CourseServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:14:08 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.CourseServiceImplTestt
+2023-12-21 11:14:08 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db
+2023-12-21 11:14:08 [main] INFO  e.portal.CourseServiceImplTestt - Started CourseServiceImplTestt in 1.19 seconds (process running for 3.434)
+2023-12-21 11:14:08 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:14:09 [main] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method Start
+2023-12-21 11:14:09 [main] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method End
+2023-12-21 11:14:09 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db, started on Thu Dec 21 11:14:08 IST 2023
+2023-12-21 11:14:35 [main] INFO  e.portal.CourseServiceImplTestt - Starting CourseServiceImplTestt using Java 18.0.2.1 with PID 15236 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:14:35 [main] INFO  e.portal.CourseServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:14:35 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.CourseServiceImplTestt
+2023-12-21 11:14:35 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db
+2023-12-21 11:14:36 [main] INFO  e.portal.CourseServiceImplTestt - Started CourseServiceImplTestt in 0.963 seconds (process running for 3.092)
+2023-12-21 11:14:36 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:14:37 [main] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method Start
+2023-12-21 11:14:37 [main] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method End
+2023-12-21 11:14:37 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6d8792db, started on Thu Dec 21 11:14:35 IST 2023
+2023-12-21 11:15:37 [main] INFO  e.portal.CourseServiceImplTestt - Starting CourseServiceImplTestt using Java 18.0.2.1 with PID 10484 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:15:37 [main] INFO  e.portal.CourseServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:15:37 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.CourseServiceImplTestt
+2023-12-21 11:15:37 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@2f162cc0
+2023-12-21 11:15:38 [main] INFO  e.portal.CourseServiceImplTestt - Started CourseServiceImplTestt in 0.893 seconds (process running for 2.873)
+2023-12-21 11:15:38 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method Start
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method End
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl,getCourseByCouseId Method Start
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl, updateCourse Method Start
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl, updateCourse Method Ends
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl, deleteCourse Method Start
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl, deleteCourse Method Ends
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl,getAllCourse Method Start
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl,getAllCourse Method Ends
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl,addCourse Method Start
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl,addCourse Method Ends
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl,getCourseByCouseId Method Start
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl,getCourseByCouseId Method Ends
+2023-12-21 11:15:39 [main] INFO  CourseServiceimpl - CourseServiceimpl, updateCourse Method Start
+2023-12-21 11:15:39 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@2f162cc0, started on Thu Dec 21 11:15:37 IST 2023
+2023-12-21 11:17:00 [main] INFO  e.portal.ResultServiceImplTestt - Starting ResultServiceImplTestt using Java 18.0.2.1 with PID 26164 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:17:00 [main] INFO  e.portal.ResultServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:17:00 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.ResultServiceImplTestt
+2023-12-21 11:17:00 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@71c5b236
+2023-12-21 11:17:00 [main] INFO  e.portal.ResultServiceImplTestt - Started ResultServiceImplTestt in 1.299 seconds (process running for 3.415)
+2023-12-21 11:17:00 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:17:02 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@71c5b236, started on Thu Dec 21 11:17:00 IST 2023
+2023-12-21 11:48:08 [main] INFO  e.portal.ResultServiceImplTestt - Starting ResultServiceImplTestt using Java 18.0.2.1 with PID 18324 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:48:08 [main] INFO  e.portal.ResultServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:48:08 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.ResultServiceImplTestt
+2023-12-21 11:48:08 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@71c5b236
+2023-12-21 11:48:08 [main] INFO  e.portal.ResultServiceImplTestt - Started ResultServiceImplTestt in 1.036 seconds (process running for 3.353)
+2023-12-21 11:48:09 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:48:11 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@71c5b236, started on Thu Dec 21 11:48:08 IST 2023
+2023-12-21 11:49:28 [main] INFO  e.portal.ResultServiceImplTestt - Starting ResultServiceImplTestt using Java 18.0.2.1 with PID 5744 (started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder\portal)
+2023-12-21 11:49:28 [main] INFO  e.portal.ResultServiceImplTestt - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 11:49:28 [main] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.ResultServiceImplTestt
+2023-12-21 11:49:28 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@72ccd81a
+2023-12-21 11:49:29 [main] INFO  e.portal.ResultServiceImplTestt - Started ResultServiceImplTestt in 0.965 seconds (process running for 2.887)
+2023-12-21 11:49:29 [main] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 11:49:30 [main] INFO  ResultServiceImpl - ResultServiceImpl, createResult Method Start
+2023-12-21 11:49:31 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@72ccd81a, started on Thu Dec 21 11:49:28 IST 2023

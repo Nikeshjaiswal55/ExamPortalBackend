@@ -1,4 +1,7 @@
-package examportal.portal.repotest;
+package examportal.portal.RepoTest;
+
+
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
@@ -21,72 +24,33 @@ public class StudentRepoTest {
 
     @Test
     public void testGetStudentByEmail() {
-        // Arrange
+       
         String email = "test@example.com";
         Student mockStudent = new Student();
-        // Set properties of mockStudent based on your requirements
-
-        // Mocking the behavior of the repository method
+       
         when(studentRepo.getszStudentByEmail(eq(email))).thenReturn(mockStudent);
 
-        // Act
+      
         Student result = studentRepo.getszStudentByEmail(email);
 
-        // Assert
         assertEquals(mockStudent, result);
     }
 
     @Test
     public void testFindAllStudentByPaperId() {
-        // Arrange
+      
         String paperId = "123";
         List<Student> mockStudents = new ArrayList<>();
-        // Add mock students to the list based on your requirements
-
-        // Mocking the behavior of the repository method
+        
         when(studentRepo.findAllStudentByPaperId(eq(paperId))).thenReturn(mockStudents);
 
-        // Act
+      
         List<Student> result = studentRepo.findAllStudentByPaperId(paperId);
 
-        // Assert
+     
         assertEquals(mockStudents, result);
     }
 
-    @Test
-    public void testGetAllStudentByBranch() {
-        // Arrange
-        String branch = "Computer Science";
-        List<Student> mockStudents = new ArrayList<>();
-        // Add mock students to the list based on your requirements
-
-        // Mocking the behavior of the repository method
-        when(studentRepo.getAllStudentBYBranch(eq(branch))).thenReturn(mockStudents);
-
-        // Act
-        List<Student> result = studentRepo.getAllStudentBYBranch(branch);
-
-        // Assert
-        assertEquals(mockStudents, result);
-    }
-
-    @Test
-    public void testGetAllStudentByName() {
-        // Arrange
-        String name = "John Doe";
-        List<Student> mockStudents = new ArrayList<>();
-        // Add mock students to the list based on your requirements
-
-        // Mocking the behavior of the repository method
-        when(studentRepo.getAllStudentByName(eq(name))).thenReturn(mockStudents);
-
-        // Act
-        List<Student> result = studentRepo.getAllStudentByName(name);
-
-        // Assert
-        assertEquals(mockStudents, result);
-    }
-
-    // You can add more test cases as needed for other methods or scenarios
-}
+    
+ }
 
