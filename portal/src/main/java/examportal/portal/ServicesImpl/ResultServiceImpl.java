@@ -333,8 +333,12 @@ public class ResultServiceImpl implements ResultService {
     public List<Result> getTopFiveResultOfStudentByStudentId(String studentId) {
         log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method Start");
         List<Result> allResult = this.resultRepo.findAllResutlByStudentID(studentId);
-        List<Result> top5 = new ArrayList<>();
 
+        List<Result> top5 = new ArrayList<>();
+        if(allResult.size()!=5){
+
+            return top5;
+        }else{
         for (int i = 0; i < 5; i++) {
             Result result = new Result();
             result = allResult.get(i);
@@ -342,6 +346,7 @@ public class ResultServiceImpl implements ResultService {
         }
         log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
         return top5;
+    }
     }
 
     @Override
