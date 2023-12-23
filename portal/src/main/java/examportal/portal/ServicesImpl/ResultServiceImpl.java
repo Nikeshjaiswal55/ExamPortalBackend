@@ -189,6 +189,7 @@ public class ResultServiceImpl implements ResultService {
 
             ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
             int eachqMarks = examDetails.getTotalMarks() / dto.getQuestions().size();
+            System.out.println(" hello i am herererererere=========================================================");
 
             for (Questions ques : dto.getQuestions()) {
                 Questions q = this.questionsRepo.findById(ques.getQuestionId())
@@ -198,11 +199,20 @@ public class ResultServiceImpl implements ResultService {
                     obtainmarks += eachqMarks;
                     q.setUserAns(ques.getUserAns());
                     questions2.add(q);
+                    System.out.println("hello iam checking =============================================");
                 }
                 else
                 {
                      questions2.add(ques);
                 }
+                // if (q.getCorrectAns() != null && q.getCorrectAns().equals(ques.getUserAns())) {
+                //     obtainmarks += eachqMarks;
+                //     q.setUserAns(ques.getUserAns());
+                //     questions2.add(q);
+                //     System.out.println("Checking: Answer is correct for question with ID ");
+                // } else {
+                //     questions2.add(ques);
+                // }
                
             }
 
@@ -230,7 +240,7 @@ public class ResultServiceImpl implements ResultService {
             } else {
                 newResult.setIs_published("pending");
             }
-
+            System.out.println("hello i am hreeerererer  22222222222222222222222 e ==================================");
             Assessment assessment = this.assessmentRepo.getAssessmentByStudentAndpaperId(dto.getStudentId(),
                     dto.getPaperId());
 
