@@ -204,20 +204,19 @@ public class ResultServiceImpl implements ResultService {
                     q.setUserAns(ques.getUserAns());
                     questions2.add(q);
                     System.out.println("hello iam checking =============================================");
+                } else {
+                    questions2.add(ques);
                 }
-                else
-                {
-                     questions2.add(ques);
-                }
-                // if (q.getCorrectAns() != null && q.getCorrectAns().equals(ques.getUserAns())) {
-                //     obtainmarks += eachqMarks;
-                //     q.setUserAns(ques.getUserAns());
-                //     questions2.add(q);
-                //     System.out.println("Checking: Answer is correct for question with ID ");
+                // if (q.getCorrectAns() != null && q.getCorrectAns().equals(ques.getUserAns()))
+                // {
+                // obtainmarks += eachqMarks;
+                // q.setUserAns(ques.getUserAns());
+                // questions2.add(q);
+                // System.out.println("Checking: Answer is correct for question with ID ");
                 // } else {
-                //     questions2.add(ques);
+                // questions2.add(ques);
                 // }
-               
+
             }
 
             Paper paper = this.paperRepo.findById(dto.getPaperId())
@@ -255,7 +254,8 @@ public class ResultServiceImpl implements ResultService {
             attemptedPapers.setAssmentId(assessment.getAssessmentID());
             this.attemptepaperRepo.save(attemptedPapers);
 
-            // List<String> response = this.service.store(dto.getCheating().getImages(),"cheating/");
+            // List<String> response =
+            // this.service.store(dto.getCheating().getImages(),"cheating/");
 
             Cheating cheating = dto.getCheating();
             cheating.setPaperId(dto.getPaperId());
@@ -295,7 +295,7 @@ public class ResultServiceImpl implements ResultService {
                 .orElseThrow(() -> new ResourceNotFoundException("student", "studentId", studentId));
 
         if (result.getIs_published().equals("approved")) {
-             List<Questions> questions = new ArrayList<>();
+            List<Questions> questions = new ArrayList<>();
             List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
                     .getAllQuestionsByStudentID(studentId, papeId);
 
@@ -315,11 +315,11 @@ public class ResultServiceImpl implements ResultService {
 
             // List<Questions> questions = new ArrayList<>();
             // List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
-            //         .getAllQuestionsByStudentID(studentId, papeId);
+            // .getAllQuestionsByStudentID(studentId, papeId);
 
             // for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
-            //     Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
-            //     questions.add(q);
+            // Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
+            // questions.add(q);
             // }
 
             ResultDto dto = new ResultDto();
@@ -337,13 +337,20 @@ public class ResultServiceImpl implements ResultService {
         List<Result> allResult = this.resultRepo.findAllResutlByStudentID(studentId);
         List<Result> top5 = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            Result result = new Result();
-            result = allResult.get(i);
-            top5.add(result);
+        if (allResult.size() != 5) {
+
+            log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
+            return top5;
+        } else {
+            for (int i = 0; i < 5; i++) {
+                Result result = new Result();
+                result = allResult.get(i);
+                top5.add(result);
+            }
+            log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
+            return top5;
         }
-        log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
-        return top5;
+
     }
 
     @Override
