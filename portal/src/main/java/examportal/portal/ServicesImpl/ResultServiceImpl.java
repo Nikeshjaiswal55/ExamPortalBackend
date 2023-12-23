@@ -255,13 +255,11 @@ public class ResultServiceImpl implements ResultService {
             attemptedPapers.setAssmentId(assessment.getAssessmentID());
             this.attemptepaperRepo.save(attemptedPapers);
 
-            List<String> response = this.service.store(dto.getCheating().getImages(),"/cheating");
+            // List<String> response = this.service.store(dto.getCheating().getImages(),"cheating/");
 
             Cheating cheating = dto.getCheating();
             cheating.setPaperId(dto.getPaperId());
-            cheating.setImages(response);
-            System.out.println(response
-                    + "my images upload ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            cheating.setImages(dto.getCheating().getImages());
 
             ResultDto dto2 = new ResultDto();
             dto2.setQuestions(questions2);
