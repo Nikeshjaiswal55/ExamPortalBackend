@@ -7,16 +7,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.utils.ObjectUtils;
 import com.cloudinary.Cloudinary;
+
+import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Services.ImageService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
+@CrossOrigin( origins = "*")
 public class ImageUploadController {
     @Autowired
     private ImageService imageService;
@@ -73,9 +80,10 @@ public class ImageUploadController {
     }
 
     @PostMapping("/uploadSingleImageAtaTmie")
-    public ResponseEntity<String> uploadtatclounary(@RequestBody String image) {
-        String url = this.imageService.uploadbase64incloudnary(image);
-        return new ResponseEntity<>(url, HttpStatus.CREATED);
-    }
+    public PaperStringDto uploadtatclounary(@RequestBody String image) {
+          PaperStringDto imageUrl= this.imageService.uploadImageSingle(image);
+        log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
+        return imageUrl;
+        }
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
+import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Services.ImageService;
 
 @Service
@@ -71,11 +72,10 @@ public class ImageServiceImpl implements ImageService {
     }
     
     @Override
-    public String uploadbase64incloudnary(String image) {
-        log.info("ImageServiceImpl ,uploadbase64incloudnaru Method Start");
-       
-        String Url="";
-
+    public PaperStringDto uploadbase64incloudnary(String image) {
+        log.info("ImageServiceImpl ,uploadbase64incloudnary Method Start");
+        
+        PaperStringDto dto = new PaperStringDto();
             Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
                     "cloud_name", cloudName,
                     "api_key", apiKey,
@@ -83,15 +83,23 @@ public class ImageServiceImpl implements ImageService {
 
             try {
                 // Upload base64 image to Cloudinary
-                Map<?, ?> result = cloudinary.uploader().upload(String, ObjectUtils.emptyMap());
+                Map<?, ?> result = cloudinary.uploader().upload(image, ObjectUtils.emptyMap());
 
                 // Extract public URL of the uploaded image
-                  Url = (String) result.get("url");
+                 String Url = (String) result.get("url");
+                 dto.setData(Url);
             } catch (Exception e) {
                 e.printStackTrace();
-            log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
-        }
-            return Url;
+            }
+        log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
+        return dto;
+    }
 
+    @Override
+    public PaperStringDto uploadImageSingle(String image)
+    {
+         PaperStringDto url =uploadbase64incloudnary(image);
+         return url;
+    }
 }
-}
+
