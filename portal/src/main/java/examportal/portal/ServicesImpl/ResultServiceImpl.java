@@ -33,6 +33,7 @@ import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.ImageService;
 import examportal.portal.Services.ResultService;
+import examportal.portal.Services.StorageService;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -66,6 +67,9 @@ public class ResultServiceImpl implements ResultService {
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private StorageService service;
 
     @Autowired
     private PaperRepo paperRepo;
@@ -251,7 +255,7 @@ public class ResultServiceImpl implements ResultService {
             attemptedPapers.setAssmentId(assessment.getAssessmentID());
             this.attemptepaperRepo.save(attemptedPapers);
 
-            List<String> response = this.imageService.uploadbase64incloudnaru(dto.getCheating().getImages());
+            List<String> response = this.service.store(dto.getCheating().getImages(),"/cheating");
 
             Cheating cheating = dto.getCheating();
             cheating.setPaperId(dto.getPaperId());
