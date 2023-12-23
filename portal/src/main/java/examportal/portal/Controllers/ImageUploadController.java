@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,19 +18,22 @@ import com.cloudinary.Cloudinary;
 
 import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Services.ImageService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import examportal.portal.Services.StorageService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin( origins = "*")
+@CrossOrigin(origins = "*")
 public class ImageUploadController {
     @Autowired
     private ImageService imageService;
 
     @Autowired
     private Cloudinary cloudinary;
+
+    @Autowired
+    private StorageService service;
 
     Logger log = LoggerFactory.getLogger("ImageUploadController.class");
 
@@ -81,9 +85,17 @@ public class ImageUploadController {
 
     @PostMapping("/uploadSingleImageAtaTmie")
     public PaperStringDto uploadtatclounary(@RequestBody String image) {
-          PaperStringDto imageUrl= this.imageService.uploadImageSingle(image);
+        PaperStringDto imageUrl = this.imageService.uploadImageSingle(image);
         log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
         return imageUrl;
-        }
+    }
+
+    @PostMapping("/uploadAtS3")
+    public String uploadtatamazoneS3(@RequestBody String image) {
+        String url ="jfa";
+        String imageUrl = this.service.store(image, url);
+        log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
+        return imageUrl;
+    }
 
 }
