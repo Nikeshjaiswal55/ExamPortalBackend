@@ -4,8 +4,8 @@
 HELP.md
 .gradle
 
-build/
-!build/libs
+build/*
+!build/libs/
 resolvedMainClassName
 
 libs/portal-plain.jar
