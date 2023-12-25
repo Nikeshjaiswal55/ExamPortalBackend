@@ -5,6 +5,7 @@ HELP.md
 .gradle
 
 build/*
+# Except for files in build/libs/
 !build/libs/
 resolvedMainClassName
 
