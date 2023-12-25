@@ -1,7 +1,5 @@
+
 package examportal.portal.ServicesImpl;
-
-
-
 
 import java.util.ArrayList;
 import java.util.List;

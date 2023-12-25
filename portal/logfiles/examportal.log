@@ -1,36 +1,36 @@
-2023-12-19 10:58:24 [restartedMain] INFO  examportal.portal.PortalApplication - Starting PortalApplication using Java 18.0.2.1 with PID 24804 (C:\Users\Sanjay patel\Desktop\New folder\portal\build\classes\java\main started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder)
-2023-12-19 10:58:24 [restartedMain] INFO  examportal.portal.PortalApplication - No active profile set, falling back to 1 default profile: "default"
-2023-12-19 10:58:24 [restartedMain] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.PortalApplication
-2023-12-19 10:58:24 [restartedMain] DEBUG o.s.b.d.restart.ChangeableUrls - Matching URLs for reloading : [file:/C:/Users/Sanjay%20patel/Desktop/New%20folder/portal/build/resources/main/, file:/C:/Users/Sanjay%20patel/Desktop/New%20folder/portal/build/classes/java/main/]
-2023-12-19 10:58:24 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Included patterns for restart : []
-2023-12-19 10:58:24 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter-[\w-]+/, /spring-boot/(bin|build|out)/, /spring-boot-starter/(bin|build|out)/, /spring-boot-devtools/(bin|build|out)/, /spring-boot-actuator/(bin|build|out)/, /spring-boot-autoconfigure/(bin|build|out)/]
-2023-12-19 10:58:24 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-12-19 10:58:24 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-12-19 10:58:24 [restartedMain] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@621bdced
-2023-12-19 10:58:25 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-19 10:58:26 [restartedMain] DEBUG o.s.b.a.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'examportal.portal'. Automatic @Repository and @Entity scanning is enabled.
-2023-12-19 10:58:26 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 252 ms. Found 14 JPA repository interfaces.
-2023-12-19 10:58:27 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\Sanjay patel\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
-2023-12-19 10:58:27 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\Sanjay patel\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
-2023-12-19 10:58:27 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2023-12-19 10:58:28 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
-2023-12-19 10:58:28 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2023-12-19 10:58:28 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
-2023-12-19 10:58:28 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.b.w.s.c.ServletWebServerApplicationContext - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-2023-12-19 10:58:28 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3835 ms
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping servlets: dispatcherServlet urls=[/]
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.b.w.s.f.OrderedRequestContextFilter - Filter 'requestContextFilter' configured for use
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.b.w.s.f.OrderedCharacterEncodingFilter - Filter 'characterEncodingFilter' configured for use
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.b.w.s.DelegatingFilterProxyRegistrationBean$1 - Filter 'springSecurityFilterChain' configured for use
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.b.w.s.f.OrderedFormContentFilter - Filter 'formContentFilter' configured for use
-2023-12-19 10:58:28 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine suitable jdbc url
-2023-12-19 10:58:28 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Immediately restarting application
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Starting application examportal.portal.PortalApplication with URLs [file:/C:/Users/Sanjay%20patel/Desktop/New%20folder/portal/build/resources/main/, file:/C:/Users/Sanjay%20patel/Desktop/New%20folder/portal/build/classes/java/main/]
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.b.a.l.ConditionEvaluationReportLogger - 
+2023-12-21 14:17:35 [restartedMain] INFO  examportal.portal.PortalApplication - Starting PortalApplication using Java 18.0.2.1 with PID 22604 (C:\Users\Sanjay patel\Desktop\New folder\portal\build\classes\java\main started by Sanjay patel in C:\Users\Sanjay patel\Desktop\New folder)
+2023-12-21 14:17:35 [restartedMain] INFO  examportal.portal.PortalApplication - No active profile set, falling back to 1 default profile: "default"
+2023-12-21 14:17:35 [restartedMain] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.PortalApplication
+2023-12-21 14:17:35 [restartedMain] DEBUG o.s.b.d.restart.ChangeableUrls - Matching URLs for reloading : [file:/C:/Users/Sanjay%20patel/Desktop/New%20folder/portal/build/resources/main/, file:/C:/Users/Sanjay%20patel/Desktop/New%20folder/portal/build/classes/java/main/]
+2023-12-21 14:17:35 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Included patterns for restart : []
+2023-12-21 14:17:35 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter-[\w-]+/, /spring-boot/(bin|build|out)/, /spring-boot-starter/(bin|build|out)/, /spring-boot-devtools/(bin|build|out)/, /spring-boot-actuator/(bin|build|out)/, /spring-boot-autoconfigure/(bin|build|out)/]
+2023-12-21 14:17:35 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-12-21 14:17:35 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-12-21 14:17:35 [restartedMain] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@621bdced
+2023-12-21 14:17:37 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-21 14:17:37 [restartedMain] DEBUG o.s.b.a.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'examportal.portal'. Automatic @Repository and @Entity scanning is enabled.
+2023-12-21 14:17:37 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 312 ms. Found 14 JPA repository interfaces.
+2023-12-21 14:17:38 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\Sanjay patel\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
+2023-12-21 14:17:38 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\Sanjay patel\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
+2023-12-21 14:17:38 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2023-12-21 14:17:39 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2023-12-21 14:17:39 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-12-21 14:17:39 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-21 14:17:39 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.b.w.s.c.ServletWebServerApplicationContext - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2023-12-21 14:17:39 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3631 ms
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping servlets: dispatcherServlet urls=[/]
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.b.w.s.f.OrderedRequestContextFilter - Filter 'requestContextFilter' configured for use
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.b.w.s.f.OrderedCharacterEncodingFilter - Filter 'characterEncodingFilter' configured for use
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.b.w.s.DelegatingFilterProxyRegistrationBean$1 - Filter 'springSecurityFilterChain' configured for use
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.b.w.s.f.OrderedFormContentFilter - Filter 'formContentFilter' configured for use
+2023-12-21 14:17:39 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine suitable jdbc url
+2023-12-21 14:17:39 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Immediately restarting application
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Starting application examportal.portal.PortalApplication with URLs [file:/C:/Users/Sanjay%20patel/Desktop/New%20folder/portal/build/resources/main/, file:/C:/Users/Sanjay%20patel/Desktop/New%20folder/portal/build/classes/java/main/]
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.b.a.l.ConditionEvaluationReportLogger - 
 
 
 ============================
@@ -1505,7 +1505,7 @@ Unconditional classes:
 
 
 
-2023-12-19 10:58:28 [restartedMain] DEBUG o.s.b.d.LoggingFailureAnalysisReporter - Application failed to start due to an exception
+2023-12-21 14:17:39 [restartedMain] DEBUG o.s.b.d.LoggingFailureAnalysisReporter - Application failed to start due to an exception
 org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Failed to determine suitable jdbc url
 	at org.springframework.boot.autoconfigure.jdbc.DataSourceProperties.determineUrl(DataSourceProperties.java:232)
 	at org.springframework.boot.autoconfigure.jdbc.PropertiesJdbcConnectionDetails.getJdbcUrl(PropertiesJdbcConnectionDetails.java:44)
@@ -1553,7 +1553,7 @@ org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanC
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-2023-12-19 10:58:28 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+2023-12-21 14:17:39 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
 
 ***************************
 APPLICATION FAILED TO START
