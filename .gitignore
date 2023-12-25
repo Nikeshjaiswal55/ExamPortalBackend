@@ -6,10 +6,8 @@ HELP.md
 
 build/*
 # Except for files in build/libs/
-!build/libs/
+!build/libs/portal.jar
 resolvedMainClassName
-
-libs/portal-plain.jar
 build/resolvedMainClassName
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
