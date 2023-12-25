@@ -9,9 +9,10 @@ import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Data
 public class ExamDetails {
     @Id

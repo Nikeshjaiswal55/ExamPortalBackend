@@ -48,6 +48,16 @@ public class UserserviceImpl implements UserService {
         }
 
     }
+
+    public User updatUser(User user)
+    {
+        User update = this.userRepo.findById(user.getUserId()).orElseThrow(()-> new ResourceNotFoundException("user", "Id", user.getUserId()));
+        update.setEmail(user.getEmail());
+        update.setPicture(user.getPicture());
+        update.setPassword(user.getPassword());
+        User updatUser = this.userRepo.save(update);
+        return updatUser;
+    }
     
     @Override
     public List<User> getAllUser(Integer page,Integer size, String sortField, String sortOrder) {

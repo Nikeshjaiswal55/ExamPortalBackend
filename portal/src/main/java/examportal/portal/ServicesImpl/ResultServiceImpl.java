@@ -33,6 +33,7 @@ import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Repo.StudentRepo;
 import examportal.portal.Services.ImageService;
 import examportal.portal.Services.ResultService;
+import examportal.portal.Services.StorageService;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -66,6 +67,9 @@ public class ResultServiceImpl implements ResultService {
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private StorageService service;
 
     @Autowired
     private PaperRepo paperRepo;
@@ -109,7 +113,7 @@ public class ResultServiceImpl implements ResultService {
         examDetails.setPaperChecked(true);
         examDetails.setIs_Active("true");
         examDetails.set_Setup(false);
-        examDetails.set_attempted(true);
+        // examDetails.set_attempted(true);
         this.examDetailsRepo.save(examDetails);
 
         // 3. Save Result
@@ -136,6 +140,7 @@ public class ResultServiceImpl implements ResultService {
         resultDto.setResultID(newResult.getResultID());
         resultDto.setCheating(stdCheating);
         resultDto.setResult(newResult);
+        resultDto.set_attempted(true);
         log.info("ResultServiceImpl, createResult Method Ends");
 
         return resultDto;
@@ -194,6 +199,7 @@ public class ResultServiceImpl implements ResultService {
 
             ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
             int eachqMarks = examDetails.getTotalMarks() / dto.getQuestions().size();
+            System.out.println(" hello i am herererererere=========================================================");
 
             for (Questions ques : dto.getQuestions()) {
                 Questions q = this.questionsRepo.findById(ques.getQuestionId())
@@ -203,8 +209,20 @@ public class ResultServiceImpl implements ResultService {
                     obtainmarks += eachqMarks;
                     q.setUserAns(ques.getUserAns());
                     questions2.add(q);
+                    System.out.println("hello iam checking =============================================");
+                } else {
+                    questions2.add(ques);
                 }
-                questions2.add(ques);
+                // if (q.getCorrectAns() != null && q.getCorrectAns().equals(ques.getUserAns()))
+                // {
+                // obtainmarks += eachqMarks;
+                // q.setUserAns(ques.getUserAns());
+                // questions2.add(q);
+                // System.out.println("Checking: Answer is correct for question with ID ");
+                // } else {
+                // questions2.add(ques);
+                // }
+
             }
 
             Paper paper = this.paperRepo.findById(dto.getPaperId())
@@ -231,7 +249,7 @@ public class ResultServiceImpl implements ResultService {
             } else {
                 newResult.setIs_published("pending");
             }
-
+            System.out.println("hello i am hreeerererer  22222222222222222222222 e ==================================");
             Assessment assessment = this.assessmentRepo.getAssessmentByStudentAndpaperId(dto.getStudentId(),
                     dto.getPaperId());
 
@@ -242,13 +260,12 @@ public class ResultServiceImpl implements ResultService {
             attemptedPapers.setAssmentId(assessment.getAssessmentID());
             this.attemptepaperRepo.save(attemptedPapers);
 
-            List<String> response = this.imageService.uploadbase64incloudnaru(dto.getCheating().getImages());
+            // List<String> response =
+            // this.service.store(dto.getCheating().getImages(),"cheating/");
 
             Cheating cheating = dto.getCheating();
             cheating.setPaperId(dto.getPaperId());
-            cheating.setImages(response);
-            System.out.println(response
-                    + "my images upload ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            cheating.setImages(dto.getCheating().getImages());
 
             ResultDto dto2 = new ResultDto();
             dto2.setQuestions(questions2);
@@ -284,7 +301,7 @@ public class ResultServiceImpl implements ResultService {
                 .orElseThrow(() -> new ResourceNotFoundException("student", "studentId", studentId));
 
         if (result.getIs_published().equals("approved")) {
-             List<Questions> questions = new ArrayList<>();
+            List<Questions> questions = new ArrayList<>();
             List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
                     .getAllQuestionsByStudentID(studentId, papeId);
 
@@ -304,11 +321,11 @@ public class ResultServiceImpl implements ResultService {
 
             // List<Questions> questions = new ArrayList<>();
             // List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
-            //         .getAllQuestionsByStudentID(studentId, papeId);
+            // .getAllQuestionsByStudentID(studentId, papeId);
 
             // for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
-            //     Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
-            //     questions.add(q);
+            // Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
+            // questions.add(q);
             // }
 
             ResultDto dto = new ResultDto();
@@ -326,13 +343,20 @@ public class ResultServiceImpl implements ResultService {
         List<Result> allResult = this.resultRepo.findAllResutlByStudentID(studentId);
         List<Result> top5 = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            Result result = new Result();
-            result = allResult.get(i);
-            top5.add(result);
+        if (allResult.size() != 5) {
+
+            log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
+            return top5;
+        } else {
+            for (int i = 0; i < 5; i++) {
+                Result result = new Result();
+                result = allResult.get(i);
+                top5.add(result);
+            }
+            log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
+            return top5;
         }
-        log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
-        return top5;
+
     }
 
     @Override
