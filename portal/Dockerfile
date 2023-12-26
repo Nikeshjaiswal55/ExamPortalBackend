@@ -1,5 +1,5 @@
 FROM gradle:8.1.1-jdk17 AS build
-WORKDIR /home
+# WORKDIR /home
 COPY /portal /home
 COPY gradlew .  /home/gradle
 COPY gradle/*   /home/gradle
