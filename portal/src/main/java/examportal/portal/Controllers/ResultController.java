@@ -34,6 +34,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ResultController {
 
     Logger log = LoggerFactory.getLogger("ResultController");
+
+    
     @Autowired
     private ResultService resultService;
 
