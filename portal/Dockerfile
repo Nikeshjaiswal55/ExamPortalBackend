@@ -6,9 +6,9 @@ COPY build.gradle   /home/gradle
 COPY gradlew.bat /home/gradle
 COPY settings.gradle /home/gradle
 
-RUN gradle build
+RUN ["gradle", "clean", "build"]
 WORKDIR /app
-COPY /portal/build/libs/portal.jar /app
+COPY /portal/build/libs/* /app
 
 
 FROM openjdk:17-jdk-slim
