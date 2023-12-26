@@ -17953,3 +17953,747 @@ Unconditional classes:
 2023-12-26 12:27:00 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
 2023-12-26 12:27:00 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [CourseResponce(data=[Course(course_id=7c546e71-9273-4872-93ca-518c64d06b6b, course_name=bba, userId= (truncated)...]
 2023-12-26 12:27:00 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.web.client.RestTemplate - HTTP GET https://dev-uil1ecwkoehr31jg.us.auth0.com/.well-known/jwks.json
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.web.client.RestTemplate - Accept=[text/plain, application/json, application/cbor, application/*+json, */*]
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.web.client.RestTemplate - Reading to [java.lang.String] as "application/json;charset=utf-8"
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getOrgnizationByUserId/105410884551884874922", parameters={}
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/user/byid/105410884551884874922", parameters={}
+2023-12-26 12:36:17 [http-nio-9091-exec-9] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.OrgnizationController
+2023-12-26 12:36:17 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:36:17 [http-nio-9091-exec-9] INFO  OrgnizationController.class - OrgnizationController , getOrgnization Method Start
+2023-12-26 12:36:17 [http-nio-9091-exec-8] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.UserController
+2023-12-26 12:36:17 [http-nio-9091-exec-8] INFO  UserController.class - UserController, createUser Method Ends
+2023-12-26 12:36:17 [http-nio-9091-exec-8] INFO  UserServiceImpl - userService , getAllUser Method Start
+2023-12-26 12:36:17 [http-nio-9091-exec-9] DEBUG org.hibernate.SQL - select o1_0.orgnization_id,o1_0.orgnization_name,o1_0.orgnization_type,o1_0.user_id from orgnizations o1_0 where o1_0.user_id=?
+2023-12-26 12:36:18 [http-nio-9091-exec-9] INFO  OrgnizationController.class - OrgnizationController , getOrgnization Method Ends
+2023-12-26 12:36:18 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:18 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [Orgnizations(orgnizationId=efc62dfc-9fb9-48d3-85e3-1d632a1d0fad, orgnizationName=nikesh, orgnization (truncated)...]
+2023-12-26 12:36:18 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:18 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
+2023-12-26 12:36:20 [http-nio-9091-exec-8] INFO  UserServiceImpl - userService , getAllUser Method Start
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [User(userId=105410884551884874922, email=exameasy.offical@gmail.com, name=ayushi agrawal, picture=ht (truncated)...]
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:20 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/105410884551884874922", parameters={}
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.PaperController
+2023-12-26 12:36:20 [http-nio-9091-exec-7] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-26 12:36:20 [http-nio-9091-exec-7] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method Starts
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.user_id=? order by p1_0.paper_name limit ?,?
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/course/byUserId/105410884551884874922", parameters={}
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopRankers/efc62dfc-9fb9-48d3-85e3-1d632a1d0fad", parameters={}
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] INFO  CourseController.class - CourseController,getCourseByUserId Method Start
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:36:20 [http-nio-9091-exec-9] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method Start
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getCountOfStudentAndPaperBy_OGId/efc62dfc-9fb9-48d3-85e3-1d632a1d0fad", parameters={}
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopAssesmentByOrgnizationId/efc62dfc-9fb9-48d3-85e3-1d632a1d0fad", parameters={}
+2023-12-26 12:36:20 [http-nio-9091-exec-8] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.StudentController
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG org.hibernate.SQL - select c1_0.course_id,c1_0.course_name,c1_0.duration,c1_0.user_id,c1_0.user_name from course c1_0 where c1_0.user_id=? order by c1_0.course_name limit ?,?
+2023-12-26 12:36:20 [http-nio-9091-exec-8] INFO  StudentController.class - StudentController , getAllStudent Method Start
+2023-12-26 12:36:20 [http-nio-9091-exec-4] INFO  StudentController.class - StudentController , getAllStudent Method Start
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:36:20 [http-nio-9091-exec-4] INFO  StudentServiceImpl - StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method Start
+2023-12-26 12:36:20 [http-nio-9091-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.ResultController
+2023-12-26 12:36:20 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.orgnization_id=?
+2023-12-26 12:36:20 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select s1_0.studentid,s1_0.branch,s1_0.email,s1_0.is_attempted,s1_0.name,s1_0.orgnization_id,s1_0.paper_id,s1_0.top_marks,s1_0.top_paper_id,s1_0.year from student s1_0 where s1_0.orgnization_id=? order by s1_0.top_marks desc limit 5
+2023-12-26 12:36:20 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select count(s1_0.studentid) from student s1_0 where s1_0.orgnization_id=?
+2023-12-26 12:36:20 [http-nio-9091-exec-8] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7f212323 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-12-26 12:36:20 [http-nio-9091-exec-8] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@72f72ca6 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-12-26 12:36:20 [http-nio-9091-exec-9] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method End
+2023-12-26 12:36:20 [http-nio-9091-exec-9] INFO  CourseController.class - CourseController,getCourseByUserId Method Ends
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [CourseResponce(data=[Course(course_id=7c546e71-9273-4872-93ca-518c64d06b6b, course_name=bba, userId= (truncated)...]
+2023-12-26 12:36:20 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:21 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select count(p1_0.paper_id) from paper p1_0 where p1_0.orgnization_id=?
+2023-12-26 12:36:21 [http-nio-9091-exec-8] INFO  StudentController.class - StudentController , getAllStudent Method Ends
+2023-12-26 12:36:21 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:21 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Student(studentid=6585409ffedc0dfecbdfb6df, email=nikeshjaiswal55@gmail.com, name=null, orgnization (truncated)...]
+2023-12-26 12:36:21 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:21 [http-nio-9091-exec-4] INFO  StudentServiceImpl - StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method End
+2023-12-26 12:36:21 [http-nio-9091-exec-4] INFO  StudentController.class - StudentController , getAllStudent Method Ends
+2023-12-26 12:36:21 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:21 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[13, 28]]
+2023-12-26 12:36:21 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:21 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select count(p1_0.paper_id) from paper p1_0 where p1_0.user_id=?
+2023-12-26 12:36:21 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:21 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:22 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:22 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:22 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:22 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:22 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:22 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:23 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:23 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:23 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:23 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:23 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:23 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:24 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:24 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:24 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:24 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:24 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:24 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:36:25 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:25 [http-nio-9091-exec-7] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method End
+2023-12-26 12:36:25 [http-nio-9091-exec-7] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:25 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperResponce(data=[ExamDetails(examid=6ad71ff1-8ef6-4ec0-8936-fb945cbfcbfe, examDuration=900, examM (truncated)...]
+2023-12-26 12:36:25 [http-nio-9091-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-26 12:36:25 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/5a616e5d-163b-4dbf-8b18-01e42ee4aeb0", parameters={}
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/149568c7-487a-4229-a218-c35d7c2b76d4", parameters={}
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/aedd190e-14eb-4113-9d94-c68f5ffb3569", parameters={}
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-2] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-9] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-2] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-8] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-9] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-8] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:25 [http-nio-9091-exec-9] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/6ff4b4d1-b163-405f-9f96-65b4bd270027", parameters={}
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/15def095-05d3-4539-a68b-85857fdb1173", parameters={}
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:25 [http-nio-9091-exec-6] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-4] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-6] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-4] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:25 [http-nio-9091-exec-6] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:25 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:25 [http-nio-9091-exec-4] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@68944fa9 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-12-26 12:36:25 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:25 [http-nio-9091-exec-2] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:25 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:26 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/5f9d9a6f-cea3-4cae-af97-863d9ba57f8f", parameters={}
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-1] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-1] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:26 [http-nio-9091-exec-6] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:26 [http-nio-9091-exec-8] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:26 [http-nio-9091-exec-9] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:26 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:26 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:26 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:26 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:26 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:26 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:26 [http-nio-9091-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:26 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:26 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-4] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/7ecdcb59-e84b-4d92-8f4c-b19a7231fd58", parameters={}
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/b0b36ffe-6c2f-42b0-bb6f-9a635b9cf818", parameters={}
+2023-12-26 12:36:26 [http-nio-9091-exec-5] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-5] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-7] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-7] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/e411da07-8f61-422e-bb59-c14cdb6b4ed3", parameters={}
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-10] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:26 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:26 [http-nio-9091-exec-1] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:26 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:26 [http-nio-9091-exec-5] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:26 [http-nio-9091-exec-10] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:26 [http-nio-9091-exec-7] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:26 [http-nio-9091-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:26 [http-nio-9091-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:26 [http-nio-9091-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopperByPaperId/beef0e64-62bd-4c70-bfc3-6ad2b1606725", parameters={}
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopThreeStudentsByPaperId(String)
+2023-12-26 12:36:26 [http-nio-9091-exec-2] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-2] INFO  ResultServiceImpl - ResultServiceImpl, getTopThreeStudentByPaper Method Start
+2023-12-26 12:36:26 [http-nio-9091-exec-2] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? order by r1_0.percentage desc
+2023-12-26 12:36:26 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:27 [http-nio-9091-exec-2] INFO  ResultController - ResultController, getTopThreeStudentsByPaperId  Method End
+2023-12-26 12:36:27 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:27 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2023-12-26 12:36:27 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:36:27 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:27 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:27 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:27 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:28 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:28 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:28 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:29 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:29 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:29 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:30 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:30 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:36:30 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:36:30 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Result(resultID=3cb846b1-f117-4ac6-881f-2331e918e819, studentID=6585409ffedc0dfecbdfb6df, marks=100 (truncated)...]
+2023-12-26 12:36:30 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:37:24 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/user/byid/65869eb8dca1222f3d0469d3", parameters={}
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.UserController#getuserbyid(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-2] INFO  UserController.class - UserController, createUser Method Ends
+2023-12-26 12:37:24 [http-nio-9091-exec-2] INFO  UserServiceImpl - userService , getAllUser Method Start
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getOrgnizationByUserId/65869eb8dca1222f3d0469d3", parameters={}
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.OrgnizationController#getOrgnization(String)
+2023-12-26 12:37:24 [http-nio-9091-exec-9] INFO  OrgnizationController.class - OrgnizationController , getOrgnization Method Start
+2023-12-26 12:37:24 [http-nio-9091-exec-9] DEBUG org.hibernate.SQL - select o1_0.orgnization_id,o1_0.orgnization_name,o1_0.orgnization_type,o1_0.user_id from orgnizations o1_0 where o1_0.user_id=?
+2023-12-26 12:37:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler examportal.portal.Exceptions.GlobalExceptionHandler#resourceNotFoundExceptionHandler(ResourceNotFoundException)
+2023-12-26 12:37:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:37:25 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ApiResponse(massage=Orgnization not found with this UserId : 65869eb8dca1222f3d0469d3 , success=fals (truncated)...]
+2023-12-26 12:37:25 [http-nio-9091-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [examportal.portal.Exceptions.ResourceNotFoundException: Orgnization not found with this UserId : 65869eb8dca1222f3d0469d3 ]
+2023-12-26 12:37:25 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
+2023-12-26 12:37:25 [http-nio-9091-exec-2] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.email,u1_0.name,u1_0.password,u1_0.picture,u1_0.role from usser u1_0 where u1_0.user_id=?
+2023-12-26 12:37:27 [http-nio-9091-exec-2] INFO  UserServiceImpl - userService , getAllUser Method Start
+2023-12-26 12:37:27 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:37:27 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [User(userId=65869eb8dca1222f3d0469d3, email=devendras.bca2022@ssism.org, name=null, picture=null, ro (truncated)...]
+2023-12-26 12:37:27 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:37:27 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllAssessmentByStudentId/65869eb8dca1222f3d0469d3", parameters={}
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTop5ResultOfStudent/65869eb8dca1222f3d0469d3", parameters={}
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.AssessmentController#getAllAssessmentByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTop5_ResultOfStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-3] INFO  ResultController - ResultController, getTop5_ResultOfStudentId  Method Start
+2023-12-26 12:37:27 [http-nio-9091-exec-3] INFO  ResultServiceImpl - ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method Start
+2023-12-26 12:37:27 [http-nio-9091-exec-4] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Controllers.AssessmentController
+2023-12-26 12:37:27 [http-nio-9091-exec-4] INFO  AssessmentController.class - AssessmentController.class, getAllAssessmentByStudentId start 
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select a1_0.assessmentid,a1_0.orgnization_id,a1_0.paper_id,a1_0.user_id from assessment a1_0 where a1_0.user_id=?
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.studentid=? order by r1_0.percentage desc
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPassedResultByStudentId/%7BstudentId%7D?studentId=65869eb8dca1222f3d0469d3", parameters={masked}
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getALLPassedResultByStudentId(String)
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.studentid=? and r1_0.result_status='pass'
+2023-12-26 12:37:27 [http-nio-9091-exec-3] INFO  ResultServiceImpl - ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:37:27 [http-nio-9091-exec-3] INFO  ResultController - ResultController, getTop5_ResultOfStudentId  Method End
+2023-12-26 12:37:27 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Result(resultID=573861dd-2ea4-4367-b6b8-5a119d172179, studentID=65869eb8dca1222f3d0469d3, marks=100 (truncated)...]
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Result(resultID=573861dd-2ea4-4367-b6b8-5a119d172179, studentID=65869eb8dca1222f3d0469d3, marks=100 (truncated)...]
+2023-12-26 12:37:27 [http-nio-9091-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:37:27 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:37:28 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:37:28 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:37:29 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:37:29 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:37:29 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:37:30 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:37:30 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:37:30 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:37:31 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:37:31 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:37:31 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:37:32 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:37:32 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:37:32 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:37:33 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:37:33 [http-nio-9091-exec-4] INFO  AssessmentController.class - AssessmentController.class, getAllAssessmentByStudentId Ends 
+2023-12-26 12:37:33 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:37:33 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[ExamDetails(examid=050f8fd1-0414-4a23-8deb-0a610cdb4141, examDuration=900, examMode=online, examRou (truncated)...]
+2023-12-26 12:37:33 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:37:51 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getPaperbyPaperId/aedd190e-14eb-4113-9d94-c68f5ffb3569", parameters={}
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getresultby/student/65869eb8dca1222f3d0469d3/paperId/aedd190e-14eb-4113-9d94-c68f5ffb3569", parameters={}
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:37:51 [http-nio-9091-exec-1] INFO  PaperController - PaperController getpaperByID method started
+2023-12-26 12:37:51 [http-nio-9091-exec-8] INFO  ResultController - ResultController, getbystudentandpaperId  Method Start
+2023-12-26 12:37:51 [http-nio-9091-exec-1] INFO  PaperServiceImpl - paperServiceIml getPaperById method Starts :
+2023-12-26 12:37:51 [http-nio-9091-exec-8] INFO  ResultServiceImpl - ResultServiceImpl, getResultByStudentIdAndPaperId Method Start
+2023-12-26 12:37:51 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:37:52 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.paper_id=?
+2023-12-26 12:37:52 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select s1_0.studentid,s1_0.branch,s1_0.email,s1_0.is_attempted,s1_0.name,s1_0.orgnization_id,s1_0.paper_id,s1_0.top_marks,s1_0.top_paper_id,s1_0.year from student s1_0 where s1_0.studentid=?
+2023-12-26 12:37:54 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.paperid=?
+2023-12-26 12:37:54 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select a1_0.attempte_question_id,a1_0.correct_ans,a1_0.options,a1_0.paperid,a1_0.questions,a1_0.studentid,a1_0.user_ans from attempted_questions a1_0 where a1_0.studentid=? and a1_0.paperid=?
+2023-12-26 12:37:54 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:37:54 [http-nio-9091-exec-8] INFO  ResultServiceImpl - ResultServiceImpl, getResultByStudentIdAndPaperId Method End
+2023-12-26 12:37:54 [http-nio-9091-exec-8] INFO  ResultController - ResultController, getbystudentandpaperId  Method End
+2023-12-26 12:37:54 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:37:54 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ResultDto(resultID=null, result=Result(resultID=7f239fe1-6807-41d9-b685-f08b51702971, studentID=6586 (truncated)...]
+2023-12-26 12:37:54 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:37:54 [http-nio-9091-exec-1] INFO  PaperServiceImpl - paperServiceIml encodeObject method Starts 
+2023-12-26 12:37:54 [http-nio-9091-exec-1] INFO  PaperServiceImpl - paperServiceIml getPaperByID method End's :
+2023-12-26 12:37:54 [http-nio-9091-exec-1] INFO  PaperController - PaperController getall paper method End's
+2023-12-26 12:37:54 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:37:54 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperStringDto(data=%7B%22paperId%22%3A%22aedd190e-14eb-4113-9d94-c68f5ffb3569%22%2C%22paper%22%3A%7 (truncated)...]
+2023-12-26 12:37:54 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:38:11 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getAllPaperbyUserId/65869eb8dca1222f3d0469d3", parameters={}
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/course/byUserId/65869eb8dca1222f3d0469d3", parameters={}
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getCountOfStudentAndPaperBy_OGId/47314ed8-b61c-428c-92c1-782a9ecc752b", parameters={}
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopRankers/47314ed8-b61c-428c-92c1-782a9ecc752b", parameters={}
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getCountOfStudentAndPaperBy_OGId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getTopAssesmentByOrgnizationId/47314ed8-b61c-428c-92c1-782a9ecc752b", parameters={}
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.CourseController#getCourseByUserId(String, Integer, Integer, String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getallpaersbyuserId(String, Integer, Integer, String, String, MultiValueMap)
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.StudentController#getTopRankersOfOrgnization(String, String)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] INFO  StudentController.class - StudentController , getAllStudent Method Start
+2023-12-26 12:38:11 [http-nio-9091-exec-8] INFO  CourseController.class - CourseController,getCourseByUserId Method Start
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getTopAssesmentByOrgnizationId(String)
+2023-12-26 12:38:11 [http-nio-9091-exec-2] INFO  StudentServiceImpl - StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method Start
+2023-12-26 12:38:11 [http-nio-9091-exec-3] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-26 12:38:11 [http-nio-9091-exec-1] INFO  StudentController.class - StudentController , getAllStudent Method Start
+2023-12-26 12:38:11 [http-nio-9091-exec-8] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method Start
+2023-12-26 12:38:11 [http-nio-9091-exec-3] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method Starts
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG org.hibernate.SQL - select count(s1_0.studentid) from student s1_0 where s1_0.orgnization_id=?
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select s1_0.studentid,s1_0.branch,s1_0.email,s1_0.is_attempted,s1_0.name,s1_0.orgnization_id,s1_0.paper_id,s1_0.top_marks,s1_0.top_paper_id,s1_0.year from student s1_0 where s1_0.orgnization_id=? order by s1_0.top_marks desc limit 5
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.orgnization_id=?
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select c1_0.course_id,c1_0.course_name,c1_0.duration,c1_0.user_id,c1_0.user_name from course c1_0 where c1_0.user_id=? order by c1_0.course_name limit ?,?
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.user_id=? order by p1_0.paper_name limit ?,?
+2023-12-26 12:38:11 [http-nio-9091-exec-1] INFO  StudentController.class - StudentController , getAllStudent Method Ends
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[Student(studentid=65866961e51d952579eac9e8, email=aakashtanwar9109@gmail.com, name=null, orgnizatio (truncated)...]
+2023-12-26 12:38:11 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:38:11 [http-nio-9091-exec-8] INFO  CourseServiceimpl - CourseServiceimpl, getAllCourseByUserId Method End
+2023-12-26 12:38:11 [http-nio-9091-exec-8] INFO  CourseController.class - CourseController,getCourseByUserId Method Ends
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:38:11 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [CourseResponce(data=[], totalElements=0, totalPages=0, currentPage=1, pagesize=10, islastPage=true)]
+2023-12-26 12:38:11 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:38:11 [http-nio-9091-exec-2] DEBUG org.hibernate.SQL - select count(p1_0.paper_id) from paper p1_0 where p1_0.orgnization_id=?
+2023-12-26 12:38:11 [http-nio-9091-exec-3] INFO  PaperServiceImpl - paperServiceImpl getAllPaperByUserIdWithOutFilter  method End
+2023-12-26 12:38:11 [http-nio-9091-exec-3] INFO  PaperController - PaperController, getallPaperbyuserId method Start
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperResponce(data=[], totalElements=0, totalPages=0, currentPage=1, pagesize=10, islastPage=true)]
+2023-12-26 12:38:11 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 202 ACCEPTED
+2023-12-26 12:38:12 [http-nio-9091-exec-2] INFO  StudentServiceImpl - StudentServiceImpl , getCountOfStudentAndPaperBy_OGId Method End
+2023-12-26 12:38:12 [http-nio-9091-exec-2] INFO  StudentController.class - StudentController , getAllStudent Method Ends
+2023-12-26 12:38:12 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:38:12 [http-nio-9091-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[1, 2]]
+2023-12-26 12:38:12 [http-nio-9091-exec-7] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.result_status='pass' order by r1_0.percentage desc
+2023-12-26 12:38:12 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:38:12 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:38:12 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[]]
+2023-12-26 12:38:12 [http-nio-9091-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getPaperbyPaperId/aedd190e-14eb-4113-9d94-c68f5ffb3569", parameters={}
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getresultby/student/65869eb8dca1222f3d0469d3/paperId/aedd190e-14eb-4113-9d94-c68f5ffb3569", parameters={}
+2023-12-26 12:38:23 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#getbystudentandpaperId(String, String)
+2023-12-26 12:38:23 [http-nio-9091-exec-8] INFO  ResultController - ResultController, getbystudentandpaperId  Method Start
+2023-12-26 12:38:23 [http-nio-9091-exec-1] INFO  PaperController - PaperController getpaperByID method started
+2023-12-26 12:38:23 [http-nio-9091-exec-1] INFO  PaperServiceImpl - paperServiceIml getPaperById method Starts :
+2023-12-26 12:38:23 [http-nio-9091-exec-8] INFO  ResultServiceImpl - ResultServiceImpl, getResultByStudentIdAndPaperId Method Start
+2023-12-26 12:38:23 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:38:24 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.paper_id=?
+2023-12-26 12:38:24 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select s1_0.studentid,s1_0.branch,s1_0.email,s1_0.is_attempted,s1_0.name,s1_0.orgnization_id,s1_0.paper_id,s1_0.top_marks,s1_0.top_paper_id,s1_0.year from student s1_0 where s1_0.studentid=?
+2023-12-26 12:38:25 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.paperid=?
+2023-12-26 12:38:25 [http-nio-9091-exec-8] DEBUG org.hibernate.SQL - select a1_0.attempte_question_id,a1_0.correct_ans,a1_0.options,a1_0.paperid,a1_0.questions,a1_0.studentid,a1_0.user_ans from attempted_questions a1_0 where a1_0.studentid=? and a1_0.paperid=?
+2023-12-26 12:38:25 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:38:26 [http-nio-9091-exec-1] INFO  PaperServiceImpl - paperServiceIml encodeObject method Starts 
+2023-12-26 12:38:26 [http-nio-9091-exec-8] INFO  ResultServiceImpl - ResultServiceImpl, getResultByStudentIdAndPaperId Method End
+2023-12-26 12:38:26 [http-nio-9091-exec-8] INFO  ResultController - ResultController, getbystudentandpaperId  Method End
+2023-12-26 12:38:26 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:38:26 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ResultDto(resultID=null, result=Result(resultID=7f239fe1-6807-41d9-b685-f08b51702971, studentID=6586 (truncated)...]
+2023-12-26 12:38:26 [http-nio-9091-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:38:26 [http-nio-9091-exec-1] INFO  PaperServiceImpl - paperServiceIml getPaperByID method End's :
+2023-12-26 12:38:26 [http-nio-9091-exec-1] INFO  PaperController - PaperController getall paper method End's
+2023-12-26 12:38:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:38:26 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperStringDto(data=%7B%22paperId%22%3A%22aedd190e-14eb-4113-9d94-c68f5ffb3569%22%2C%22paper%22%3A%7 (truncated)...]
+2023-12-26 12:38:26 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:38:36 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getInstructionBy/PaperId/7ecdcb59-e84b-4d92-8f4c-b19a7231fd58", parameters={}
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getInstructionn(String)
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG org.hibernate.SQL - select p1_0.instruction from paper p1_0 where p1_0.paper_id=?
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperStringDto(data=<EOL><div className="text-center"><EOL>  <h3>Online Exam Rules</h3><EOL></div><EOL><section clas (truncated)...]
+2023-12-26 12:38:36 [http-nio-9091-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:38:40 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/getPaperbyPaperId/7ecdcb59-e84b-4d92-8f4c-b19a7231fd58", parameters={}
+2023-12-26 12:38:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.PaperController#getpaperByID(String)
+2023-12-26 12:38:40 [http-nio-9091-exec-4] INFO  PaperController - PaperController getpaperByID method started
+2023-12-26 12:38:40 [http-nio-9091-exec-4] INFO  PaperServiceImpl - paperServiceIml getPaperById method Starts :
+2023-12-26 12:38:41 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.paper_id=?
+2023-12-26 12:38:42 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.paperid=?
+2023-12-26 12:38:42 [http-nio-9091-exec-4] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:38:43 [http-nio-9091-exec-4] INFO  PaperServiceImpl - paperServiceIml encodeObject method Starts 
+2023-12-26 12:38:43 [http-nio-9091-exec-4] INFO  PaperServiceImpl - paperServiceIml getPaperByID method End's :
+2023-12-26 12:38:43 [http-nio-9091-exec-4] INFO  PaperController - PaperController getall paper method End's
+2023-12-26 12:38:43 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
+2023-12-26 12:38:43 [http-nio-9091-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PaperStringDto(data=%7B%22paperId%22%3A%227ecdcb59-e84b-4d92-8f4c-b19a7231fd58%22%2C%22paper%22%3A%7 (truncated)...]
+2023-12-26 12:38:43 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-12-26 12:41:50 [http-nio-9091-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:50 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:50 [http-nio-9091-exec-1] DEBUG o.s.web.client.RestTemplate - HTTP GET https://dev-uil1ecwkoehr31jg.us.auth0.com/.well-known/jwks.json
+2023-12-26 12:41:50 [http-nio-9091-exec-1] DEBUG o.s.web.client.RestTemplate - Accept=[text/plain, application/json, application/cbor, application/*+json, */*]
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.web.client.RestTemplate - Reading to [java.lang.String] as "application/json;charset=utf-8"
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - POST "/checkPaper", parameters={}
+2023-12-26 12:41:51 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to examportal.portal.Controllers.ResultController#checkpaper(checkpaperDto)
+2023-12-26 12:42:05 [http-nio-9091-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [checkpaperDto(questions=[Questions(questionId=5c8971b2-7827-43c6-b40f-c77f4fa5cf07, options=[javasci (truncated)...]
+2023-12-26 12:42:05 [http-nio-9091-exec-1] INFO  ResultController - ResultController, checkpaper  Method Start
+2023-12-26 12:42:05 [http-nio-9091-exec-1] INFO  ResultServiceImpl - ResultServiceImpl, checkPaper Method Start
+2023-12-26 12:42:05 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.paperid=? and r1_0.studentid=?
+2023-12-26 12:42:06 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:42:07 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select q1_0.question_id,q1_0.correct_ans,q1_0.options,q1_0.paperid,q1_0.questions,q1_0.user_ans from questions q1_0 where q1_0.question_id=?
+2023-12-26 12:42:09 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select p1_0.paper_id,p1_0.created_date,p1_0.description,p1_0.instruction,p1_0.is_active,p1_0.is_auto_check,p1_0.is_setup,p1_0.is_shorted,p1_0.orgnization_id,p1_0.paper_name,p1_0.published_date,p1_0.user_id from paper p1_0 where p1_0.paper_id=?
+2023-12-26 12:42:11 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select s1_0.studentid,s1_0.branch,s1_0.email,s1_0.is_attempted,s1_0.name,s1_0.orgnization_id,s1_0.paper_id,s1_0.top_marks,s1_0.top_paper_id,s1_0.year from student s1_0 where s1_0.studentid=?
+2023-12-26 12:42:12 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select a1_0.assessmentid,a1_0.orgnization_id,a1_0.paper_id,a1_0.user_id from assessment a1_0 where a1_0.user_id=? and a1_0.paper_id=?
+2023-12-26 12:42:12 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select a1_0.attempt_id,a1_0.assment_id,a1_0.is_attempted,a1_0.paper_id,a1_0.student_id from attempted_papers a1_0 where a1_0.attempt_id=?
+2023-12-26 12:42:13 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - insert into attempted_papers (assment_id,is_attempted,paper_id,student_id,attempt_id) values (?,?,?,?,?)
+2023-12-26 12:42:13 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - update questions set correct_ans=?,options=?,paperid=?,questions=?,user_ans=? where question_id=?
+2023-12-26 12:42:17 [http-nio-9091-exec-1] INFO  ResultServiceImpl - ResultServiceImpl, checkPaper Method End
+2023-12-26 12:42:17 [http-nio-9091-exec-1] INFO  ResultServiceImpl - ResultServiceImpl, createResult Method Start
+2023-12-26 12:42:17 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select a1_0.attempte_question_id,a1_0.correct_ans,a1_0.options,a1_0.paperid,a1_0.questions,a1_0.studentid,a1_0.user_ans from attempted_questions a1_0 where a1_0.attempte_question_id=?
+2023-12-26 12:42:17 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - insert into attempted_questions (correct_ans,options,paperid,questions,studentid,user_ans,attempte_question_id) values (?,?,?,?,?,?,?)
+2023-12-26 12:42:18 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select e1_0.examid,e1_0.assessment_name,e1_0.branch,e1_0.created_date,e1_0.description,e1_0.exam_duration,e1_0.exam_mode,e1_0.exam_rounds,e1_0.instruction,e1_0.is_active,e1_0.is_setup,e1_0.is_attempted,e1_0.is_auto_check,e1_0.is_shorted,e1_0.minimum_marks,e1_0.paper_checked,e1_0.paper_id,e1_0.published_date,e1_0.session,e1_0.total_marks from exam_details e1_0 where e1_0.paper_id=?
+2023-12-26 12:42:19 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - update exam_details set assessment_name=?,branch=?,created_date=?,description=?,exam_duration=?,exam_mode=?,exam_rounds=?,instruction=?,is_active=?,is_setup=?,is_attempted=?,is_auto_check=?,is_shorted=?,minimum_marks=?,paper_checked=?,paper_id=?,published_date=?,session=?,total_marks=? where examid=?
+2023-12-26 12:42:20 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select r1_0.resultid,r1_0.assesment_name,r1_0.date,r1_0.is_published,r1_0.marks,r1_0.paperid,r1_0.percentage,r1_0.result_status,r1_0.studentid,r1_0.student_email from result r1_0 where r1_0.resultid=?
+2023-12-26 12:42:21 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - insert into result (assesment_name,date,is_published,marks,paperid,percentage,result_status,studentid,student_email,resultid) values (?,?,?,?,?,?,?,?,?,?)
+2023-12-26 12:42:24 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - select c1_0.cheating_id,c1_0.audios,c1_0.images,c1_0.paper_id,c1_0.result_id,c1_0.student_id from cheating c1_0 where c1_0.cheating_id=?
+2023-12-26 12:42:24 [http-nio-9091-exec-1] DEBUG org.hibernate.SQL - insert into cheating (audios,images,paper_id,result_id,student_id,cheating_id) values (?,?,?,?,?,?)
