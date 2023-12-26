@@ -25,13 +25,14 @@
 # # RUN ./gradlew build
 # #
 # # Runtime Stage
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-jdk-slim AS myp
 
 WORKDIR /app
 
-COPY /portal /app
+# COPY /portal /app
 CMD ["./gradlew", "build"]
-COPY  build/libs/*.jar portal.jar
 
+# COPY  build/libs/*.jar portal.jar
+COPY --from=myp /app/build/libs/portal.jar /app
 
 CMD ["java", "-jar", "portal.jar"]
