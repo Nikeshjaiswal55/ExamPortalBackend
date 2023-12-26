@@ -8,12 +8,12 @@ COPY settings.gradle /home/gradle
 
 RUN gradle build
 WORKDIR /app
-COPY . . /app
+COPY /build /app
 
 
 FROM openjdk:17-ea-28-jdk-slim
 WORKDIR /app
-COPY --from=build /app/build/libs/portal.jar /app
+COPY --from=build /build/libs/portal.jar /app
 
 ENTRYPOINT ["java","-jar","portal.jar"]
 
