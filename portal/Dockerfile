@@ -30,6 +30,6 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=portal /build/libs/portal.jar /app
+COPY  build/libs/portal.jar /app
 
 CMD ["java", "-jar", "portal.jar"]
