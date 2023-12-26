@@ -1,5 +1,6 @@
 
-FROM openjdk:17 As build 
+
+FROM azul/zulu-openjdk:17-latest AS build
 WORKDIR /app
 
 COPY /portal /app
