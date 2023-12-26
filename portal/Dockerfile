@@ -29,8 +29,9 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
+COPY /portal 
 CMD ["./gradlew", "clean", "bootJar"]
-COPY  build/libs/*.jar app.jar
+COPY  build/libs/*.jar portal.jar
 
 
 CMD ["java", "-jar", "portal.jar"]
