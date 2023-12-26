@@ -20,8 +20,8 @@ WORKDIR /app
 
 COPY src /app/src
 
-RUN ./gradlew build
-
+# RUN ./gradlew build
+RUN gradle build
 # Runtime Stage
 FROM openjdk:17-jdk-slim
 
