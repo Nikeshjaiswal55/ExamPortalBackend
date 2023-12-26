@@ -1,6 +1,6 @@
 FROM gradle:8.1.1-jdk17 AS build
 
-COPY build  /
+COPY /portal  /
 COPY gradlew .  /home/gradle
 COPY gradle/*   /home/gradle
 COPY build.gradle   /home/gradle
