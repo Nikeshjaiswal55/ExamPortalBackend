@@ -6,8 +6,7 @@ COPY gradle/*      /home/gradle
 COPY build.gradle  /home/gradle
 COPY gradlew.bat   /home/gradle
 COPY settings.gradle /home/gradle
-WORKDIR /app
-RUN gradle build
+RUN ["gradle", "build"]
 # COPY . ../
 FROM openjdk:17-ea-28-jdk-slim
 WORKDIR app
