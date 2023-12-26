@@ -6,7 +6,7 @@ COPY build.gradle   /home/gradle
 COPY gradlew.bat /home/gradle
 COPY settings.gradle /home/gradle
 
-RUN ./gradlew build
+RUN gradle build
 
 WORKDIR /app
 # COPY /portal /app
