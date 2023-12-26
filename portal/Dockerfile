@@ -9,7 +9,7 @@
 
 # CMD ["java", "-jar", "portal.jar"]
 # Build Stage
-# FROM gradle:7.3.3-jdk17 AS build
+
 
 # WORKDIR /app
 
@@ -24,15 +24,18 @@
 # # && cp $JAR_FILE app/build/
 # # RUN ./gradlew build
 # #
+FROM gradle:7.3.3-jdk17 AS build
+WORKDIR /app
+COPY portal/* .
+CMD ["./gradlew", "build"]
+
 # # Runtime Stage
-FROM openjdk:17-jdk-slim AS myp
+FROM openjdk:17-jdk-slim 
+
 
 WORKDIR /app
 
-# COPY /portal /app
-CMD ["./gradlew", "build"]
+COPY --from=build /app/build/libs/portal.jar /app
+ENTRYPOINT ["java","-Dspring.profiles.active=prod","-jar","/app/portal.jar"]
 
-# COPY  build/libs/*.jar portal.jar
-COPY --from=myp /app/build/libs/portal.jar /app
-
-CMD ["java", "-jar", "portal.jar"]
+# CMD ["java", "-jar", "portal.jar"]
