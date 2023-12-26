@@ -1,6 +1,11 @@
 FROM gradle:8.1.1-jdk17 AS build
 
 COPY /portal/*  build/
+COPY gradlew .
+COPY gradle/*
+COPY build.gradle
+COPY gradlew.bat
+COPY settings.gradle
 
 RUN gradle build
 
