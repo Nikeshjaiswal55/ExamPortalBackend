@@ -17,9 +17,8 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file from the build stage
-COPY --from=build /home/gradle/build/libs/portal.jar /app
+COPY --from=build /home/gradle/build/libs/portal.jar /app/portal.jar
 
-# Specify the ent point for running the application
+# Specify the entry point for running the application
 ENTRYPOINT ["java", "-jar", "portal.jar"]
-# ENTRYPOINT ["java","-jar","portal.jar"]
 
