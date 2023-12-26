@@ -21,7 +21,8 @@ WORKDIR /app
 COPY src /app/src
 
 # RUN ./gradlew build
-RUN gradle build
+#
+ARG JAR_FILE=/build/libs/pokerstats-portal.jar
 # Runtime Stage
 FROM openjdk:17-jdk-slim
 
