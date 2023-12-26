@@ -8,16 +8,18 @@ COPY settings.gradle /home/gradle
 
 RUN gradle build
 
-WORKDIR /app
 # COPY /portal /app
 
 
 FROM openjdk:17-jdk-slim
 
 # Copy the JAR file from the build stage
+WORKDIR /app
+
+# Copy the JAR file from the build stage
 COPY --from=build /home/gradle/build/libs/portal.jar /app
 
-# Specify the entry point for running the application
-# ENTRYPOINT ["java", "-jar", "portal.jar"]
-ENTRYPOINT ["java","-jar","portal.jar"]
+# Specify the ent point for running the application
+ENTRYPOINT ["java", "-jar", "portal.jar"]
+# ENTRYPOINT ["java","-jar","portal.jar"]
 
