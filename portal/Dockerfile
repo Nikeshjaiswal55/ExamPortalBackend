@@ -13,10 +13,10 @@ FROM gradle:7.3.3-jdk17 AS build
 
 WORKDIR /app
 
-COPY build.gradle .
-COPY settings.gradle .
-# COPY gradle.properties .
-COPY gradlew
+# COPY build.gradle .
+# COPY settings.gradle .
+# # COPY gradle.properties .
+# COPY gradlew
 
 COPY src /app/src
 
