@@ -45,7 +45,7 @@
 FROM gradle:7.3.3-jdk17 AS build
 WORKDIR /app
 COPY portal/* .
-RUN ["./gradlew", "build"]  # Use RUN for build commands
+CMD ["./gradlew", "build"]  # Use RUN for build commands
 
 # Runtime Stage
 FROM openjdk:17-jdk-slim 
