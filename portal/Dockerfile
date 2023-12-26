@@ -1,4 +1,12 @@
-FROM azul/zulu-openjdk:17-latest
-VOLUME /tmp
-COPY build/libs/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM gradle:8.1.1-jdk17 AS build
+
+COPY ..
+WORKDIR /portal/*
+RUN gradle build
+
+
+FROM openjdk:17-ea-28-jdk-slim 
+COPY --from=build build/libs/portal.java portal.java
+
+ENTRYPOINT ["java","-jar","portal.jar"]
+

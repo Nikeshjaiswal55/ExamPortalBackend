@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.ExamDetails;
+import examportal.portal.Entity.Result;
 import examportal.portal.Repo.AssessmentRepo;
 import examportal.portal.Repo.ExamDetailsRepo;
+import examportal.portal.Repo.ResultRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,9 @@ public class AssessmentController {
 
     @Autowired
     private ExamDetailsRepo examDetailsRepo;
+
+    @Autowired
+    private ResultRepo resultRepo;
 
     Logger log = LoggerFactory.getLogger("AssessmentController.class");
 
@@ -84,8 +89,29 @@ public class AssessmentController {
         
         for (Assessment assessment : assessments) {
             ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
-            
-            if (examDetails != null && "true".equals(examDetails.getIs_Active())) {
+              Result result = this.resultRepo.getResultByStudentAndPaperId(assessment.getPaperId(), studentId);
+              if (result!=null) {
+                examDetails.set_attempted(true);
+                examDetailsAll.add(examDetails);
+              }
+            else if(examDetails != null && "true".equals(examDetails.getIs_Active())) {
+                examDetailsAll.add(examDetails);
+            }
+        }
+        
+        log.info("AssessmentController.class, getAllAssessmentByStudentId Ends ");
+        return new ResponseEntity<>(examDetailsAll, HttpStatus.OK);
+    }
+    
+      @GetMapping("/getTotalAssessmentBy/StudentId/{studentId}")
+    public ResponseEntity<List<ExamDetails>> getAllAssessmentByStudentIdIsActiveAndProgess(@PathVariable String studentId) {
+        log.info("AssessmentController.class, getAllAssessmentByStudentId start ");
+        List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_userId(studentId);
+        List<ExamDetails> examDetailsAll = new ArrayList<>();
+        
+        for (Assessment assessment : assessments) {
+            ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
+            if(examDetails != null && "true".equals(examDetails.getIs_Active())) {
                 examDetailsAll.add(examDetails);
             }
         }
