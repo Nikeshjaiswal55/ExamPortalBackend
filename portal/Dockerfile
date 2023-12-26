@@ -30,7 +30,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 COPY /portal /app
-CMD ["./gradlew", "clean", "bootJar"]
+CMD ["./gradlew", "build"]
 COPY  build/libs/*.jar portal.jar
 
 

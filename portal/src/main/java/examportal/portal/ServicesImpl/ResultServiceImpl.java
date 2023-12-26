@@ -265,7 +265,7 @@ public class ResultServiceImpl implements ResultService {
             dto2.setQuestions(questions2);
             dto2.setCheating(dto.getCheating());
             dto2.setResult(newResult);
-            System.out.println("my  dt0 --=---========-" + dto2);
+            
             log.info("ResultServiceImpl, checkPaper Method End");
             return createResult(dto2);
         }
