@@ -18,9 +18,11 @@ WORKDIR /app
 # # COPY gradle.properties .
 # COPY gradlew
 
-COPY src /app/src
+COPY /portal /app
 
 ARG JAR_FILE=/build/libs/pokerstats-portal.jar /app
+RUN ./gradlew clean jar 
+# && cp $JAR_FILE app/build/
 # RUN ./gradlew build
 #
 # Runtime Stage
