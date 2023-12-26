@@ -18,7 +18,7 @@ WORKDIR /app
 # # COPY gradle.properties .
 # COPY settings.gradle
 
-COPY /portal /app
+# COPY /portal /app
 CMD ["./gradlew", "clean", "bootJar"]
 # ARG JAR_FILE=/build/libs/pokerstats-portal.jar /app
 # RUN ./gradlew clean jar 
@@ -30,6 +30,6 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=build /build/libs/portal.jar /app
+COPY  /build/libs/portal.jar /app
 
 CMD ["java", "-jar", "portal.jar"]
