@@ -12,7 +12,7 @@ RUN gradle build
 
 
 FROM openjdk:17-ea-28-jdk-slim 
-COPY --from=build portal/build/libs/portal.java portal.java
+COPY --from=build portal/build/libs/portal.jar portal.java
 
 ENTRYPOINT ["java","-jar","portal.jar"]
 
