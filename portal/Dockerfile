@@ -16,12 +16,12 @@ WORKDIR /app
 # COPY build.gradle .
 # COPY settings.gradle .
 # # COPY gradle.properties .
-# COPY gradlew
+# COPY settings.gradle
 
 COPY /portal /app
-
-ARG JAR_FILE=/build/libs/pokerstats-portal.jar /app
-RUN ./gradlew clean jar 
+CMD ["./gradlew", "clean", "bootJar"]
+# ARG JAR_FILE=/build/libs/pokerstats-portal.jar /app
+# RUN ./gradlew clean jar 
 # && cp $JAR_FILE app/build/
 # RUN ./gradlew build
 #
