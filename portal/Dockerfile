@@ -2,7 +2,7 @@ FROM gradle:8.1.1-jdk17 AS build
 
 COPY . .
 
-RUN gradlew clean build
+RUN ["gradlew", "build"]
 
 
 FROM openjdk:17-ea-28-jdk-slim 
