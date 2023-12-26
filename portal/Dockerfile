@@ -107,16 +107,16 @@ RUN set -o errexit -o nounset \
 USER root
 
 
-FROM gradle:7.3.3-jdk17 AS build
-WORKDIR /app
-COPY portal/* .
-CMD ["./gradlew", "build"]  # Use RUN for build commands
+# FROM gradle:7.3.3-jdk17 AS build
+# WORKDIR /app
+# COPY portal/* .
 
 # Runtime Stage
 FROM openjdk:17-jdk-slim 
-
+COPY portal/* .
+CMD ["./gradlew", "build"]  # Use RUN for build commands
 WORKDIR /app
 
-COPY --from=build /app/build/libs/portal.jar /app
+COPY  /app/build/libs/portal.jar /app
 
 ENTRYPOINT ["java","-Dspring.profiles.active=prod","-jar","/app/portal.jar"]
