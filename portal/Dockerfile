@@ -6,12 +6,12 @@ COPY gradle/*   /home/gradle
 COPY build.gradle   /home/gradle
 COPY gradlew.bat /home/gradle
 COPY settings.gradle /home/gradle
-COPY . .
-RUN gradle build
 
+RUN gradle build
+COPY . .
 FROM openjdk:17-ea-28-jdk-slim
 
-COPY --from=build /build/libs/portal.jar portal.jar
+COPY --from=build build/libs/portal.jar portal.jar
 
 ENTRYPOINT ["java","-jar","portal.jar"]
 
