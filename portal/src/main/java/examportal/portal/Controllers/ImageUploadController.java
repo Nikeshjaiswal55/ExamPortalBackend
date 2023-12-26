@@ -91,11 +91,13 @@ public class ImageUploadController {
     }
 
     @PostMapping("/uploadAtS3")
-    public String uploadtatamazoneS3(@RequestBody String image) {
-        String url ="jfa";
+    public PaperStringDto uploadtatamazoneS3(@RequestBody String image) {
+        String url ="faskfa";
         String imageUrl = this.service.store(image, url);
+        PaperStringDto dto = new PaperStringDto();
+        dto.setData(imageUrl);
         log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
-        return imageUrl;
+        return dto;
     }
 
 }

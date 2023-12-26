@@ -2,10 +2,18 @@ package examportal.portal.ServicesImpl;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.binary.Base64;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -185,6 +193,48 @@ public class PaperServiceImpl implements PaperService {
     return dto;
   }
 
+  public String ALGORITHM = "AES";
+  public String MODE = "ECB";
+  public String PADDING = "PKCS7";
+
+  public String SECRET_KEY = "mysecretkey";
+
+  public String encrypt(String data) {
+    try {
+      Key key = new SecretKeySpec(SECRET_KEY.getBytes(), ALGORITHM);
+      Cipher cipher = Cipher.getInstance(ALGORITHM + "/" + MODE + "/" + PADDING);
+      cipher.init(Cipher.ENCRYPT_MODE, key);
+
+      byte[] encryptedBytes = cipher.doFinal(data.getBytes("UTF-8"));
+      return Base64.encodeBase64String(encryptedBytes);
+    } catch (Exception e) {
+      throw new RuntimeException("Error encrypting data", e);
+    }
+  }
+
+  // public byte[] generateSecretKey(String algorithm) throws
+  // NoSuchAlgorithmException {
+  // // Initialize a SecureRandom object
+  // SecureRandom secureRandom = SecureRandom.getInstanceStrong();
+
+  // // Specify the key size based on the algorithm (e.g., 128 bits for AES)
+  // int keySize = 128;
+
+  // // Generate random bytes for the secret key
+  // byte[] keyBytes = new byte[keySize / 8];
+  // secureRandom.nextBytes(keyBytes);
+
+  // return keyBytes;
+  // }
+
+  // public String bytesToHex(byte[] bytes) {
+  // StringBuilder hexString = new StringBuilder(2 * bytes.length);
+  // for (byte b : bytes) {
+  // hexString.append(String.format("%02X", b));
+  // }
+  // return hexString.toString();
+  // }
+
   public String encodeObject(Object object) {
     log.info("paperServiceIml encodeObject method Starts ");
     ObjectMapper objectMapper = new ObjectMapper();
@@ -226,7 +276,7 @@ public class PaperServiceImpl implements PaperService {
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperId", paperDto.getPaperId()));
     paper = paperDto.getPaper();
     paper.setPaper_name(paperDto.getExamDetails().getAssessmentName());
-     Paper npaper =this.paperRepo.save(paper);
+    Paper npaper = this.paperRepo.save(paper);
     PaperDto dto = new PaperDto();
 
     List<Questions> q2 = new ArrayList<>();
@@ -246,7 +296,8 @@ public class PaperServiceImpl implements PaperService {
 
     }
 
-    // ExamDetails examDetails = this.examDetailsService.updateExamDetails(paperDto.getExamDetails());
+    // ExamDetails examDetails =
+    // this.examDetailsService.updateExamDetails(paperDto.getExamDetails());
 
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperDto.getPaperId());
     examDetails.setBranch(paperDto.getExamDetails().getBranch());
@@ -400,7 +451,7 @@ public class PaperServiceImpl implements PaperService {
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
-      
+
       PaperStringDto dto = new PaperStringDto();
       dto.setData("is_published");
       log.info("paperServiceImpl activatePaper  method Ends");
@@ -451,7 +502,7 @@ public class PaperServiceImpl implements PaperService {
         User user = this.userRepo.findById(invitedStudents.getStudentId())
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
 
-        String msg =  user.getPassword();
+        String msg = user.getPassword();
 
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
       });
