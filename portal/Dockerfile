@@ -25,8 +25,6 @@
 # # RUN ./gradlew build
 # #
 
-
-
 # FROM gradle:7.3.3-jdk17 AS build
 # WORKDIR /app
 # COPY portal/* .
@@ -44,23 +42,16 @@
 
 # CMD ["java", "-jar", "portal.jar"]
 
+FROM gradle:7.3.3-jdk17 AS build
+WORKDIR /app
+COPY portal/* .
+RUN ["./gradlew", "build"]  # Use RUN for build commands
 
+# Runtime Stage
+FROM openjdk:17-jdk-slim 
 
-FROM gradle:7.5.1-jdk11-alpine AS build
+WORKDIR /app
 
-COPY --chown=gradle:gradle . /home/gradle/src
+COPY --from=build /app/build/libs/portal.jar /app
 
-WORKDIR /home/gradle/src
-
-RUN gradle clean build --no-daemon
-
-
-FROM openjdk:11.0.11-jre-slim-buster
-
-# EXPOSE 8080
-
-RUN mkdir /app
-
-COPY --from=build /home/gradle/src/build/libs/*.jar /app/portal.jar
-
-ENTRYPOINT ["java", "-jar", "/app/portal.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=prod","-jar","/app/portal.jar"]
