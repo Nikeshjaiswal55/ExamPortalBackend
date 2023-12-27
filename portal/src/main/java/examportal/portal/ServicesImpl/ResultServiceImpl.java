@@ -342,13 +342,17 @@ public class ResultServiceImpl implements ResultService {
         log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method Start");
         List<Result> allResult = this.resultRepo.findAllResutlByStudentID(studentId);
         List<Result> top5 = new ArrayList<>();
+        int size = allResult.size();
+        if (size>15) {
+            size=15;
+        }
 
-        if (allResult.size() != 5) {
-
+        if (allResult.isEmpty()) {
+            
             log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
             return top5;
         } else {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i <size; i++) {
                 Result result = new Result();
                 result = allResult.get(i);
                 top5.add(result);

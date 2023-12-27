@@ -12,9 +12,9 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 @Configuration
 public class StorageConfig {
 
-    String accessKey ="AKIAVMGS47WEYOWJOEFS";
-    String accessSecret="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";
-    String region="us-east-1";
+    String accessKey ="AKIAZH5KVYMCHTX5HE2T";
+    String accessSecret="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";
+    String region="ap-south-1";
 
     @Bean
     public AmazonS3 s3Client() {
