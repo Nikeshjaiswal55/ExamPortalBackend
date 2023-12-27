@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PortalApplication",
+            "request": "launch",
+            "mainClass": "examportal.portal.PortalApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-PortalApplication<portal>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
