@@ -272,7 +272,7 @@ public class ResultServiceImpl implements ResultService {
             dto2.setQuestions(questions2);
             dto2.setCheating(dto.getCheating());
             dto2.setResult(newResult);
-            System.out.println("my  dt0 --=---========-" + dto2);
+            
             log.info("ResultServiceImpl, checkPaper Method End");
             return createResult(dto2);
         }
@@ -283,14 +283,20 @@ public class ResultServiceImpl implements ResultService {
         log.info("ResultServiceImpl, getTopThreeStudentByPaper Method Start");
         List<Result> results = this.resultRepo.findAllByPaperIdOrderByPercentageDesc(paperId);
         List<Student> TopThree = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            Result resu = results.get(i);
-            Student student = this.studentRepo.findById(resu.getStudentID())
-                    .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", resu.getStudentID()));
-            TopThree.add(student);
+        if (results.size() != 3) {
+            return null;
+        } else {
+
+            for (int i = 0; i < 3; i++) {
+                Result resu = results.get(i);
+                Student student = this.studentRepo.findById(resu.getStudentID())
+                        .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", resu.getStudentID()));
+                TopThree.add(student);
+            }
+            log.info("ResultServiceImpl, getTopThreeStudentByPaper Method End");
+            return TopThree;
         }
-        log.info("ResultServiceImpl, getTopThreeStudentByPaper Method End");
-        return TopThree;
+
     }
 
     @Override
@@ -343,13 +349,17 @@ public class ResultServiceImpl implements ResultService {
         log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method Start");
         List<Result> allResult = this.resultRepo.findAllResutlByStudentID(studentId);
         List<Result> top5 = new ArrayList<>();
+        int size = allResult.size();
+        if (size>15) {
+            size=15;
+        }
 
-        if (allResult.size() != 5) {
-
+        if (allResult.isEmpty()) {
+            
             log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
             return top5;
         } else {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i <size; i++) {
                 Result result = new Result();
                 result = allResult.get(i);
                 top5.add(result);
