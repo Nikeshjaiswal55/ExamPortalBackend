@@ -92,13 +92,13 @@ public class ImageUploadController {
 
     @PostMapping("/uploadAtS3")
     public PaperStringDto uploadtatamazoneS3(@RequestBody String image) {
+        log.info("ImageServiceImpl ,uploadtatamazoneS3 Method Start");
         String url ="Cheating/";
         String imageUrl = this.service.store(image, url);
         PaperStringDto data = new PaperStringDto();
             data.setData(imageUrl);
-        log.info("ImageServiceImpl ,uploadbase64incloudnaru Method End");
-        return data
-        ;
+        log.info("ImageServiceImpl ,uploadtatamazoneS3 Method End");
+        return data;
     }
 
 }

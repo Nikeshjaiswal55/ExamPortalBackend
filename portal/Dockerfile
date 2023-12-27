@@ -19,5 +19,5 @@ WORKDIR /app
 # Copy the JAR file from the build stage
 COPY --from=build /home/gradle/build/libs/portal.jar
 # Specify the entry point for running the application
-RUN ["java", "-jar", "portal.jar"]
+# RUN ["java", "-jar", "portal.jar"]
 
