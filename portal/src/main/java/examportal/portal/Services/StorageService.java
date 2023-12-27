@@ -19,7 +19,7 @@ public class StorageService {
     @Autowired
     private AmazonS3 amazonS3;
 
-    private String bucketName = "exameasybucket";
+    private String bucketName = "myexameasybucket";
 
     public List<String> store(List<String> images, String url) {
 
