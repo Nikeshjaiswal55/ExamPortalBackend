@@ -265,7 +265,6 @@ public class ResultServiceImpl implements ResultService {
             dto2.setQuestions(questions2);
             dto2.setCheating(dto.getCheating());
             dto2.setResult(newResult);
-            
             log.info("ResultServiceImpl, checkPaper Method End");
             return createResult(dto2);
         }
@@ -409,5 +408,6 @@ public class ResultServiceImpl implements ResultService {
         }
         return results;
     }
+
 
 }

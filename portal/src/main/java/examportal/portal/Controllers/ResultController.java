@@ -18,6 +18,7 @@ import examportal.portal.Entity.Cheating;
 import examportal.portal.Entity.Result;
 import examportal.portal.Entity.Student;
 import examportal.portal.Exceptions.ResourceNotFoundException;
+import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Payloads.ResultDto;
 import examportal.portal.Payloads.checkpaperDto;
 import examportal.portal.Repo.CheatingRepo;
@@ -181,5 +182,18 @@ public class ResultController {
         return new ResponseEntity<>(passedResult,HttpStatus.OK);
     }
     
-
+    @GetMapping("/checkAttemptOfStudent/studentId/{studentId}/paperId/{paperId}")
+    public ResponseEntity<PaperStringDto> getMethodName(@PathVariable String studentId,@PathVariable String paperId) {
+        
+        Result r = this.resultRepo.getResultByStudentAndPaperId(paperId,studentId);
+        PaperStringDto dto = new PaperStringDto();
+        if (r==null) {
+              dto.setData("false");
+        }else{
+              dto.setData("true");
+        }
+        
+        return new ResponseEntity<>(dto,HttpStatus.ACCEPTED);
+    }
+    
 }
