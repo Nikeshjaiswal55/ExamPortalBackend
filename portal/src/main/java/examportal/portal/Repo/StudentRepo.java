@@ -44,7 +44,7 @@ public interface StudentRepo extends JpaRepository<Student, String> {
     
     // fitler top Ranker By Branch
     @Query("SELECT s FROM Student s WHERE s.orgnizationId = :orgnizationId AND s.branch=:branch " +
-            "ORDER BY s.topMarks DESC " +
+            "ORDER BY s.topMarks DESC  " +
             "LIMIT 15")
 
     List<Student> getTop15StudentBYBranch(@Param("orgnizationId") String orgnizationId, @Param("branch") String branch);

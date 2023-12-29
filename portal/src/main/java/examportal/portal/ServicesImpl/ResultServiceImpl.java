@@ -31,7 +31,6 @@ import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Repo.StudentRepo;
-import examportal.portal.Services.ImageService;
 import examportal.portal.Services.ResultService;
 import examportal.portal.Services.StorageService;
 import jakarta.transaction.Transactional;
@@ -65,8 +64,6 @@ public class ResultServiceImpl implements ResultService {
     @Autowired
     private AttemptepaperRepo attemptepaperRepo;
 
-    @Autowired
-    private ImageService imageService;
 
     @Autowired
     private StorageService service;
@@ -400,9 +397,20 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public List<Result> gettopAssesmentsByOrgnizationId(String orgnizationId) {
         List<Paper> papers = this.paperRepo.getAllPapersByOrgnizationId(orgnizationId);
-        List<Result> results = new ArrayList<>();
+        
+        List<Result> results = new ArrayList<>(5);
+        
         for (Paper paper : papers) {
-            results.addAll(this.resultRepo.findAllByPaperIdOrderByPercentageDescAndPass(paper.getPaperId()));
+
+            List<Result> allTopResults= resultRepo.findAllByPaperIdOrderByPercentageDescAndPass(paper.getPaperId());
+            if (!allTopResults.isEmpty()) {
+                
+                results.add(allTopResults.get(0)); 
+                if(results.size()==5){
+                    return results;
+                }
+            }
+            
         }
         return results;
     }
