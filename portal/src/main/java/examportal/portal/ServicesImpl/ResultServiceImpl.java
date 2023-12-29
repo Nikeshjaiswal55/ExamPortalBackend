@@ -107,7 +107,7 @@ public class ResultServiceImpl implements ResultService {
         examDetails.setPaperChecked(true);
         examDetails.setIs_Active("true");
         examDetails.set_Setup(false);
-        // examDetails.set_attempted(true);
+        
         this.examDetailsRepo.save(examDetails);
 
         // 3. Save Result
@@ -295,8 +295,11 @@ public class ResultServiceImpl implements ResultService {
     public ResultDto getResultByStudentIdAndPaperId(String papeId, String studentId) {
         log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method Start");
         Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
-
-        Student s = this.studentRepo.findById(studentId)
+        if (result==null) {
+            return null;
+            
+        }else{
+             Student s = this.studentRepo.findById(studentId)
                 .orElseThrow(() -> new ResourceNotFoundException("student", "studentId", studentId));
 
         if (result.getIs_published().equals("approved")) {
@@ -318,14 +321,7 @@ public class ResultServiceImpl implements ResultService {
             return dto;
         } else {
 
-            // List<Questions> questions = new ArrayList<>();
-            // List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
-            // .getAllQuestionsByStudentID(studentId, papeId);
-
-            // for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
-            // Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
-            // questions.add(q);
-            // }
+            
 
             ResultDto dto = new ResultDto();
 
@@ -334,6 +330,8 @@ public class ResultServiceImpl implements ResultService {
             log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
             return dto;
         }
+        }
+       
     }
 
     @Override

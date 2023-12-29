@@ -144,12 +144,13 @@ public class PaperController {
     }
 
     @DeleteMapping("/deletePaperByPaperID/{paperId}")
-    public ResponseEntity<String> deletePaper(@PathVariable String paperId) {
+    public ResponseEntity<PaperStringDto> deletePaper(@PathVariable String paperId) {
         log.info("PaperController, deletePaper by paperid method started");
-        String msg = this.paperService.deletePaperByPaperId(paperId);
+        PaperStringDto deletemsg = new PaperStringDto();
+         deletemsg.setData(this.paperService.deletePaperByPaperId(paperId)); 
 
         log.info("PaperController deletePaper by paperid Method Ends");
-        return new ResponseEntity<>(msg, HttpStatus.OK);
+        return new ResponseEntity<>(deletemsg, HttpStatus.OK);
 
     }
 
