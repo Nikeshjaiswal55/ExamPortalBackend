@@ -18,6 +18,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -89,7 +90,8 @@ public class PaperServiceImpl implements PaperService {
 
     LocalDateTime date = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    String formattedDate = date.format(formatter);
+    ZoneId istZone = ZoneId.of("Asia/Kolkata");
+    String formattedDate = date.atZone(istZone).format(formatter);
 
     Paper paper = paperDto.getPaper();
     paper.setCreated_date(formattedDate);
@@ -373,7 +375,8 @@ public class PaperServiceImpl implements PaperService {
 
     LocalDateTime date = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    String formattedDate = date.format(formatter);
+     ZoneId istZone = ZoneId.of("Asia/Kolkata");
+    String formattedDate = date.atZone(istZone).format(formatter);
 
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
