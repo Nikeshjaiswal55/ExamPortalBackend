@@ -88,10 +88,10 @@ public class PaperServiceImpl implements PaperService {
   public Paper createPaper(PaperDto paperDto) {
     log.info("paperServiceIml Createpaper method Starts :");
 
-    LocalDateTime date = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     ZoneId istZone = ZoneId.of("Asia/Kolkata");
-    String formattedDate = date.atZone(istZone).format(formatter);
+    LocalDateTime date = LocalDateTime.now(istZone);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    String formattedDate = date.format(formatter);
 
     Paper paper = paperDto.getPaper();
     paper.setCreated_date(formattedDate);
@@ -373,10 +373,10 @@ public class PaperServiceImpl implements PaperService {
     log.info("paperServiceImpl activatePaper  method Starts");
     String msg = "";
 
-    LocalDateTime date = LocalDateTime.now();
+    ZoneId istZone = ZoneId.of("Asia/Kolkata");
+    LocalDateTime date = LocalDateTime.now(istZone);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-     ZoneId istZone = ZoneId.of("Asia/Kolkata");
-    String formattedDate = date.atZone(istZone).format(formatter);
+    String formattedDate = date.format(formatter);
 
     Paper paper = this.paperRepo.findById(paperId)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "PaperId", paperId));
