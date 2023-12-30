@@ -3,6 +3,7 @@ package examportal.portal.Controllers;
 import examportal.portal.Entity.Course;
 import examportal.portal.Payloads.EmailsDto;
 import examportal.portal.Payloads.PaginationDto;
+import examportal.portal.Payloads.PaperStringDto;
 import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Response.CourseResponce;
 import examportal.portal.Services.CourseService;
@@ -97,11 +98,13 @@ public class CourseController {
   }
 
   @DeleteMapping("/course/{getId}")
-  public String deleteCourse(@PathVariable String getId) {
+  public ResponseEntity<PaperStringDto> deleteCourse(@PathVariable String getId) {
     log.info("CourseController,deleteCourse Method Start");
     courseService.deleteCourseById(getId);
+    PaperStringDto msg = new PaperStringDto();
+    msg.setData("Record Deleted");
     log.info("CourseController,deleteCourse Method Ends");
-    return "Record deleted";
+      return new  ResponseEntity<>(msg,HttpStatus.OK);
   }
 
   @GetMapping("/searchCouser")

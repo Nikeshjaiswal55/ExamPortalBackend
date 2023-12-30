@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.s3.AmazonS3;
@@ -19,7 +20,8 @@ public class StorageService {
     @Autowired
     private AmazonS3 amazonS3;
 
-    private String bucketName = "exameasybucket";
+    @Value("${application.bucket.name}")
+    private String bucketName ;
 
     public List<String> store(List<String> images, String url) {
 

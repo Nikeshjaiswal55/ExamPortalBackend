@@ -181,7 +181,7 @@ public class PaperServiceImpl implements PaperService {
     PaperDto paperDto = this.mapper.map(paper, PaperDto.class);
     List<Questions> qList = this.questionsRepo.getAllQuestionsByPaperId(paperID);
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
-
+    // examDetails.set_attempted(true);
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
 
@@ -189,7 +189,6 @@ public class PaperServiceImpl implements PaperService {
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
     log.info("paperServiceIml getPaperByID method End's :");
-
     return dto;
   }
 
