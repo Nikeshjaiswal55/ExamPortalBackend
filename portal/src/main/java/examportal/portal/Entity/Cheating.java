@@ -22,7 +22,8 @@ public class Cheating {
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private List<String> images;
-
+     @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private List<String> audios;
 
 }

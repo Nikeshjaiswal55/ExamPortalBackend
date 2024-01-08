@@ -31,7 +31,6 @@ import examportal.portal.Repo.PaperRepo;
 import examportal.portal.Repo.QuestionsRepo;
 import examportal.portal.Repo.ResultRepo;
 import examportal.portal.Repo.StudentRepo;
-import examportal.portal.Services.ImageService;
 import examportal.portal.Services.ResultService;
 import examportal.portal.Services.StorageService;
 import jakarta.transaction.Transactional;
@@ -65,8 +64,6 @@ public class ResultServiceImpl implements ResultService {
     @Autowired
     private AttemptepaperRepo attemptepaperRepo;
 
-    @Autowired
-    private ImageService imageService;
 
     @Autowired
     private StorageService service;
@@ -107,12 +104,13 @@ public class ResultServiceImpl implements ResultService {
         examDetails.setPaperChecked(true);
         examDetails.setIs_Active("true");
         examDetails.set_Setup(false);
-        // examDetails.set_attempted(true);
+        
         this.examDetailsRepo.save(examDetails);
 
         // 3. Save Result
         Result newResult = this.resultRepo.save(dto.getResult());
 
+        
         Student s = this.studentRepo.findById(newResult.getStudentID())
                 .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", newResult.getStudentID()));
 
@@ -126,7 +124,9 @@ public class ResultServiceImpl implements ResultService {
         Cheating cheating = dto.getCheating();
         cheating.setPaperId(newResult.getPaperID());
         cheating.setStudentId(newResult.getStudentID());
+        cheating.setResultId(newResult.getResultID());
         Cheating stdCheating = this.cheatingRepo.save(cheating);
+
 
         // 5. Build ResultDto
         ResultDto resultDto = new ResultDto();
@@ -265,7 +265,6 @@ public class ResultServiceImpl implements ResultService {
             dto2.setQuestions(questions2);
             dto2.setCheating(dto.getCheating());
             dto2.setResult(newResult);
-            System.out.println("my  dt0 --=---========-" + dto2);
             log.info("ResultServiceImpl, checkPaper Method End");
             return createResult(dto2);
         }
@@ -276,22 +275,31 @@ public class ResultServiceImpl implements ResultService {
         log.info("ResultServiceImpl, getTopThreeStudentByPaper Method Start");
         List<Result> results = this.resultRepo.findAllByPaperIdOrderByPercentageDesc(paperId);
         List<Student> TopThree = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            Result resu = results.get(i);
-            Student student = this.studentRepo.findById(resu.getStudentID())
-                    .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", resu.getStudentID()));
-            TopThree.add(student);
+        if (results.size() != 3) {
+            return null;
+        } else {
+
+            for (int i = 0; i < 3; i++) {
+                Result resu = results.get(i);
+                Student student = this.studentRepo.findById(resu.getStudentID())
+                        .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", resu.getStudentID()));
+                TopThree.add(student);
+            }
+            log.info("ResultServiceImpl, getTopThreeStudentByPaper Method End");
+            return TopThree;
         }
-        log.info("ResultServiceImpl, getTopThreeStudentByPaper Method End");
-        return TopThree;
+
     }
 
     @Override
     public ResultDto getResultByStudentIdAndPaperId(String papeId, String studentId) {
         log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method Start");
         Result result = this.resultRepo.getResultByStudentAndPaperId(papeId, studentId);
-
-        Student s = this.studentRepo.findById(studentId)
+        if (result==null) {
+            return null;
+            
+        }else{
+             Student s = this.studentRepo.findById(studentId)
                 .orElseThrow(() -> new ResourceNotFoundException("student", "studentId", studentId));
 
         if (result.getIs_published().equals("approved")) {
@@ -313,14 +321,7 @@ public class ResultServiceImpl implements ResultService {
             return dto;
         } else {
 
-            // List<Questions> questions = new ArrayList<>();
-            // List<AttemptedQuestions> attemptedQuestions = this.attemptedQuestionsRepo
-            // .getAllQuestionsByStudentID(studentId, papeId);
-
-            // for (AttemptedQuestions attemptedQuestions2 : attemptedQuestions) {
-            // Questions q = this.mapper.map(attemptedQuestions2, Questions.class);
-            // questions.add(q);
-            // }
+            
 
             ResultDto dto = new ResultDto();
 
@@ -329,6 +330,8 @@ public class ResultServiceImpl implements ResultService {
             log.info("ResultServiceImpl, getResultByStudentIdAndPaperId Method End");
             return dto;
         }
+        }
+       
     }
 
     @Override
@@ -336,13 +339,17 @@ public class ResultServiceImpl implements ResultService {
         log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method Start");
         List<Result> allResult = this.resultRepo.findAllResutlByStudentID(studentId);
         List<Result> top5 = new ArrayList<>();
+        int size = allResult.size();
+        if (size>15) {
+            size=15;
+        }
 
-        if (allResult.size() != 5) {
-
+        if (allResult.isEmpty()) {
+            
             log.info("ResultServiceImpl, getTopFiveResultOfStudentByStudentId Method End");
             return top5;
         } else {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i <size; i++) {
                 Result result = new Result();
                 result = allResult.get(i);
                 top5.add(result);
@@ -393,11 +400,23 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public List<Result> gettopAssesmentsByOrgnizationId(String orgnizationId) {
         List<Paper> papers = this.paperRepo.getAllPapersByOrgnizationId(orgnizationId);
-        List<Result> results = new ArrayList<>();
+        
+        List<Result> results = new ArrayList<>(5);
+        
         for (Paper paper : papers) {
-            results.addAll(this.resultRepo.findAllByPaperIdOrderByPercentageDescAndPass(paper.getPaperId()));
+
+            List<Result> allTopResults= resultRepo.findAllByPaperIdOrderByPercentageDescAndPass(paper.getPaperId());
+            if (!allTopResults.isEmpty()) {
+                
+                results.add(allTopResults.get(0)); 
+                if(results.size()==5){
+                    return results;
+                }
+            }
+            
         }
         return results;
     }
+
 
 }

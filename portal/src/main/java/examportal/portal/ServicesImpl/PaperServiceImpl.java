@@ -18,6 +18,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -87,7 +88,8 @@ public class PaperServiceImpl implements PaperService {
   public Paper createPaper(PaperDto paperDto) {
     log.info("paperServiceIml Createpaper method Starts :");
 
-    LocalDateTime date = LocalDateTime.now();
+    ZoneId istZone = ZoneId.of("Asia/Kolkata");
+    LocalDateTime date = LocalDateTime.now(istZone);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     String formattedDate = date.format(formatter);
 
@@ -173,7 +175,7 @@ public class PaperServiceImpl implements PaperService {
     PaperDto paperDto = this.mapper.map(paper, PaperDto.class);
     List<Questions> qList = this.questionsRepo.getAllQuestionsByPaperId(paperID);
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
-
+    // examDetails.set_attempted(true);
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
 
@@ -181,7 +183,6 @@ public class PaperServiceImpl implements PaperService {
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
     log.info("paperServiceIml getPaperByID method End's :");
-
     return dto;
   }
 
@@ -372,7 +373,8 @@ public class PaperServiceImpl implements PaperService {
     log.info("paperServiceImpl activatePaper  method Starts");
     String msg = "";
 
-    LocalDateTime date = LocalDateTime.now();
+    ZoneId istZone = ZoneId.of("Asia/Kolkata");
+    LocalDateTime date = LocalDateTime.now(istZone);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     String formattedDate = date.format(formatter);
 
