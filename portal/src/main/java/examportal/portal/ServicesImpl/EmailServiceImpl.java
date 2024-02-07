@@ -71,7 +71,7 @@ public class EmailServiceImpl {
                     "        <p>Get ready for a smoother exam experience</p>\n" + //
                     "        <p>Please use the provided credentials to log in at ExamEasy</p>\n" + //
                     "        <p>Password: <b>"+msg+"</b></p>\n" + //
-                    "        <button type=\"button\" class=\"login-btn\" style=\"background-color: black; border-radius: 10px; padding: 10px 30px; display: block; margin: 20px auto;\"> <a href=\"https://exam-easy.netlify.app/\" style=\"color: white!important; text-decoration: none; \">Login</a></button>\n" + //
+                    "        <button type=\"button\" class=\"login-btn\" style=\"background-color: black; border-radius: 10px; padding: 10px 30px; display: block; margin: 20px auto;\"> <a href=\"https://exams.ssism.org/\" style=\"color: white!important; text-decoration: none; \">Login</a></button>\n" + //
                     "\n" + //
                     "        <h4>Need a hand? Reach us at <a href=\"to:exameasy.official@gmail.com\">exameasy.official@gmail.com</a></h4>\n" + //
                     "\n" + //
