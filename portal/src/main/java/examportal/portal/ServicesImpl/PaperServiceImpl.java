@@ -120,7 +120,7 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setIs_auto_check(newPaper.getIs_auto_check());
     examDetails.setPaperId(newPaper.getPaperId());
     this.examDetailsRepo.save(examDetails);
-    System.out.println(examDetails + "kger  =============================================================");
+    // System.out.println(examDetails + "kger  =============================================================");
 
     try {
       // Get the result of the asynchronous saveQuestionsAsync call
