@@ -1,5 +1,9 @@
 package examportal.portal.ServicesImpl;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
@@ -15,6 +19,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -206,15 +211,51 @@ public String encodeString(String myString) {
   return encodedString;
 }
 
-public static String decodeStrin(String encodedString) {
-  // Decode the Base64-encoded string
-  byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+// public static String decodeStrin(String encodedString) {
+//   // Decode the Base64-encoded string
+//   byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
 
-  // Convert the byte array to a string
-  String decodedString = new String(decodedBytes, StandardCharsets.UTF_8);
+//   // Convert the byte array to a string
+//   String decodedString = new String(decodedBytes, StandardCharsets.UTF_8);
 
-  return decodedString;
-}
+//   return decodedString;
+// }
+
+ public static String encodeObjec(Object myObject) {
+        try {
+            // Serialize the object into a byte array
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(myObject);
+            byte[] objectBytes = baos.toByteArray();
+
+            // Encode the byte array using Base64
+            String encodedString = Base64.getEncoder().encodeToString(objectBytes);
+
+            return encodedString;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+     public static Object decodeObjet(String encodedString) {
+        try {
+            // Decode the Base64-encoded string into a byte array
+            byte[] objectBytes = Base64.getDecoder().decode(encodedString);
+
+            // Deserialize the byte array into an object
+            ByteArrayInputStream bais = new ByteArrayInputStream(objectBytes);
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            Object decodedObject = ois.readObject();
+
+            return decodedObject;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
 
@@ -230,10 +271,12 @@ public static String decodeStrin(String encodedString) {
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
 
-    String obj =encodeString(paperDto.toString());
-    String decode= decodeStrin(obj);
-    System.out.println(decode+"kukkkkkkkk");
+    String obj = encodeObject(paperDto);
+    System.out.println(obj+"my encoded object");
+
+    
     System.out.println(obj+"my json encrypted with the cypto");
+    Object object = decodeObject(obj+"decoded data");
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
     log.info("paperServiceIml getPaperByID method End's :");
