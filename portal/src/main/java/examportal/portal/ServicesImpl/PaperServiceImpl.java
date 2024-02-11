@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
@@ -32,6 +33,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import examportal.portal.Config.CryptoConfig;
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -94,6 +97,9 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private ExamDetailsService examDetailsService;
+
+  @Autowired
+  private CryptoConfig cryptoConfig;
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
@@ -188,6 +194,29 @@ public class PaperServiceImpl implements PaperService {
 }
 
 
+public String encodeString(String myString) {
+  // Your string to encode
+
+  // Encode the string using Base64
+  byte[] encodedBytes = Base64.encodeBase64(myString.getBytes());
+
+  // Convert the byte array to a string
+  String encodedString = new String(encodedBytes);
+
+  return encodedString;
+}
+
+public static String decodeStrin(String encodedString) {
+  // Decode the Base64-encoded string
+  byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+
+  // Convert the byte array to a string
+  String decodedString = new String(decodedBytes, StandardCharsets.UTF_8);
+
+  return decodedString;
+}
+
+
 
   @Override
   public PaperStringDto getPaperById(String paperID) {
@@ -201,7 +230,9 @@ public class PaperServiceImpl implements PaperService {
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
 
-    String obj = encryptJson(paperDto.toString());
+    String obj =encodeString(paperDto.toString());
+    String decode= decodeStrin(obj);
+    System.out.println(decode+"kukkkkkkkk");
     System.out.println(obj+"my json encrypted with the cypto");
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
