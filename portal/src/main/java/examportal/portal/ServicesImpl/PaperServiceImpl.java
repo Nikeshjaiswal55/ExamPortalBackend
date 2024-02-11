@@ -23,7 +23,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriUtils;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -86,6 +88,9 @@ public class PaperServiceImpl implements PaperService {
 
   @Autowired
   private AttemptepaperRepo attemptepaperRepo;
+
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
   @Autowired
   private ExamDetailsService examDetailsService;
@@ -175,6 +180,15 @@ public class PaperServiceImpl implements PaperService {
     return dto;
   }
 
+
+  public String encryptJson(@RequestBody String jsonData) {
+    // Encrypt JSON data using the PasswordEncoder
+    String encryptedData = passwordEncoder.encode(jsonData);
+    return encryptedData;
+}
+
+
+
   @Override
   public PaperStringDto getPaperById(String paperID) {
     log.info("paperServiceIml getPaperById method Starts :");
@@ -187,7 +201,8 @@ public class PaperServiceImpl implements PaperService {
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
 
-    String obj = encodeObject(paperDto);
+    String obj = encryptJson(paperDto.toString());
+    System.out.println(obj+"my json encrypted with the cypto");
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
     log.info("paperServiceIml getPaperByID method End's :");
