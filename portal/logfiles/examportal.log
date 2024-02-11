@@ -1,59 +1,83 @@
-2024-02-08 21:40:28 [restartedMain] INFO  examportal.portal.PortalApplication - Starting PortalApplication using Java 19.0.2 with PID 1220 (C:\Users\devra\Documents\ExamPortalBackend\portal\build\classes\java\main started by devra in C:\Users\devra\Documents\ExamPortalBackend)
-2024-02-08 21:40:28 [restartedMain] INFO  examportal.portal.PortalApplication - No active profile set, falling back to 1 default profile: "default"
-2024-02-08 21:40:28 [restartedMain] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.PortalApplication
-2024-02-08 21:40:28 [restartedMain] DEBUG o.s.b.d.restart.ChangeableUrls - Matching URLs for reloading : [file:/C:/Users/devra/Documents/ExamPortalBackend/portal/build/resources/main/, file:/C:/Users/devra/Documents/ExamPortalBackend/portal/build/classes/java/main/]
-2024-02-08 21:40:28 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Included patterns for restart : []
-2024-02-08 21:40:28 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter-[\w-]+/, /spring-boot/(bin|build|out)/, /spring-boot-starter/(bin|build|out)/, /spring-boot-devtools/(bin|build|out)/, /spring-boot-actuator/(bin|build|out)/, /spring-boot-autoconfigure/(bin|build|out)/]
-2024-02-08 21:40:28 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-02-08 21:40:28 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-02-08 21:40:28 [restartedMain] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5562befc
-2024-02-08 21:40:29 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-02-08 21:40:29 [restartedMain] DEBUG o.s.b.a.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'examportal.portal'. Automatic @Repository and @Entity scanning is enabled.
-2024-02-08 21:40:29 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 158 ms. Found 14 JPA repository interfaces.
-2024-02-08 21:40:30 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\devra\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
-2024-02-08 21:40:30 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\devra\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
-2024-02-08 21:40:30 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2024-02-08 21:40:30 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9091 (http)
-2024-02-08 21:40:30 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-02-08 21:40:30 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
-2024-02-08 21:40:31 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-02-08 21:40:31 [restartedMain] DEBUG o.s.b.w.s.c.ServletWebServerApplicationContext - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-2024-02-08 21:40:31 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2935 ms
-2024-02-08 21:40:31 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
-2024-02-08 21:40:31 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping servlets: dispatcherServlet urls=[/]
-2024-02-08 21:40:31 [restartedMain] DEBUG o.s.b.w.s.f.OrderedRequestContextFilter - Filter 'requestContextFilter' configured for use
-2024-02-08 21:40:31 [restartedMain] DEBUG o.s.b.w.s.f.OrderedCharacterEncodingFilter - Filter 'characterEncodingFilter' configured for use
-2024-02-08 21:40:31 [restartedMain] DEBUG o.s.b.w.s.DelegatingFilterProxyRegistrationBean$1 - Filter 'springSecurityFilterChain' configured for use
-2024-02-08 21:40:31 [restartedMain] DEBUG o.s.b.w.s.f.OrderedFormContentFilter - Filter 'formContentFilter' configured for use
-2024-02-08 21:40:31 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-02-08 21:40:31 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
-2024-02-08 21:40:31 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
-2024-02-08 21:40:32 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-02-08 21:40:32 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-02-08 21:40:47 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6c9ce402
-2024-02-08 21:40:47 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-02-08 21:40:48 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-02-08 21:40:48 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-02-08 21:40:49 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-02-08 21:40:50 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-02-08 21:40:50 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-02-08 21:40:52 [restartedMain] INFO  Config  -> projectConfig.java - Config  -> projectConfig.java, Inside {} getCloudinary Class
-2024-02-08 21:40:52 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-02-08 21:40:52 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig , filterChain Method Start 
-2024-02-08 21:40:53 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 79 mappings in 'requestMappingHandlerMapping'
-2024-02-08 21:40:53 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2024-02-08 21:40:53 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig, jwtDecoder Method Start
-2024-02-08 21:40:53 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig, jwtDecoder Method Ends
-2024-02-08 21:40:53 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@72325b70, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@63d599, org.springframework.security.web.context.SecurityContextHolderFilter@1546c2bb, org.springframework.security.web.header.HeaderWriterFilter@58a53ba1, org.springframework.web.filter.CorsFilter@26f2d2db, org.springframework.security.web.authentication.logout.LogoutFilter@7455571, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@4b4506e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6682719f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@40e3a61b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@ece6a7f, org.springframework.security.web.access.ExceptionTranslationFilter@4ebedf9b, org.springframework.security.web.access.intercept.AuthorizationFilter@32a0ecef]
-2024-02-08 21:40:53 [restartedMain] INFO  SwaggerConfig - SwaggerConfig ,openAPI Method Start
-2024-02-08 21:40:53 [restartedMain] INFO  SwaggerConfig - SwaggerConfig ,openAPI Method Ends
-2024-02-08 21:40:53 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2024-02-08 21:40:53 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2024-02-08 21:40:53 [restartedMain] DEBUG o.s.w.s.v.f.FreeMarkerConfigurer - File system access not preferred: using SpringTemplateLoader
-2024-02-08 21:40:53 [restartedMain] DEBUG o.s.b.d.livereload.LiveReloadServer - Starting live reload server on port 35729
-2024-02-08 21:40:53 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2024-02-08 21:40:54 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 9091 (http) with context path ''
-2024-02-08 21:40:54 [restartedMain] DEBUG o.s.b.a.l.ConditionEvaluationReportLogger - 
+2024-01-14 17:21:43 [restartedMain] INFO  examportal.portal.PortalApplication - Starting PortalApplication using Java 17.0.9 with PID 3164 (D:\Git\ExamPortalBackend\portal\bin\main started by HP in D:\Git\ExamPortalBackend)
+2024-01-14 17:21:43 [restartedMain] INFO  examportal.portal.PortalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-01-14 17:21:43 [restartedMain] DEBUG o.s.boot.SpringApplication - Loading source class examportal.portal.PortalApplication
+2024-01-14 17:21:44 [restartedMain] DEBUG o.s.b.d.restart.ChangeableUrls - Matching URLs for reloading : [file:/D:/Git/ExamPortalBackend/portal/bin/main/, file:/D:/Git/ExamPortalBackend/portal/bin/default/]
+2024-01-14 17:21:44 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Included patterns for restart : []
+2024-01-14 17:21:44 [restartedMain] DEBUG o.s.b.d.settings.DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter-[\w-]+/, /spring-boot/(bin|build|out)/, /spring-boot-starter/(bin|build|out)/, /spring-boot-devtools/(bin|build|out)/, /spring-boot-actuator/(bin|build|out)/, /spring-boot-autoconfigure/(bin|build|out)/]
+2024-01-14 17:21:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-01-14 17:21:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-01-14 17:21:44 [restartedMain] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1c8ae757
+2024-01-14 17:21:46 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-01-14 17:21:46 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-14 17:21:46 [restartedMain] DEBUG o.s.b.a.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'examportal.portal'. Automatic @Repository and @Entity scanning is enabled.
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 372 ms. Found 14 JPA repository interfaces.
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.AssessmentRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.AttemptedQuestionsRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.AttemptepaperRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.CheatingRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.CourseRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.ExamDetailsRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.InvitationRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.MentorRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.OrgnizationRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.PaperRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.QuestionsRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.ResultRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.StudentRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface examportal.portal.Repo.UserRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-01-14 17:21:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 86 ms. Found 0 MongoDB repository interfaces.
+2024-01-14 17:21:49 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\HP\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
+2024-01-14 17:21:49 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\HP\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.1.5\c188015a5a79f5df65e876dcfdef16148c45fe2c\spring-boot-3.1.5.jar
+2024-01-14 17:21:49 [restartedMain] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2024-01-14 17:21:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9091 (http)
+2024-01-14 17:21:49 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-01-14 17:21:49 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2024-01-14 17:21:49 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-01-14 17:21:49 [restartedMain] DEBUG o.s.b.w.s.c.ServletWebServerApplicationContext - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2024-01-14 17:21:49 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5944 ms
+2024-01-14 17:21:50 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2024-01-14 17:21:50 [restartedMain] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping servlets: dispatcherServlet urls=[/]
+2024-01-14 17:21:50 [restartedMain] DEBUG o.s.b.w.s.f.OrderedRequestContextFilter - Filter 'requestContextFilter' configured for use
+2024-01-14 17:21:50 [restartedMain] DEBUG o.s.b.w.s.f.OrderedCharacterEncodingFilter - Filter 'characterEncodingFilter' configured for use
+2024-01-14 17:21:50 [restartedMain] DEBUG o.s.b.w.s.DelegatingFilterProxyRegistrationBean$1 - Filter 'springSecurityFilterChain' configured for use
+2024-01-14 17:21:50 [restartedMain] DEBUG o.s.b.w.s.f.OrderedFormContentFilter - Filter 'formContentFilter' configured for use
+2024-01-14 17:21:50 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-14 17:21:50 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2024-01-14 17:21:50 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2024-01-14 17:21:51 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-14 17:21:51 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-01-14 17:21:53 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2047dfb4
+2024-01-14 17:21:53 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-01-14 17:21:53 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-14 17:21:53 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-01-14 17:21:55 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-14 17:21:55 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-14 17:21:56 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-01-14 17:21:58 [restartedMain] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Repo.UserRepo
+2024-01-14 17:22:00 [restartedMain] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: examportal.portal.Repo.OrgnizationRepo
+2024-01-14 17:22:01 [restartedMain] INFO  Config  -> projectConfig.java - Config  -> projectConfig.java, Inside {} getCloudinary Class
+2024-01-14 17:22:01 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-14 17:22:01 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig , filterChain Method Start 
+2024-01-14 17:22:01 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 79 mappings in 'requestMappingHandlerMapping'
+2024-01-14 17:22:02 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-01-14 17:22:02 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig, jwtDecoder Method Start
+2024-01-14 17:22:02 [restartedMain] INFO  e.portal.Config.SecurityConfig - SecurityConfig, jwtDecoder Method Ends
+2024-01-14 17:22:02 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5c176a2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4d1b6f68, org.springframework.security.web.context.SecurityContextHolderFilter@437f734b, org.springframework.security.web.header.HeaderWriterFilter@4dfd8295, org.springframework.web.filter.CorsFilter@2367ee70, org.springframework.security.web.authentication.logout.LogoutFilter@33e7596b, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@528782b1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15534507, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@591a5eb0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@292b9b89, org.springframework.security.web.access.ExceptionTranslationFilter@2969a366, org.springframework.security.web.access.intercept.AuthorizationFilter@3c8e1ea7]
+2024-01-14 17:22:02 [restartedMain] INFO  SwaggerConfig - SwaggerConfig ,openAPI Method Start
+2024-01-14 17:22:02 [restartedMain] INFO  SwaggerConfig - SwaggerConfig ,openAPI Method Ends
+2024-01-14 17:22:02 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-01-14 17:22:02 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-01-14 17:22:02 [restartedMain] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-01-14 17:22:03 [restartedMain] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.9.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Eclipse Adoptium/17.0.9+9"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@22547470, com.mongodb.Jep395RecordCodecProvider@7a4ab938]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
+2024-01-14 17:22:03 [cluster-ClusterId{value='65a3cae3c7422b5c7e32c8ae', description='null'}-localhost:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=90803400}
+2024-01-14 17:22:04 [restartedMain] DEBUG o.s.w.s.v.f.FreeMarkerConfigurer - File system access not preferred: using SpringTemplateLoader
+2024-01-14 17:22:04 [restartedMain] WARN  o.s.b.a.f.FreeMarkerAutoConfiguration - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2024-01-14 17:22:04 [restartedMain] DEBUG o.s.b.d.livereload.LiveReloadServer - Starting live reload server on port 35729
+2024-01-14 17:22:04 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2024-01-14 17:22:04 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 9091 (http) with context path ''
+2024-01-14 17:22:04 [restartedMain] DEBUG o.s.b.a.l.ConditionEvaluationReportLogger - 
 
 
 ============================
@@ -327,6 +351,51 @@ Positive matches:
 
    MailSenderPropertiesConfiguration#mailSender matched:
       - @ConditionalOnMissingBean (types: org.springframework.mail.javamail.JavaMailSender; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'com.mongodb.client.MongoClient' (OnClassCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.data.mongodb.MongoDatabaseFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoAutoConfiguration#mongo matched:
+      - @ConditionalOnMissingBean (types: com.mongodb.client.MongoClient; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoAutoConfiguration#mongoConnectionDetails matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.mongo.MongoConnectionDetails; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoAutoConfiguration.MongoClientSettingsConfiguration matched:
+      - @ConditionalOnMissingBean (types: com.mongodb.MongoClientSettings; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoDataAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'com.mongodb.client.MongoClient', 'org.springframework.data.mongodb.core.MongoTemplate' (OnClassCondition)
+
+   MongoDataConfiguration#mongoCustomConversions matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.mongodb.core.convert.MongoCustomConversions; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoDataConfiguration#mongoManagedTypes matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.mongodb.MongoManagedTypes; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoDataConfiguration#mongoMappingContext matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.mongodb.core.mapping.MongoMappingContext; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoDatabaseFactoryConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: com.mongodb.client.MongoClient; SearchStrategy: all) found a single bean 'mongo'; @ConditionalOnMissingBean (types: org.springframework.data.mongodb.MongoDatabaseFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoDatabaseFactoryDependentConfiguration matched:
+      - @ConditionalOnBean (types: org.springframework.data.mongodb.MongoDatabaseFactory; SearchStrategy: all) found bean 'mongoDatabaseFactory' (OnBeanCondition)
+
+   MongoDatabaseFactoryDependentConfiguration#gridFsTemplate matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.mongodb.gridfs.GridFsOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoDatabaseFactoryDependentConfiguration#mappingMongoConverter matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.mongodb.core.convert.MongoConverter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoDatabaseFactoryDependentConfiguration#mongoTemplate matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.mongodb.core.MongoOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MongoRepositoriesAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'com.mongodb.client.MongoClient', 'org.springframework.data.mongodb.repository.MongoRepository' (OnClassCondition)
+      - @ConditionalOnRepositoryType configured type of 'AUTO' matched required type (OnRepositoryTypeCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.data.mongodb.repository.support.MongoRepositoryFactoryBean,org.springframework.data.mongodb.repository.config.MongoRepositoryConfigurationExtension; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    MultipartAutoConfiguration matched:
       - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.multipart.support.StandardServletMultipartResolver', 'jakarta.servlet.MultipartConfigElement' (OnClassCondition)
@@ -1049,13 +1118,9 @@ Negative matches:
       Did not match:
          - ResourceBundle did not find bundle with basename messages (MessageSourceAutoConfiguration.ResourceBundleCondition)
 
-   MongoAutoConfiguration:
+   MongoDataAutoConfiguration#mongoConnectionDetails:
       Did not match:
-         - @ConditionalOnClass did not find required class 'com.mongodb.client.MongoClient' (OnClassCondition)
-
-   MongoDataAutoConfiguration:
-      Did not match:
-         - @ConditionalOnClass did not find required class 'com.mongodb.client.MongoClient' (OnClassCondition)
+         - @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.mongo.MongoConnectionDetails; SearchStrategy: all) found beans of type 'org.springframework.boot.autoconfigure.mongo.MongoConnectionDetails' mongoConnectionDetails (OnBeanCondition)
 
    MongoReactiveAutoConfiguration:
       Did not match:
@@ -1068,10 +1133,6 @@ Negative matches:
    MongoReactiveRepositoriesAutoConfiguration:
       Did not match:
          - @ConditionalOnClass did not find required class 'com.mongodb.reactivestreams.client.MongoClient' (OnClassCondition)
-
-   MongoRepositoriesAutoConfiguration:
-      Did not match:
-         - @ConditionalOnClass did not find required class 'com.mongodb.client.MongoClient' (OnClassCondition)
 
    MultipleOpenApiSupportConfiguration:
       Did not match:
@@ -1527,172 +1588,9 @@ Unconditional classes:
 
 
 
-2024-02-08 21:40:54 [restartedMain] INFO  examportal.portal.PortalApplication - Started PortalApplication in 27.032 seconds (process running for 28.851)
-2024-02-08 21:40:54 [restartedMain] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state LivenessState changed to CORRECT
-2024-02-08 21:40:54 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
-2024-02-08 21:40:54 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Immediately restarting application
-2024-02-08 21:40:54 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Starting application examportal.portal.PortalApplication with URLs [file:/C:/Users/devra/Documents/ExamPortalBackend/portal/build/resources/main/, file:/C:/Users/devra/Documents/ExamPortalBackend/portal/build/classes/java/main/]
-2024-02-08 21:40:54 [restartedMain] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
-2024-02-08 21:57:39 [http-nio-9091-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-02-08 21:57:39 [http-nio-9091-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-02-08 21:57:39 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
-2024-02-08 21:57:39 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
-2024-02-08 21:57:39 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
-2024-02-08 21:57:39 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1dfd74c5
-2024-02-08 21:57:39 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@3d25391e
-2024-02-08 21:57:39 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2024-02-08 21:57:39 [http-nio-9091-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.html", parameters={}
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui.css", parameters={}
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.css", parameters={}
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2024-02-08 21:57:40 [http-nio-9091-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2024-02-08 21:57:40 [http-nio-9091-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2024-02-08 21:57:40 [http-nio-9091-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2024-02-08 21:57:40 [http-nio-9091-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-02-08 21:57:40 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-02-08 21:57:40 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-02-08 21:57:40 [http-nio-9091-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:40 [http-nio-9091-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/api/v3-docs", parameters={}
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.r.ResourceHttpRequestHandler - Resource not found
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:57:50 [http-nio-9091-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/v3/api-docs", parameters={}
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.r.ResourceHttpRequestHandler - Resource not found
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 21:59:12 [http-nio-9091-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2024-02-08 22:01:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:17 [http-nio-9091-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:31 [http-nio-9091-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:31 [http-nio-9091-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:31 [http-nio-9091-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:31 [http-nio-9091-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:31 [http-nio-9091-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:31 [http-nio-9091-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:31 [http-nio-9091-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:31 [http-nio-9091-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:31 [http-nio-9091-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:34 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:34 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:34 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:34 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:34 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:34 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:34 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:34 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:34 [http-nio-9091-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2024-02-08 22:01:45 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2024-02-08 22:01:45 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2024-02-08 22:01:45 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2024-02-08 22:01:45 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2024-02-08 22:01:45 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs", parameters={}
-2024-02-08 22:01:45 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2024-02-08 22:01:46 [http-nio-9091-exec-3] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 1026 ms
-2024-02-08 22:01:46 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, */*] and supported [application/json]
-2024-02-08 22:01:46 [http-nio-9091-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...]
-2024-02-08 22:01:46 [http-nio-9091-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-01-14 17:22:05 [restartedMain] INFO  examportal.portal.PortalApplication - Started PortalApplication in 22.761 seconds (process running for 28.122)
+2024-01-14 17:22:05 [restartedMain] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state LivenessState changed to CORRECT
+2024-01-14 17:22:05 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Creating new Restarter for thread Thread[main,5,main]
+2024-01-14 17:22:05 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Immediately restarting application
+2024-01-14 17:22:05 [restartedMain] DEBUG o.s.boot.devtools.restart.Restarter - Starting application examportal.portal.PortalApplication with URLs [file:/D:/Git/ExamPortalBackend/portal/bin/main/, file:/D:/Git/ExamPortalBackend/portal/bin/default/]
+2024-01-14 17:22:05 [restartedMain] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed to ACCEPTING_TRAFFIC

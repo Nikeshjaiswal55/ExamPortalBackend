@@ -110,6 +110,7 @@ public class ResultServiceImpl implements ResultService {
         // 3. Save Result
         Result newResult = this.resultRepo.save(dto.getResult());
 
+        
         Student s = this.studentRepo.findById(newResult.getStudentID())
                 .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", newResult.getStudentID()));
 
@@ -125,6 +126,7 @@ public class ResultServiceImpl implements ResultService {
         cheating.setStudentId(newResult.getStudentID());
         cheating.setResultId(newResult.getResultID());
         Cheating stdCheating = this.cheatingRepo.save(cheating);
+
 
         // 5. Build ResultDto
         ResultDto resultDto = new ResultDto();
