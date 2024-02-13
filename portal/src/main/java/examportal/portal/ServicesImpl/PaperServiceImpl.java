@@ -205,7 +205,6 @@ public class PaperServiceImpl implements PaperService {
   // }
 
   @Override
-  @Deprecated
   public PaperStringDto getPaperById(String paperID) {
     log.info("paperServiceIml getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
@@ -222,8 +221,8 @@ public class PaperServiceImpl implements PaperService {
     String obj = Base64Utils.encodeToString(jsonString.getBytes());
     // System.out.println(obj + "my encoded object");
     byte[] decodedBytes = Base64Utils.decodeFromString(obj);
-String decodedString = new String(decodedBytes);
-// System.out.println(decodedString+" my decide ");
+    String decodedString = new String(decodedBytes);
+    // System.out.println(decodedString+" my decide ");
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
     log.info("paperServiceIml getPaperByID method End's :");
