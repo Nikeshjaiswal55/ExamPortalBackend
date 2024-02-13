@@ -25,6 +25,7 @@ import org.springframework.util.Base64Utils;
 import org.springframework.web.util.UriUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
@@ -215,12 +216,14 @@ public class PaperServiceImpl implements PaperService {
     // examDetails.set_attempted(true);
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
-    String obj = Base64Utils.encodeToString(paperDto.toString().getBytes());
-    System.out.println(obj + "my encoded object");
-
+    // System.out.println(paperDto.toString()+"MYSTRING");
+    String jsonString = new Gson().toJson(paperDto);
+    System.out.println(jsonString);
+    String obj = Base64Utils.encodeToString(jsonString.getBytes());
+    // System.out.println(obj + "my encoded object");
     byte[] decodedBytes = Base64Utils.decodeFromString(obj);
 String decodedString = new String(decodedBytes);
-System.out.println(decodedString+" my decide ");
+// System.out.println(decodedString+" my decide ");
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
     log.info("paperServiceIml getPaperByID method End's :");
