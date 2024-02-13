@@ -175,60 +175,55 @@ public class ResultServiceImpl implements ResultService {
     public ResultDto checkPaper(checkpaperDto dto) {
         log.info("ResultServiceImpl, checkPaper Method Start");
         Result r = this.resultRepo.getResultByStudentAndPaperId(dto.getPaperId(), dto.getStudentId());
+    
         if (r != null) {
             ResultDto d = new ResultDto();
             d.setResult(r);
             d.set_attempted(true);
-            System.out.println("i am here in result ==============");
+            System.out.println("I am here in result ==============");
             return d;
         } else {
             int obtainmarks = 0;
             float percentage = 0;
-
+    
             LocalDateTime date = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             StringBuilder formattedDate = new StringBuilder(date.format(formatter));
-
+    
             List<Questions> questions2 = new ArrayList<>();
-
+    
             ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
             int eachqMarks = examDetails.getTotalMarks() / dto.getQuestions().size();
-            System.out.println(" hello i am herererererere=========================================================");
-
+            System.out.println(dto.getQuestions()+"my alll questions i s herere");
+    
             for (Questions ques : dto.getQuestions()) {
-                Questions q = this.questionsRepo.findById(ques.getQuestionId())
-                        .orElseThrow(
-                                () -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
-                if (q.getCorrectAns().equals(ques.getUserAns())) {
-                    obtainmarks += eachqMarks;
+                try {
+                    Questions q = this.questionsRepo.findById(ques.getQuestionId())
+                            .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
+    
+                    if (q.getCorrectAns().equals(ques.getUserAns())) {
+                        obtainmarks += eachqMarks;
+                    }
+    
                     q.setUserAns(ques.getUserAns());
                     questions2.add(q);
-                    System.out.println("hello iam checking =============================================");
-                } else {
-                    questions2.add(ques);
+                    System.out.println("Hello, I am checking =============================================");
+                } catch (ResourceNotFoundException ex) {
+                    System.err.println("Error fetching question with ID: " + ques.getQuestionId());
+                    // You might want to consider skipping this question or handling the error in some way
                 }
-                // if (q.getCorrectAns() != null && q.getCorrectAns().equals(ques.getUserAns()))
-                // {
-                // obtainmarks += eachqMarks;
-                // q.setUserAns(ques.getUserAns());
-                // questions2.add(q);
-                // System.out.println("Checking: Answer is correct for question with ID ");
-                // } else {
-                // questions2.add(ques);
-                // }
-
             }
-
+    
             Paper paper = this.paperRepo.findById(dto.getPaperId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Paper", "paperId", "paperId"));
-
+                    .orElseThrow(() -> new ResourceNotFoundException("Paper", "paperId", dto.getPaperId()));
+    
             percentage = ((float) obtainmarks / (float) examDetails.getTotalMarks()) * 100;
-
+    
             dto.setResultstatus(obtainmarks > examDetails.getMinimum_marks() ? "pass" : "fail");
-
+    
             Student s = this.studentRepo.findById(dto.getStudentId())
                     .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", dto.getStudentId()));
-
+    
             Result newResult = new Result();
             newResult.setPaperID(dto.getPaperId());
             newResult.setStudentID(dto.getStudentId());
@@ -238,29 +233,27 @@ public class ResultServiceImpl implements ResultService {
             newResult.setPercentage(percentage);
             newResult.setAssesment_Name(examDetails.getAssessmentName());
             newResult.setStudent_email(s.getEmail());
-            if (paper.getIs_auto_check().equals("true")) {
+    
+            if ("true".equals(paper.getIs_auto_check())) {
                 newResult.setIs_published("approved");
             } else {
                 newResult.setIs_published("pending");
             }
-            System.out.println("hello i am hreeerererer  22222222222222222222222 e ==================================");
+    
             Assessment assessment = this.assessmentRepo.getAssessmentByStudentAndpaperId(dto.getStudentId(),
                     dto.getPaperId());
-
+    
             AttemptedPapers attemptedPapers = new AttemptedPapers();
             attemptedPapers.setPaperId(dto.getPaperId());
             attemptedPapers.setStudentId(dto.getStudentId());
             attemptedPapers.set_attempted(true);
             attemptedPapers.setAssmentId(assessment.getAssessmentID());
             this.attemptepaperRepo.save(attemptedPapers);
-
-            // List<String> response =
-            // this.service.store(dto.getCheating().getImages(),"cheating/");
-
+    
             Cheating cheating = dto.getCheating();
             cheating.setPaperId(dto.getPaperId());
             cheating.setImages(dto.getCheating().getImages());
-
+    
             ResultDto dto2 = new ResultDto();
             dto2.setQuestions(questions2);
             dto2.setCheating(dto.getCheating());

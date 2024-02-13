@@ -16,12 +16,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.util.UriUtils;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
 import examportal.portal.Entity.Assessment;
 import examportal.portal.Entity.AttemptedPapers;
 import examportal.portal.Entity.ExamDetails;
@@ -168,6 +171,7 @@ public class PaperServiceImpl implements PaperService {
   }
 
   @Override
+  @Deprecated
   public PaperStringDto getPaperById(String paperID) {
     log.info("paperServiceIml getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
@@ -178,8 +182,14 @@ public class PaperServiceImpl implements PaperService {
     // examDetails.set_attempted(true);
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
-
-    String obj = encodeObject(paperDto);
+    // System.out.println(paperDto.toString()+"MYSTRING");
+    String jsonString = new Gson().toJson(paperDto);
+    System.out.println(jsonString);
+    String obj = Base64Utils.encodeToString(jsonString.getBytes());
+    // System.out.println(obj + "my encoded object");
+    byte[] decodedBytes = Base64Utils.decodeFromString(obj);
+    String decodedString = new String(decodedBytes);
+    // System.out.println(decodedString+" my decide ");
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
     log.info("paperServiceIml getPaperByID method End's :");
@@ -227,7 +237,7 @@ public class PaperServiceImpl implements PaperService {
         .orElseThrow(() -> new ResourceNotFoundException("paper", "paperId", paperDto.getPaperId()));
     paper = paperDto.getPaper();
     paper.setPaper_name(paperDto.getExamDetails().getAssessmentName());
-     Paper npaper =this.paperRepo.save(paper);
+    Paper npaper = this.paperRepo.save(paper);
     PaperDto dto = new PaperDto();
 
     List<Questions> q2 = new ArrayList<>();
@@ -247,7 +257,8 @@ public class PaperServiceImpl implements PaperService {
 
     }
 
-    // ExamDetails examDetails = this.examDetailsService.updateExamDetails(paperDto.getExamDetails());
+    // ExamDetails examDetails =
+    // this.examDetailsService.updateExamDetails(paperDto.getExamDetails());
 
     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperDto.getPaperId());
     examDetails.setBranch(paperDto.getExamDetails().getBranch());
@@ -402,7 +413,7 @@ public class PaperServiceImpl implements PaperService {
       examDetails.set_Setup(false);
       Paper ActivePaper = this.paperRepo.save(paper);
       this.examDetailsRepo.save(examDetails);
-      
+
       PaperStringDto dto = new PaperStringDto();
       dto.setData("is_published");
       log.info("paperServiceImpl activatePaper  method Ends");
@@ -453,7 +464,7 @@ public class PaperServiceImpl implements PaperService {
         User user = this.userRepo.findById(invitedStudents.getStudentId())
             .orElseThrow(() -> new ResourceNotFoundException("user ", "userID", invitedStudents.getStudentId()));
 
-        String msg =  user.getPassword();
+        String msg = user.getPassword();
 
         this.emailServiceImpl.sendFormateMail(user.getEmail(), msg, "login credentials", user.getRole());
       });
