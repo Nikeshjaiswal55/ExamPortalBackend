@@ -205,6 +205,7 @@ public class PaperServiceImpl implements PaperService {
   // }
 
   @Override
+  @Deprecated
   public PaperStringDto getPaperById(String paperID) {
     log.info("paperServiceIml getPaperById method Starts :");
     Paper paper = this.paperRepo.findById(paperID)
