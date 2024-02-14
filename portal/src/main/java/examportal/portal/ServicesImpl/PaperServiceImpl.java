@@ -1,5 +1,6 @@
 package examportal.portal.ServicesImpl;
 
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.util.UriUtils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
@@ -176,23 +178,6 @@ public class PaperServiceImpl implements PaperService {
     return dto;
   }
 
-  public String encryptJson(String jsonData) {
-    // Encrypt JSON data using the PasswordEncoder
-    String encryptedData = passwordEncoder.encode(jsonData);
-    return encryptedData;
-  }
-
-  public String encodeString(String myString) {
-    // Your string to encode
-
-    // Encode the string using Base64
-    byte[] encodedBytes = Base64.encodeBase64(myString.getBytes());
-
-    // Convert the byte array to a string
-    String encodedString = new String(encodedBytes);
-
-    return encodedString;
-  }
 
   // public static String decodeStrin(String encodedString) {
   // // Decode the Base64-encoded string
@@ -217,72 +202,35 @@ public class PaperServiceImpl implements PaperService {
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
     // System.out.println(paperDto.toString()+"MYSTRING");
-    String jsonString = new Gson().toJson(paperDto);
-    System.out.println(jsonString);
-    String obj = Base64Utils.encodeToString(jsonString.getBytes());
+    // String jsonString = new Gson().toJson(paperDto);
+    // System.out.println(jsonString);
+    // String obj = Base64Utils.encodeToString(jsonString.getBytes());
     // System.out.println(obj + "my encoded object");
-    byte[] decodedBytes = Base64Utils.decodeFromString(obj);
-    String decodedString = new String(decodedBytes);
+    // byte[] decodedBytes = Base64Utils.decodeFromString(obj);
+    // String decodedString = new String(decodedBytes);
     // System.out.println(decodedString+" my decide ");
+    String obj = encodeObject(paperDto);
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
     log.info("paperServiceIml getPaperByID method End's :");
     return dto;
   }
 
-  // public String ALGORITHM = "AES";
-  // public String MODE = "ECB";
-  // public String PADDING = "PKCS7";
+  public String encodeObject(Object object) {
+    log.info("paperServiceIml encodeObject method Starts ");
+    ObjectMapper objectMapper = new ObjectMapper();
 
-  // public String SECRET_KEY = "mysecretkey@x123";
-
-  // public String encrypt(String data) {
-  // try {
-  // Key key = new SecretKeySpec(SECRET_KEY.getBytes(), ALGORITHM);
-  // Cipher cipher = Cipher.getInstance(ALGORITHM + "/" + MODE + "/" + PADDING);
-  // cipher.init(Cipher.ENCRYPT_MODE, key);
-
-  // byte[] encryptedBytes = cipher.doFinal(data.getBytes("UTF-8"));
-  // return Base64.encodeBase64String(encryptedBytes);
-  // } catch (Exception e) {
-  // throw new RuntimeException("Error encrypting data", e);
-  // }
-  // }
-
-  // private static final String ALGORITHM = "AES";
-  // private static final String MODE = "ECB";
-  // private static final String PADDING = "PKCS5Padding"; // PKCS7 is not
-  // directly supported in Java
-
-  // private static final String SECRET_KEY = "mysecretkey@x123";
-
-  // public static String encrypt(String data) {
-  // try {
-  // Key key = new SecretKeySpec(SECRET_KEY.getBytes("UTF-8"), ALGORITHM);
-  // Cipher cipher = Cipher.getInstance(ALGORITHM + "/" + MODE + "/" + PADDING);
-  // cipher.init(Cipher.ENCRYPT_MODE, key);
-
-  // byte[] encryptedBytes = cipher.doFinal(data.getBytes("UTF-8"));
-  // return Base64.getEncoder().encodeToString(encryptedBytes);
-  // } catch (Exception e) {
-  // throw new RuntimeException("Error encrypting data", e);
-  // }
-  // }
-
-  // public static String decrypt(String encryptedData) {
-  // try {
-  // Key key = new SecretKeySpec(SECRET_KEY.getBytes("UTF-8"), ALGORITHM);
-  // Cipher cipher = Cipher.getInstance(ALGORITHM + "/" + MODE + "/" + PADDING);
-  // cipher.init(Cipher.DECRYPT_MODE, key);
-
-  // byte[] decodedBytes = Base64.getDecoder().decode(encryptedData);
-  // byte[] decryptedBytes = cipher.doFinal(decodedBytes);
-
-  // return new String(decryptedBytes, "UTF-8");
-  // } catch (Exception e) {
-  // throw new RuntimeException("Error decrypting data", e);
-  // }
-  // }
+    try {
+      String jsonString = objectMapper.writeValueAsString(object);
+      String encodedString = URLEncoder.encode(jsonString, StandardCharsets.UTF_8);
+      return encodedString;
+    } catch (JsonProcessingException e) {
+      // Handle the exception, e.g., log or throw a custom exception
+      e.printStackTrace();
+      log.info("paperServiceIml encodeObject method End ");
+      return null;
+    }
+  }
 
   @Override
   public PaperDto updetPaper(PaperDto paperDto) {
