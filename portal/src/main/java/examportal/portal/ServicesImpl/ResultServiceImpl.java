@@ -196,17 +196,35 @@ public class ResultServiceImpl implements ResultService {
             int eachqMarks = examDetails.getTotalMarks() / dto.getQuestions().size();
             System.out.println(dto.getQuestions()+"my alll questions i s herere");
     
+            // for (Questions ques : dto.getQuestions()) {
+            //     try {
+            //         Questions q = this.questionsRepo.findById(ques.getQuestionId())
+            //                 .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
+    
+            //         if (q.getCorrectAns().equals(ques.getUserAns())) {
+            //             obtainmarks += eachqMarks;
+            //         }
+    
+            //         q.setUserAns(ques.getUserAns());
+            //         questions2.add(q);
+            //         System.out.println("Hello, I am checking =============================================");
+            //     } catch (ResourceNotFoundException ex) {
+            //         System.err.println("Error fetching question with ID: " + ques.getQuestionId());
+            //         // You might want to consider skipping this question or handling the error in some way
+            //     }
+            // }
+                System.out.println("I am here outside the loop ==============");
             for (Questions ques : dto.getQuestions()) {
                 try {
-                    Questions q = this.questionsRepo.findById(ques.getQuestionId())
-                            .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
-    
-                    if (q.getCorrectAns().equals(ques.getUserAns())) {
+                    // Questions q = this.questionsRepo.findById(ques.getQuestionId())
+                    //         .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
+            
+                    if (ques.getCorrectAns().equals(ques.getUserAns())) {
                         obtainmarks += eachqMarks;
                     }
-    
-                    q.setUserAns(ques.getUserAns());
-                    questions2.add(q);
+            
+                    // q.setUserAns(ques.getUserAns());
+                    questions2.add(ques);
                     System.out.println("Hello, I am checking =============================================");
                 } catch (ResourceNotFoundException ex) {
                     System.err.println("Error fetching question with ID: " + ques.getQuestionId());
