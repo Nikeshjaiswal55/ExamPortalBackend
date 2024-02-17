@@ -2,10 +2,15 @@ package examportal.portal.ServicesImpl;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import org.apache.commons.codec.binary.Base64;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,12 +20,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.util.UriUtils;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -83,6 +87,9 @@ public class PaperServiceImpl implements PaperService {
   private AttemptepaperRepo attemptepaperRepo;
 
   @Autowired
+  private PasswordEncoder passwordEncoder;
+
+  @Autowired
   private ExamDetailsService examDetailsService;
 
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
@@ -117,7 +124,8 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setIs_auto_check(newPaper.getIs_auto_check());
     examDetails.setPaperId(newPaper.getPaperId());
     this.examDetailsRepo.save(examDetails);
-    System.out.println(examDetails + "kger  =============================================================");
+    // System.out.println(examDetails + "kger
+    // =============================================================");
 
     try {
       // Get the result of the asynchronous saveQuestionsAsync call
@@ -170,6 +178,17 @@ public class PaperServiceImpl implements PaperService {
     return dto;
   }
 
+
+  // public static String decodeStrin(String encodedString) {
+  // // Decode the Base64-encoded string
+  // byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+
+  // // Convert the byte array to a string
+  // String decodedString = new String(decodedBytes, StandardCharsets.UTF_8);
+
+  // return decodedString;
+  // }
+
   @Override
   @Deprecated
   public PaperStringDto getPaperById(String paperID) {
@@ -183,13 +202,14 @@ public class PaperServiceImpl implements PaperService {
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
     // System.out.println(paperDto.toString()+"MYSTRING");
-    String jsonString = new Gson().toJson(paperDto);
-    System.out.println(jsonString);
-    String obj = Base64Utils.encodeToString(jsonString.getBytes());
+    // String jsonString = new Gson().toJson(paperDto);
+    // System.out.println(jsonString);
+    // String obj = Base64Utils.encodeToString(jsonString.getBytes());
     // System.out.println(obj + "my encoded object");
-    byte[] decodedBytes = Base64Utils.decodeFromString(obj);
-    String decodedString = new String(decodedBytes);
+    // byte[] decodedBytes = Base64Utils.decodeFromString(obj);
+    // String decodedString = new String(decodedBytes);
     // System.out.println(decodedString+" my decide ");
+    String obj = encodeObject(paperDto);
     PaperStringDto dto = new PaperStringDto();
     dto.setData(obj);
     log.info("paperServiceIml getPaperByID method End's :");
@@ -208,22 +228,6 @@ public class PaperServiceImpl implements PaperService {
       // Handle the exception, e.g., log or throw a custom exception
       e.printStackTrace();
       log.info("paperServiceIml encodeObject method End ");
-      return null;
-    }
-  }
-
-  public Object decodeObject(String encodedString) {
-    log.info("paperServiceIml decodeObject method Starts ");
-    ObjectMapper objectMapper = new ObjectMapper();
-
-    try {
-      String decodedString = UriUtils.decode(encodedString, StandardCharsets.UTF_8);
-      Object decodedObject = objectMapper.readValue(decodedString, Object.class);
-      return decodedObject;
-    } catch (JsonProcessingException e) {
-      // Handle the exception, e.g., log or throw a custom exception
-      e.printStackTrace();
-      log.info("paperServiceIml decodeObject method End ");
       return null;
     }
   }

@@ -65,49 +65,45 @@ public class AssessmentController {
 
     }
 
-    
-     @GetMapping("/getAllAssessmentByStudentId/{studentId}")
+    @GetMapping("/getAllAssessmentByStudentId/{studentId}")
     public ResponseEntity<List<ExamDetails>> getAllAssessmentByStudentId(@PathVariable String studentId) {
         log.info("AssessmentController.class, getAllAssessmentByStudentId start ");
         List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_userId(studentId);
         List<ExamDetails> examDetailsAll = new ArrayList<>();
-        
+
         for (Assessment assessment : assessments) {
             ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
-              Result result = this.resultRepo.getResultByStudentAndPaperId(assessment.getPaperId(), studentId);
-            
-              if (result!=null) {
+            Result result = this.resultRepo.getResultByStudentAndPaperId(assessment.getPaperId(), studentId);
+
+            if (result != null) {
                 examDetails.set_attempted(true);
-                System.out.println(examDetails.is_attempted()+"++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println(examDetails.is_attempted() + "++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 examDetailsAll.add(examDetails);
-              }
-            else if(examDetails != null && (examDetails.getIs_Active()).equals("true")) {
+            } else if (examDetails != null && (examDetails.getIs_Active()).equals("true")) {
                 examDetailsAll.add(examDetails);
             }
         }
-        
+
         log.info("AssessmentController.class, getAllAssessmentByStudentId Ends ");
         return new ResponseEntity<>(examDetailsAll, HttpStatus.OK);
     }
 
-
-    
-      @GetMapping("/getTotalAssessmentBy/StudentId/{studentId}")
-    public ResponseEntity<List<ExamDetails>> getAllAssessmentByStudentIdIsActiveAndProgess(@PathVariable String studentId) {
+    @GetMapping("/getTotalAssessmentBy/StudentId/{studentId}")
+    public ResponseEntity<List<ExamDetails>> getAllAssessmentByStudentIdIsActiveAndProgess(
+            @PathVariable String studentId) {
         log.info("AssessmentController.class, getAllAssessmentByStudentId start ");
         List<Assessment> assessments = this.assessmentRepo.getAssessmentsBy_userId(studentId);
         List<ExamDetails> examDetailsAll = new ArrayList<>();
-        
+
         for (Assessment assessment : assessments) {
             ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(assessment.getPaperId());
-            if(examDetails != null && "true".equals(examDetails.getIs_Active())) {
+            if (examDetails != null && "true".equals(examDetails.getIs_Active())) {
                 examDetailsAll.add(examDetails);
             }
         }
-        
+
         log.info("AssessmentController.class, getAllAssessmentByStudentId Ends ");
         return new ResponseEntity<>(examDetailsAll, HttpStatus.OK);
     }
-    
 
 }
