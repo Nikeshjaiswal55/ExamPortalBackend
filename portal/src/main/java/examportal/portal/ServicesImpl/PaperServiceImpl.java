@@ -157,7 +157,7 @@ public class PaperServiceImpl implements PaperService {
     log.info("paperServiceIml getAllPaper method Starts ");
     Sort sort = (sortOrder.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
     Pageable p = PageRequest.of(pageNumber, size, sort);
-    Page<Paper> pp = paperRepo.findAll(p);
+    Page<Paper> pp = paperRepo.getallpaper(p);
     List<Paper> papers = pp.getContent();
 
     List<PaperDto> paperDtos = new ArrayList<>();
@@ -301,17 +301,7 @@ public class PaperServiceImpl implements PaperService {
     log.info("paperServiceImpl deletePaperByPaperId  method Starts");
     Paper p = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "paperId", paperID));
-    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
-    this.examDetailsRepo.deleteById(examDetails.getExamid());
-    List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
-    for (Questions question : questions) {
-      Questions qu = this.questionsRepo.findById(question.getQuestionId())
-          .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionID", question.getQuestionId()));
-      this.questionsRepo.deleteById(question.getQuestionId());
-    }
-    this.paperRepo.deleteById(paperID);
-
-    log.info("paperServiceImpl deletePaperByPaperId  method Ends");
+        p.set_deactivated(true);
     return "Deleted success fully";
 
   }
