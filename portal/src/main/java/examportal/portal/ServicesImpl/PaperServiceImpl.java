@@ -302,6 +302,7 @@ public class PaperServiceImpl implements PaperService {
     Paper p = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "paperId", paperID));
         p.set_deactivated(true);
+        this.paperRepo.save(p);
     return "Deleted success fully";
 
   }

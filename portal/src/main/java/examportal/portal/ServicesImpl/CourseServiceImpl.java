@@ -1,10 +1,12 @@
 
 package examportal.portal.ServicesImpl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+
 import examportal.portal.Entity.Course;
 import examportal.portal.Entity.Student;
 import examportal.portal.Entity.User;
@@ -125,7 +134,7 @@ public class CourseServiceImpl implements CourseService {
 
           e.printStackTrace();
         }
-        
+
         User use = new User();
         use.setUserId(response);
         use.setEmail(email.getEmail());
@@ -159,11 +168,62 @@ public class CourseServiceImpl implements CourseService {
   }
 
   @Override
+  public String deleteCourseById(String getId, String token) throws IOException {
+    log.info("CourseServiceImpl, deleteCourse Method Start");
+    String tokenUrl = "https://dev-uil1ecwkoehr31jg.us.auth0.com/oauth/token";
+    MultiValueMap<String, String> tokenRequest = new LinkedMultiValueMap<>();
+    tokenRequest.add("grant_type", "client_credentials");
+    tokenRequest.add("client_id", "vD5PYsjkk2y9676Uee5UoXtb4rH4Svx5");
+    tokenRequest.add("client_secret", "P1Gtft8O_lf9DdCEJ9filW3bYcSymhrTp72gw8OAy1yOfg_bp6wHIkKyJ1nb568H");
+    tokenRequest.add("audience", "https://dev-uil1ecwkoehr31jg.us.auth0.com/api/v2/");
 
-  public void deleteCourseById(String getId) {
-    log.info("CourseServiceimpl, deleteCourse Method Start");
-    courseRepo.deleteById(getId);
-    log.info("CourseServiceimpl, deleteCourse Method Ends");
+    RestTemplate restTemplate = new RestTemplate();
+    String managementApiToken = restTemplate.postForObject(tokenUrl, tokenRequest, String.class);;
+    // System.out.println(managementApiToken+"//////////////////////////////////////");
+    JSONObject jsonObject = new JSONObject(managementApiToken);
+
+    // Extract the access_token
+    String accessToken = jsonObject.getString("access_token");
+    System.out.println(accessToken+"===============================================");
+
+        // Get the user_id using the email address
+    // String Id = "auth0|65d04e77a259fd3e778e07f0";
+    List<Student> students = this.studentRepo.getAllStudentBYBranch(getId);
+    System.out.println(students.size()+"sixe=========");
+
+    for (Student student : students) {
+      System.out.println("entered in  loooop===========================");
+      if (student.getStudentid() != null) {
+        System.out.println("enterd in if====");
+          String Id = "auth0|" + student.getStudentid();
+          String apiUrl = "https://dev-uil1ecwkoehr31jg.us.auth0.com/api/v2/users/" + Id;
+
+          HttpHeaders deleteHeaders = new HttpHeaders();
+          deleteHeaders.add("Authorization", "Bearer " + accessToken);
+
+          restTemplate.exchange(apiUrl, HttpMethod.DELETE, new HttpEntity<>(deleteHeaders), String.class);
+          System.out.println("User with email deleted successfully");
+          this.studentRepo.deleteById(student.getStudentid());
+          this.userRepo.deleteById(student.getStudentid());
+          // return only after successful deletio
+      }
+  }
+
+  return "record deleted successfully";
+    // if (Id != null) {
+    //   String apiUrl = "https://dev-uil1ecwkoehr31jg.us.auth0.com/api/v2/users/" +Id;
+
+    //   // Prepare headers for the delete request
+    //   HttpHeaders deleteHeaders = new HttpHeaders();
+    //   deleteHeaders.add("Authorization", "Bearer "+accessToken);
+    //   // Delete the user using the obtained token
+    //   restTemplate.exchange(apiUrl, HttpMethod.DELETE, new HttpEntity<>(deleteHeaders), String.class);
+    //   System.out.println("User with email  deleted successfully");
+    //   return "deleted successfully";
+    // } else {
+    //   System.out.println("User with email not found.");
+    //   return "failed to deleted";
+    // }
   }
 
   @Override
@@ -188,3 +248,47 @@ public class CourseServiceImpl implements CourseService {
     return courseResponce;
   }
 }
+
+// @Override
+// public String deleteCourseById(String userId,String token) {
+
+// // Request a Management API token
+// String tokenUrl = "https://dev-uil1ecwkoehr31jg.us.auth0.com/oauth/token";
+// MultiValueMap<String, String> tokenRequest = new LinkedMultiValueMap<>();
+// tokenRequest.add("grant_type", "client_credentials");
+// tokenRequest.add("client_id", "HFjnwkNDl3VtcyC83VfiGWtmLXBT6Pvz");
+// tokenRequest.add("client_secret",
+// "gxmU3TaCMa5UBEl0R6cVspXn31yxMMV8OleGBYLU16cp6BpewmtJIQh0izcA4oNb");
+// tokenRequest.add("audience",
+// "https://dev-uil1ecwkoehr31jg.us.auth0.com/api/v2/");
+
+// RestTemplate restTemplate = new RestTemplate();
+// String managementApiToken = restTemplate.postForObject(tokenUrl,
+// tokenRequest, String.class);
+
+// JSONObject jsonObject = new JSONObject(managementApiToken);
+
+// // Extract the access_token
+// String accessToken = token;
+// // Get the user_id using the email address
+// String Id = userId;
+
+// if (Id != null) {
+
+// String apiUrl = "https://dev-uil1ecwkoehr31jg.us.auth0.com/api/v2/users/" +
+// userId;
+
+// // Prepare headers for the delete request
+// HttpHeaders deleteHeaders = new HttpHeaders();
+// deleteHeaders.add("Authorization", "Bearer " + accessToken);
+
+// // Delete the user using the obtained token
+// restTemplate.exchange(apiUrl, HttpMethod.DELETE, new
+// HttpEntity<>(deleteHeaders), String.class);
+// System.out.println("User with email deleted successfully");
+// return "deleted successfully";
+// } else {
+// System.out.println("User with email not found.");
+// return "failed to deleted";
+// }
+// }

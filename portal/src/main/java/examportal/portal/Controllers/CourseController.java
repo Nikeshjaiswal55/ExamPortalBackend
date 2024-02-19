@@ -8,6 +8,8 @@ import examportal.portal.Repo.CourseRepo;
 import examportal.portal.Response.CourseResponce;
 import examportal.portal.Services.CourseService;
 import jakarta.servlet.http.HttpServletRequest;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -98,9 +100,15 @@ public class CourseController {
   }
 
   @DeleteMapping("/course/{getId}")
-  public ResponseEntity<PaperStringDto> deleteCourse(@PathVariable String getId) {
+  public ResponseEntity<PaperStringDto> deleteCourse(@PathVariable String getId ,HttpServletRequest request) {
     log.info("CourseController,deleteCourse Method Start");
-    courseService.deleteCourseById(getId);
+    String token= request.getHeader("Authorization");
+    try {
+		courseService.deleteCourseById(getId,token);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     PaperStringDto msg = new PaperStringDto();
     msg.setData("Record Deleted");
     log.info("CourseController,deleteCourse Method Ends");

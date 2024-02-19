@@ -1,5 +1,6 @@
 package examportal.portal.Services;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -19,7 +20,7 @@ public interface CourseService {
 
     Course updateCourse(Course course);
 
-    void deleteCourseById(String getId);
+    String deleteCourseById(String getId,String token) throws IOException;
 
     CourseResponce getAllCourseByUserId(String userId,PaginationDto dto);
 
