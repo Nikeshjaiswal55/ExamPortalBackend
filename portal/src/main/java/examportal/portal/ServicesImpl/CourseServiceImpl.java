@@ -207,6 +207,7 @@ public class CourseServiceImpl implements CourseService {
           this.userRepo.deleteById(student.getStudentid());
           // return only after successful deletio
       }
+      this.courseRepo.deleteById(getId);
   }
 
   return "record deleted successfully";
