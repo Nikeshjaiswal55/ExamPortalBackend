@@ -342,7 +342,9 @@ public class PaperServiceImpl implements PaperService {
       emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
       emd.setIs_Active(paper2.getIs_Active());
       emd.set_Setup(paper2.is_setup());
-      examDetails.add(emd);
+      if (paper2.is_deactivated()==false) {
+        examDetails.add(emd);
+      }
     }
 
     PaperResponce paperResponce = new PaperResponce();
