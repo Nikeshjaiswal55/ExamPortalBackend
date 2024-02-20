@@ -181,7 +181,6 @@ public class PaperServiceImpl implements PaperService {
     return dto;
   }
 
-
   // public static String decodeStrin(String encodedString) {
   // // Decode the Base64-encoded string
   // byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
@@ -213,8 +212,8 @@ public class PaperServiceImpl implements PaperService {
     // String decodedString = new String(decodedBytes);
     // System.out.println(decodedString+" my decide ");
     // String obj = encodeObject(paperDto);
-        String obj = convertObjectToString(paperDto);
-        String objs= Base64Utils.encodeToString(obj.getBytes());
+    String obj = convertObjectToString(paperDto);
+    String objs = Base64Utils.encodeToString(obj.getBytes());
 
     PaperStringDto dto = new PaperStringDto();
     dto.setData(objs);
@@ -223,15 +222,15 @@ public class PaperServiceImpl implements PaperService {
   }
 
   public String convertObjectToString(PaperDto paperDto) {
-    String obj="";
+    String obj = "";
     try {
-      obj= objectMapper.writeValueAsString(paperDto);
+      obj = objectMapper.writeValueAsString(paperDto);
     } catch (JsonProcessingException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
     return obj;
-}
+  }
 
   public String encodeObject(Object object) {
     log.info("paperServiceIml encodeObject method Starts ");
@@ -318,8 +317,8 @@ public class PaperServiceImpl implements PaperService {
     log.info("paperServiceImpl deletePaperByPaperId  method Starts");
     Paper p = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "paperId", paperID));
-        p.set_deactivated(true);
-        this.paperRepo.save(p);
+    p.set_deactivated(true);
+    this.paperRepo.save(p);
     return "Deleted success fully";
 
   }
@@ -329,9 +328,8 @@ public class PaperServiceImpl implements PaperService {
   public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filters) {
     log.info("paperServiceImpl getAllPaperByUserId method Starts");
 
-    Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ?
-            Sort.by(dto.getProperty()).ascending() :
-            Sort.by(dto.getProperty()).descending();
+    Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
+        : Sort.by(dto.getProperty()).descending();
     Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
 
     Page<Paper> page = this.paperRepo.findByFiter(userId, p, filters);
@@ -339,18 +337,18 @@ public class PaperServiceImpl implements PaperService {
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Paper paper2 : paper) {
-        System.out.println("is_deactivated: inside the loop - " + paper2.is_deactivated());
+      System.out.println("is_deactivated: inside the loop - " + paper2.is_deactivated());
 
-        ExamDetails emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+      ExamDetails emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
 
-        if (emd != null) {
-            emd.setIs_Active(paper2.getIs_Active());
-            emd.set_Setup(paper2.is_setup());
+      if (emd != null) {
+        emd.setIs_Active(paper2.getIs_Active());
+        emd.set_Setup(paper2.is_setup());
 
-            if (!paper2.is_deactivated()) {
-                examDetails.add(emd);
-            }
+        if (!paper2.is_deactivated()) {
+          examDetails.add(emd);
         }
+      }
     }
 
     PaperResponce paperResponce = new PaperResponce();
@@ -363,8 +361,7 @@ public class PaperServiceImpl implements PaperService {
 
     log.info("paperServiceImpl getAllPaperByUserId method End");
     return paperResponce;
-}
-
+  }
 
   // Without Filter
   @Override
@@ -384,11 +381,13 @@ public class PaperServiceImpl implements PaperService {
     for (Paper paper2 : paper) {
       ExamDetails emd = new ExamDetails();
       emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
-      emd.setIs_Active(paper2.getIs_Active());
-      emd.set_Setup(paper2.is_setup());
-      if(!paper2.is_deactivated())
-      {
-      examDetails.add(emd);
+      if (emd != null) {
+        emd.setIs_Active(paper2.getIs_Active());
+        emd.set_Setup(paper2.is_setup());
+
+        if (!paper2.is_deactivated()) {
+          examDetails.add(emd);
+        }
       }
 
     }
