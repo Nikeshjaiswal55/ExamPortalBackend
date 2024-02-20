@@ -327,10 +327,11 @@ public class PaperServiceImpl implements PaperService {
   // With FIlter
   @Override
   public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filters) {
-    log.info("paperServiceImpl getAllPaperByUserId  method Starts");
+    log.info("paperServiceImpl getAllPaperByUserId method Starts");
 
-    Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
-        : Sort.by(dto.getProperty()).descending();
+    Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ?
+            Sort.by(dto.getProperty()).ascending() :
+            Sort.by(dto.getProperty()).descending();
     Pageable p = PageRequest.of(dto.getPageNo(), dto.getPageSize(), sort);
 
     Page<Paper> page = this.paperRepo.findByFiter(userId, p, filters);
@@ -338,13 +339,18 @@ public class PaperServiceImpl implements PaperService {
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Paper paper2 : paper) {
-      ExamDetails emd = new ExamDetails();
-      emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
-      emd.setIs_Active(paper2.getIs_Active());
-      emd.set_Setup(paper2.is_setup());
-      if (paper2.is_deactivated()==false) {
-        examDetails.add(emd);
-      }
+        System.out.println("is_deactivated: inside the loop - " + paper2.is_deactivated());
+
+        ExamDetails emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+
+        if (emd != null) {
+            emd.setIs_Active(paper2.getIs_Active());
+            emd.set_Setup(paper2.is_setup());
+
+            if (!paper2.is_deactivated()) {
+                examDetails.add(emd);
+            }
+        }
     }
 
     PaperResponce paperResponce = new PaperResponce();
@@ -354,9 +360,11 @@ public class PaperServiceImpl implements PaperService {
     paperResponce.setPagesize(page.getSize());
     paperResponce.setTotalElements(page.getTotalElements());
     paperResponce.setTotalPages(page.getTotalPages());
-    log.info("paperServiceImpl getAllPaperByUserId  method End");
+
+    log.info("paperServiceImpl getAllPaperByUserId method End");
     return paperResponce;
-  }
+}
+
 
   // Without Filter
   @Override
@@ -378,7 +386,10 @@ public class PaperServiceImpl implements PaperService {
       emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
       emd.setIs_Active(paper2.getIs_Active());
       emd.set_Setup(paper2.is_setup());
+      if(!paper2.is_deactivated())
+      {
       examDetails.add(emd);
+      }
 
     }
 
