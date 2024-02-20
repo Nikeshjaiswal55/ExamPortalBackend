@@ -67,6 +67,8 @@ implementation 'com.cloudinary:cloudinary-http44:1.35.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 	  implementation 'com.amazonaws:aws-java-sdk:1.12.585'
+	  implementation 'com.fasterxml.jackson.core:jackson-databind'
+
 
 // this is j unit 5 testing 
 

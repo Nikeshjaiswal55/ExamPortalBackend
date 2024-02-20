@@ -92,6 +92,9 @@ public class PaperServiceImpl implements PaperService {
   @Autowired
   private ExamDetailsService examDetailsService;
 
+  @Autowired
+  private ObjectMapper objectMapper;
+
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
   @Override
@@ -209,12 +212,26 @@ public class PaperServiceImpl implements PaperService {
     // byte[] decodedBytes = Base64Utils.decodeFromString(obj);
     // String decodedString = new String(decodedBytes);
     // System.out.println(decodedString+" my decide ");
-    String obj = encodeObject(paperDto);
+    // String obj = encodeObject(paperDto);
+        String obj = convertObjectToString(paperDto);
+        String objs= Base64Utils.encodeToString(obj.getBytes());
+
     PaperStringDto dto = new PaperStringDto();
-    dto.setData(obj);
+    dto.setData(objs);
     log.info("paperServiceIml getPaperByID method End's :");
     return dto;
   }
+
+  public String convertObjectToString(PaperDto paperDto) {
+    String obj="";
+    try {
+      obj= objectMapper.writeValueAsString(paperDto);
+    } catch (JsonProcessingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return obj;
+}
 
   public String encodeObject(Object object) {
     log.info("paperServiceIml encodeObject method Starts ");
