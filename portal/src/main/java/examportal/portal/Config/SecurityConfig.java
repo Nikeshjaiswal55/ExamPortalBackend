@@ -49,7 +49,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET).authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/**").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/api/**").authenticated()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(
                         oauth2ResourceServer -> oauth2ResourceServer.jwt(jwt -> jwt.decoder(jwtDecoder())));

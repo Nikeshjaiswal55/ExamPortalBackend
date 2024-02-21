@@ -92,6 +92,9 @@ public class PaperServiceImpl implements PaperService {
   @Autowired
   private ExamDetailsService examDetailsService;
 
+  @Autowired
+  private ObjectMapper objectMapper;
+
   Logger log = LoggerFactory.getLogger("PaperServiceImpl");
 
   @Override
@@ -157,7 +160,7 @@ public class PaperServiceImpl implements PaperService {
     log.info("paperServiceIml getAllPaper method Starts ");
     Sort sort = (sortOrder.equalsIgnoreCase("ASC")) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
     Pageable p = PageRequest.of(pageNumber, size, sort);
-    Page<Paper> pp = paperRepo.findAll(p);
+    Page<Paper> pp = paperRepo.getallpaper(p);
     List<Paper> papers = pp.getContent();
 
     List<PaperDto> paperDtos = new ArrayList<>();
@@ -177,7 +180,6 @@ public class PaperServiceImpl implements PaperService {
     log.info("paperServiceIml getAllPaper method End");
     return dto;
   }
-
 
   // public static String decodeStrin(String encodedString) {
   // // Decode the Base64-encoded string
@@ -209,11 +211,25 @@ public class PaperServiceImpl implements PaperService {
     // byte[] decodedBytes = Base64Utils.decodeFromString(obj);
     // String decodedString = new String(decodedBytes);
     // System.out.println(decodedString+" my decide ");
-    String obj = encodeObject(paperDto);
+    // String obj = encodeObject(paperDto);
+    String obj = convertObjectToString(paperDto);
+    String objs = Base64Utils.encodeToString(obj.getBytes());
+
     PaperStringDto dto = new PaperStringDto();
-    dto.setData(obj);
+    dto.setData(objs);
     log.info("paperServiceIml getPaperByID method End's :");
     return dto;
+  }
+
+  public String convertObjectToString(PaperDto paperDto) {
+    String obj = "";
+    try {
+      obj = objectMapper.writeValueAsString(paperDto);
+    } catch (JsonProcessingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return obj;
   }
 
   public String encodeObject(Object object) {
@@ -301,17 +317,8 @@ public class PaperServiceImpl implements PaperService {
     log.info("paperServiceImpl deletePaperByPaperId  method Starts");
     Paper p = this.paperRepo.findById(paperID)
         .orElseThrow(() -> new ResourceNotFoundException("Paper", "paperId", paperID));
-    ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
-    this.examDetailsRepo.deleteById(examDetails.getExamid());
-    List<Questions> questions = this.questionsRepo.getAllQuestionsByPaperId(paperID);
-    for (Questions question : questions) {
-      Questions qu = this.questionsRepo.findById(question.getQuestionId())
-          .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionID", question.getQuestionId()));
-      this.questionsRepo.deleteById(question.getQuestionId());
-    }
-    this.paperRepo.deleteById(paperID);
-
-    log.info("paperServiceImpl deletePaperByPaperId  method Ends");
+    p.set_deactivated(true);
+    this.paperRepo.save(p);
     return "Deleted success fully";
 
   }
@@ -319,7 +326,7 @@ public class PaperServiceImpl implements PaperService {
   // With FIlter
   @Override
   public PaperResponce getAllPaperByUserId(String userId, PaginationDto dto, Map<String, String> filters) {
-    log.info("paperServiceImpl getAllPaperByUserId  method Starts");
+    log.info("paperServiceImpl getAllPaperByUserId method Starts");
 
     Sort sort = (dto.getSortDirection().equalsIgnoreCase("ASC")) ? Sort.by(dto.getProperty()).ascending()
         : Sort.by(dto.getProperty()).descending();
@@ -330,11 +337,18 @@ public class PaperServiceImpl implements PaperService {
     List<ExamDetails> examDetails = new ArrayList<>();
 
     for (Paper paper2 : paper) {
-      ExamDetails emd = new ExamDetails();
-      emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
-      emd.setIs_Active(paper2.getIs_Active());
-      emd.set_Setup(paper2.is_setup());
-      examDetails.add(emd);
+      System.out.println("is_deactivated: inside the loop - " + paper2.is_deactivated());
+
+      ExamDetails emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
+
+      if (emd != null) {
+        emd.setIs_Active(paper2.getIs_Active());
+        emd.set_Setup(paper2.is_setup());
+
+        if (!paper2.is_deactivated()) {
+          examDetails.add(emd);
+        }
+      }
     }
 
     PaperResponce paperResponce = new PaperResponce();
@@ -344,7 +358,8 @@ public class PaperServiceImpl implements PaperService {
     paperResponce.setPagesize(page.getSize());
     paperResponce.setTotalElements(page.getTotalElements());
     paperResponce.setTotalPages(page.getTotalPages());
-    log.info("paperServiceImpl getAllPaperByUserId  method End");
+
+    log.info("paperServiceImpl getAllPaperByUserId method End");
     return paperResponce;
   }
 
@@ -366,9 +381,14 @@ public class PaperServiceImpl implements PaperService {
     for (Paper paper2 : paper) {
       ExamDetails emd = new ExamDetails();
       emd = this.examDetailsRepo.getExamDetailsByPaperID(paper2.getPaperId());
-      emd.setIs_Active(paper2.getIs_Active());
-      emd.set_Setup(paper2.is_setup());
-      examDetails.add(emd);
+      if (emd != null) {
+        emd.setIs_Active(paper2.getIs_Active());
+        emd.set_Setup(paper2.is_setup());
+
+        if (!paper2.is_deactivated()) {
+          examDetails.add(emd);
+        }
+      }
 
     }
 

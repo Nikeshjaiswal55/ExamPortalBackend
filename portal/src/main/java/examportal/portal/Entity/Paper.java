@@ -24,6 +24,7 @@ public class Paper {
     private String description;
     private boolean is_shorted;
     private String is_auto_check;
+    private boolean is_deactivated;
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
