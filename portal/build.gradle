@@ -28,7 +28,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	implementation 'com.microsoft.sqlserver:mssql-jdbc' 
 
-    implementation 'org.freemarker:freemarker:2.3.31' // Use the latest version available
+    implementation 'org.freemarker:freemarker:2.3.31'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
 
@@ -40,8 +40,7 @@ dependencies {
 
 	implementation 'com.microsoft.sqlserver:mssql-jdbc'
 	 implementation 'com.squareup.okhttp3:okhttp:4.9.0'
-//cloud storage
-// https://mvnrepository.com/artifact/com.cloudinary/cloudinary-http44
+
 implementation group: 'com.cloudinary', name: 'cloudinary-http44', version: '1.36.0'
 implementation 'com.cloudinary:cloudinary-http44:1.35.0'
 
@@ -52,31 +51,25 @@ implementation 'com.cloudinary:cloudinary-http44:1.35.0'
 		implementation group: 'com.auth0', name: 'auth0', version: '1.38.0'
 		testImplementation 'org.apache.httpcomponents.client5:httpclient5'
 		implementation 'net.bytebuddy:byte-buddy:1.11.12'
-		// https://mvnrepository.com/artifact/org.json/json
+	
    implementation group: 'org.json', name: 'json', version: '20231013'
 
 		implementation 'com.google.code.gson:gson:2.8.9'
-		// implementation 'org.springframework.boot:spring-boot-starter-mail'
-		implementation 'com.cloudinary:cloudinary-http44:1.31.0' // Check for the latest version on Maven Central
+		
+		implementation 'com.cloudinary:cloudinary-http44:1.31.0' 
 
 		testImplementation 'org.mockito:mockito-core:4.0.0'
 			testImplementation 'net.bytebuddy:byte-buddy:1.11.19'
 			testImplementation 'net.bytebuddy:byte-buddy-agent:1.11.19'
-// testImplementation 'org.mockito:mockito-core:3.11.2' // Use the latest version available
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 	  implementation 'com.amazonaws:aws-java-sdk:1.12.585'
 	  implementation 'com.fasterxml.jackson.core:jackson-databind'
 
-
-// this is j unit 5 testing 
-
-
 		testImplementation 'org.mockito:mockito-core:4.0.0'
 testImplementation 'net.bytebuddy:byte-buddy:1.11.19'
 testImplementation 'net.bytebuddy:byte-buddy-agent:1.11.19'
-// testImplementation 'org.mockito:mockito-core:3.11.2' // Use the latest version available
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'

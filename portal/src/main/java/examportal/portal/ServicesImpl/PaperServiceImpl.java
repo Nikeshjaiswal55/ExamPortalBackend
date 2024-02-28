@@ -127,16 +127,12 @@ public class PaperServiceImpl implements PaperService {
     examDetails.setIs_auto_check(newPaper.getIs_auto_check());
     examDetails.setPaperId(newPaper.getPaperId());
     this.examDetailsRepo.save(examDetails);
-    // System.out.println(examDetails + "kger
-    // =============================================================");
-
+   
     try {
-      // Get the result of the asynchronous saveQuestionsAsync call
       List<Questions> savedQuestions = saveQuestionsFuture.get();
       log.info("Questions saved asynchronously: {}", savedQuestions);
     } catch (Exception e) {
       log.error("Error saving questions asynchronously: {}", e.getMessage());
-      // Handle the exception
     }
 
     log.info("paperServiceIml Create paper method End's :");
@@ -181,15 +177,6 @@ public class PaperServiceImpl implements PaperService {
     return dto;
   }
 
-  // public static String decodeStrin(String encodedString) {
-  // // Decode the Base64-encoded string
-  // byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
-
-  // // Convert the byte array to a string
-  // String decodedString = new String(decodedBytes, StandardCharsets.UTF_8);
-
-  // return decodedString;
-  // }
 
   @Override
   @Deprecated
@@ -203,15 +190,6 @@ public class PaperServiceImpl implements PaperService {
     // examDetails.set_attempted(true);
     paperDto.setQuestions(qList);
     paperDto.setExamDetails(examDetails);
-    // System.out.println(paperDto.toString()+"MYSTRING");
-    // String jsonString = new Gson().toJson(paperDto);
-    // System.out.println(jsonString);
-    // String obj = Base64Utils.encodeToString(jsonString.getBytes());
-    // System.out.println(obj + "my encoded object");
-    // byte[] decodedBytes = Base64Utils.decodeFromString(obj);
-    // String decodedString = new String(decodedBytes);
-    // System.out.println(decodedString+" my decide ");
-    // String obj = encodeObject(paperDto);
     String obj = convertObjectToString(paperDto);
     String objs = Base64Utils.encodeToString(obj.getBytes());
 
@@ -226,7 +204,6 @@ public class PaperServiceImpl implements PaperService {
     try {
       obj = objectMapper.writeValueAsString(paperDto);
     } catch (JsonProcessingException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     return obj;
@@ -241,7 +218,6 @@ public class PaperServiceImpl implements PaperService {
       String encodedString = URLEncoder.encode(jsonString, StandardCharsets.UTF_8);
       return encodedString;
     } catch (JsonProcessingException e) {
-      // Handle the exception, e.g., log or throw a custom exception
       e.printStackTrace();
       log.info("paperServiceIml encodeObject method End ");
       return null;

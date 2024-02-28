@@ -28,5 +28,8 @@ public interface StudentSevices {
 
     List<Student> getTopThreeStudentByOrgnization(String orgnizationId);
 
+    String addnewstudenttopaper(InvitationDto dto);
+
+
 
 }

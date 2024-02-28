@@ -178,5 +178,16 @@ public class StudentController {
 
         return new ResponseEntity<>(null,HttpStatus.OK);
     }
+
+    @PostMapping("/addnewstudent")
+    public ResponseEntity<String> addnewstudenttopaper(@RequestBody InvitationDto dto ,HttpServletRequest request) {
+
+        String token = request.getHeader("Authorization");
+        dto.setToken(token);
+        String  response = studentSevices.addnewstudenttopaper(dto);
+
+
+        return new ResponseEntity<>(response,HttpStatus.CREATED);
+    }
     
 }

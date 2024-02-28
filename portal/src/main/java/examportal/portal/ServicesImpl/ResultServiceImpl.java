@@ -73,72 +73,72 @@ public class ResultServiceImpl implements ResultService {
 
     Logger log = LoggerFactory.getLogger("ResultServiceImpl");
 
-    @Override
-    @Transactional
-    public ResultDto createResult(ResultDto dto) {
-        log.info("ResultServiceImpl, createResult Method Start");
+    // @Override
+    // @Transactional
+    // public ResultDto createResult(ResultDto dto) {
+    //     log.info("ResultServiceImpl, createResult Method Start");
 
-        // 1. Batch Insertion for AttemptedQuestions
-        List<AttemptedQuestions> attemptedQuestionsList = dto.getQuestions().stream()
-                .map(question -> {
-                    AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
-                    attemptedQuestions.setCorrectAns(question.getCorrectAns());
-                    attemptedQuestions.setOptions(question.getOptions());
-                    attemptedQuestions.setQuestions(question.getQuestions());
-                    attemptedQuestions.setPaperID(dto.getResult().getPaperID());
+    //     // 1. Batch Insertion for AttemptedQuestions
+    //     List<AttemptedQuestions> attemptedQuestionsList = dto.getQuestions().stream()
+    //             .map(question -> {
+    //                 AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
+    //                 attemptedQuestions.setCorrectAns(question.getCorrectAns());
+    //                 attemptedQuestions.setOptions(question.getOptions());
+    //                 attemptedQuestions.setQuestions(question.getQuestions());
+    //                 attemptedQuestions.setPaperID(dto.getResult().getPaperID());
 
-                    attemptedQuestions.setUserAns(question.getUserAns());
-                    attemptedQuestions.setStudentID(dto.getResult().getStudentID());
-                    return attemptedQuestions;
-                })
-                .collect(Collectors.toList());
+    //                 attemptedQuestions.setUserAns(question.getUserAns());
+    //                 attemptedQuestions.setStudentID(dto.getResult().getStudentID());
+    //                 return attemptedQuestions;
+    //             })
+    //             .collect(Collectors.toList());
 
-        List<AttemptedQuestions> savedQuestions = this.attemptedQuestionsRepo.saveAll(attemptedQuestionsList);
-        List<Questions> questions = new ArrayList();
-        for (AttemptedQuestions attemptedQuestions : savedQuestions) {
-            Questions question = this.mapper.map(attemptedQuestions, Questions.class);
-            questions.add(question);
-        }
-        // 2. Update ExamDetails
-        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
-        examDetails.setPaperChecked(true);
-        examDetails.setIs_Active("true");
-        examDetails.set_Setup(false);
+    //     List<AttemptedQuestions> savedQuestions = this.attemptedQuestionsRepo.saveAll(attemptedQuestionsList);
+    //     List<Questions> questions = new ArrayList();
+    //     for (AttemptedQuestions attemptedQuestions : savedQuestions) {
+    //         Questions question = this.mapper.map(attemptedQuestions, Questions.class);
+    //         questions.add(question);
+    //     }
+    //     // 2. Update ExamDetails
+    //     ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getResult().getPaperID());
+    //     examDetails.setPaperChecked(true);
+    //     examDetails.setIs_Active("true");
+    //     examDetails.set_Setup(false);
         
-        this.examDetailsRepo.save(examDetails);
+    //     this.examDetailsRepo.save(examDetails);
 
-        // 3. Save Result
-        Result newResult = this.resultRepo.save(dto.getResult());
+    //     // 3. Save Result
+    //     Result newResult = this.resultRepo.save(dto.getResult());
 
         
-        Student s = this.studentRepo.findById(newResult.getStudentID())
-                .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", newResult.getStudentID()));
+    //     Student s = this.studentRepo.findById(newResult.getStudentID())
+    //             .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", newResult.getStudentID()));
 
-        if (s.getTopMarks() < newResult.getMarks()) {
-            s.setTopMarks(newResult.getMarks());
-            s.setTop_paperId(newResult.getPaperID());
-            this.studentRepo.save(s);
-        }
+    //     if (s.getTopMarks() < newResult.getMarks()) {
+    //         s.setTopMarks(newResult.getMarks());
+    //         s.setTop_paperId(newResult.getPaperID());
+    //         this.studentRepo.save(s);
+    //     }
 
-        // 4. Save Cheating
-        Cheating cheating = dto.getCheating();
-        cheating.setPaperId(newResult.getPaperID());
-        cheating.setStudentId(newResult.getStudentID());
-        cheating.setResultId(newResult.getResultID());
-        Cheating stdCheating = this.cheatingRepo.save(cheating);
+    //     // 4. Save Cheating
+    //     Cheating cheating = dto.getCheating();
+    //     cheating.setPaperId(newResult.getPaperID());
+    //     cheating.setStudentId(newResult.getStudentID());
+    //     cheating.setResultId(newResult.getResultID());
+    //     Cheating stdCheating = this.cheatingRepo.save(cheating);
 
 
-        // 5. Build ResultDto
-        ResultDto resultDto = new ResultDto();
-        resultDto.setQuestions(questions);
-        resultDto.setResultID(newResult.getResultID());
-        resultDto.setCheating(stdCheating);
-        resultDto.setResult(newResult);
-        resultDto.set_attempted(true);
-        log.info("ResultServiceImpl, createResult Method Ends");
+    //     // 5. Build ResultDto
+    //     ResultDto resultDto = new ResultDto();
+    //     resultDto.setQuestions(questions);
+    //     resultDto.setResultID(newResult.getResultID());
+    //     resultDto.setCheating(stdCheating);
+    //     resultDto.setResult(newResult);
+    //     resultDto.set_attempted(true);
+    //     log.info("ResultServiceImpl, createResult Method Ends");
 
-        return resultDto;
-    }
+    //     return resultDto;
+    // }
 
     @Override
     public ResultDto getResultByStudentAndPaperId(String resultID) {
@@ -180,7 +180,6 @@ public class ResultServiceImpl implements ResultService {
             ResultDto d = new ResultDto();
             d.setResult(r);
             d.set_attempted(true);
-            System.out.println("I am here in result ==============");
             return d;
         } else {
             int obtainmarks = 0;
@@ -195,40 +194,17 @@ public class ResultServiceImpl implements ResultService {
             ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(dto.getPaperId());
             int eachqMarks = examDetails.getTotalMarks() / dto.getQuestions().size();
             System.out.println(dto.getQuestions()+"my alll questions i s herere");
-    
-            // for (Questions ques : dto.getQuestions()) {
-            //     try {
-            //         Questions q = this.questionsRepo.findById(ques.getQuestionId())
-            //                 .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
-    
-            //         if (q.getCorrectAns().equals(ques.getUserAns())) {
-            //             obtainmarks += eachqMarks;
-            //         }
-    
-            //         q.setUserAns(ques.getUserAns());
-            //         questions2.add(q);
-            //         System.out.println("Hello, I am checking =============================================");
-            //     } catch (ResourceNotFoundException ex) {
-            //         System.err.println("Error fetching question with ID: " + ques.getQuestionId());
-            //         // You might want to consider skipping this question or handling the error in some way
-            //     }
-            // }
-                System.out.println("I am here outside the loop ==============");
+
             for (Questions ques : dto.getQuestions()) {
                 try {
-                    // Questions q = this.questionsRepo.findById(ques.getQuestionId())
-                    //         .orElseThrow(() -> new ResourceNotFoundException("Question", "QuestionId", ques.getQuestionId()));
-            
+
                     if (ques.getCorrectAns().equals(ques.getUserAns())) {
                         obtainmarks += eachqMarks;
                     }
-            
-                    // q.setUserAns(ques.getUserAns());
                     questions2.add(ques);
-                    System.out.println("Hello, I am checking =============================================");
                 } catch (ResourceNotFoundException ex) {
                     System.err.println("Error fetching question with ID: " + ques.getQuestionId());
-                    // You might want to consider skipping this question or handling the error in some way
+                    
                 }
             }
     
@@ -258,14 +234,14 @@ public class ResultServiceImpl implements ResultService {
                 newResult.setIs_published("pending");
             }
     
-            Assessment assessment = this.assessmentRepo.getAssessmentByStudentAndpaperId(dto.getStudentId(),
-                    dto.getPaperId());
+            // Assessment assessment = this.assessmentRepo.getAssessmentByStudentAndpaperId(dto.getStudentId(),
+            //         dto.getPaperId());
     
             AttemptedPapers attemptedPapers = new AttemptedPapers();
             attemptedPapers.setPaperId(dto.getPaperId());
             attemptedPapers.setStudentId(dto.getStudentId());
             attemptedPapers.set_attempted(true);
-            attemptedPapers.setAssmentId(assessment.getAssessmentID());
+            // attemptedPapers.setAssmentId(assessment.getAssessmentID());
             this.attemptepaperRepo.save(attemptedPapers);
     
             Cheating cheating = dto.getCheating();
@@ -428,6 +404,88 @@ public class ResultServiceImpl implements ResultService {
         }
         return results;
     }
+
+    @Override
+    public ResultDto createResult(ResultDto dto) {
+        log.info("ResultServiceImpl, createResult Method Start");
+    
+        List<AttemptedQuestions> savedQuestions = batchInsertAttemptedQuestions(dto);
+    
+        updateExamDetails(dto.getResult().getPaperID());
+    
+        Result newResult = saveResult(dto.getResult());
+    
+        updateStudentTopMarks(newResult);
+    
+        Cheating stdCheating = saveCheating(dto, newResult);
+    
+        ResultDto resultDto = buildResultDto(savedQuestions, newResult, stdCheating);
+        log.info("ResultServiceImpl, createResult Method Ends");
+     
+        return resultDto;
+    }
+    
+    private List<AttemptedQuestions> batchInsertAttemptedQuestions(ResultDto dto) {
+        return dto.getQuestions().stream()
+                .map(question -> {
+                    AttemptedQuestions attemptedQuestions = new AttemptedQuestions();
+                    attemptedQuestions.setCorrectAns(question.getCorrectAns());
+                    attemptedQuestions.setOptions(question.getOptions());
+                    attemptedQuestions.setQuestions(question.getQuestions());
+                    attemptedQuestions.setPaperID(dto.getResult().getPaperID());
+                    attemptedQuestions.setUserAns(question.getUserAns());
+                    attemptedQuestions.setStudentID(dto.getResult().getStudentID());
+                    return attemptedQuestions;
+                })
+                .collect(Collectors.toList());
+    }
+    
+    private void updateExamDetails(String paperID) {
+        ExamDetails examDetails = this.examDetailsRepo.getExamDetailsByPaperID(paperID);
+        examDetails.setPaperChecked(true);
+        examDetails.setIs_Active("true");
+        examDetails.set_Setup(false);
+        this.examDetailsRepo.save(examDetails);
+    }
+    
+    private Result saveResult(Result result) {
+        return this.resultRepo.save(result);
+    }
+    
+    private void updateStudentTopMarks(Result newResult) {
+        Student s = this.studentRepo.findById(newResult.getStudentID())
+                .orElseThrow(() -> new ResourceNotFoundException("Student", "StudentId", newResult.getStudentID()));
+    
+        if (s.getTopMarks() < newResult.getMarks()) {
+            s.setTopMarks(newResult.getMarks());
+            s.setTop_paperId(newResult.getPaperID());
+            this.studentRepo.save(s);
+        }
+    }
+    
+    private Cheating saveCheating(ResultDto dto, Result newResult) {
+        Cheating cheating = dto.getCheating();
+        cheating.setPaperId(newResult.getPaperID());
+        cheating.setStudentId(newResult.getStudentID());
+        cheating.setResultId(newResult.getResultID());
+        return this.cheatingRepo.save(cheating);
+    }
+    
+    private ResultDto buildResultDto(List<AttemptedQuestions> savedQuestions, Result newResult, Cheating stdCheating) {
+        List<Questions> questions = savedQuestions.stream()
+                .map(attemptedQuestions -> this.mapper.map(attemptedQuestions, Questions.class))
+                .collect(Collectors.toList());
+    
+        ResultDto resultDto = new ResultDto();
+        resultDto.setQuestions(questions);
+        resultDto.setResultID(newResult.getResultID());
+        resultDto.setCheating(stdCheating);
+        resultDto.setResult(newResult);
+        resultDto.set_attempted(true);
+    
+        return resultDto;
+    }
+    
 
 
 }

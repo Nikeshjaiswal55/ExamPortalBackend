@@ -230,6 +230,17 @@ public class StudentServiceImpl implements StudentSevices {
             return null;
         }
     }
+    @Override
+    public String addnewstudenttopaper(InvitationDto dto)
+    {
+        for (String  email : dto.getEmails()) {
+            Student student = this.studentRepo.getszStudentByEmail(email);
+            if (student==null) {
+               handleNewStudent(dto, email);
+            }
+        }
+        return "invited sucessfully";
+    }
 
     @Deprecated
     public void handleNewStudent(InvitationDto dto, String email) {
@@ -239,7 +250,7 @@ public class StudentServiceImpl implements StudentSevices {
 
             // String encode = encodeString(password);
 
-            // String encode = this.passwordEncoder.encode(password);
+            // String encode = this.passwordEncoder.encode(password)s;
             String response = this.auth0Service.createUser(email, password, dto.getToken());
 
             User newUser = new User();
